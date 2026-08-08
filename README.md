@@ -2,7 +2,7 @@
 
 ## 🔒 Licensing & Intellectual Property
 
-**InvestScape™ Calculation Engine & InvestScape™ Economics Engine** are proprietary software © 2026 Lighthouse Research Ltd.  
+**InvestScape™ Calculation & Economic Engines (E1–E45)** is proprietary software © 2026 Lighthouse Research Ltd.  
 **InvestScape™** is a registered trademark of Lighthouse Research Ltd.
 
 ### License Summary
@@ -22,7 +22,7 @@
 
 If your organization wishes to use InvestScape™ Calculation Engines in a commercial product or service:
 
-1. **Contact:** eric@lighthouseresearch.ca
+1. **Contact:** wahjai604@gmail.com
 2. **Subject line:** `[COMMERCIAL LICENSE INQUIRY] — [Your Organization Name]`
 3. **Include:**
    - Organization name and industry
@@ -44,6 +44,9 @@ You may NOT:
 - ❌ Register similar domains or social media accounts using "InvestScape"
 - ❌ Use the trademark in a commercial product without permission
 
+---
+
+#
 ---
 
 Express + TypeScript API exposing investscape-calc-engine's calculation functions over HTTP.

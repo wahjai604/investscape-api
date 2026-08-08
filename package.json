@@ -11,7 +11,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "PROPRIETARY",
+  "licenseText": "© 2026 Lighthouse Research Ltd. Proprietary software. See LICENSE file.",
   "dependencies": {
   "@investscape/calc-engine": "file:../investscape-calc-engine",
   "@investscape/economic-engine": "file:../investscape-economic-engine",
