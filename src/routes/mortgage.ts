@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { calculateMonthlyMortgagePayment } from "investscape-calc-engine";
+import { calculateMonthlyMortgagePayment } from "@investscape/calc-engine";
 import { mortgageInputSchema, type MortgageOutput } from "../validation/schemas.js";
 
 const router = Router();

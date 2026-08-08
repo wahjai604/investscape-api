@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { calculateNOI, calculateDSCR } from "investscape-calc-engine";
+import { calculateNOI, calculateDSCR } from "@investscape/calc-engine";
 import { dscrInputSchema, type DSCROutput } from "../validation/schemas.js";
 
 const router = Router();

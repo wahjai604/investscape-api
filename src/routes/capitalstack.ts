@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { calculateCapitalStack } from "investscape-calc-engine";
+import { calculateCapitalStack } from "@investscape/calc-engine";
 import { capitalStackInputSchema, type CapitalStackOutput } from "../validation/schemas.js";
 
 const router = Router();

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { calculateExitProceeds } from "investscape-calc-engine";
+import { calculateExitProceeds } from "@investscape/calc-engine";
 import { exitProceedsInputSchema, type ExitProceedsOutput } from "../validation/schemas.js";
 
 const router = Router();

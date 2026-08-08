@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { qualifyForMortgage } from "investscape-calc-engine";
+import { qualifyForMortgage } from "@investscape/calc-engine";
 import { qualifyInputSchema, type QualifyOutput } from "../validation/schemas.js";
 
 const router = Router();

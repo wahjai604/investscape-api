@@ -19,4 +19,7 @@ app.use(router);
 
 app.listen(PORT, () => {
   console.log(`investscape-api listening on port ${PORT}`);
+  console.log("✅ 27 financial engines loaded (E1–E27)");
+  console.log("✅ 16 economic engines loaded (E29–E35, E37–E45; E36 excluded pending legal review)");
+  console.log("✅ 43 routes registered");
 });

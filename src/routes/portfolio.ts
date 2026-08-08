@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { rollupPortfolio } from "investscape-calc-engine";
+import { rollupPortfolio } from "@investscape/calc-engine";
 import { portfolioInputSchema, type PortfolioOutput } from "../validation/schemas.js";
 
 const router = Router();

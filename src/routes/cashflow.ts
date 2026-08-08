@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { projectCashFlows } from "investscape-calc-engine";
+import { projectCashFlows } from "@investscape/calc-engine";
 import { cashFlowInputSchema, type CashFlowOutput } from "../validation/schemas.js";
 
 const router = Router();

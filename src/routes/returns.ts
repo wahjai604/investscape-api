@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { calculateIRR, calculateMIRR, calculateEquityMultiple } from "investscape-calc-engine";
+import { calculateIRR, calculateMIRR, calculateEquityMultiple } from "@investscape/calc-engine";
 import { returnsInputSchema, type ReturnsOutput } from "../validation/schemas.js";
 
 const router = Router();
