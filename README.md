@@ -1,93 +1,55 @@
-# investscape-api
+# InvestScape API
 
-## 🔒 Licensing & Intellectual Property
+**Repository:** https://github.com/wahjai604/investscape-api
+**License:** Proprietary (Closed-Source) — see [LICENSE](LICENSE)
+**Copyright:** © 2026 Lighthouse Research Ltd.
 
-**InvestScape™ Calculation & Economic Engines (E1–E45)** is proprietary software © 2026 Lighthouse Research Ltd.  
-**InvestScape™** is a registered trademark of Lighthouse Research Ltd.
+## Purpose
 
-### License Summary
+An Express + TypeScript HTTP API that exposes `investscape-calc-engine` and `investscape-economic-engine`'s calculation functions over HTTP.
 
-| Use Case | Status | License | Fee |
-|----------|--------|---------|-----|
-| **Personal real estate analysis** | ✅ Allowed | Proprietary License | None |
-| **Educational/learning** | ✅ Allowed | Proprietary License | None |
-| **Internal business analysis** | ✅ Allowed | Proprietary License | None |
-| **Commercial product embedding** | ❌ Prohibited | Requires Commercial License | Case-by-case negotiation |
-| **SaaS/service offering** | ❌ Prohibited | Requires Commercial License | Case-by-case negotiation |
-| **Redistribution/resale** | ❌ Prohibited | Not permitted | N/A |
+## Scope
 
-**For full license terms, see `LICENSE` and `CONTRIBUTING.md`.**
+44 endpoints: `GET /health` plus 43 `POST /calculate/*` routes.
 
-### Commercial Licensing
+- **27 financial routes** (from `@investscape/calc-engine`, E1–E27): `/calculate/mortgage`, `/calculate/exit`, `/calculate/qualify`, `/calculate/dscr`, `/calculate/cashflow`, `/calculate/returns`, `/calculate/capitalstack`, `/calculate/portfolio`, `/calculate/amortization`, `/calculate/cmhc`, `/calculate/ptt`, `/calculate/break-even`, `/calculate/appreciation`, `/calculate/refinance`, `/calculate/scenario`, `/calculate/brrrr`, `/calculate/holding-period-sensitivity`, `/calculate/tax-optimization`, `/calculate/data-provenance`, `/calculate/fx-conversion`, `/calculate/rental-waterfall`, `/calculate/property-tax`, `/calculate/opex-benchmark`, `/calculate/insurance-estimation`, `/calculate/lender-scorecard`, `/calculate/amortization-display`, `/calculate/chart-data`
+- **16 of 17 economic routes** (from `@investscape/economic-engine`, E29–E45): `/calculate/regional-macro`, `/calculate/city-market`, `/calculate/neighborhood-demographics`, `/calculate/comparable-sales`, `/calculate/rental-comps`, `/calculate/school-ratings`, `/calculate/walkability-transit`, `/calculate/market-velocity`, `/calculate/macro-micro-sensitivity`, `/calculate/mortgage-rate-forecast`, `/calculate/appreciation-probability`, `/calculate/market-cycle`, `/calculate/neighborhood-investment-score`, `/calculate/portfolio-geo-diversification`, `/calculate/currency-risk`, `/calculate/scenario-batch`. **E36 (crime & safety) is implemented in the economic engine but is not exposed here**, pending legal review.
 
-If your organization wishes to use InvestScape™ Calculation Engines in a commercial product or service:
+## Testing
 
-1. **Contact:** wahjai604@gmail.com
-2. **Subject line:** `[COMMERCIAL LICENSE INQUIRY] — [Your Organization Name]`
-3. **Include:**
-   - Organization name and industry
-   - Intended commercial use
-   - Target customer base
-   - Estimated revenue/impact
-   - Timeline for implementation
+**No automated test suite currently exists in this repo** (`npm test` has no script). Test coverage for the underlying calculation logic lives in `investscape-calc-engine` and `investscape-economic-engine`, which this API wraps and re-exposes without independent test coverage of the HTTP layer itself.
 
-**Note:** Commercial licensing is evaluated **case-by-case.** No standard pricing. Substantial business justification required.
+## Authentication
 
-### Trademark Use
+**No authentication is currently implemented on any endpoint.** All routes are open. `cors()` and `express.json()` are the only middleware in place. Do not expose this API publicly without adding an auth layer.
 
-The name **InvestScape™** and associated trademark symbols (™, ®) are protected intellectual property. You may:
-- ✅ Refer to "InvestScape™" when describing the software in non-commercial contexts
-- ✅ Use the trademark when attributing calculation results (e.g., "Powered by InvestScape™")
+## Installation
 
-You may NOT:
-- ❌ Use the InvestScape™ name or logo to suggest endorsement or partnership
-- ❌ Register similar domains or social media accounts using "InvestScape"
-- ❌ Use the trademark in a commercial product without permission
+For authorized users only. Usage requires a valid InvestScape tier (S1–S3).
 
----
-
-#
----
-
-Express + TypeScript API exposing investscape-calc-engine's calculation functions over HTTP.
-
-## Setup
+This repo depends on sibling repos via local `file:` dependencies — `investscape-calc-engine` and `investscape-economic-engine` must be checked out alongside it (as siblings in the same parent directory).
 
 ```bash
 npm install
-npm link investscape-calc-engine
+npm run dev    # hot-reload dev server (tsx watch)
+npm run build  # compile to dist/
+npm start      # run compiled server
 ```
 
-## Scripts
+## Architecture
 
-- `npm run dev` — run the server with hot reload (tsx watch)
-- `npm run build` — compile TypeScript to `dist/`
-- `npm start` — run the compiled server from `dist/`
+`src/index.ts` boots Express, mounts `cors` and `express.json()`, exposes `GET /health`, and mounts the router from `src/routes/index.ts`. Each `/calculate/*` route lives in its own file under `src/routes/` (financial) or `src/routes/economic/` (economic), and calls into the corresponding engine package. Dependency direction is a clean DAG: `investscape-api` → `investscape-economic-engine` → `investscape-calc-engine`; no circular dependencies.
 
-## Endpoints
+## Documentation
 
-### `GET /health`
+Reference documentation: https://github.com/wahjai604/investscape-docs
 
-Returns `{ "status": "ok" }`.
+## License & Disclaimer
 
-### `POST /calculate/mortgage`
+This software is closed-source proprietary code. Authorized users only.
 
-Request body:
+For legal disclaimers, see [DISCLAIMER.md](DISCLAIMER.md).
 
-```json
-{
-  "purchasePrice": 500000,
-  "downPaymentPercent": 0.2,
-  "contractRate": 0.045,
-  "amortizationYears": 25
-}
-```
+---
 
-Response:
-
-```json
-{
-  "monthlyPayment": 2216.94,
-  "qualifyingRate": 0.065
-}
-```
+© 2026 Lighthouse Research Ltd. All rights reserved.
