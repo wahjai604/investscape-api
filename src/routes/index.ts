@@ -19,14 +19,14 @@
 import { Router } from "express";
 
 // Financial engines (E1-E27) — existing 8
-import mortgageRouter from "./mortgage.js";
-import exitRouter from "./exit.js";
-import qualifyRouter from "./qualify.js";
-import dscrRouter from "./dscr.js";
-import cashflowRouter from "./cashflow.js";
-import returnsRouter from "./returns.js";
-import capitalstackRouter from "./capitalstack.js";
-import portfolioRouter from "./portfolio.js";
+import mortgageRouter from "./E1-mortgage.js";
+import exitRouter from "./E4-exit.js";
+import qualifyRouter from "./E6-qualifying.js";
+import dscrRouter from "./E9-dscr.js";
+import cashflowRouter from "./E3-cashflow.js";
+import returnsRouter from "./E5-returns.js";
+import capitalstackRouter from "./E8-capitalstack.js";
+import portfolioRouter from "./E10-portfolio.js";
 
 // Financial engines (E1-E27) — new 19
 import amortizationRouter from "./E2-amortization.js";
