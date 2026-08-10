@@ -16,6 +16,7 @@
   "dependencies": {
   "@investscape/calc-engine": "file:../investscape-calc-engine",
   "@investscape/economic-engine": "file:../investscape-economic-engine",
+  "@investscape/tax-engine": "file:../investscape-tax-engine",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

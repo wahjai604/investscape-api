@@ -68,8 +68,19 @@ import portfolioGeoDiversificationRouter from "./E43-portfolio-geographic-divers
 import currencyRiskRouter from "./E44-currency-risk-exposure.js";
 import scenarioBatchRouter from "./E45-scenario-batch-processor.js";
 
+// Tax engines (E46-E53)
+import taxAggregationRouter from "./E46-tax-aggregation.js";
+import personalIncomeTaxRouter from "./E47-personal-income-tax.js";
+import depreciationRouter from "./E48-depreciation.js";
+import mortgageInterestRouter from "./E49-mortgage-interest.js";
+import operatingExpenseRouter from "./E50-operating-expense.js";
+import developerProfitRouter from "./E51-developer-profit.js";
+import gstHstDevChargesRouter from "./E52-gst-hst-dev-charges.js";
+import passiveActivityLossRouter from "./E53-passive-activity-loss.js";
+
 const router = Router();
 
+// Financial, Economic & Tax (28 + 16 + 8 = 52 engines: E1-E28, E29-E45, E46-E53; E36 excluded)
 // Financial (28 engines: E1-E28)
 router.use(mortgageRouter);
 router.use(amortizationRouter);
@@ -101,7 +112,6 @@ router.use(chartDataRouter);
 router.use(salesAppreciationRouter);
 
 // Economic (16 engines: E29-E35, E37-E45; E36 excluded pending legal review)
-// Flat route structure: E1-E45 today, ready for E46-E53 tax routes in same /routes/ directory
 router.use(regionalMacroRouter);
 router.use(cityMarketRouter);
 router.use(neighborhoodDemographicsRouter);
@@ -118,5 +128,15 @@ router.use(neighborhoodInvestmentScoreRouter);
 router.use(portfolioGeoDiversificationRouter);
 router.use(currencyRiskRouter);
 router.use(scenarioBatchRouter);
+
+// Tax (8 engines: E46-E53)
+router.use(taxAggregationRouter);
+router.use(personalIncomeTaxRouter);
+router.use(depreciationRouter);
+router.use(mortgageInterestRouter);
+router.use(operatingExpenseRouter);
+router.use(developerProfitRouter);
+router.use(gstHstDevChargesRouter);
+router.use(passiveActivityLossRouter);
 
 export default router;
