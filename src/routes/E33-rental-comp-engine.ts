@@ -18,7 +18,7 @@
 
 import { Router } from "express";
 import { rentalCompEngine } from "@investscape/economic-engine";
-import { rentalCompInputSchema } from "../../validation/economic-schemas.js";
+import { rentalCompInputSchema } from "../validation/economic-schemas.js";
 
 const router = Router();
 

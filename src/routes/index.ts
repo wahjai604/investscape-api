@@ -51,22 +51,22 @@ import chartDataRouter from "./E27-chart-data.js";
 import salesAppreciationRouter from "./E28-Sales-Appreciation.js";
 
 // Economic engines (E29-E45, excluding E36)
-import regionalMacroRouter from "./economic/E29-regional-macro-context.js";
-import cityMarketRouter from "./economic/E30-city-market-analysis.js";
-import neighborhoodDemographicsRouter from "./economic/E31-neighborhood-demographics.js";
-import comparableSalesRouter from "./economic/E32-comparable-sales-analysis.js";
-import rentalCompsRouter from "./economic/E33-rental-comp-engine.js";
-import schoolRatingsRouter from "./economic/E34-school-rating-engine.js";
-import walkabilityTransitRouter from "./economic/E35-walkability-transit-scorer.js";
-import marketVelocityRouter from "./economic/E37-market-velocity-analyzer.js";
-import macroMicroSensitivityRouter from "./economic/E38-macro-micro-sensitivity.js";
-import mortgageRateForecastRouter from "./economic/E39-mortgage-rate-forecast.js";
-import appreciationProbabilityRouter from "./economic/E40-appreciation-probability.js";
-import marketCycleRouter from "./economic/E41-market-cycle-indicator.js";
-import neighborhoodInvestmentScoreRouter from "./economic/E42-neighborhood-investment-score.js";
-import portfolioGeoDiversificationRouter from "./economic/E43-portfolio-geographic-diversification.js";
-import currencyRiskRouter from "./economic/E44-currency-risk-exposure.js";
-import scenarioBatchRouter from "./economic/E45-scenario-batch-processor.js";
+import regionalMacroRouter from "./E29-regional-macro-context.js";
+import cityMarketRouter from "./E30-city-market-analysis.js";
+import neighborhoodDemographicsRouter from "./E31-neighborhood-demographics.js";
+import comparableSalesRouter from "./E32-comparable-sales-analysis.js";
+import rentalCompsRouter from "./E33-rental-comp-engine.js";
+import schoolRatingsRouter from "./E34-school-rating-engine.js";
+import walkabilityTransitRouter from "./E35-walkability-transit-scorer.js";
+import marketVelocityRouter from "./E37-market-velocity-analyzer.js";
+import macroMicroSensitivityRouter from "./E38-macro-micro-sensitivity.js";
+import mortgageRateForecastRouter from "./E39-mortgage-rate-forecast.js";
+import appreciationProbabilityRouter from "./E40-appreciation-probability.js";
+import marketCycleRouter from "./E41-market-cycle-indicator.js";
+import neighborhoodInvestmentScoreRouter from "./E42-neighborhood-investment-score.js";
+import portfolioGeoDiversificationRouter from "./E43-portfolio-geographic-diversification.js";
+import currencyRiskRouter from "./E44-currency-risk-exposure.js";
+import scenarioBatchRouter from "./E45-scenario-batch-processor.js";
 
 const router = Router();
 
@@ -101,6 +101,7 @@ router.use(chartDataRouter);
 router.use(salesAppreciationRouter);
 
 // Economic (16 engines: E29-E35, E37-E45; E36 excluded pending legal review)
+// Flat route structure: E1-E45 today, ready for E46-E53 tax routes in same /routes/ directory
 router.use(regionalMacroRouter);
 router.use(cityMarketRouter);
 router.use(neighborhoodDemographicsRouter);

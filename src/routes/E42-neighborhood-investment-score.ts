@@ -17,24 +17,22 @@
  */
 
 import { Router } from "express";
-import { walkabilityTransitScorer } from "@investscape/economic-engine";
-import { walkabilityInputSchema } from "../../validation/economic-schemas.js";
+import { neighborhoodInvestmentScore } from "@investscape/economic-engine";
+import { neighborhoodInvestmentScoreInputSchema } from "../validation/economic-schemas.js";
 
 const router = Router();
 
-router.post("/calculate/walkability-transit", (req, res) => {
-  const parseResult = walkabilityInputSchema.safeParse(req.body);
+// E36 (crime-safety) is deliberately excluded from this composite score
+// pending legal review — the input schema below has no crime/safety field.
+router.post("/calculate/neighborhood-investment-score", (req, res) => {
+  const parseResult = neighborhoodInvestmentScoreInputSchema.safeParse(req.body);
   if (!parseResult.success) {
     res.status(400).json({ error: parseResult.error.flatten() });
     return;
   }
 
-  try {
-    const result = walkabilityTransitScorer(parseResult.data);
-    res.json(result);
-  } catch (error) {
-    res.status(400).json({ error: (error as Error).message });
-  }
+  const result = neighborhoodInvestmentScore(parseResult.data);
+  res.json(result);
 });
 
 export default router;

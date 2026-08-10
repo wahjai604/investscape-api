@@ -17,24 +17,20 @@
  */
 
 import { Router } from "express";
-import { regionalMacroContext } from "@investscape/economic-engine";
-import { regionalMacroInputSchema } from "../../validation/economic-schemas.js";
+import { scenarioBatchProcessor } from "@investscape/economic-engine";
+import { scenarioBatchInputSchema } from "../validation/economic-schemas.js";
 
 const router = Router();
 
-router.post("/calculate/regional-macro", (req, res) => {
-  const parseResult = regionalMacroInputSchema.safeParse(req.body);
+router.post("/calculate/scenario-batch", (req, res) => {
+  const parseResult = scenarioBatchInputSchema.safeParse(req.body);
   if (!parseResult.success) {
     res.status(400).json({ error: parseResult.error.flatten() });
     return;
   }
 
-  try {
-    const result = regionalMacroContext(parseResult.data);
-    res.json(result);
-  } catch (error) {
-    res.status(400).json({ error: (error as Error).message });
-  }
+  const result = scenarioBatchProcessor(parseResult.data);
+  res.json(result);
 });
 
 export default router;

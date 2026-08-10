@@ -17,20 +17,20 @@
  */
 
 import { Router } from "express";
-import { marketVelocityAnalyzer } from "@investscape/economic-engine";
-import { marketVelocityInputSchema } from "../../validation/economic-schemas.js";
+import { schoolRatingEngine } from "@investscape/economic-engine";
+import { schoolRatingInputSchema } from "../validation/economic-schemas.js";
 
 const router = Router();
 
-router.post("/calculate/market-velocity", (req, res) => {
-  const parseResult = marketVelocityInputSchema.safeParse(req.body);
+router.post("/calculate/school-ratings", (req, res) => {
+  const parseResult = schoolRatingInputSchema.safeParse(req.body);
   if (!parseResult.success) {
     res.status(400).json({ error: parseResult.error.flatten() });
     return;
   }
 
   try {
-    const result = marketVelocityAnalyzer(parseResult.data);
+    const result = schoolRatingEngine(parseResult.data);
     res.json(result);
   } catch (error) {
     res.status(400).json({ error: (error as Error).message });
