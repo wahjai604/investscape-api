@@ -674,3 +674,29 @@ export const chartDataInputSchema = z.object({
 });
 
 export type ChartDataInput = z.infer<typeof chartDataInputSchema>;
+
+// ============================================================================
+// E28: Sales Price Appreciation
+// ============================================================================
+
+export const salePriceInputSchema = z.discriminatedUnion("method", [
+  z.object({
+    method: z.literal("flat_growth"),
+    originalPurchasePrice: z.number().positive(),
+    appreciationRate: z.number(),
+    holdPeriodYears: z.number().positive(),
+  }),
+  z.object({
+    method: z.literal("cap_rate"),
+    finalYearNOI: z.number().positive(),
+    exitCapRate: z.number().positive(),
+  }),
+]);
+
+export type SalePriceInput = z.infer<typeof salePriceInputSchema>;
+
+export const salePriceOutputSchema = z.object({
+  salePrice: z.number(),
+});
+
+export type SalePriceOutput = z.infer<typeof salePriceOutputSchema>;

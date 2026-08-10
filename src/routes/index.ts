@@ -48,6 +48,7 @@ import insuranceEstimationRouter from "./E24-insurance-estimation.js";
 import lenderScorecardRouter from "./E25-lender-scorecard.js";
 import amortizationDisplayRouter from "./E26-amortization-display.js";
 import chartDataRouter from "./E27-chart-data.js";
+import salesAppreciationRouter from "./E28-Sales-Appreciation.js";
 
 // Economic engines (E29-E45, excluding E36)
 import regionalMacroRouter from "./economic/E29-regional-macro-context.js";
@@ -69,7 +70,7 @@ import scenarioBatchRouter from "./economic/E45-scenario-batch-processor.js";
 
 const router = Router();
 
-// Financial (27 engines: E1-E27)
+// Financial (28 engines: E1-E28)
 router.use(mortgageRouter);
 router.use(amortizationRouter);
 router.use(cashflowRouter);
@@ -97,6 +98,7 @@ router.use(insuranceEstimationRouter);
 router.use(lenderScorecardRouter);
 router.use(amortizationDisplayRouter);
 router.use(chartDataRouter);
+router.use(salesAppreciationRouter);
 
 // Economic (16 engines: E29-E35, E37-E45; E36 excluded pending legal review)
 router.use(regionalMacroRouter);
