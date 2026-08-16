@@ -50,7 +50,7 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.use(router);
+app.use("/v1", router);
 
 app.use(notFoundHandler);
 app.use(errorHandler);
