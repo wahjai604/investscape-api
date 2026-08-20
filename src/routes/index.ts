@@ -78,6 +78,13 @@ import developerProfitRouter from "./E51-developer-profit.js";
 import gstHstDevChargesRouter from "./E52-gst-hst-dev-charges.js";
 import passiveActivityLossRouter from "./E53-passive-activity-loss.js";
 
+// Batch F: E78-E82 (Development Studio scaffolds, Phase 2A)
+import financingTableRouter from "./E78-financing-table.js";
+import dealGradeE79Router from "./E79-deal-grade.js";
+import budgetRollupRouter from "./E80-budget-actuals.js";
+import sourcesUsesRouter from "./E81-sources-uses.js";
+import acquisitionStructureRouter from "./E82-acquisition-structure.js";
+
 const router = Router();
 
 // Financial, Economic & Tax (28 + 16 + 8 = 52 engines: E1-E28, E29-E45, E46-E53; E36 excluded)
@@ -138,5 +145,12 @@ router.use(operatingExpenseRouter);
 router.use(developerProfitRouter);
 router.use(gstHstDevChargesRouter);
 router.use(passiveActivityLossRouter);
+
+// Batch F: E78-E82 (Development Studio scaffolds, Phase 2A)
+router.use(financingTableRouter);
+router.use(dealGradeE79Router);
+router.use(budgetRollupRouter);
+router.use(sourcesUsesRouter);
+router.use(acquisitionStructureRouter);
 
 export default router;

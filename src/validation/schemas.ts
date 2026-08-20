@@ -115,12 +115,95 @@ export const dscrInputSchema = z.object({
 
 export type DSCRInput = z.infer<typeof dscrInputSchema>;
 
+// Updated NOI output schema (Batch F breaking change)
+const expenseBreakdownSchema = z.object({
+  insurance: z.number(),
+  propertyManagement: z.number(),
+  propertyTaxes: z.number(),
+  repairsAndMaintenance: z.number(),
+  strataOrHOA: z.number(),
+  other: z.number(),
+});
+
+export const noiOutputSchema = z.object({
+  netOperatingIncome: z.number(),
+  operatingExpenses: z.number(),
+  expenseBreakdown: expenseBreakdownSchema.optional(),
+});
+
+export type NOIOutput = z.infer<typeof noiOutputSchema>;
+
 export const dscrOutputSchema = z.object({
   netOperatingIncome: z.number(),
+  operatingExpenses: z.number(),
+  expenseBreakdown: expenseBreakdownSchema.optional(),
   dscr: z.number(),
 });
 
 export type DSCROutput = z.infer<typeof dscrOutputSchema>;
+
+// E9 Cap Rate calculation schema
+export const capRateInputSchema = z.object({
+  noi: z.number(),
+  purchasePrice: z.number().positive(),
+});
+
+export type CapRateInput = z.infer<typeof capRateInputSchema>;
+
+export const capRateOutputSchema = z.object({
+  capRate: z.number(),
+});
+
+export type CapRateOutput = z.infer<typeof capRateOutputSchema>;
+
+// E9 Cash-on-Cash calculation schema
+export const cashOnCashInputSchema = z.object({
+  firstYearNetCashFlow: z.number(),
+  equityInvested: z.number().positive(),
+});
+
+export type CashOnCashInput = z.infer<typeof cashOnCashInputSchema>;
+
+export const cashOnCashOutputSchema = z.object({
+  cashOnCash: z.number(),
+});
+
+export type CashOnCashOutput = z.infer<typeof cashOnCashOutputSchema>;
+
+// E9/E79 Deal Grade calculation schema
+const dealGradeMetricBreakdownSchema = z.object({
+  label: z.string(),
+  valueText: z.string(),
+  score: z.number().nullable(),
+});
+
+const dealGradeScoreBreakdownSchema = z.object({
+  capRate: dealGradeMetricBreakdownSchema,
+  cashOnCash: dealGradeMetricBreakdownSchema,
+  dscr: dealGradeMetricBreakdownSchema,
+  irr: dealGradeMetricBreakdownSchema,
+});
+
+export const dealGradeInputSchema = z.object({
+  capRate: z.number().nullable(),
+  cashOnCash: z.number().nullable(),
+  dscr: z.number().nullable(),
+  irr: z.number().nullable(),
+});
+
+export type DealGradeInput = z.infer<typeof dealGradeInputSchema>;
+
+export const dealGradeOutputSchema = z.object({
+  overallScore: z.number(),
+  grade: z.enum(["A", "B+", "B", "B-", "C"]),
+  scoreBreakdown: dealGradeScoreBreakdownSchema,
+  fullyScored: z.boolean(),
+  flaggedIssues: z.array(z.string()),
+  recommendations: z.array(z.string()),
+  summary: z.string(),
+});
+
+export type DealGradeOutput = z.infer<typeof dealGradeOutputSchema>;
 
 const cashFlowLoanSchema = z.object({
   purchasePrice: z.number().positive(),
@@ -700,3 +783,111 @@ export const salePriceOutputSchema = z.object({
 });
 
 export type SalePriceOutput = z.infer<typeof salePriceOutputSchema>;
+
+// ============================================================================
+// E78-E82: Batch F Scaffolds (Development Studio)
+// ============================================================================
+
+// E78: Financing Table
+const trancheTypeEnum = z.enum(["senior_debt", "mezzanine", "presale_deposit", "equity"]);
+
+const financingFacilitySchema = z.object({
+  id: z.string().min(1),
+  type: trancheTypeEnum,
+  amount: z.number().positive(),
+  rate: z.number(),
+  amortizationYears: z.number().optional(),
+  interestReserveAmount: z.number().nonnegative().optional(),
+  commitmentFeePercent: z.number().min(0).max(1).optional(),
+});
+
+export const financingTableInputSchema = z.object({
+  facilities: z.array(financingFacilitySchema).min(1),
+  taxRate: z.number().min(0).max(1).optional(),
+  months: z.number().int().positive(),
+});
+
+export type FinancingTableInput = z.infer<typeof financingTableInputSchema>;
+
+export const financingTableOutputSchema = z.object({
+  status: z.string(),
+});
+
+export type FinancingTableOutput = z.infer<typeof financingTableOutputSchema>;
+
+// E79: Deal Grade (note: different from E9's deal-grade — this is E79-specific)
+export const dealGradeE79InputSchema = dealGradeInputSchema;
+export type DealGradeE79Input = DealGradeInput;
+export const dealGradeE79OutputSchema = z.object({
+  status: z.string(),
+});
+export type DealGradeE79Output = z.infer<typeof dealGradeE79OutputSchema>;
+
+// E80: Budget Rollup
+const budgetLineItemSchema = z.object({
+  category: z.string(),
+  description: z.string(),
+  budgetedAmount: z.number().nonnegative(),
+  actualAmount: z.number().nonnegative(),
+  committedAmount: z.number().nonnegative(),
+  isContingencyLine: z.boolean().optional(),
+});
+
+export const budgetRollupInputSchema = z.object({
+  lineItems: z.array(budgetLineItemSchema).min(1),
+});
+
+export type BudgetRollupInput = z.infer<typeof budgetRollupInputSchema>;
+
+export const budgetRollupOutputSchema = z.object({
+  status: z.string(),
+});
+
+export type BudgetRollupOutput = z.infer<typeof budgetRollupOutputSchema>;
+
+// E81: Sources & Uses
+export const sourcesUsesInputSchema = z.object({
+  uses: z.object({
+    landAcquisitionCost: z.number().nonnegative(),
+    hardCosts: z.number().nonnegative(),
+    softCosts: z.number().nonnegative(),
+    contingency: z.number().nonnegative(),
+    financingCosts: z.number().nonnegative().optional(),
+  }),
+  facilities: z.array(financingFacilitySchema),
+  sponsorEquityAmount: z.number().nonnegative(),
+});
+
+export type SourcesUsesInput = z.infer<typeof sourcesUsesInputSchema>;
+
+export const sourcesUsesOutputSchema = z.object({
+  status: z.string(),
+});
+
+export type SourcesUsesOutput = z.infer<typeof sourcesUsesOutputSchema>;
+
+// E82: Acquisition Structure
+const assemblyParcelSchema = z.object({
+  id: z.string().min(1),
+  purchasePrice: z.number().positive(),
+  fmv: z.number().positive(),
+  propertySize_hectares: z.number().nonnegative(),
+  hasSecondaryBuilding: z.boolean(),
+});
+
+export const acquisitionStructureInputSchema = z.object({
+  parcels: z.array(assemblyParcelSchema).min(1),
+  country: z.enum(["Canada", "US"]),
+  province: z.string(),
+  acquisitionStructure: z.enum(["asset_purchase", "bare_trust"]),
+  isFTHB: z.boolean(),
+  isPrincipalResidence: z.boolean(),
+});
+
+export type AcquisitionStructureInput = z.infer<typeof acquisitionStructureInputSchema>;
+
+export const acquisitionStructureOutputSchema = z.object({
+  status: z.string(),
+});
+
+export type AcquisitionStructureOutput = z.infer<typeof acquisitionStructureOutputSchema>;
