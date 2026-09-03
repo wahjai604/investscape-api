@@ -29,7 +29,11 @@ import { createLaunchRouter } from "./stage1/launchRoute.ts";
 import { createLinkRouter } from "./stage2/linkRoute.ts";
 import { createWorkspaceDisclosureRouter } from "./stage3/workspaceDisclosureRoute.ts";
 import { createShareGrantRouter } from "./stage4/shareGrantRoute.ts";
+import { createAdminAssignmentRouter } from "./stage7/adminAssignmentRoute.ts";
 import { createProjectionRouter, type ConnectionProjectionSource } from "./stage5/projectionRoute.ts";
+import { createDelegationRouter } from "./stage8/delegationRoute.ts";
+import { createInboundEventRouter } from "./stage6/inboundEventRoute.ts";
+import { dispatchPendingOutboxEntries } from "./stage6/outboundDispatcher.ts";
 import { requireSession } from "./auth/middleware.ts";
 import { createRateLimiter, LIGHTHOUSE_RATE_LIMITS } from "./http/rateLimit.ts";
 import { generateNonce } from "./service-auth/hmac.ts";
@@ -106,6 +110,16 @@ function defaultProjectionSource(): ConnectionProjectionSource {
       return 0;
     },
   };
+}
+
+/**
+ * Reads the bootstrap admin actor ref. Absence means bootstrap is simply
+ * unavailable — `effectiveScopesFor` never invents an admin from missing
+ * configuration, so no actor can match `undefined`. Never set in a real
+ * `.env`; test-local injection only.
+ */
+function seedAdminActorRefFrom(env: NodeJS.ProcessEnv): string | undefined {
+  return env.LIGHTHOUSE_SEED_ADMIN_ACTOR_REF;
 }
 
 function outboundServiceConfig(env: NodeJS.ProcessEnv) {
@@ -206,6 +220,42 @@ export function createLighthouseSubsystem(
     "/shares/:shareGrantId/revoke",
     createRateLimiter({ scope: "share_grant_revoke", rule: LIGHTHOUSE_RATE_LIMITS.read }),
   );
+  router.post(
+    "/admin/assignments",
+    createRateLimiter({ scope: "admin_assignment_create", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.get(
+    "/admin/assignments",
+    createRateLimiter({ scope: "admin_assignment_list", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/admin/assignments/:assignmentId/revoke",
+    createRateLimiter({ scope: "admin_assignment_revoke", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/delegation/requests",
+    createRateLimiter({ scope: "delegation_request_create", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/delegation/accept",
+    // Same tight budget as /link/accept and /launch/redeem: another endpoint
+    // where a caller presents a secret they either have or are guessing.
+    createRateLimiter({ scope: "delegation_accept", rule: LIGHTHOUSE_RATE_LIMITS.launchRedeem }),
+  );
+  router.get(
+    "/delegation/mandates",
+    createRateLimiter({ scope: "delegation_mandates_list", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/delegation/:mandateId/revoke",
+    createRateLimiter({ scope: "delegation_mandate_revoke", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    // Service-authenticated, same budget class as the other inbound
+    // service-to-service endpoints (/link/invitations, /connection-projection).
+    "/sync/events",
+    createRateLimiter({ scope: "sync_events", rule: LIGHTHOUSE_RATE_LIMITS.serviceCallback }),
+  );
 
   // Authentication for every session-authenticated route family, mounted here
   // rather than inside each router — same reasoning the Stage 2 comment below
@@ -252,6 +302,21 @@ export function createLighthouseSubsystem(
   router.use(
     ["/shares", "/shares/:shareGrantId/revoke"],
     featureGate("lighthouse.selected_analysis_sharing"),
+    sessionRequired,
+  );
+  router.use(
+    ["/admin/assignments", "/admin/assignments/:assignmentId/revoke"],
+    featureGate("lighthouse.cross_product_administration"),
+    sessionRequired,
+  );
+  router.use(
+    [
+      "/delegation/requests",
+      "/delegation/accept",
+      "/delegation/mandates",
+      "/delegation/:mandateId/revoke",
+    ],
+    featureGate("lighthouse.delegated_portfolio_management"),
     sessionRequired,
   );
 
@@ -338,6 +403,100 @@ export function createLighthouseSubsystem(
     }),
   );
 
+  // Stage 7. Session-authenticated only. `seedAdminActorRef` is read from env
+  // here (same "read once, pass down as an explicit dependency" pattern as
+  // `inboundServiceSecrets`/`outboundServiceConfig` above) and never read
+  // directly inside the route or repository. Absence means bootstrap simply
+  // never fires — `effectiveScopesFor` cannot match `undefined` against any
+  // actor ref.
+  router.use(
+    createAdminAssignmentRouter({
+      assignments: repositories.adminAssignments,
+      auditSink: repositories.audit,
+      now: () => new Date(),
+      newAssignmentId: () => randomUUID(),
+      seedAdminActorRef: seedAdminActorRefFrom(env),
+      env,
+    }),
+  );
+
+  // Stage 8. Session-authenticated only, same reasoning as Stage 4: no
+  // service-authenticated leg. `checkRepresentationActive` and
+  // `checkProfessionalEligible` have no real backing store yet — see
+  // stage8/delegationRoute.ts's module comment — so they are left unset here,
+  // which makes both fail closed (always false) rather than fabricate a
+  // "yes".
+  router.use(
+    createDelegationRouter({
+      mandates: repositories.mandates,
+      auditSink: repositories.audit,
+      now: () => new Date(),
+      newRequestId: () => randomUUID(),
+      newMandateId: () => randomUUID(),
+      env,
+    }),
+  );
+
+  // Stage 6, inbound leg. Service-authenticated only, same family as
+  // `/link/invitations` and `/connection-projection` — deliberately NOT put
+  // through `featureGate` + `sessionRequired` above; it verifies its own
+  // inbound HMAC signature instead and must tolerate an absent session.
+  //
+  // NOTE: `dispatch.stores` has no adapters wired for any aggregate kind yet.
+  // Stage 2/4/7/8's repositories are shaped around their own domain
+  // operations (revokeLink, etc.), not a generic "read/write current
+  // lifecycle state" surface stage6/lifecycleDispatcher.ts's
+  // `LifecycleAggregateStore` expects — bridging them is deliberately left as
+  // follow-up integration work rather than inventing methods on those
+  // interfaces here. Until that lands, every inbound event answers 503
+  // (STORE_NOT_CONFIGURED), which is fail-closed, not broken: no event is
+  // ever silently dropped or falsely reported as applied.
+  router.use(
+    createInboundEventRouter({
+      inboundEvents: repositories.inboundEvents,
+      dispatch: {
+        stores: {},
+      },
+      auditSink: repositories.audit,
+      nonces: repositories.nonces,
+      inboundSecrets: inboundServiceSecrets(env),
+      now: () => new Date(),
+      env,
+    }),
+  );
+
+  // Stage 6, outbound leg. `dispatchPendingOutboxEntries` is a SWEEP function,
+  // not a worker loop — see stage6/outboundDispatcher.ts's module doc. A real
+  // deploy should call it from a scheduled job/cron (e.g. every 30s) rather
+  // than trust in-process timers, which vanish on every restart/scale event
+  // and duplicate work across replicas.
+  //
+  // JUDGMENT CALL (flagging for review rather than deciding silently): below
+  // is a guarded `setInterval`, gated on BOTH the feature flag and the
+  // outbound service config being present, so it only ever runs where the
+  // integration is actually enabled and configured. This is a stopgap, not an
+  // endorsement — investscape-api has no scheduled-job infrastructure
+  // elsewhere in this codebase to defer to instead. Whether Stage 6 outbound
+  // delivery needs real background-worker infrastructure (a durable queue
+  // worker, a cron dispatcher) instead of an in-process interval is an open
+  // question this file does not resolve.
+  let outboxInterval: ReturnType<typeof setInterval> | null = null;
+  const outboundConfig = outboundServiceConfig(env);
+  if (isFeatureEnabled("lighthouse.lifecycle_synchronization", env) && outboundConfig) {
+    outboxInterval = setInterval(() => {
+      dispatchPendingOutboxEntries(new Date(), {
+        repository: repositories.lifecycleOutbox,
+        config: outboundConfig,
+        fetch: globalThis.fetch,
+      }).catch((error) => {
+        console.warn(
+          `[lighthouse] stage6 outbound sweep failed: ${error instanceof Error ? error.message : String(error)}`,
+        );
+      });
+    }, 30_000);
+    outboxInterval.unref?.();
+  }
+
   return {
     router,
     status: {
@@ -347,7 +506,10 @@ export function createLighthouseSubsystem(
       enabledFlags,
     },
     sql,
-    shutdown: async () => { await sql?.close(); },
+    shutdown: async () => {
+      if (outboxInterval) clearInterval(outboxInterval);
+      await sql?.close();
+    },
   };
 }
 

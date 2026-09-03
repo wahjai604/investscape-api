@@ -39,6 +39,26 @@ import {
   InMemoryShareGrantRepository,
   type ShareGrantRepository,
 } from "../stage4/shareGrantRepository.ts";
+import {
+  SqlDelegationMandateRepository,
+  InMemoryDelegationMandateRepository,
+  type DelegationMandateRepository,
+} from "../stage8/delegationRepository.ts";
+import {
+  SqlAdminAssignmentRepository,
+  InMemoryAdminAssignmentRepository,
+  type AdminAssignmentRepository,
+} from "../stage7/adminAssignmentRepository.ts";
+import {
+  SqlInboundEventRepository,
+  InMemoryInboundEventRepository,
+  type InboundEventRepository,
+} from "../stage6/inboundEventRepository.ts";
+import {
+  SqlLifecycleOutboxRepository,
+  InMemoryLifecycleOutboxRepository,
+  type LifecycleOutboxRepository,
+} from "../stage6/lifecycleOutbox.ts";
 import type { TransactionalSqlClient } from "./types.ts";
 
 export type PersistenceMode = "postgres" | "in-memory";
@@ -53,6 +73,14 @@ export interface LighthouseRepositories {
   readonly workspaceDisclosure: WorkspaceDisclosureRepository;
   /** Stage 4: client-selected analysis share grants. */
   readonly grants: ShareGrantRepository;
+  /** Stage 8: delegated client portfolio management mandates (Mode D). */
+  readonly mandates: DelegationMandateRepository;
+  /** Stage 7: cross-product administration assignments. */
+  readonly adminAssignments: AdminAssignmentRepository;
+  /** Stage 6: inbound lifecycle event idempotency ledger. */
+  readonly inboundEvents: InboundEventRepository;
+  /** Stage 6: durable outbox for outbound lifecycle events. */
+  readonly lifecycleOutbox: LifecycleOutboxRepository;
   /** Null in in-memory mode. */
   readonly sql: TransactionalSqlClient | null;
 }
@@ -86,6 +114,10 @@ export function buildRepositories(
       links: new SqlLinkRepository(input.client),
       workspaceDisclosure: new SqlWorkspaceDisclosureRepository(input.client),
       grants: new SqlShareGrantRepository(input.client),
+      mandates: new SqlDelegationMandateRepository(input.client),
+      adminAssignments: new SqlAdminAssignmentRepository(input.client),
+      inboundEvents: new SqlInboundEventRepository(input.client),
+      lifecycleOutbox: new SqlLifecycleOutboxRepository(input.client),
     };
   }
 
@@ -114,6 +146,10 @@ export function buildRepositories(
     links: new InMemoryLinkRepository(),
     workspaceDisclosure: new InMemoryWorkspaceDisclosureRepository(),
     grants: new InMemoryShareGrantRepository(),
+    adminAssignments: new InMemoryAdminAssignmentRepository(),
+    mandates: new InMemoryDelegationMandateRepository(),
+    inboundEvents: new InMemoryInboundEventRepository(),
+    lifecycleOutbox: new InMemoryLifecycleOutboxRepository(),
   };
 }
 
