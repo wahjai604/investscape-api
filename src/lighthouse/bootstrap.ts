@@ -27,6 +27,9 @@ import { buildRepositoriesFromEnv, type LighthouseRepositories } from "./persist
 import { createSessionVerifierFromEnv, type SessionVerifier } from "./auth/session.ts";
 import { createLaunchRouter } from "./stage1/launchRoute.ts";
 import { createLinkRouter } from "./stage2/linkRoute.ts";
+import { createWorkspaceDisclosureRouter } from "./stage3/workspaceDisclosureRoute.ts";
+import { createShareGrantRouter } from "./stage4/shareGrantRoute.ts";
+import { createProjectionRouter, type ConnectionProjectionSource } from "./stage5/projectionRoute.ts";
 import { requireSession } from "./auth/middleware.ts";
 import { createRateLimiter, LIGHTHOUSE_RATE_LIMITS } from "./http/rateLimit.ts";
 import { generateNonce } from "./service-auth/hmac.ts";
@@ -80,6 +83,29 @@ function inboundServiceSecrets(env: NodeJS.ProcessEnv): Record<string, string> {
   const secret = env.LIGHTHOUSE_SVC_INBOUND_SECRET;
   if (!keyId || !secret) return {};
   return { [keyId]: secret };
+}
+
+/**
+ * Stage 5's projection needs live workspace-availability and shared-result
+ * counts. Neither has a real backing store yet — workspace availability has
+ * no source of truth anywhere in this codebase, and the Stage 4 share-grant
+ * store (owned by a concurrently-developed change) is not wired here. Rather
+ * than block Stage 5's HTTP surface on either, this returns the conservative,
+ * non-leaking defaults: unavailable and zero. Both are safe under the Stage 3
+ * privacy rule (availability is only ever surfaced when consent is present,
+ * and this source is not consulted at all without it) and match the "reveal
+ * nothing you cannot back up" posture used throughout this file. Replace with
+ * real queries once those stores exist.
+ */
+function defaultProjectionSource(): ConnectionProjectionSource {
+  return {
+    async isWorkspaceAvailable(): Promise<boolean> {
+      return false;
+    },
+    async countActiveSharedResults(): Promise<number> {
+      return 0;
+    },
+  };
 }
 
 function outboundServiceConfig(env: NodeJS.ProcessEnv) {
@@ -153,6 +179,81 @@ export function createLighthouseSubsystem(
     "/link/status",
     createRateLimiter({ scope: "link_status", rule: LIGHTHOUSE_RATE_LIMITS.read }),
   );
+  router.post(
+    "/workspace-disclosure",
+    createRateLimiter({ scope: "workspace_disclosure_write", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.get(
+    "/workspace-disclosure/:relationshipRef",
+    createRateLimiter({ scope: "workspace_disclosure_read", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/connection-projection",
+    createRateLimiter({ scope: "connection_projection", rule: LIGHTHOUSE_RATE_LIMITS.serviceCallback }),
+  );
+  router.post(
+    // Writes a consent-bearing record and does real work per call; tighter
+    // than a plain read, but this is client-initiated (no outbound HMAC call
+    // to burn), so it does not need launchRedeem's tighter guessing-loop bound.
+    "/shares",
+    createRateLimiter({ scope: "share_grant_create", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.get(
+    "/shares",
+    createRateLimiter({ scope: "share_grant_list", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+  router.post(
+    "/shares/:shareGrantId/revoke",
+    createRateLimiter({ scope: "share_grant_revoke", rule: LIGHTHOUSE_RATE_LIMITS.read }),
+  );
+
+  // Authentication for every session-authenticated route family, mounted here
+  // rather than inside each router — same reasoning the Stage 2 comment below
+  // already documented, now actually wired. Service-authenticated routes
+  // (`/link/invitations`, `/connection-projection`) are deliberately excluded:
+  // they verify an inbound HMAC signature instead and must tolerate an absent
+  // session by design.
+  //
+  // BUG FIXED 2026-09-02: `requireSession` was imported and referenced in
+  // comments throughout this file but never actually invoked. Every
+  // session-authenticated route therefore always saw `req.lighthouseSession`
+  // as undefined and always fell into its own `deny(res, 401)` branch — a
+  // fail-closed outcome (nothing was bypassed, no unauthenticated request was
+  // ever accepted), but genuine users could never have authenticated either.
+  // Caught during Stage 4 review, before any flag was enabled.
+  //
+  // `featureGate` runs AHEAD of `requireSession` on every path below, so a
+  // disabled feature still answers a flat 503 for an unauthenticated caller
+  // instead of leaking "authentication required" — preserving the "flag
+  // checked before any other check" rule these routes' own handlers already
+  // follow internally. Duplicating the 503 shape here, rather than trusting
+  // each handler's own internal check to run first, is what makes that rule
+  // hold even though Express evaluates this middleware before the handler.
+  function featureGate(flag: string) {
+    return (req: Parameters<ReturnType<typeof requireSession>>[0], res: Parameters<ReturnType<typeof requireSession>>[1], next: Parameters<ReturnType<typeof requireSession>>[2]) => {
+      if (!isFeatureEnabled(flag, env)) {
+        res.status(503).json({ state: "unavailable" });
+        return;
+      }
+      next();
+    };
+  }
+  const sessionRequired = requireSession(verifier);
+  router.use(
+    ["/link/accept", "/link/status", "/link/:crossProductLinkId/unlink"],
+    featureGate("lighthouse.cross_product_identity_linking"),
+    sessionRequired,
+  );
+  router.use(
+    ["/workspace-disclosure", "/workspace-disclosure/:relationshipRef"],
+    featureGate("lighthouse.client_workspace_disclosure"),
+    sessionRequired,
+  );
+  router.use(
+    ["/shares", "/shares/:shareGrantId/revoke"],
+    featureGate("lighthouse.selected_analysis_sharing"),
+    sessionRequired,
+  );
 
   router.use(
     createLaunchRouter({
@@ -182,6 +283,57 @@ export function createLighthouseSubsystem(
       inboundSecrets: inboundServiceSecrets(env),
       now: () => new Date(),
       newInvitationId: () => randomUUID(),
+      env,
+    }),
+  );
+
+  // Stage 3. Session-authenticated, same reasoning as Stage 2's status/unlink
+  // routes: a client managing their own disclosure consent.
+  router.use(
+    createWorkspaceDisclosureRouter({
+      links: repositories.links,
+      disclosures: repositories.workspaceDisclosure,
+      auditSink: repositories.audit,
+      now: () => new Date(),
+      env,
+    }),
+  );
+
+  // Stage 4. Session-authenticated only — unlike Stage 2/5 there is no
+  // service-authenticated leg: sharing is entirely client-initiated from
+  // their own independent session. `isLinkActive` queries the SAME link
+  // store Stage 2 owns rather than trusting anything the request claims.
+  router.use(
+    createShareGrantRouter({
+      grants: repositories.grants,
+      auditSink: repositories.audit,
+      isLinkActive: async (crossProductLinkId, clientUserRef) => {
+        const link = await repositories.links.findLinkById(crossProductLinkId);
+        return (
+          link !== null &&
+          link.investscapeUserRef === clientUserRef &&
+          link.lifecycle.state === "active"
+        );
+      },
+      now: () => new Date(),
+      newShareGrantId: () => randomUUID(),
+      env,
+    }),
+  );
+
+  // Stage 5. Service-authenticated, same reasoning as Stage 2's invitation
+  // creation route: Relationship OS asks on behalf of an already-authenticated
+  // professional, and InvestScape verifies the SERVICE call rather than a
+  // professional-held InvestScape session.
+  router.use(
+    createProjectionRouter({
+      links: repositories.links,
+      disclosures: repositories.workspaceDisclosure,
+      source: defaultProjectionSource(),
+      auditSink: repositories.audit,
+      nonces: repositories.nonces,
+      inboundSecrets: inboundServiceSecrets(env),
+      now: () => new Date(),
       env,
     }),
   );

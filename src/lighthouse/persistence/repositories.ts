@@ -29,6 +29,16 @@ import {
   InMemoryLinkRepository,
   type LinkRepository,
 } from "../stage2/linkRepository.ts";
+import {
+  SqlWorkspaceDisclosureRepository,
+  InMemoryWorkspaceDisclosureRepository,
+  type WorkspaceDisclosureRepository,
+} from "../stage3/workspaceDisclosureRepository.ts";
+import {
+  SqlShareGrantRepository,
+  InMemoryShareGrantRepository,
+  type ShareGrantRepository,
+} from "../stage4/shareGrantRepository.ts";
 import type { TransactionalSqlClient } from "./types.ts";
 
 export type PersistenceMode = "postgres" | "in-memory";
@@ -39,6 +49,10 @@ export interface LighthouseRepositories {
   readonly audit: AuditSink;
   readonly bindings: AnalysisBindingRepository;
   readonly links: LinkRepository;
+  /** Stage 3: coarse client-workspace availability disclosure consent. */
+  readonly workspaceDisclosure: WorkspaceDisclosureRepository;
+  /** Stage 4: client-selected analysis share grants. */
+  readonly grants: ShareGrantRepository;
   /** Null in in-memory mode. */
   readonly sql: TransactionalSqlClient | null;
 }
@@ -70,6 +84,8 @@ export function buildRepositories(
       audit: new SqlAuditSink(input.client),
       bindings: new SqlAnalysisBindingRepository(input.client),
       links: new SqlLinkRepository(input.client),
+      workspaceDisclosure: new SqlWorkspaceDisclosureRepository(input.client),
+      grants: new SqlShareGrantRepository(input.client),
     };
   }
 
@@ -96,6 +112,8 @@ export function buildRepositories(
     audit: new InMemoryAuditSink(),
     bindings: new InMemoryAnalysisBindingRepository(),
     links: new InMemoryLinkRepository(),
+    workspaceDisclosure: new InMemoryWorkspaceDisclosureRepository(),
+    grants: new InMemoryShareGrantRepository(),
   };
 }
 
