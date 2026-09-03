@@ -107,7 +107,25 @@ export interface DispatchDependencies {
 
 export type DispatchResult =
   | { readonly ok: true; readonly outcome: LifecycleApplyOutcome<string> }
-  | { readonly ok: false; readonly reason: "UNKNOWN_AGGREGATE_KIND" | "STORE_NOT_CONFIGURED" };
+  | {
+      readonly ok: false;
+      readonly reason: "UNKNOWN_AGGREGATE_KIND" | "STORE_NOT_CONFIGURED" | "AGGREGATE_NOT_FOUND";
+    };
+
+/**
+ * A store's `saveState` may reject a write for an aggregate it has no local
+ * row for at all (as opposed to a stale version, which it must swallow
+ * silently — see `LifecycleAggregateStore`'s own contract). This module does
+ * not know which error type a given store implementation throws for that
+ * case, so it identifies it structurally: `name === "AggregateNotFoundError"`.
+ * This keeps `lifecycleDispatcher.ts` from importing a concrete adapter class
+ * (`aggregateStoreAdapters.ts` is one implementation among possibly several,
+ * e.g. the in-memory test store never throws this at all since it has no
+ * concept of "a row that should already exist").
+ */
+function isAggregateNotFoundError(error: unknown): boolean {
+  return error instanceof Error && error.name === "AggregateNotFoundError";
+}
 
 export async function dispatchLifecycleEvent(
   aggregateKind: string,
@@ -139,11 +157,18 @@ export async function dispatchLifecycleEvent(
   const outcome = applyLifecycleEvent(definition, snapshot, event);
 
   if (outcome.kind === "applied") {
-    await store.saveState(aggregateId, {
-      state: outcome.snapshot.state,
-      version: outcome.snapshot.version,
-      occurredAt: outcome.snapshot.occurredAt,
-    });
+    try {
+      await store.saveState(aggregateId, {
+        state: outcome.snapshot.state,
+        version: outcome.snapshot.version,
+        occurredAt: outcome.snapshot.occurredAt,
+      });
+    } catch (error) {
+      if (isAggregateNotFoundError(error)) {
+        return { ok: false, reason: "AGGREGATE_NOT_FOUND" };
+      }
+      throw error;
+    }
     if (outcome.invalidatesAccess && deps.onInvalidate) {
       await deps.onInvalidate(aggregateKind, aggregateId);
     }

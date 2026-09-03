@@ -33,6 +33,12 @@ import { createAdminAssignmentRouter } from "./stage7/adminAssignmentRoute.ts";
 import { createProjectionRouter, type ConnectionProjectionSource } from "./stage5/projectionRoute.ts";
 import { createDelegationRouter } from "./stage8/delegationRoute.ts";
 import { createInboundEventRouter } from "./stage6/inboundEventRoute.ts";
+import {
+  createLinkAggregateStore,
+  createShareGrantAggregateStore,
+  createAdminAssignmentAggregateStore,
+  createMandateAggregateStore,
+} from "./stage6/aggregateStoreAdapters.ts";
 import { dispatchPendingOutboxEntries } from "./stage6/outboundDispatcher.ts";
 import { requireSession } from "./auth/middleware.ts";
 import { createRateLimiter, LIGHTHOUSE_RATE_LIMITS } from "./http/rateLimit.ts";
@@ -442,20 +448,33 @@ export function createLighthouseSubsystem(
   // through `featureGate` + `sessionRequired` above; it verifies its own
   // inbound HMAC signature instead and must tolerate an absent session.
   //
-  // NOTE: `dispatch.stores` has no adapters wired for any aggregate kind yet.
-  // Stage 2/4/7/8's repositories are shaped around their own domain
-  // operations (revokeLink, etc.), not a generic "read/write current
-  // lifecycle state" surface stage6/lifecycleDispatcher.ts's
-  // `LifecycleAggregateStore` expects — bridging them is deliberately left as
-  // follow-up integration work rather than inventing methods on those
-  // interfaces here. Until that lands, every inbound event answers 503
-  // (STORE_NOT_CONFIGURED), which is fail-closed, not broken: no event is
-  // ever silently dropped or falsely reported as applied.
+  // `dispatch.stores` wires real adapters (stage6/aggregateStoreAdapters.ts)
+  // for the four aggregate kinds with an actual table: link (Stage 2),
+  // share_grant (Stage 4), admin_assignment (Stage 7), mandate (Stage 8).
+  // Each adapter talks to its owning stage's table directly via the shared
+  // `SqlClient` seam rather than that stage's own repository — those
+  // repositories are shaped around domain operations (revokeLink, etc.), not
+  // a generic read/write-current-lifecycle-state surface, and reaching into
+  // them here would mean inventing methods those interfaces don't have.
+  // `entitlement` has NO table anywhere in this codebase (no persistence
+  // layer has been built for it at all) and is deliberately left unwired —
+  // an inbound entitlement-sync event still answers 503, correctly, rather
+  // than writing into a table that does not exist. Only available when
+  // `sql` is configured (Postgres mode); in-memory mode leaves `stores`
+  // empty, same fail-closed posture as everything else that assumes
+  // durability across processes.
   router.use(
     createInboundEventRouter({
       inboundEvents: repositories.inboundEvents,
       dispatch: {
-        stores: {},
+        stores: sql
+          ? {
+              link: createLinkAggregateStore(sql),
+              share_grant: createShareGrantAggregateStore(sql),
+              admin_assignment: createAdminAssignmentAggregateStore(sql),
+              mandate: createMandateAggregateStore(sql),
+            }
+          : {},
       },
       auditSink: repositories.audit,
       nonces: repositories.nonces,

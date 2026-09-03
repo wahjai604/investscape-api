@@ -179,10 +179,33 @@ export function createInboundEventRouter(deps: InboundEventRouteDependencies): R
 
     if (!result.ok) {
       // Unknown aggregate kind cannot happen — the schema's z.enum already
-      // rejects it with a 400. STORE_NOT_CONFIGURED means this deployment has
-      // not wired an adapter for this aggregate kind yet; fail closed rather
-      // than silently pretending the event landed.
-      res.status(503).json({ state: "unavailable" });
+      // rejects it with a 400.
+      if (result.reason === "STORE_NOT_CONFIGURED") {
+        // This deployment has not wired an adapter for this aggregate kind
+        // yet (e.g. "entitlement", which has no persistence layer anywhere
+        // in this codebase). Expected, not an integration fault, and not
+        // worth an audit row every time it fires.
+        res.status(503).json({ state: "unavailable" });
+        return;
+      }
+      // AGGREGATE_NOT_FOUND: the store IS wired, but this specific aggregate
+      // has no local row at all — Relationship OS believes an aggregate
+      // exists that InvestScape has never locally created (e.g. a link
+      // event arriving before that link's own accept flow ran here). This is
+      // a genuine divergence between the two products' views, not a
+      // transient/config problem, so it is audited (unlike the case above)
+      // and returned as 409 rather than 503 — a 503 invites an indefinite
+      // retry loop that can never succeed on its own.
+      await deps.auditSink.record({
+        eventType: "stage6.event.aggregate_not_found",
+        occurredAt: now.toISOString(),
+        actorId: null, subjectId: aggregateId, operatingContext: "professional_assisted",
+        authority: { kind: "service_identity" },
+        purpose: "lifecycle_synchronization", scopes: [], outcome: "denied",
+        correlationId: correlationId ?? null,
+        metadata: { eventId, aggregateKind },
+      });
+      res.status(409).json({ state: "conflict", reason: "AGGREGATE_NOT_FOUND" });
       return;
     }
 
