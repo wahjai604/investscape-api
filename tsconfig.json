@@ -9,8 +9,18 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+
+    // The src/lighthouse/** modules import with explicit ".ts" extensions so
+    // they can be run directly by Node's native type stripping
+    // (`node --test "src/**/*.test.ts"`) with no build step or transpiler.
+    // `rewriteRelativeImportExtensions` rewrites those to ".js" on emit, so
+    // `npm run build` still produces correct ESM output. Existing engine routes
+    // already import with ".js" and are unaffected — this flag only rewrites
+    // ".ts" specifiers.
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "src/**/*.test.ts", "src/**/*.dbtest.ts"]
 }
