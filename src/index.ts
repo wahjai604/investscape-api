@@ -17,13 +17,26 @@
  */
 
 import express from "express";
-import cors from "cors";
 import helmet from "helmet";
 import dotenv from "dotenv";
 import router from "./routes/index.js";
 import { notFoundHandler } from "./middleware/notFound.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { createLighthouseSubsystem } from "./lighthouse/bootstrap.js";
+import {
+  createCorsMiddleware,
+  describeCorsPosture,
+  logCorsConfiguration,
+  resolveCorsConfiguration,
+} from "./http/cors.ts";
+import {
+  createEngineAuthGuard,
+  createEngineRateLimiter,
+  describeEngineAuth,
+  describeEngineRateLimit,
+  exceptLighthouse,
+  resolveEngineRateLimitConfig,
+} from "./http/engineGuards.ts";
 
 dotenv.config();
 
@@ -43,8 +56,34 @@ function resolvePort(): number {
 const app = express();
 const PORT = resolvePort();
 
+// Configuration is resolved BEFORE anything is mounted, so the boot log can
+// state the posture of the whole surface in one place and a misconfiguration
+// is visible at startup rather than at the first request that trips it.
+const corsConfig = resolveCorsConfiguration(process.env);
+const engineRateLimitConfig = resolveEngineRateLimitConfig(process.env);
+const engineAuth = createEngineAuthGuard(process.env);
+
 app.use(helmet());
-app.use(cors());
+
+// CORS is now allow-list driven. With CORS_ALLOWED_ORIGINS unset this behaves
+// exactly as the previous bare `cors()` did — every origin allowed — and warns
+// loudly at startup. See http/cors.ts for why permissive-on-unset is the right
+// default HERE specifically, and for why `credentials: true` is not enabled.
+app.use(createCorsMiddleware(corsConfig));
+
+// Rate limit for the stateless calculation routes — 61 reachable endpoints
+// across the 52 routers `routes/index.ts` mounts, measured by probing them all,
+// not the "~76" this file's older comments estimate. Mounted BEFORE
+// `express.json()` on purpose: `lighthouse/http/rateLimit.ts` asks to be
+// mounted "as early as possible ... ahead of body parsing", so a flood is
+// refused before this process allocates and parses a body for it.
+//
+// Scoped to /v1 and skipped for /v1/lighthouse, which carries its own tighter
+// per-route budgets — see `exceptLighthouse` for why stacking a second counter
+// on those would be wrong. CORS runs first so a browser preflight is answered
+// from the cheap path and is never charged against the budget.
+app.use("/v1", exceptLighthouse(createEngineRateLimiter(engineRateLimitConfig)));
+
 // Raw-body retention for HMAC verification.
 //
 // Inbound service-to-service requests are signed over sha256(rawBody), so the
@@ -70,7 +109,19 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.use("/v1", router);
+// The calculation engines.
+//
+// `engineAuth.middleware` is a NO-OP unless INVESTSCAPE_FF_REQUIRE_ENGINE_AUTH
+// is exactly "true", which it is not by default — so out of the box this line
+// behaves identically to the `app.use("/v1", router)` it replaces. When the
+// flag is armed, /v1 requires the same verified session the Lighthouse routes
+// require, and refuses everything if no verifier is configured. The flag is
+// read BEFORE any authentication work happens; see http/engineGuards.ts.
+//
+// The guard and the router are mounted in ONE `use` call deliberately: they are
+// a single unit, and nothing may be inserted between the check and the thing it
+// protects.
+app.use("/v1", exceptLighthouse(engineAuth.middleware), router);
 
 // ---------------------------------------------------------------------------
 // Lighthouse cross-product integration (Relationship OS <-> InvestScape)
@@ -104,6 +155,18 @@ const server = app.listen(PORT, () => {
       `enabled flags=${s.enabledFlags.length === 0 ? "none" : s.enabledFlags.join(",")}` +
       (s.reason ? ` · ${s.reason}` : ""),
   );
+  // Posture of the public calculation surface. Same rule as the line above:
+  // prints configuration STATE, never key material.
+  console.log(
+    `🛡️  /v1 engines: cors=${describeCorsPosture(corsConfig)} · ` +
+      `rate=${describeEngineRateLimit(engineRateLimitConfig)} · ` +
+      `auth=${describeEngineAuth(engineAuth.mode)}`,
+  );
+  // Warnings last, so they are the final thing on the screen after a boot.
+  for (const problem of engineRateLimitConfig.problems) {
+    console.error(`[engine] ${problem}`);
+  }
+  logCorsConfiguration(corsConfig);
 });
 
 function shutdown(signal: string): void {
