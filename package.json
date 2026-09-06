@@ -21,6 +21,7 @@
   "dependencies": {
     "@investscape/calc-engine": "file:../investscape-calc-engine",
     "@investscape/economic-engine": "file:../investscape-economic-engine",
+    "@investscape/market-intelligence-engine": "file:../investscape-market-intelligence-engine",
     "@investscape/tax-engine": "file:../investscape-tax-engine",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",

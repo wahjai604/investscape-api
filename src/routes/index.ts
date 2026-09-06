@@ -85,6 +85,16 @@ import budgetRollupRouter from "./E80-budget-actuals.js";
 import sourcesUsesRouter from "./E81-sources-uses.js";
 import acquisitionStructureRouter from "./E82-acquisition-structure.js";
 
+// Market Intelligence (E60-E66, @investscape/market-intelligence-engine) —
+// integration seam registered per investscape-docs Doc 62 Part 3 / Doc 73.
+import miComparabilityRouter from "./market-intelligence/E60-comparability.js";
+import miGeographyRouter from "./market-intelligence/E61-geography.js";
+import miTrendsRouter from "./market-intelligence/E62-trends.js";
+import miBenchmarkingRouter from "./market-intelligence/E63-benchmarking.js";
+import miDataQualityRouter from "./market-intelligence/E64-data-quality.js";
+import miEconomicEngineAdaptersRouter from "./market-intelligence/E65-economic-engine-adapters.js";
+import miServiceRouter from "./market-intelligence/E66-service.js";
+
 const router = Router();
 
 // Financial, Economic & Tax (28 + 16 + 8 = 52 engines: E1-E28, E29-E45, E46-E53; E36 excluded)
@@ -152,5 +162,14 @@ router.use(dealGradeE79Router);
 router.use(budgetRollupRouter);
 router.use(sourcesUsesRouter);
 router.use(acquisitionStructureRouter);
+
+// Market Intelligence (E60-E66)
+router.use(miComparabilityRouter);
+router.use(miGeographyRouter);
+router.use(miTrendsRouter);
+router.use(miBenchmarkingRouter);
+router.use(miDataQualityRouter);
+router.use(miEconomicEngineAdaptersRouter);
+router.use(miServiceRouter);
 
 export default router;

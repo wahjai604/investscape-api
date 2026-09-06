@@ -147,6 +147,7 @@ const server = app.listen(PORT, () => {
   console.log("✅ 16 economic engines loaded (E29–E35, E37–E45; E36 excluded pending legal review)");
   console.log("✅ 8 tax engines loaded (E46–E53)");
   console.log("✅ 52 routes registered");
+  console.log("✅ Market Intelligence (E60–E66, @investscape/market-intelligence-engine) mounted — 18 routes registered");
   // Startup summary. Prints configuration STATE, never key material.
   const s = lighthouse.status;
   console.log(
