@@ -18,6 +18,16 @@
  *
  * The single most important control here is self-dealing prevention: a
  * professional can neither create nor accept their own mandate.
+ *
+ * OPEN CROSS-PRODUCT DEPENDENCY (2026-09-06): every `representationIsActive`
+ * check below is currently fail-closed by construction — nothing populates
+ * a real answer to "does this professional currently represent this client,
+ * per Relationship OS?" A stand-in/heuristic signal was explicitly rejected
+ * as a category error (Stage 2's identity link is a different relationship
+ * entirely). The concrete ask of Relationship OS is written up in the vault:
+ * `00 Projects/Investscape Phase 2 (WeWeb+Supabase)/Requirement — Relationship
+ * OS Representation-Authority Signal (2026-09-06).md`. Do not build a
+ * stand-in here before that's resolved.
  */
 
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
