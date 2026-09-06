@@ -20,7 +20,7 @@
   "licenseText": "© 2026 Lighthouse Research Ltd. Proprietary software. See LICENSE file.",
   "dependencies": {
     "@investscape/calc-engine": "file:vendor/investscape-calc-engine-1.0.0.tgz",
-    "@investscape/economic-engine": "file:vendor/investscape-economic-engine-0.1.0.tgz",
+    "@investscape/economic-engine": "file:vendor/investscape-economic-engine-0.1.1.tgz",
     "@investscape/market-intelligence-engine": "file:vendor/investscape-market-intelligence-engine-0.1.1.tgz",
     "@investscape/tax-engine": "file:vendor/investscape-tax-engine-1.0.0.tgz",
     "cors": "^2.8.6",
