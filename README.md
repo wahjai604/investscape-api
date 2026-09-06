@@ -58,3 +58,5 @@ For legal disclaimers, see [DISCLAIMER.md](DISCLAIMER.md).
 ---
 
 © 2026 Lighthouse Research Ltd. All rights reserved.
+
+<!-- deploy trigger: 2026-09-06 -->
