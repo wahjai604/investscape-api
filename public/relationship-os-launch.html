@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>InvestScape — Secure Session</title>
+<!--
+  InvestScape™ — © 2026 Lighthouse Research Ltd. Proprietary and confidential.
+  See LICENSE. Not investment, tax, or financial advice.
+
+  Relationship OS launch landing route. Served at GET /relationship-os/launch
+  by investscape-api (see src/index.ts). This is a real re-implementation of
+  the ROS_LAUNCH scaffold from investscape-v2-remastered.html (that file's
+  copy stays a demo-only stub — exchangeLaunchCode() there always returns
+  'unavailable' since it targets no real backend). This page targets the
+  actual, tested investscape-api endpoint at the same origin.
+
+  Security invariants, unchanged from the scaffold:
+   - The one-time code is read from the query string ONCE, then scrubbed from
+     the address bar via history.replaceState() BEFORE any async work — so it
+     cannot leak via referrer, bookmark, browser history, or back button.
+   - Nothing here decodes, parses, or trusts the URL beyond opaque transport.
+     No relationship/property/tier is inferred client-side.
+   - The code is never written to localStorage, sessionStorage, or console.
+   - The server's redemption response is the sole authority. Modules/scopes
+     returned on success are displayed only — they do not grant anything
+     client-side (there is no client-side tier/session to grant into here;
+     this route is intentionally a dead end pending the next integration
+     step, same as the scaffold's disabled "Continue to analysis" button).
+   - Unknown response states fail closed to 'error', never to 'success'.
+-->
+<style>
+  :root{
+    --bg:#0b0d10; --bg-elevated:#14171b; --card:#15181c;
+    --border:#262b31; --border-strong:#343a42;
+    --text-1:#eef1f4; --text-2:#a7afb8; --text-3:#6b7480;
+    --gold-500:#d4a94e; --accent:#4ea6d4; --red:#e0605a;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{
+    background:var(--bg); color:var(--text-1);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  .card{
+    width:min(440px,92vw); background:var(--card); border:1px solid var(--border);
+    border-radius:12px; padding:36px 32px 30px; text-align:center;
+  }
+  .brand{ display:flex; justify-content:center; gap:8px; align-items:center; margin-bottom:18px; font-weight:600; font-size:20px; }
+  .brand span{ color:var(--gold-500); }
+  .icon{ font-size:26px; margin-bottom:6px; }
+  .title{ font-size:19px; margin-bottom:8px; }
+  .body{ font-size:13px; color:var(--text-2); line-height:1.6; }
+  .spin{
+    margin:14px auto 0; width:22px; height:22px; border:2px solid var(--border-strong);
+    border-top-color:var(--accent); border-radius:50%; animation:spin .8s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .ctx{
+    text-align:left; margin:18px 0 4px; padding:14px; border:1px solid var(--border);
+    border-radius:8px; background:var(--bg-elevated); font-size:12.5px; color:var(--text-2); line-height:1.7;
+  }
+  .ctx .id{ font-family:monospace; font-size:11px; color:var(--text-3); margin-bottom:8px; word-break:break-all; }
+  .ctx strong{ color:var(--text-1); }
+  .btn{
+    width:100%; margin-top:6px; padding:10px 16px; border-radius:8px; border:1px solid var(--border-strong);
+    background:transparent; color:var(--text-1); font-size:14px; cursor:pointer;
+  }
+  .btn.gold{ background:var(--gold-500); border-color:var(--gold-500); color:#20180a; font-weight:600; }
+  .btn[disabled]{ opacity:.5; cursor:not-allowed; }
+  .foot{
+    margin-top:18px; padding-top:14px; border-top:1px solid var(--border);
+    font-size:11px; color:var(--text-3); line-height:1.5;
+  }
+</style>
+</head>
+<body>
+<div id="app"><div class="card"><div class="body">Loading…</div></div></div>
+<script src="/relationship-os-launch.js"></script>
+</body>
+</html>

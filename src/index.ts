@@ -16,6 +16,8 @@
  * Use at your own risk.
  */
 
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import express from "express";
 import helmet from "helmet";
 import dotenv from "dotenv";
@@ -39,6 +41,11 @@ import {
 } from "./http/engineGuards.ts";
 
 dotenv.config();
+
+// dist/index.js -> ../public. rootDir is src/, outDir is dist/, and public/
+// sits alongside both at the project root — not inside either.
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const PUBLIC_DIR = path.join(__dirname, "..", "public");
 
 function resolvePort(): number {
   const raw = process.env.PORT;
@@ -137,6 +144,28 @@ app.use("/v1", exceptLighthouse(engineAuth.middleware), router);
 // a 503-only router. The calculation engines above are unaffected.
 const lighthouse = createLighthouseSubsystem();
 app.use("/v1/lighthouse", lighthouse.router);
+
+// Browser-facing landing route for the Relationship OS launch flow. This is
+// the page a Relationship OS "Open in InvestScape" link actually points at
+// (its path, `/relationship-os/launch`, is what `INVESTSCAPE_LAUNCH_BASE_URL`
+// should resolve to once this is deployed). It POSTs to
+// `/v1/lighthouse/launch/redeem` above at the same origin — see
+// public/relationship-os-launch.html and its companion .js for the
+// client-side flow and its security invariants (one-time code scrubbed from
+// the URL before any async work, never persisted client-side).
+//
+// The JS is a separate same-origin file, not inlined, because helmet's
+// default CSP is `script-src 'self'` with no `unsafe-inline` — an inline
+// <script> block would be silently blocked by the browser rather than
+// weakening the policy to allow it.
+//
+// Static and stateless: same fail-closed behavior as the API route it calls
+// (renders 'unavailable' if Stage 1 isn't enabled server-side), so serving it
+// unconditionally here is safe even before Stage 1 is turned on.
+app.use(express.static(PUBLIC_DIR));
+app.get("/relationship-os/launch", (_req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, "relationship-os-launch.html"));
+});
 
 app.use(notFoundHandler);
 app.use(errorHandler);
