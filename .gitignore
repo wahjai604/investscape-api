@@ -1,9 +1,3 @@
 node_modules
 dist
 .env
-
-# Supabase's CA certificate for TLS-verified Postgres connections. This is a
-# public certificate, not a secret, but it's environment-specific (tied to
-# this project's connection) so it's kept local rather than committed until
-# reviewed.
-src/lighthouse/persistence/supabase-ca.crt

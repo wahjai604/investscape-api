@@ -72,9 +72,18 @@ function normaliseResult(
 
 /**
  * Supabase's pooler presents a certificate chain that is not in Node's
- * default trusted-CA bundle. We ship the project's CA certificate alongside
- * this file and load it explicitly so verification stays strict
- * (`rejectUnauthorized: true`) instead of being weakened to accept anything.
+ * default trusted-CA bundle. We ship a CA certificate alongside this file and
+ * load it explicitly so verification stays strict (`rejectUnauthorized:
+ * true`) instead of being weakened to accept anything.
+ *
+ * This is Supabase's own platform-wide "Supabase Root 2021 CA" — the same
+ * public root across every Supabase project, not something specific to ours
+ * — confirmed 2026-09-07 while wiring this up for Railway production, where
+ * it previously wasn't deployed at all (gitignored "until reviewed"; this was
+ * that review). Committed now: it's a public certificate with no secret
+ * material, and without it in the deployed bundle, TLS verification against
+ * Supabase's pooler fails and this whole subsystem silently degrades to
+ * "persistence unconfigured" in any environment that isn't this dev machine.
  *
  * Returns `undefined` when the file is absent (e.g. local Docker Postgres,
  * or CI, where TLS is either skipped for localhost or not yet configured) —
