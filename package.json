@@ -5,7 +5,8 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run build:copy-assets",
+    "build:copy-assets": "node -e \"require('fs').copyFileSync('src/lighthouse/persistence/supabase-ca.crt','dist/lighthouse/persistence/supabase-ca.crt')\"",
     "dev": "tsx watch src/index.ts",
     "start": "node dist/index.js",
     "test": "node --test \"src/**/*.test.ts\"",
