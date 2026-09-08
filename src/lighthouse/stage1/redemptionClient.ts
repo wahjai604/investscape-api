@@ -150,12 +150,6 @@ export async function redeemLaunchSession(
     } catch {
       // A non-JSON error body is not itself an error; status drives the mapping.
     }
-    // TEMPORARY DIAGNOSTIC (Round 8 staged Step 1 re-run, remove after) —
-    // status, error code, and x-request-id only. No secrets, no body, no
-    // other headers.
-    console.error(
-      `[stage1-diag] redemption non-ok response: status=${response.status} code=${code ?? "(none)"} x-request-id=${response.headers.get("x-request-id") ?? "(none)"}`,
-    );
     return {
       kind: "failure",
       failure: mapRedemptionFailure(response.status, code),
