@@ -17,7 +17,7 @@
  */
 
 import { z } from "zod";
-import { regionalMacroInputSchema, cityMarketInputSchema } from "./economic-schemas.js";
+import { regionalMacroInputSchema, cityMarketInputSchema } from "./economic-schemas.ts";
 
 // ============================================================================
 // Shared: MarketObservation / GeographyRef / SourceMetadata
@@ -216,4 +216,51 @@ export const fetchCityObservationsInputSchema = z.object({
 export const fetchNeighborhoodObservationsInputSchema = z.object({
   input: neighborhoodMetricsInputSchema,
   now: z.coerce.date().optional(),
+});
+
+// ============================================================================
+// E86: CRE cap-rate benchmark (@investscape/market-intelligence-engine's
+// creIntelligence.getCapRateBenchmark public entry point) — API-owned strict
+// schema, mirrors the engine's public `BenchmarkIdentity` type exactly, with
+// `metric` narrowed to the literal this endpoint supports. Strict at every
+// object level so unknown keys are rejected rather than silently dropped.
+// ============================================================================
+
+const capRateBenchmarkIdentitySchema = z.strictObject({
+  metric: z.literal("cap_rate"),
+  country: z.enum(["US", "CA"]),
+  city: z.string().min(1),
+  assetClass: z.enum([
+    "office",
+    "industrial",
+    "retail",
+    "multifamily",
+    "hotel",
+    "healthcare",
+    "self_storage",
+    "seniors_housing",
+    "student_housing",
+    "medical_office",
+    "data_center",
+    "mixed_use",
+    "other",
+  ]),
+  propertySubtype: z.string().min(1).optional(),
+  propertyClass: z.enum(["A", "B", "C", "unspecified"]).optional(),
+  locationType: z.enum(["cbd", "suburban", "urban", "unspecified"]).optional(),
+  capRateType: z.enum([
+    "stabilized",
+    "value_add",
+    "going_in",
+    "exit",
+    "transaction",
+    "net_lease",
+    "survey_estimate",
+    "derived_transaction",
+  ]).optional(),
+});
+
+export const capRateBenchmarkRequestSchema = z.strictObject({
+  identity: capRateBenchmarkIdentitySchema,
+  asOf: z.string().datetime().optional(),
 });

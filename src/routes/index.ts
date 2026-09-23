@@ -95,6 +95,10 @@ import miDataQualityRouter from "./market-intelligence/E64-data-quality.js";
 import miEconomicEngineAdaptersRouter from "./market-intelligence/E65-economic-engine-adapters.js";
 import miServiceRouter from "./market-intelligence/E66-service.js";
 
+// CRE Intelligence (E86, @investscape/market-intelligence-engine's
+// creIntelligence public entry point)
+import creCapRateBenchmarkRouter from "./market-intelligence/E86-cap-rate-benchmark.js";
+
 const router = Router();
 
 // Financial, Economic & Tax (28 + 16 + 8 = 52 engines: E1-E28, E29-E45, E46-E53; E36 excluded)
@@ -171,5 +175,8 @@ router.use(miBenchmarkingRouter);
 router.use(miDataQualityRouter);
 router.use(miEconomicEngineAdaptersRouter);
 router.use(miServiceRouter);
+
+// CRE Intelligence (E86)
+router.use(creCapRateBenchmarkRouter);
 
 export default router;
