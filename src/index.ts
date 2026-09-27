@@ -39,6 +39,7 @@ import {
   exceptLighthouse,
   resolveEngineRateLimitConfig,
 } from "./http/engineGuards.ts";
+import { bootstrapVancouverSpatialEvidence, describeVancouverSpatialBoot } from "./zoning/vancouver/bootstrap.ts";
 
 dotenv.config();
 
@@ -69,6 +70,11 @@ const PORT = resolvePort();
 const corsConfig = resolveCorsConfiguration(process.env);
 const engineRateLimitConfig = resolveEngineRateLimitConfig(process.env);
 const engineAuth = createEngineAuthGuard(process.env);
+
+// E85 Vancouver zoning evidence. Off unless E85_VANCOUVER_EVIDENCE_DIR is set;
+// once set, a verification failure throws here and the server never listens.
+// Loaded for verification only — no zoning route is mounted.
+const vancouverSpatial = bootstrapVancouverSpatialEvidence(process.env);
 
 app.use(helmet());
 
@@ -192,6 +198,7 @@ const server = app.listen(PORT, () => {
       `rate=${describeEngineRateLimit(engineRateLimitConfig)} · ` +
       `auth=${describeEngineAuth(engineAuth.mode)}`,
   );
+  console.log(describeVancouverSpatialBoot(vancouverSpatial));
   // Warnings last, so they are the final thing on the screen after a boot.
   for (const problem of engineRateLimitConfig.problems) {
     console.error(`[engine] ${problem}`);
