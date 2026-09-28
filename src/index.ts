@@ -71,8 +71,9 @@ const corsConfig = resolveCorsConfiguration(process.env);
 const engineRateLimitConfig = resolveEngineRateLimitConfig(process.env);
 const engineAuth = createEngineAuthGuard(process.env);
 
-// E85 Vancouver zoning evidence. Off unless E85_VANCOUVER_EVIDENCE_DIR is set;
-// once set, a verification failure throws here and the server never listens.
+// E85 Vancouver zoning evidence. Off unless E85_VANCOUVER_SPATIAL_ENABLED is
+// "true" (E85_VANCOUVER_EVIDENCE_DIR alone is ignored). Once enabled, a blank
+// path or a verification failure throws here and the server never listens.
 // Loaded for verification only — no zoning route is mounted.
 const vancouverSpatial = bootstrapVancouverSpatialEvidence(process.env);
 
