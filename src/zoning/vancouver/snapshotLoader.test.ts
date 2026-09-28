@@ -199,8 +199,8 @@ describe("E85 Vancouver — what is deliberately NOT available", () => {
     assert.match(VANCOUVER_POINT_RESPONSE_SCOPE, /not the entitlement of a parcel/);
   });
 
-  test("the legal pack is audited but not packaged, and serves no decisions", () => {
-    assert.equal(VANCOUVER_LEGAL_PACK.readiness.status, "VALUES_AUDITED_NOT_PACKAGED");
+  test("the legal pack is packaged but not released, and serves no decisions", () => {
+    assert.equal(VANCOUVER_LEGAL_PACK.readiness.status, "PACKAGED_NOT_RELEASED");
     assert.equal(VANCOUVER_LEGAL_PACK.readiness.servesDecisions, false);
   });
 });
