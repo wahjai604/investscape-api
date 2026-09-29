@@ -17,6 +17,7 @@ import assert from "node:assert/strict";
 import type { SqlClient, SqlQueryResult } from "../persistence/types.ts";
 import {
   createLinkAggregateStore,
+  createShareGrantAggregateStore,
   AggregateNotFoundError,
 } from "./aggregateStoreAdapters.ts";
 import {
@@ -32,12 +33,41 @@ interface FakeRow {
 
 class FakeSqlClient implements SqlClient {
   readonly rows = new Map<string, FakeRow>();
+  /** Every statement, in order, with whether it ran inside transaction(). */
+  readonly log: { sql: string; params: readonly unknown[]; inTransaction: boolean }[] = [];
+  /** share_grant_id -> { linkId, clientUserRef, state } */
+  readonly grants = new Map<string, { linkId: string; clientUserRef: string; state: string }>();
+  transactions = 0;
+  #inTransaction = false;
+
+  async transaction<T>(fn: (tx: SqlClient) => Promise<T>): Promise<T> {
+    this.transactions += 1;
+    this.#inTransaction = true;
+    try {
+      return await fn(this);
+    } finally {
+      this.#inTransaction = false;
+    }
+  }
 
   async query<TRow = Record<string, unknown>>(
     sql: string,
     params: readonly unknown[] = [],
   ): Promise<SqlQueryResult<TRow>> {
     const normalized = sql.trim().toLowerCase();
+    this.log.push({ sql: normalized.replace(/\s+/g, " "), params, inTransaction: this.#inTransaction });
+
+    if (normalized.startsWith("update lighthouse.share_grants")) {
+      const [linkId, clientUserRef] = params as [string, string];
+      const revoked: { share_grant_id: string }[] = [];
+      for (const [id, g] of this.grants) {
+        if (g.linkId === linkId && g.clientUserRef === clientUserRef && g.state === "active") {
+          g.state = "revoked";
+          revoked.push({ share_grant_id: id });
+        }
+      }
+      return { rows: revoked as unknown as TRow[], rowCount: revoked.length };
+    }
 
     if (normalized.startsWith("select state")) {
       const id = params[0] as string;
@@ -51,7 +81,8 @@ class FakeSqlClient implements SqlClient {
       const existing = this.rows.get(id);
       if (existing && existing.version < newVersion) {
         this.rows.set(id, { state: newState, version: newVersion, occurred_at: occurredAt });
-        return { rows: [], rowCount: 1 };
+        // The link store asks for the owning actor back; others ignore it.
+        return { rows: [{ investscape_actor_ref: "actor-owner" } as unknown as TRow], rowCount: 1 };
       }
       return { rows: [], rowCount: 0 };
     }
@@ -190,4 +221,76 @@ test("a genuinely unrelated store error still propagates rather than being swall
       ),
     /connection reset/,
   );
+});
+
+// ---------------------------------------------------------------------------
+// Inbound Relationship OS unlink: same atomic link -> grant cascade as the
+// user-initiated path (stage2 revokeLink). Both call revokeDependentShareGrants.
+// ---------------------------------------------------------------------------
+
+test("an inbound link revocation revokes the link's active grants in the SAME transaction", async () => {
+  const client = new FakeSqlClient();
+  client.rows.set("link-1", { state: "active", version: 2, occurred_at: "2026-09-01T00:00:00.000Z" });
+  client.grants.set("g-live", { linkId: "link-1", clientUserRef: "actor-owner", state: "active" });
+  client.grants.set("g-already-revoked", { linkId: "link-1", clientUserRef: "actor-owner", state: "revoked" });
+  client.grants.set("g-other-link", { linkId: "link-2", clientUserRef: "actor-owner", state: "active" });
+  client.grants.set("g-other-owner", { linkId: "link-1", clientUserRef: "someone-else", state: "active" });
+
+  const result = await dispatchLifecycleEvent(
+    "link",
+    "link-1",
+    { eventId: "evt-unlink-1", targetState: "revoked", version: 3, occurredAt: "2026-09-02T00:00:00.000Z" },
+    { stores: { link: createLinkAggregateStore(client) } },
+  );
+
+  assert.equal(result.ok, true);
+  assert.equal(client.rows.get("link-1")?.state, "revoked");
+  assert.equal(client.grants.get("g-live")?.state, "revoked");
+  assert.equal(client.grants.get("g-already-revoked")?.state, "revoked");
+  assert.equal(client.grants.get("g-other-link")?.state, "active", "another link's grant is untouched");
+  assert.equal(client.grants.get("g-other-owner")?.state, "active", "only the link owner's grants move");
+
+  assert.equal(client.transactions, 1);
+  const writes = client.log.filter((q) => q.sql.startsWith("update"));
+  assert.equal(writes.length, 2);
+  assert.ok(writes.every((q) => q.inTransaction), "link and grant writes must share one transaction");
+  assert.match(writes[0]!.sql, /revoked_at = coalesce\(revoked_at, \$3\)/, "satisfies link_terminal_has_timestamp");
+});
+
+test("an inbound link suspension does NOT revoke grants (reads are blocked by the live link check instead)", async () => {
+  const client = new FakeSqlClient();
+  client.rows.set("link-1", { state: "active", version: 2, occurred_at: "2026-09-01T00:00:00.000Z" });
+  client.grants.set("g-live", { linkId: "link-1", clientUserRef: "actor-owner", state: "active" });
+
+  await dispatchLifecycleEvent(
+    "link",
+    "link-1",
+    { eventId: "evt-suspend-1", targetState: "suspended", version: 3, occurredAt: "2026-09-02T00:00:00.000Z" },
+    { stores: { link: createLinkAggregateStore(client) } },
+  );
+  assert.equal(client.rows.get("link-1")?.state, "suspended");
+  assert.equal(client.grants.get("g-live")?.state, "active");
+});
+
+test("a stale inbound link revocation changes nothing — neither link nor grants", async () => {
+  const client = new FakeSqlClient();
+  client.rows.set("link-1", { state: "active", version: 5, occurred_at: "2026-09-01T00:00:00.000Z" });
+  client.grants.set("g-live", { linkId: "link-1", clientUserRef: "actor-owner", state: "active" });
+
+  await createLinkAggregateStore(client).saveState("link-1", {
+    state: "revoked", version: 4, occurredAt: "2026-09-02T00:00:00.000Z",
+  });
+  assert.equal(client.rows.get("link-1")?.state, "active");
+  assert.equal(client.grants.get("g-live")?.state, "active");
+});
+
+test("inbound revocations of any aggregate set revoked_at (terminal-timestamp constraints)", async () => {
+  const client = new FakeSqlClient();
+  client.rows.set("grant-1", { state: "active", version: 1, occurred_at: "2026-09-01T00:00:00.000Z" });
+  await createShareGrantAggregateStore(client).saveState("grant-1", {
+    state: "revoked", version: 2, occurredAt: "2026-09-02T00:00:00.000Z",
+  });
+  const write = client.log.find((q) => q.sql.startsWith("update lighthouse.share_grants"));
+  assert.ok(write);
+  assert.match(write.sql, /revoked_at = coalesce\(revoked_at, \$3\)/);
 });

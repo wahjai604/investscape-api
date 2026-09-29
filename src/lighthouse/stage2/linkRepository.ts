@@ -76,6 +76,38 @@ export interface InMemoryShareGrantCascade {
   revokeAllForLink(crossProductLinkId: string, clientUserRef: string, now: Date): readonly string[];
 }
 
+/** Link states that end every share grant riding on the link. */
+export const LINK_STATES_REVOKING_GRANTS: readonly string[] = ["revoked", "expired"];
+
+/**
+ * THE link -> grant cascade. Both unlink paths call this, inside the SAME
+ * transaction that changes the link:
+ *   - user-initiated:  SqlLinkRepository.revokeLink
+ *   - Relationship OS:  createLinkAggregateStore(...).saveState (Stage 6 inbound)
+ * Only 'active' grants move; revoked/expired/tombstoned rows are untouched and
+ * nothing here can move a grant back to 'active'. `clientUserRef` is the
+ * link's own InvestScape actor, so a grant belonging to anyone else can never
+ * be revoked through someone's link.
+ */
+export async function revokeDependentShareGrants(
+  tx: SqlClient,
+  crossProductLinkId: string,
+  clientUserRef: string,
+  at: string,
+): Promise<readonly string[]> {
+  const grants = await tx.query<{ share_grant_id: string }>(
+    `update lighthouse.share_grants
+        set state = 'revoked', revoked_at = $3, version = version + 1,
+            updated_at = $3, lifecycle_occurred_at = $3
+      where cross_product_link_id = $1
+        and client_user_ref = $2
+        and state = 'active'
+      returning share_grant_id`,
+    [crossProductLinkId, clientUserRef, at],
+  );
+  return grants.rows.map((g) => String(g.share_grant_id));
+}
+
 export interface LinkRepository {
   createInvitation(invitation: LinkInvitation): Promise<void>;
   findInvitation(invitationId: string): Promise<LinkInvitation | null>;
@@ -317,17 +349,8 @@ export class SqlLinkRepository implements LinkRepository {
       const row = result.rows[0];
       if (!row) return null;
 
-      // Only 'active' grants move; revoked/expired/tombstoned are left alone,
-      // and nothing here can ever move a grant back to 'active'.
-      const grants = await tx.query<{ share_grant_id: string }>(
-        `update lighthouse.share_grants
-            set state = 'revoked', revoked_at = $3, version = version + 1,
-                updated_at = $3, lifecycle_occurred_at = $3
-          where cross_product_link_id = $1
-            and client_user_ref = $2
-            and state = 'active'
-          returning share_grant_id`,
-        [crossProductLinkId, actorRef, now.toISOString()],
+      const revokedShareGrantIds = await revokeDependentShareGrants(
+        tx, crossProductLinkId, actorRef, now.toISOString(),
       );
 
       return {
@@ -337,7 +360,7 @@ export class SqlLinkRepository implements LinkRepository {
           reason: "unlinked" as const,
           correlationId: String(row.correlation_id),
         },
-        revokedShareGrantIds: grants.rows.map((g) => String(g.share_grant_id)),
+        revokedShareGrantIds,
       };
     });
   }

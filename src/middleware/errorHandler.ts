@@ -46,9 +46,18 @@ export function errorHandler(err: unknown, req: Request, res: Response, next: Ne
   }
 
   const status = statusFor(err);
-  const message = err instanceof Error ? err.message : String(err);
+  const bodyParserType = bodyParserErrorType(err);
+  // A body-parser error's message can quote the request body (Node's JSON
+  // SyntaxError includes an input excerpt), and that body may be a one-time
+  // launch code. Such errors are reported by type only, never by message.
+  const message = bodyParserType
+    ? bodyParserType
+    : err instanceof Error ? err.message : String(err);
 
-  console.error(`[error] ${req.method} ${req.originalUrl} -> ${status}:`, err);
+  // Path only: query strings can carry bearer values (the Relationship OS
+  // launch link is `?launch_session=...&code=...`). And never the raw error
+  // object: body-parser attaches the unparsed body to it as `err.body`.
+  console.error(`[error] ${req.method} ${req.path} -> ${status}:`, redactedError(err, bodyParserType));
 
   res.status(status).json({
     error: {
@@ -56,4 +65,18 @@ export function errorHandler(err: unknown, req: Request, res: Response, next: Ne
       ...(isProduction() ? {} : { detail: message }),
     },
   });
+}
+
+/** body-parser/raw-body tag their errors with a string `type`, e.g. "entity.parse.failed". */
+function bodyParserErrorType(err: unknown): string | null {
+  const type = (err as { type?: unknown })?.type;
+  return typeof type === "string" && /^(entity\.|request\.|encoding\.|charset\.|stream\.)/.test(type)
+    ? type
+    : null;
+}
+
+function redactedError(err: unknown, bodyParserType: string | null): Record<string, unknown> {
+  if (bodyParserType) return { type: bodyParserType };
+  if (err instanceof Error) return { name: err.name, message: err.message, stack: err.stack };
+  return { value: String(err) };
 }

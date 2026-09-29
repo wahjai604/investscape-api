@@ -320,7 +320,89 @@ test("DEFECT-2 the relationship query excludes grants past their expiry", { skip
   assert.equal(later.some((g) => g.shareGrantId === `${RUN}-g-expiry`), false);
 });
 
+test("launch handoff: sealed code is claimable once, and the claim wipes the ciphertext", { skip }, async () => {
+  const { generateHandoffToken, openHandoff, sealHandoff } = await import("../stage1/launchHandoff.ts");
+  const token = generateHandoffToken();
+  const now = new Date();
+  const sealed = sealHandoff({
+    handoffId: `${RUN}-handoff`, token, launchSessionId: newSessionId(), code: "db-test-code-" + "x".repeat(40), now,
+  });
+  await repos!.handoffs.create(sealed, now);
+
+  const raw = await client!.query<Record<string, unknown>>(
+    "select * from lighthouse.launch_handoffs where handoff_id = $1", [`${RUN}-handoff`],
+  );
+  assert.equal(JSON.stringify(raw.rows).includes("db-test-code-"), false, "plaintext code reached the table");
+
+  const claimed = await repos!.handoffs.claim(sealed.tokenHash, `${RUN}-actor`, new Date());
+  assert.ok(claimed);
+  assert.equal(openHandoff(claimed, token), "db-test-code-" + "x".repeat(40));
+  assert.equal(await repos!.handoffs.claim(sealed.tokenHash, `${RUN}-actor`, new Date()), null);
+
+  const after = await client!.query<{ code_ciphertext: string | null; consumed_by_actor_ref: string }>(
+    "select code_ciphertext, consumed_by_actor_ref from lighthouse.launch_handoffs where handoff_id = $1",
+    [`${RUN}-handoff`],
+  );
+  assert.equal(after.rows[0]?.code_ciphertext, null);
+  assert.equal(after.rows[0]?.consumed_by_actor_ref, `${RUN}-actor`);
+});
+
+test("inbound Relationship OS unlink (Stage 6 link store) revokes dependent grants in the same transaction", { skip }, async () => {
+  const { createLinkAggregateStore } = await import("../stage6/aggregateStoreAdapters.ts");
+  const actor = `${RUN}-client-inbound`;
+  const link = await confirmedLink(actor);
+  await repos!.grants.create(dbGrant(`${RUN}-g-inbound`, link.crossProductLinkId, actor, null));
+
+  await createLinkAggregateStore(client!).saveState(link.crossProductLinkId, {
+    state: "revoked", version: link.lifecycle.version + 1, occurredAt: new Date().toISOString(),
+  });
+
+  const linkRow = await client!.query<{ state: string; revoked_at: Date | null }>(
+    "select state, revoked_at from lighthouse.cross_product_links where cross_product_link_id = $1",
+    [link.crossProductLinkId],
+  );
+  assert.equal(linkRow.rows[0]?.state, "revoked");
+  assert.ok(linkRow.rows[0]?.revoked_at, "link_terminal_has_timestamp satisfied");
+  assert.equal((await repos!.grants.findById(`${RUN}-g-inbound`))?.lifecycle.state, "revoked");
+});
+
+test("inbound share-grant revocation (generic store) satisfies the terminal-timestamp constraint", { skip }, async () => {
+  const { createShareGrantAggregateStore } = await import("../stage6/aggregateStoreAdapters.ts");
+  const actor = `${RUN}-client-generic`;
+  const link = await confirmedLink(actor);
+  await repos!.grants.create(dbGrant(`${RUN}-g-generic`, link.crossProductLinkId, actor, null));
+  await createShareGrantAggregateStore(client!).saveState(`${RUN}-g-generic`, {
+    state: "revoked", version: 2, occurredAt: new Date().toISOString(),
+  });
+  assert.equal((await repos!.grants.findById(`${RUN}-g-generic`))?.lifecycle.state, "revoked");
+});
+
+test("analysis ownership: only the caller's own, non-deleted personal-workspace deals count", { skip }, async () => {
+  const { sqlAnalysisOwnership } = await import("../stage4/analysisOwnership.ts");
+  const users = await client!.query<{ id: string }>(
+    "insert into auth.users (email) values ($1), ($2) returning id",
+    [`${RUN}-owner@example.test`, `${RUN}-other@example.test`],
+  );
+  const [owner, other] = users.rows.map((r) => r.id);
+  const deals = await client!.query<{ id: string }>(
+    `insert into investscape.deals (owner_id, deleted_at) values ($1, null), ($1, now()), ($2, null) returning id`,
+    [owner, other],
+  );
+  const [mine, mineDeleted, theirs] = deals.rows.map((r) => r.id);
+  const owns = sqlAnalysisOwnership(client!);
+
+  assert.equal(await owns(owner!, [mine!]), true);
+  assert.equal(await owns(owner!, [mine!, mine!]), true, "duplicates collapse");
+  assert.equal(await owns(owner!, [mine!, theirs!]), false, "one foreign id fails the selection");
+  assert.equal(await owns(owner!, [mineDeleted!]), false, "soft-deleted is not shareable");
+  assert.equal(await owns(other!, [mine!]), false);
+
+  await client!.query("delete from investscape.deals where owner_id = any($1::uuid[])", [[owner, other]]);
+  await client!.query("delete from auth.users where id = any($1::uuid[])", [[owner, other]]);
+});
+
 test("cleanup", { skip }, async () => {
+  await client!.query("delete from lighthouse.launch_handoffs where handoff_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.share_grants where correlation_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.cross_product_links where correlation_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.link_invitations where correlation_id like $1", [`${RUN}-%`]);

@@ -59,6 +59,11 @@ import {
   InMemoryLifecycleOutboxRepository,
   type LifecycleOutboxRepository,
 } from "../stage6/lifecycleOutbox.ts";
+import {
+  InMemoryLaunchHandoffRepository,
+  SqlLaunchHandoffRepository,
+  type LaunchHandoffRepository,
+} from "../stage1/launchHandoff.ts";
 import type { TransactionalSqlClient } from "./types.ts";
 
 export type PersistenceMode = "postgres" | "in-memory";
@@ -68,6 +73,8 @@ export interface LighthouseRepositories {
   readonly nonces: NonceStore;
   readonly audit: AuditSink;
   readonly bindings: AnalysisBindingRepository;
+  /** Stage 1: sealed launch codes awaiting the professional's sign-in. */
+  readonly handoffs: LaunchHandoffRepository;
   readonly links: LinkRepository;
   /** Stage 3: coarse client-workspace availability disclosure consent. */
   readonly workspaceDisclosure: WorkspaceDisclosureRepository;
@@ -111,6 +118,7 @@ export function buildRepositories(
       nonces: new SqlNonceStore(input.client),
       audit: new SqlAuditSink(input.client),
       bindings: new SqlAnalysisBindingRepository(input.client),
+      handoffs: new SqlLaunchHandoffRepository(input.client),
       links: new SqlLinkRepository(input.client),
       workspaceDisclosure: new SqlWorkspaceDisclosureRepository(input.client),
       grants: new SqlShareGrantRepository(input.client),
@@ -145,6 +153,7 @@ export function buildRepositories(
     nonces: new InMemoryNonceStore(),
     audit: new InMemoryAuditSink(),
     bindings: new InMemoryAnalysisBindingRepository(),
+    handoffs: new InMemoryLaunchHandoffRepository(),
     links: new InMemoryLinkRepository({ shareGrants: grants }),
     workspaceDisclosure: new InMemoryWorkspaceDisclosureRepository(),
     grants,

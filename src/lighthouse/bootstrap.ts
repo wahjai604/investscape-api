@@ -134,6 +134,26 @@ function seedAdminActorRefFrom(env: NodeJS.ProcessEnv): string | undefined {
   return env.LIGHTHOUSE_SEED_ADMIN_ACTOR_REF;
 }
 
+/**
+ * The InvestScape app page that finishes a launch after sign-in (reads the
+ * handoff token from its URL fragment and calls /launch/handoffs/redeem).
+ * Non-secret. HTTPS only outside localhost; anything else is treated as
+ * unset, which makes handoff creation answer 503 before storing a code.
+ */
+function appLaunchResumeUrl(env: NodeJS.ProcessEnv): string | null {
+  const raw = env.INVESTSCAPE_APP_LAUNCH_RESUME_URL?.trim();
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    const local = url.hostname === "localhost" || url.hostname === "127.0.0.1";
+    if (url.protocol !== "https:" && !(local && url.protocol === "http:")) return null;
+    if (url.hash || url.search) return null; // the page appends its own fragment
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
 function outboundServiceConfig(env: NodeJS.ProcessEnv) {
   const baseUrl = env.RELATIONSHIP_OS_BASE_URL;
   const keyId = env.LIGHTHOUSE_SVC_OUTBOUND_KEY_ID;
@@ -190,6 +210,16 @@ export function createLighthouseSubsystem(
   router.post(
     "/launch/redeem",
     createRateLimiter({ scope: "launch_redeem", rule: LIGHTHOUSE_RATE_LIMITS.launchRedeem }),
+  );
+  router.post(
+    // Unauthenticated by design (the professional may be signed out), and it
+    // stores a sealed code: same tight budget as redemption.
+    "/launch/handoffs",
+    createRateLimiter({ scope: "launch_handoff_create", rule: LIGHTHOUSE_RATE_LIMITS.launchRedeem }),
+  );
+  router.post(
+    "/launch/handoffs/redeem",
+    createRateLimiter({ scope: "launch_handoff_redeem", rule: LIGHTHOUSE_RATE_LIMITS.launchRedeem }),
   );
   router.post(
     "/link/accept",
@@ -323,6 +353,10 @@ export function createLighthouseSubsystem(
     featureGate("lighthouse.stage1_launch_receiver"),
     sessionRequired,
   );
+  // Handoff creation is the ONE launch route without a session: it only
+  // seals the code (launchHandoff.ts). Claiming it requires a session.
+  router.use("/launch/handoffs", featureGate("lighthouse.stage1_launch_receiver"));
+  router.use("/launch/handoffs/redeem", sessionRequired);
   router.use(
     ["/link/accept", "/link/status", "/link/:crossProductLinkId/unlink"],
     featureGate("lighthouse.cross_product_identity_linking"),
@@ -366,6 +400,9 @@ export function createLighthouseSubsystem(
       },
       bindings: repositories.bindings,
       links: repositories.links,
+      handoffs: repositories.handoffs,
+      appResumeUrl: appLaunchResumeUrl(env),
+      newHandoffId: () => randomUUID(),
       auditSink: repositories.audit,
       newAnalysisId: () => randomUUID(),
       now: () => new Date(),

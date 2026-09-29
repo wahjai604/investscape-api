@@ -37,6 +37,7 @@ import type { Server } from "node:http";
 import { createLaunchRouter } from "../stage1/launchRoute.ts";
 import { InMemoryAnalysisBindingRepository, type AnalysisBinding } from "../stage1/analysisBinding.ts";
 import { decideLaunchOwnership } from "../stage1/launchOwnership.ts";
+import { InMemoryLaunchHandoffRepository } from "../stage1/launchHandoff.ts";
 import { parseLaunchContext } from "../stage1/contracts.ts";
 import { createShareGrantRouter } from "../stage4/shareGrantRoute.ts";
 import { InMemoryShareGrantRepository } from "../stage4/shareGrantRepository.ts";
@@ -243,6 +244,10 @@ describe("DEFECT-1 launch ownership — login plus a launch link is not enough",
         },
         bindings,
         links,
+        // Handoff routes are covered in stage1/launchHandoff.test.ts.
+        handoffs: new InMemoryLaunchHandoffRepository(),
+        appResumeUrl: null,
+        newHandoffId: () => "unused",
         auditSink: audit,
         newAnalysisId: () => `analysis-launched-${++analysisCounter}`,
         now: () => NOW,

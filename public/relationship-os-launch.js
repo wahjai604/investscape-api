@@ -29,29 +29,44 @@
     return { sessionId: sessionId, code: code };
   }
 
-  // Real exchange: POSTs to the investscape-api endpoint at the same origin
-  // this page is served from. The endpoint fails closed (503) if Stage 1
-  // isn't enabled in this environment, and the JSON body always carries a
-  // `state` field regardless of HTTP status — so branch on that, not on
-  // res.ok.
-  function exchangeLaunchCode(sessionId, code){
-    return fetch('/v1/lighthouse/launch/redeem', {
+  // Sign-in handoff (see src/lighthouse/stage1/launchHandoff.ts).
+  //
+  // This page is served by the API origin and cannot see the professional's
+  // InvestScape app session, and they may be signed out. So it does NOT
+  // redeem. It hands the code to the server once, over POST, and gets back a
+  // short-lived single-use handoff token; the server keeps the code only
+  // encrypted under that token. The page then sends the browser to the app's
+  // resume page with the token in the URL FRAGMENT, which no server receives
+  // or logs. The app signs the user in and redeems.
+  //
+  // The code lives only in this function's memory. It is never written to
+  // localStorage, sessionStorage, cookies, or the URL.
+  function createHandoff(sessionId, code){
+    return fetch('/v1/lighthouse/launch/handoffs', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'omit',
       body: JSON.stringify({ launchSessionId: sessionId, code: code })
     }).then(function(res){
       return res.json().catch(function(){ return null; });
     }).then(function(data){
-      if(!data || typeof data.state !== 'string'){
+      if(!data || typeof data.state !== 'string'){ return { status: 'error' }; }
+      if(data.state !== 'handoff_created'){ return { status: data.state }; }
+      if(typeof data.handoffToken !== 'string' || typeof data.resumeUrl !== 'string'){
         return { status: 'error' };
       }
-      return {
-        status: data.state,
-        message: data.message,
-        retryable: data.retryable,
-        session: data.state === 'success' ? data : null
-      };
+      return { status: 'redirecting', token: data.handoffToken, resumeUrl: data.resumeUrl };
     });
+  }
+
+  // Only https (or localhost) resume targets, with the token in the fragment.
+  function resumeTarget(resumeUrl, token){
+    var u;
+    try{ u = new URL(resumeUrl); }catch(e){ return null; }
+    var local = u.hostname === 'localhost' || u.hostname === '127.0.0.1';
+    if(u.protocol !== 'https:' && !(local && u.protocol === 'http:')){ return null; }
+    u.hash = 'handoff=' + encodeURIComponent(token);
+    return u.toString();
   }
 
   function view(state, detail){
@@ -68,6 +83,8 @@
         body:(detail && detail.message) || 'The Relationship OS connection is not enabled in this environment. No analysis session was opened.' },
       error:{ icon:'↻', title:'Could not open the session',
         body:(detail && detail.message) || 'Something went wrong verifying this link. No analysis was created.' },
+      redirecting:{ icon:'→', title:'Continue in InvestScape',
+        body:'Taking you to InvestScape to sign in and open this analysis. This link is valid for 10 minutes.' },
       success:{ icon:'✓', title:'Session verified',
         body:'Relationship OS authorized this analysis. Scope shown below is provided by the server.' }
     }[state] || { icon:'↻', title:'Could not open the session', body:'Something went wrong verifying this link.' };
@@ -111,8 +128,18 @@
     var parsed = consumeParams();
     if(!parsed.sessionId || !parsed.code){ return void paint('invalid'); }
     paint('loading');
-    exchangeLaunchCode(parsed.sessionId, parsed.code).then(function(res){
-      var known = ['invalid','expired','consumed','unavailable','error','success'];
+    createHandoff(parsed.sessionId, parsed.code).then(function(res){
+      parsed = null; // drop the code reference as soon as it has been sealed
+      if(res.status === 'redirecting'){
+        var target = resumeTarget(res.resumeUrl, res.token);
+        if(!target){ return void paint('error'); }
+        paint('redirecting');
+        // replace(): this landing URL (already scrubbed) is not kept as a
+        // back-button entry that could be mistaken for a retry.
+        location.replace(target);
+        return;
+      }
+      var known = ['invalid','expired','consumed','unavailable','error'];
       paint(known.indexOf(res.status) !== -1 ? res.status : 'error', res);
     }).catch(function(){
       // Never surface the raw error — it could echo the code back into the DOM.

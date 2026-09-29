@@ -34,7 +34,11 @@
  * against a real concurrent writer in the database.
  */
 
-import type { SqlClient } from "../persistence/types.ts";
+import type { SqlClient, TransactionalSqlClient } from "../persistence/types.ts";
+import {
+  LINK_STATES_REVOKING_GRANTS,
+  revokeDependentShareGrants,
+} from "../stage2/linkRepository.ts";
 import type {
   AggregateLifecycleState,
   LifecycleAggregateStore,
@@ -104,9 +108,13 @@ function sqlAggregateStore(
       // would assign the same column twice — a real Postgres syntax error —
       // whenever `occurredAtColumn` already IS `updated_at`.
       const bookkeepingClause = occurredAtColumn === "updated_at" ? "" : ", updated_at = now()";
+      // Every aggregate table has `check (state <> 'revoked' or revoked_at is
+      // not null)`. Without this clause an inbound revocation violates it and
+      // the whole event fails at the database.
+      const revokedClause = state.state === "revoked" ? ", revoked_at = coalesce(revoked_at, $3)" : "";
       const result = await client.query(
         `update ${table}
-            set state = $1, version = $2, ${occurredAtColumn} = $3${bookkeepingClause}
+            set state = $1, version = $2, ${occurredAtColumn} = $3${bookkeepingClause}${revokedClause}
           where ${idColumn} = $4 and version < $2`,
         [state.state, state.version, state.occurredAt, aggregateId],
       );
@@ -125,8 +133,42 @@ function sqlAggregateStore(
   };
 }
 
-export function createLinkAggregateStore(client: SqlClient): LifecycleAggregateStore {
-  return sqlAggregateStore(client, "lighthouse.cross_product_links", "cross_product_link_id", "updated_at");
+/**
+ * Link aggregate. Reads like every other aggregate; WRITES differ: a link
+ * moving to a grant-ending state (revoked/expired) revokes every active grant
+ * riding on it in the SAME transaction, through the same helper the
+ * user-initiated unlink uses. An inbound Relationship OS unlink therefore can
+ * never leave a committed state in which the link is gone but a grant is live.
+ */
+export function createLinkAggregateStore(client: TransactionalSqlClient): LifecycleAggregateStore {
+  const reads = sqlAggregateStore(client, "lighthouse.cross_product_links", "cross_product_link_id", "updated_at");
+  return {
+    loadState: reads.loadState,
+    async saveState(aggregateId: string, state: AggregateLifecycleState): Promise<void> {
+      await client.transaction(async (tx) => {
+        const result = await tx.query<{ investscape_actor_ref: string }>(
+          `update lighthouse.cross_product_links
+              set state = $1, version = $2, updated_at = $3
+                  ${LINK_STATES_REVOKING_GRANTS.includes(state.state) ? ", revoked_at = coalesce(revoked_at, $3)" : ""}
+            where cross_product_link_id = $4 and version < $2
+            returning investscape_actor_ref`,
+          [state.state, state.version, state.occurredAt, aggregateId],
+        );
+        const row = result.rows[0];
+        if (!row) {
+          const existing = await tx.query(
+            "select 1 from lighthouse.cross_product_links where cross_product_link_id = $1",
+            [aggregateId],
+          );
+          if (existing.rowCount === 0) throw new AggregateNotFoundError(aggregateId);
+          return; // stale write: a newer version is already stored
+        }
+        if (LINK_STATES_REVOKING_GRANTS.includes(state.state)) {
+          await revokeDependentShareGrants(tx, aggregateId, String(row.investscape_actor_ref), state.occurredAt);
+        }
+      });
+    },
+  };
 }
 
 export function createShareGrantAggregateStore(client: SqlClient): LifecycleAggregateStore {
