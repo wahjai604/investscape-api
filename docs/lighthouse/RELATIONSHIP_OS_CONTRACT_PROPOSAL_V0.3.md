@@ -2,7 +2,17 @@
 
 **Status:** PROPOSAL for Relationship OS review. Documentation only: nothing marked *Proposed* is implemented on either side. Every dependent InvestScape capability stays behind a server-side feature flag that is **off**.
 **Base:** v0.2 (`RELATIONSHIP_OS_CONTRACT_PROPOSAL_V0.2.md`, reviewed at commit `11b0b2781a23f36dc2b7331595e8c9bcb1f1a8d9`). v0.2 is preserved unchanged. Where v0.3 and v0.2 differ, v0.3 governs.
-**Revision:** v0.3 r2. It supersedes v0.3 r1 (commit `c61b34c58934ddd8a911ef08fc9c8d6a1da73a4c`) and changes these sections:
+**Revision:** v0.3 r3. It supersedes r2 (commit `39bd27d4c7a9f66e326fdac0af633be46df5809f`), which superseded r1 (commit `c61b34c58934ddd8a911ef08fc9c8d6a1da73a4c`).
+
+r3 changes:
+
+| Section | Change |
+|---|---|
+| §3.2.1 | Separates the full `eventDigest` from a new `versionContentDigest`, which excludes `eventId`. Alias deduplication uses the latter. |
+| §3.2.2, §3.3 | Conflict variants are stored keyed by (`eventId`, `eventDigest`). The original accepted event and every conflicting variant keep their own outcome and quarantine. |
+| §7.2, §7.4 | Relationship OS enforces the acceptance deadline inside the atomic consumption transaction. Locked finalisation means an attempt declared "not consumed" can never consume later. |
+
+r2 changes (retained):
 
 | Section | Change |
 |---|---|
@@ -109,7 +119,7 @@ InvestScape's response is idempotent. Grants already revoked stay revoked.
 | `changeSeq` | int64 as a decimal string [Proposed] | the owner's global, gap-tolerant, strictly increasing change sequence; used by snapshots (§5) |
 | `occurredAt` | ISO-8601 | informational; **never** used for ordering |
 | `correlationId` | string ≤256, optional | |
-| `eventDigest` | 64 lowercase hex | §3.2. Binds every other envelope field and the payload. **[Existing-IS, must change]** the inbound route today requires a field named `payloadHash` whose coverage is unspecified. |
+| `eventDigest` | 64 lowercase hex | §3.2.1. Binds every other envelope field and the payload. (`versionContentDigest` is **derived** by the receiver and not transmitted.) **[Existing-IS, must change]** the inbound route today requires a field named `payloadHash` whose coverage is unspecified. |
 | `payload` | object [Proposed] | the schema-named body |
 
 **Aggregate owners:**
@@ -146,58 +156,109 @@ Any other member in the body makes the event `rejected_malformed` (strict schema
 
 A receiver **recomputes** the digest from the received body. It rejects the event as `rejected_malformed` (`400 EVENT_DIGEST_MISMATCH`) if the sent `eventDigest` differs. Every comparison below uses the recomputed value.
 
-**Worked example.** Two events with the same `eventId` and identical `payload` but different `targetState`, say `revoked` vs `active`. Under v0.2 the payload-only hashes are equal, so the second would have been taken as a `duplicate`. Under r2 the digests differ because `targetState` is bound, so the second is a `conflict` (§3.3 rule 3).
+**Worked example.** Two events with the same `eventId` and identical `payload` but different `targetState`, say `revoked` vs `active`. Under v0.2 the payload-only hashes are equal, so the second would have been taken as a `duplicate`. Since r2 the digests differ because `targetState` is bound, so the second is a `conflict` (§3.3 rule 3).
 
-#### 3.2.2 Ledger
+**Version content digest [Proposed, r3].** `eventDigest` identifies *one transmission of one event*. It cannot deduplicate the same state change re-emitted under a new `eventId`, for example by a sender that regenerates ids after a crash, because the `eventId` is part of it. So the receiver also derives:
 
-The receiver keeps one row per `eventId` **and** one row per aggregate version:
+`versionContentDigest = lowercase hex( SHA-256( JCS(versionContentInput) ) )`
 
-| Table | Key | Stored |
+`versionContentInput` has **exactly** these members, all required:
+
+| Member | Why it is bound |
+|---|---|
+| `schemaVersion` | the payload's meaning |
+| `aggregateKind`, `aggregateId` | which aggregate |
+| `version` | which version |
+| `targetState` | the state this version establishes |
+| `changeSeq` | the owner's commit position for this version (§5.2). One version has exactly one `changeSeq`. |
+| `payload` | the version's content |
+
+**Excluded from `versionContentDigest`, and only these:**
+
+| Excluded | Why |
+|---|---|
+| `eventId` | the transmission identity, not the content |
+| `occurredAt` | informational; a re-emission may stamp a new time |
+| `correlationId` | tracing only |
+| `eventDigest` | derived |
+| transport headers | as in `eventDigest` |
+
+It is not transmitted. The receiver computes it from the validated body with the same JCS rules.
+
+| Digest | Includes `eventId`? | Used for |
 |---|---|---|
-| `event_ledger` | `eventId` | `eventDigest`, aggregate key, `version`, `firstOutcome`, `quarantineId?`, `firstReceivedAt` |
-| `version_ledger` | (`aggregateKind`, `aggregateId`, `version`) | the **first** `eventDigest` accepted for that version, and its `eventId` |
+| `eventDigest` | yes | integrity of the transmission (recompute check); replay and conflict detection per `eventId` (§3.3 rules 2–3) |
+| `versionContentDigest` | no | alias deduplication and conflict detection per (aggregate, version) (§3.3 rules 4–5) |
 
-`firstOutcome` is written in the same transaction as the outcome's effect (apply, quarantine or block) and never updated, except by the reconciliation transition in §3.4.
+**Worked example: a legitimate alias.**
+1. The owner emits `E7` for grant `g` version 5 (`revoked`, `changeSeq` 910, `occurredAt` 12:00:00). It is applied.
+2. The owner crashes before marking `E7` delivered. On restart it regenerates the event as `E7′` with the same version, state, `changeSeq` and payload, but `occurredAt` 12:03:10.
+3. The `eventDigest` values differ (different `eventId` and `occurredAt`), but the `versionContentDigest` values are equal.
+4. Result: rule 4, `200 duplicate` with alias `E7′ → E7`. Under r2, which compared `eventDigest` for rule 4, this would have been reported as a false `AGGREGATE_VERSION_DIGEST_MISMATCH` conflict.
 
-**[Existing-IS]** `lighthouse.inbound_events` keys on `event_id` and stores an `outcome`.
-**[Existing-IS, must change]** there is no unique (aggregate, version) key, and the stored outcome is not replayed on retry.
+**Worked example: a real version conflict.** `E8` (grant `g` version 6, `revoked`) is applied. Later, `E9` arrives for `g` version 6 with state `expired`. The `versionContentDigest` values differ, so rule 5 applies: `409 conflict` / `AGGREGATE_VERSION_CONTENT_MISMATCH`.
+
+#### 3.2.2 Ledger [Proposed, r3]
+
+| Table | Primary key | Columns | Role |
+|---|---|---|---|
+| `event_ledger` | `eventId` | `acceptedEventDigest`, aggregate key, `version`, `firstReceivedAt` | Which bytes were **first accepted** under this `eventId`. Written once; never changed. |
+| `event_variants` | (`eventId`, `eventDigest`) | `role` (`original` \| `conflicting`), `outcome`, `resolvedOutcome?`, `quarantineId?`, `receivedCount`, `firstReceivedAt`, `lastReceivedAt` | One row per distinct byte-content received under an `eventId`. The original accepted event is a variant with `role = original`. Every conflicting variant gets its own row. |
+| `version_ledger` | (`aggregateKind`, `aggregateId`, `version`) | `versionContentDigest`, `firstEventId` | The content first accepted for each aggregate version. |
+
+Rules:
+- The **first** transaction to insert an `eventId` into `event_ledger` makes its digest the original. Two concurrent first arrivals with different digests race on the `event_ledger` primary key. The loser rolls back and is re-evaluated, finding the winner's row, so it becomes a `conflicting` variant.
+- `outcome` is written in the same transaction as its effect (apply, quarantine or block) and never changed afterwards. Two exceptions: `resolvedOutcome` is set by reconciliation (§3.4 step 5), and `blocked` rows are re-evaluated (§3.4 step 6).
+- Variants store digests and outcomes, **never bodies** (consistent with §3.4).
+- Each conflicting variant links to a quarantine:
+  - If an `open` quarantine already exists for the aggregate, the variant joins it.
+  - Otherwise a new quarantine is opened.
+
+  One quarantine can therefore cover several variants.
+
+**[Existing-IS]** `lighthouse.inbound_events` keys on `event_id` and stores one `payload_hash` and one `outcome`.
+**[Existing-IS, must change]** there is no variant storage: a second, different body under a known `eventId` is not recorded. There is no unique (aggregate, version) key, no `versionContentDigest`, and stored outcomes are not replayed.
 
 ### 3.3 Outcomes (evaluated in this order) [Proposed, r2]
 
 | # | Condition | Outcome | HTTP | Applied? | Receiver action | Sender action |
 |---|---|---|---|---|---|---|
 | 1 | Envelope malformed, schema unknown, strict validation fails, or the recomputed digest ≠ the sent `eventDigest` | `rejected_malformed` | `400` | no | audit; **no ledger row** | fix and send a **new** `eventId`; never retry the same bytes |
-| 2 | `eventId` in the ledger with the **same** digest | **the recorded outcome, replayed** (see "Replay" below) | as recorded | no further effect | none | per the replayed outcome |
-| 3 | `eventId` in the ledger with a **different** digest | `conflict` / `EVENT_ID_DIGEST_MISMATCH` | `409` | **no** | open a quarantine, alert, block the aggregate; ledger the new digest under the quarantine | stop, alert, wait (§3.4) |
-| 4 | (aggregate, version) in the version ledger with the **same** digest under another `eventId` | `duplicate` | `200` | no | ledger this `eventId` as an alias with `firstOutcome = duplicate` | done |
-| 5 | (aggregate, version) in the version ledger with a **different** digest | `conflict` / `AGGREGATE_VERSION_DIGEST_MISMATCH` | `409` | **no** | quarantine, alert, block; ledger with `firstOutcome = conflict` | stop, alert, wait |
-| 6 | Aggregate blocked by an open quarantine | `blocked` | `409` | no | ledger `eventId` + digest with `firstOutcome = blocked`; **the body is not retained** (§3.4) | keep the entry; resubmit after resolution (§3.4) |
+| 2 | (`eventId`, `eventDigest`) exists in `event_variants`, as the original **or** a conflicting variant | **that variant's recorded outcome, replayed** (see "Replay" below) | as recorded | no further effect | increment `receivedCount` | per the replayed outcome |
+| 3 | `eventId` exists in `event_ledger`, but this `eventDigest` is not among its variants | `conflict` / `EVENT_ID_DIGEST_MISMATCH` | `409` | **no** | insert a `conflicting` variant with `outcome = conflict`; join or open a quarantine; alert; block the aggregate | stop, alert, wait (§3.4) |
+| 4 | (aggregate, version) in `version_ledger` with the **same** `versionContentDigest` under another `eventId` | `duplicate` | `200` | no | insert this `eventId` into `event_ledger` plus an `original` variant with `outcome = duplicate`, noting the alias to `firstEventId` | done |
+| 5 | (aggregate, version) in `version_ledger` with a **different** `versionContentDigest` | `conflict` / `AGGREGATE_VERSION_CONTENT_MISMATCH` | `409` | **no** | insert into `event_ledger` plus an `original` variant with `outcome = conflict`; join or open a quarantine; alert; block | stop, alert, wait |
+| 6 | Aggregate blocked by an open quarantine | `blocked` | `409` | no | insert into `event_ledger` plus an `original` variant with `outcome = blocked`; **the body is not retained** (§3.4) | keep the entry; resubmit after resolution (§3.4) |
 | 7 | `version` < stored version | `stale` | `200` | no | ledger | done; a newer state won |
 | 8 | `version` = stored version (and not rule 4 or 5, i.e. the version ledger has no row, e.g. state came from a snapshot) | `stale` | `200` | no | ledger | done |
 | 9 | Lifecycle does not permit the transition (e.g. `revoked → active`) | `rejected_transition` | `422` | no | quarantine, alert, block; ledger | stop, alert, wait |
 | 10 | `version` > stored + 1 | `applied_with_gap` | `200` | yes | apply; schedule recovery (§5) | done |
 | 11 | Otherwise | `applied` | `200` | yes | apply | done |
 
-**Replay (rule 2).** A retry with an identical digest returns the outcome recorded the first time, with the same HTTP status and the same `quarantineId`. It is **never** downgraded to `duplicate` while an issue is open:
+**Replay (rule 2).** A retry is matched to its **own variant** by (`eventId`, `eventDigest`) and returns that variant's outcome, with the same HTTP status and the same `quarantineId`. A retry of the original bytes and a retry of a conflicting variant therefore get different, and each correct, answers. An open issue is **never** downgraded to `duplicate`:
 
-| Recorded `firstOutcome` | Quarantine state | Response to the retry |
+| Variant's recorded `outcome` | Quarantine state | Response to the retry |
 |---|---|---|
 | `applied`, `applied_with_gap`, `duplicate`, `stale` | n/a | `200 duplicate` (with `originalOutcome` set) |
 | `conflict` or `rejected_transition` | `open` | the same `409 conflict` / `422 rejected_transition`, same `quarantineId` |
 | `conflict` or `rejected_transition` | `resolved` | `200 superseded`, the terminal post-reconciliation outcome for these bytes (§3.4) |
 | `blocked` | `open` | `409 blocked`, same `quarantineId` |
-| `blocked` | `resolved` | **re-evaluated** through rules 3–11 as if new. The ledger row is replaced by the new outcome in the same transaction (§3.4 step 6). |
+| `blocked` | `resolved` | **re-evaluated** through rules 4–11. The variant's outcome is replaced by the new outcome in the same transaction (§3.4 step 6). |
 
-**Worked example: a retried conflict stays a conflict.**
-1. `E1` (grant `g`, version 4, digest `a1…`) is applied.
-2. A buggy sender reuses `E1` with digest `b2…` → rule 3: `409 conflict`, `quarantineId = Q7`, `g` blocked.
-3. The sender's retry loop resends the `b2…` bytes with a fresh nonce → rule 2, recorded `conflict`, `Q7` open → `409 conflict`, `Q7` again. Under r1 this could have been reported as `duplicate`, which the sender would have treated as delivered.
-4. An operator resolves `Q7` (§3.4).
-5. The next resend of `b2…` → `200 superseded`. The sender marks the entry terminal.
+**Worked example: several variants under one `eventId`.**
+1. `E1` (grant `g`, version 4, `eventDigest` `a1…`) is applied. The variants are {(`E1`, `a1…`): original, `applied`}.
+2. A buggy sender reuses `E1` with bytes `b2…` → rule 3. The variant (`E1`, `b2…`) is stored as conflicting, with `conflict` and a new `Q7`; `g` is blocked.
+3. It sends yet another body under `E1`, `c3…` → rule 3. The variant (`E1`, `c3…`) is stored as conflicting and **joins** the open `Q7`.
+4. The `b2…` bytes are resent → rule 2 matches (`E1`, `b2…`) → `409 conflict`, `Q7`.
+   - The `c3…` bytes are resent → `409 conflict`, `Q7`.
+   - The **original** `a1…` bytes are resent → rule 2 matches (`E1`, `a1…`) → `200 duplicate` with `originalOutcome: applied`. The original's success is not overwritten by the later conflicts.
+
+   Under r1 a retried conflict could have come back as `duplicate`, which the sender would have treated as delivered.
+5. `Q7` is resolved (§3.4): `b2…` and `c3…` get `resolvedOutcome = superseded`. Resends of either now return `200 superseded`, and a resend of `a1…` still returns `200 duplicate`.
 
 **[Existing-IS, must change]** where current InvestScape code differs:
 - An `eventId` conflict returns `200` with `outcome: "conflict"`. It is audited but not quarantined, and the aggregate is not blocked. It must return `409` and quarantine.
-- A retry with the same bytes is answered from the ledger as `duplicate` or `conflict` by digest only, not by replaying the recorded outcome. It must follow the Replay table.
+- A retry with the same bytes is answered from the ledger as `duplicate` or `conflict` by digest only, not by replaying the recorded outcome. Conflicting variants are not stored at all. It must follow §3.2.2 and the Replay table.
 - The digest covers an unspecified subset. It must follow §3.2.1.
 - For the **same version**, a later `occurredAt` is applied as a tie-break (`applyLifecycleEvent`). It must be treated as rule 4 or rule 5 instead.
 - A `rejected` transition returns `200`. It must return `422` and quarantine.
@@ -213,7 +274,7 @@ The receiver keeps one row per `eventId` **and** one row per aggregate version:
 | `version` | int | echoed |
 | `outcome` | `applied` \| `applied_with_gap` \| `duplicate` \| `stale` \| `superseded` \| `conflict` \| `blocked` \| `rejected_transition` | |
 | `originalOutcome` | same enum | on a replayed `duplicate`: what the first delivery produced |
-| `conflictKind` | `EVENT_ID_DIGEST_MISMATCH` \| `AGGREGATE_VERSION_DIGEST_MISMATCH` | only for `conflict` |
+| `conflictKind` | `EVENT_ID_DIGEST_MISMATCH` \| `AGGREGATE_VERSION_CONTENT_MISMATCH` | only for `conflict` |
 | `quarantineId` | string | for `conflict`, `blocked` and `rejected_transition` |
 | `storedVersion` | int | receiver's version after processing |
 | `receivedAt` | ISO-8601 | |
@@ -227,17 +288,17 @@ Only `applied`, `applied_with_gap`, `duplicate`, `stale` and `superseded` are **
 Reason: share payloads carry client-selected analysis fields. Retaining them at the receiver while blocked would create a second copy of client data outside any grant's lifecycle and removal rules (§6). The sender already holds the bytes durably in its outbox.
 
 **Receiver**
-1. **Quarantine record:** `quarantineId`, aggregate key, the `version` at issue, the `eventId`s and digests involved, `kind` (`EVENT_ID_DIGEST_MISMATCH` \| `AGGREGATE_VERSION_DIGEST_MISMATCH` \| `REJECTED_TRANSITION`), `openedAt`, state `open`. **No payloads.**
+1. **Quarantine record:** `quarantineId`, aggregate key, the `version` at issue, the `eventId`s and digests involved, `kind` (`EVENT_ID_DIGEST_MISMATCH` \| `AGGREGATE_VERSION_CONTENT_MISMATCH` \| `REJECTED_TRANSITION`), `openedAt`, state `open`. **No payloads.**
 2. **Alert** on open. Routing and severity: **DECISION REQUIRED (D8)**.
-3. **Block:** while any quarantine on the aggregate is `open`, rule 6 applies to every new event for it. Its `eventId` and digest are ledgered (`firstOutcome = blocked`); the body is discarded. Reads of the aggregate's content fail closed.
+3. **Block:** while any quarantine on the aggregate is `open`, rule 6 applies to every new event for it. Its `eventId` and `eventDigest` are recorded as a variant with `outcome = blocked`; the body is discarded. Reads of the aggregate's content fail closed.
 4. **Reconcile:** perform a single-aggregate recovery read from the aggregate's **owner** (§5.5 item 6). Adopt the owner's state if the owner's `version` ≥ the receiver's.
 5. **Resolve** (one transaction):
    - set the quarantine to `resolved` with `resolution` (`adopted_owner_state` \| `operator_override`), `resolvedBy` and `resolvedAt`;
-   - for each ledger row under this quarantine with `firstOutcome` in {`conflict`, `rejected_transition`}, set `resolvedOutcome = superseded`;
+   - for each `event_variants` row under this quarantine with `outcome` in {`conflict`, `rejected_transition`}, set `resolvedOutcome = superseded`;
    - unblock the aggregate.
 
    `blocked` rows are left as they are, so their next resubmission is re-evaluated (Replay table).
-6. **Re-evaluating a blocked resubmission:** when a resubmitted event matches a `blocked` ledger row whose quarantine is resolved and whose digest matches, it runs through rules 3–11. The row's outcome is replaced atomically with the result. A resubmission with a **different** digest under that `eventId` is rule 3 (a new conflict).
+6. **Re-evaluating a blocked resubmission:** when a resubmitted event matches a `blocked` variant (`eventId`, `eventDigest`) whose quarantine is resolved, it runs through rules 4–11. The variant's outcome is replaced atomically with the result. A resubmission with a **different** digest under that `eventId` is rule 3: a new conflicting variant.
 7. **Notify (optional optimisation):** after resolving, the receiver sends `lighthouse.quarantine-resolved.v1` = `{ schemaVersion, quarantineId, aggregateKind, aggregateId, resolvedAt, reconciledVersion }` to the sender (same HMAC transport). Senders must not depend on it: resubmission also happens on its own schedule.
 
 **Sender**
@@ -498,7 +559,15 @@ The schema is strict, and unknown fields are rejected **[Existing-IS]**.
 
 **L4 — `POST /v1/investscape/launch-sessions/redemption-lookup` [Proposed]** (IS → RoS, HMAC)
 
-Request `investscape-redemption-lookup.v1`: `{ schemaVersion, launchSessionId, redemptionAttemptId }`
+Request `investscape-redemption-lookup.v1` [Proposed, r3]:
+
+| Field | Type | Notes |
+|---|---|---|
+| `schemaVersion` | `"investscape-redemption-lookup.v1"` | |
+| `launchSessionId` | UUID | |
+| `redemptionAttemptId` | UUID | |
+| `requestTimestamp` | integer Unix seconds | the `x-lighthouse-timestamp` InvestScape wrote ahead for this attempt (§7.3) |
+| `finalize` | boolean | `true` asks Relationship OS to make a not-consumed answer **final** (§7.4a) |
 
 Response `200`, `investscape-redemption-status.v1`:
 
@@ -506,7 +575,7 @@ Response `200`, `investscape-redemption-status.v1`:
 |---|---|---|
 | `schemaVersion` | `"investscape-redemption-status.v1"` | |
 | `launchSessionId`, `redemptionAttemptId` | echoed | |
-| `status` | `consumed_by_this_attempt` \| `not_consumed` \| `consumed_by_other_attempt` \| `expired_unconsumed` \| `authority_revoked` | |
+| `status` | `consumed_by_this_attempt` \| `not_consumed_pending` \| `not_consumed_final` \| `consumed_by_other_attempt` \| `expired_unconsumed` \| `authority_revoked` | `not_consumed_pending`: not consumed, and not finalised because the deadline has not passed or `finalize` was false. `not_consumed_final`: a finalisation record exists (§7.4a); this attempt can never consume. |
 | `launchContext` | `investscape-launch-context.v2` | present **only** for `consumed_by_this_attempt` **and** only if authority still holds (§7.5) |
 | `checkedAt` | ISO-8601 | |
 
@@ -550,32 +619,103 @@ Define `acceptanceDeadline = request_timestamp + 300 s + 30 s` (skew window plus
 | L2 times out, the connection resets, or `5xx` | `ambiguous`; the reconciler calls L4 with backoff (1, 2, 4 … capped at 60 s). |
 | Process crash while `prepared` (whether or not L2 left the process) | The reconciler picks up `prepared` rows older than the L2 client timeout plus 30 s, sets them `ambiguous`, and calls L4. |
 | L4 → `consumed_by_this_attempt` | Re-run the ownership rule against the actor's **current** links (§7.5); bind or refuse → `completed` or `resolved_no_analysis`. Valid at any time: consumption already happened. |
-| L4 → `not_consumed` **before** `acceptanceDeadline` | **Not final.** L2 could still be in flight and be accepted. Re-check after `acceptanceDeadline`. |
-| L4 → `not_consumed` **after** `acceptanceDeadline` | Final → `resolved_no_analysis`. No L2 with this attempt's timestamp can be accepted any more. The code was wiped at claim, so there is no retry; the professional restarts from Relationship OS. |
+| L4 → `not_consumed_pending` | **Not final.** Call again with `finalize: true` after `acceptanceDeadline`. |
+| L4 → `not_consumed_final` | Final → `resolved_no_analysis`. Relationship OS guarantees this attempt can never consume (§7.4a). The code was wiped at claim, so there is no retry; the professional restarts from Relationship OS. |
 | L4 → `expired_unconsumed` | `resolved_no_analysis`. |
 | L4 → `consumed_by_other_attempt` | `resolved_no_analysis` plus a **security alert**. |
 | L4 → `authority_revoked` | `resolved_no_analysis`. |
 | L4 → `410 REDEMPTION_LOOKUP_EXPIRED`, or the window closes unresolved | `abandoned` plus an alert. No analysis is created afterwards. |
 
-**Requirement on Relationship OS [Proposed, r2]:** L2's HMAC timestamp check (±300 s) must be evaluated **before** consuming the session, in the same request. **[Existing-both]** `HmacServiceAuthenticator.authenticate` runs before the consuming `UPDATE` today; this makes that ordering contractual.
+### 7.4a Acceptance deadline and finalisation — Relationship OS [Proposed, r3]
+
+r2 relied on the HMAC timestamp check alone. That is **insufficient**. A request can pass authentication at 12:04:59, when it is within skew, and then wait on a database lock. If the consuming `UPDATE` does not re-check the deadline, it consumes at, say, 12:05:40, after InvestScape may already have declared the attempt "not consumed". Authentication time is not consumption time.
+
+**Definitions** (Relationship OS; all times from the **database clock**, `clock_timestamp()`, never an application clock):
+- `attemptDeadline = to_timestamp(x-lighthouse-timestamp) + interval '300 seconds'`, the latest instant at which this attempt may consume.
+- Finalisation record: `app.investscape_redemption_finalizations(launch_session_id, redemption_attempt_id, finalized_at)`, primary key (`launch_session_id`, `redemption_attempt_id`). Insert-only.
+
+**R-1. Consumption (L2), one transaction:**
+```sql
+begin;
+-- 1. Take the session row lock FIRST. A request that waits here waits
+--    before any deadline evaluation.
+select id, status, code_hash, expires_at, consumed_by_attempt_id
+  from app.investscape_launch_sessions
+ where id = $session for update;
+-- 2. Only after the lock is held, evaluate (clock_timestamp() is re-read now):
+--    a. code_hash matches
+--    b. status = 'issued' and expires_at > clock_timestamp()   (existing checks)
+--    c. clock_timestamp() <= $attemptDeadline                  (new)
+--    d. not exists (select 1 from app.investscape_redemption_finalizations
+--                   where launch_session_id = $session
+--                     and redemption_attempt_id = $attempt)     (new)
+--    Any failure: rollback. (a)/(b) keep their existing errors;
+--    (c) -> 410 REDEMPTION_ATTEMPT_DEADLINE_PASSED; (d) -> 409 REDEMPTION_ATTEMPT_FINALIZED.
+-- 3. Consume:
+update app.investscape_launch_sessions
+   set status = 'consumed', consumed_at = clock_timestamp(), consumed_by_attempt_id = $attempt
+ where id = $session;
+commit;
+```
+The deadline and the finalisation check are evaluated **while holding the session row lock**, immediately before the consuming write. Nothing about a waiting request is decided at authentication time except authentication itself.
+
+Note on the existing single-statement `UPDATE … WHERE … RETURNING` **[Existing-both]**: PostgreSQL re-evaluates an `UPDATE`'s `WHERE` against the latest row version after a lock wait. However, `now()` in that `WHERE` is the **transaction start** time, not the time the lock was acquired, so a `now()`-based deadline would be evaluated too early. Hence the explicit lock-then-check form and `clock_timestamp()`.
+
+**R-2. Finalisation (L4 with `finalize: true`), one transaction:**
+```sql
+begin;
+select status, consumed_by_attempt_id
+  from app.investscape_launch_sessions
+ where id = $session for update;          -- same lock as R-1
+-- if consumed_by_attempt_id = $attempt -> consumed_by_this_attempt (no insert)
+-- if consumed by another attempt      -> consumed_by_other_attempt
+-- else if clock_timestamp() > to_timestamp($requestTimestamp) + interval '300 seconds':
+insert into app.investscape_redemption_finalizations
+       (launch_session_id, redemption_attempt_id, finalized_at)
+values ($session, $attempt, clock_timestamp())
+on conflict do nothing;                   -- idempotent
+--      -> not_consumed_final
+-- else -> not_consumed_pending (no insert)
+commit;
+```
+L4 without `finalize` takes the same lock but never inserts.
+
+**Why this is sufficient.** R-1 and R-2 for the same session serialise on one row lock:
+- If R-1 commits first, R-2 sees `consumed_by_attempt_id = $attempt` and returns `consumed_by_this_attempt`. It never finalises a consumed attempt.
+- If R-2 commits first and inserts the finalisation, R-1 acquires the lock afterwards, finds the finalisation (check d), and refuses.
+
+A finalised attempt can therefore **never** consume, whatever its HMAC timestamp, network delay or lock wait. Check (c) independently bounds consumption to `attemptDeadline`, so even a finalisation that is never requested cannot be outlived.
+
+**Trust note.** `requestTimestamp` in L4 comes from InvestScape. A wrong value can only cause a finalisation too early (then check (d) refuses that attempt's later consumption) or a `not_consumed_pending` answer (no effect). Neither lets an attempt consume after being declared final.
+
+**[Existing-both]** `HmacServiceAuthenticator.authenticate` runs before the consuming `UPDATE`, and the consuming statement checks `status = 'issued' and expires_at > now()`. **[Existing-both, must change]** there is no attempt deadline, no finalisation record, and no `clock_timestamp()` evaluation after the lock is acquired.
+
+**InvestScape side [Proposed, r3].** After `acceptanceDeadline` (`request_timestamp` + 300 s + 30 s margin), the reconciler calls L4 with `finalize: true`. Only a `not_consumed_final` answer moves the attempt to `resolved_no_analysis`. A `not_consumed_pending` answer is retried with backoff until final or until the lookup window closes (`abandoned`).
 
 **Worked examples.**
 
 - **Crash before sending.**
   1. `prepared` is committed at 12:00:00 (`request_timestamp` = 12:00:00) and the process dies before the socket write.
-  2. At 12:00:40 the reconciler sets `ambiguous` and calls L4 → `not_consumed`. It is 12:00:40 < 12:05:30, so this is not final; re-check is scheduled.
-  3. At 12:05:31, L4 → `not_consumed` → `resolved_no_analysis`. The UI tells the professional to reopen from Relationship OS.
+  2. At 12:00:40 the reconciler sets `ambiguous` and calls L4 (`finalize: false`) → `not_consumed_pending`.
+  3. At 12:05:31 (after `acceptanceDeadline` 12:05:30) it calls L4 with `finalize: true`. R-2 takes the lock; 12:05:31 > 12:05:00, so it inserts the finalisation → `not_consumed_final` → `resolved_no_analysis`. The UI tells the professional to reopen from Relationship OS.
 - **Crash after sending, before the response is processed.**
   1. Same prefix. Relationship OS consumed the session with this attempt id.
   2. At 12:00:40, L4 → `consumed_by_this_attempt` with the context.
   3. The ownership check passes → bind → `completed`. The UI moves from "confirming" to "ready".
 - **Request delayed in the network.**
   1. L2 times out locally at 12:00:10 → `ambiguous`.
-  2. At 12:00:15, L4 → `not_consumed` (not final).
+  2. At 12:00:15, L4 → `not_consumed_pending` (not final).
   3. At 12:00:50 the delayed request reaches Relationship OS. The timestamp is within ±300 s, so it is accepted and the session is consumed.
   4. At 12:01:05, L4 → `consumed_by_this_attempt` → bind.
 
-  Treating the first `not_consumed` as final would have stranded the consumed session.
+  Treating the first "not consumed" as final would have stranded the consumed session.
+- **Authenticated, then waiting on a lock (r3).** `request_timestamp` = 12:00:00, so `attemptDeadline` = 12:05:00 (database clock).
+  1. The L2 request is delayed and reaches Relationship OS at 12:04:59. HMAC passes (within ±300 s). R-1 begins and blocks on `select … for update`, because another transaction on this session holds the row lock, e.g. a slow authority re-check.
+  2. **Ordering A: the finaliser gets the lock first.** InvestScape's L4 `finalize: true` arrives at 12:05:31, is queued behind the same lock, and acquires it at 12:05:40 before R-1. R-2: not consumed; 12:05:40 > 12:05:00 → inserts the finalisation → `not_consumed_final`, commit. R-1 then acquires the lock at 12:05:41. Check (c) fails (12:05:41 > 12:05:00) and check (d) fails (finalised) → rollback, `409 REDEMPTION_ATTEMPT_FINALIZED`. InvestScape resolves no analysis, and the session is **not** consumed.
+  3. **Ordering B: R-1 gets the lock first, at 12:05:05.** Check (c) fails (12:05:05 > 12:05:00) → rollback, `410 REDEMPTION_ATTEMPT_DEADLINE_PASSED`. The finaliser later finds it not consumed → `not_consumed_final`. Same safe result.
+  4. **Ordering C: R-1 gets the lock at 12:04:59.8,** before the deadline. It consumes and commits. The finaliser at 12:05:40 finds `consumed_by_attempt_id = this attempt` → `consumed_by_this_attempt` → InvestScape binds.
+
+  In no ordering can an attempt consume after InvestScape was told it is final.
 - **Revoked meanwhile.**
   1. Same as the crash-after-sending case, but the relationship is closed at 12:00:30.
   2. At 12:00:40, L4 → `authority_revoked` (no context) → `resolved_no_analysis`. Recovery restores nothing.
@@ -654,7 +794,8 @@ Every item is Proposed unless labelled otherwise. Nothing starts until this docu
 - [ ] Replay recorded outcomes on retry (§3.3 Replay table), including `superseded`. **[must change]**
 - [ ] Sender outbox states `awaiting_reconciliation` and `in_quarantine`, with the resubmission schedule (§3.4).
 - [ ] `lighthouse.change_counter` row-lock allocation, performed last in each transaction; change log (§5.2).
-- [ ] Attempt `request_timestamp` written before sending; `acceptanceDeadline` rule for `not_consumed` (§7.3–7.4).
+- [ ] Attempt `request_timestamp` written before sending; after `acceptanceDeadline`, L4 with `finalize: true`; resolve only on `not_consumed_final` (§7.3–7.4a).
+- [ ] `versionContentDigest` derivation and `event_variants` storage keyed by (`eventId`, `eventDigest`) (§3.2).
 - [ ] Return `409` with a quarantine on `eventId` conflicts. **[must change]** Today: `200 conflict`, audit only.
 - [ ] Remove the same-version `occurredAt` tie-break in `applyLifecycleEvent`. **[must change]**
 - [ ] Return `422` with a quarantine on rejected transitions. **[must change]**
@@ -688,7 +829,9 @@ Every item is Proposed unless labelled otherwise. Nothing starts until this docu
 - [ ] `relationship-assignment.ended.v1` and `launch-authority.revoked.v1` emission.
 - [ ] Event receiver implementing §3.2–§3.4 exactly: JCS digest, both ledgers, replayed outcomes, quarantine, block without body retention, and re-evaluation of blocked resubmissions.
 - [ ] Commit-safe `changeSeq` (§5.2) for aggregates Relationship OS owns (`relationship_assignment`, `launch_session`).
-- [ ] Keep the L2 HMAC timestamp check before session consumption (§7.4; contractual).
+- [ ] L2 consumption per §7.4a R-1: lock the session row first, then evaluate the attempt deadline and the finalisation check with `clock_timestamp()` under the lock, then consume. **[must change]**
+- [ ] Finalisation table and L4 `finalize` per §7.4a R-2, serialised on the same row lock. **[must change]**
+- [ ] L4 statuses `not_consumed_pending` / `not_consumed_final`; errors `410 REDEMPTION_ATTEMPT_DEADLINE_PASSED` and `409 REDEMPTION_ATTEMPT_FINALIZED` on L2.
 - [ ] S2 receiver: version-guarded storage of references and selected fields only.
 - [ ] Removal pipeline covering display, search, caches, generated summaries and assistant context, then `removal-ack.v1`; `audit-record-deleted.v1` later.
 - [ ] R1/R2 client: full and delta snapshots; restart on `410`; purge only after `final: true` under the §5.5 watermark rule.
