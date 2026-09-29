@@ -215,6 +215,13 @@ export class SqlShareGrantRepository implements ShareGrantRepository {
           and state = 'active'
           and effective_from <= $3
           and (expires_at is null or expires_at > $3)
+          -- Fail closed (contract v0.3 r3 §3.4 step 3): nothing is disclosed
+          -- through a grant, or a link, that an open quarantine names.
+          and not exists (
+            select 1 from lighthouse.event_quarantines q
+             where q.state = 'open'
+               and ((q.aggregate_kind = 'share_grant' and q.aggregate_id = share_grants.share_grant_id)
+                 or (q.aggregate_kind = 'link' and q.aggregate_id = share_grants.cross_product_link_id)))
         order by created_at asc`,
       [destinationRelationshipRef, recipientContext, now.toISOString()],
     );
@@ -262,6 +269,14 @@ export class SqlShareGrantRepository implements ShareGrantRepository {
  */
 export class InMemoryShareGrantRepository implements ShareGrantRepository {
   readonly #grants = new Map<string, ShareGrant>();
+  readonly #isQuarantined: (aggregateKind: string, aggregateId: string) => boolean;
+
+  /** `isQuarantined` mirrors the SQL fail-closed predicate. */
+  constructor(options: {
+    readonly isQuarantined?: (aggregateKind: string, aggregateId: string) => boolean;
+  } = {}) {
+    this.#isQuarantined = options.isQuarantined ?? (() => false);
+  }
 
   async create(input: CreateShareGrantInput): Promise<ShareCreationResult> {
     const decision = createShareGrant(input);
@@ -289,7 +304,9 @@ export class InMemoryShareGrantRepository implements ShareGrantRepository {
       (g) =>
         g.destinationRelationshipRef === destinationRelationshipRef &&
         g.recipientContext === recipientContext &&
-        grantIsInForce(g, now),
+        grantIsInForce(g, now) &&
+        !this.#isQuarantined("share_grant", g.shareGrantId) &&
+        !this.#isQuarantined("link", g.crossProductLinkId),
     );
   }
 

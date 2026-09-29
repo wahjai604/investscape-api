@@ -182,3 +182,64 @@ export function createAdminAssignmentAggregateStore(client: SqlClient): Lifecycl
 export function createMandateAggregateStore(client: SqlClient): LifecycleAggregateStore {
   return sqlAggregateStore(client, "lighthouse.delegation_mandates", "mandate_id", "lifecycle_occurred_at");
 }
+
+// ---------------------------------------------------------------------------
+// Transaction-scoped access for the event-integrity processor
+// ---------------------------------------------------------------------------
+
+/** Table shape of every aggregate kind that has a local table. */
+export const AGGREGATE_TABLES: Readonly<Record<string, { table: string; idColumn: string; occurredAtColumn: string }>> = {
+  link: { table: "lighthouse.cross_product_links", idColumn: "cross_product_link_id", occurredAtColumn: "updated_at" },
+  share_grant: { table: "lighthouse.share_grants", idColumn: "share_grant_id", occurredAtColumn: "lifecycle_occurred_at" },
+  admin_assignment: { table: "lighthouse.admin_assignments", idColumn: "assignment_id", occurredAtColumn: "lifecycle_occurred_at" },
+  mandate: { table: "lighthouse.delegation_mandates", idColumn: "mandate_id", occurredAtColumn: "lifecycle_occurred_at" },
+};
+
+/**
+ * Reads an aggregate's lifecycle projection and locks its row until the
+ * enclosing transaction ends, so the rules decide against a state no
+ * concurrent writer can move underneath them.
+ */
+export async function loadAggregateForUpdate(
+  tx: SqlClient,
+  aggregateKind: string,
+  aggregateId: string,
+): Promise<AggregateLifecycleState | null> {
+  const shape = AGGREGATE_TABLES[aggregateKind];
+  if (!shape) return null;
+  const result = await tx.query<{ state: string; version: number; occurred_at: Date | string }>(
+    `select state, version, ${shape.occurredAtColumn} as occurred_at
+       from ${shape.table}
+      where ${shape.idColumn} = $1
+      for update`,
+    [aggregateId],
+  );
+  const row = result.rows[0];
+  if (!row) return null;
+  const occurredAt =
+    row.occurred_at instanceof Date ? row.occurred_at.toISOString() : String(row.occurred_at);
+  return { state: row.state, version: row.version, occurredAt };
+}
+
+/**
+ * The adapter for `aggregateKind`, bound to an ALREADY-OPEN transaction.
+ * The link adapter's own `transaction()` joins the enclosing one instead of
+ * opening a second, so its grant cascade commits or rolls back with the
+ * event's ledger rows.
+ */
+export function aggregateStoreInTransaction(
+  tx: SqlClient,
+  aggregateKind: string,
+): LifecycleAggregateStore | null {
+  const joined: TransactionalSqlClient = {
+    query: (sql, params) => tx.query(sql, params),
+    transaction: (fn) => fn(tx),
+  };
+  switch (aggregateKind) {
+    case "link": return createLinkAggregateStore(joined);
+    case "share_grant": return createShareGrantAggregateStore(tx);
+    case "admin_assignment": return createAdminAssignmentAggregateStore(tx);
+    case "mandate": return createMandateAggregateStore(tx);
+    default: return null;
+  }
+}

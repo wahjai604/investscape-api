@@ -33,12 +33,6 @@ import { createAdminAssignmentRouter } from "./stage7/adminAssignmentRoute.ts";
 import { createProjectionRouter, type ConnectionProjectionSource } from "./stage5/projectionRoute.ts";
 import { createDelegationRouter } from "./stage8/delegationRoute.ts";
 import { createInboundEventRouter } from "./stage6/inboundEventRoute.ts";
-import {
-  createLinkAggregateStore,
-  createShareGrantAggregateStore,
-  createAdminAssignmentAggregateStore,
-  createMandateAggregateStore,
-} from "./stage6/aggregateStoreAdapters.ts";
 import { dispatchPendingOutboxEntries } from "./stage6/outboundDispatcher.ts";
 import { requireOperatingContext, requireSession } from "./auth/middleware.ts";
 import {
@@ -520,38 +514,28 @@ export function createLighthouseSubsystem(
   // through `featureGate` + `sessionRequired` above; it verifies its own
   // inbound HMAC signature instead and must tolerate an absent session.
   //
-  // `dispatch.stores` wires real adapters (stage6/aggregateStoreAdapters.ts)
-  // for the four aggregate kinds with an actual table: link (Stage 2),
-  // share_grant (Stage 4), admin_assignment (Stage 7), mandate (Stage 8).
-  // Each adapter talks to its owning stage's table directly via the shared
-  // `SqlClient` seam rather than that stage's own repository — those
-  // repositories are shaped around domain operations (revokeLink, etc.), not
-  // a generic read/write-current-lifecycle-state surface, and reaching into
-  // them here would mean inventing methods those interfaces don't have.
-  // `entitlement` has NO table anywhere in this codebase (no persistence
-  // layer has been built for it at all) and is deliberately left unwired —
-  // an inbound entitlement-sync event still answers 503, correctly, rather
-  // than writing into a table that does not exist. Only available when
-  // `sql` is configured (Postgres mode); in-memory mode leaves `stores`
-  // empty, same fail-closed posture as everything else that assumes
-  // durability across processes.
+  // `repositories.eventIntegrity` runs contract v0.3 r3 §3.3 rules 2–11 in one
+  // transaction per event, over the four aggregate kinds with an actual
+  // table: link (Stage 2), share_grant (Stage 4), admin_assignment (Stage 7),
+  // mandate (Stage 8). `entitlement` has NO table anywhere in this codebase
+  // and is deliberately left unwired — its events answer 503 and are not
+  // recorded. In-memory mode wires no kinds at all, same fail-closed posture
+  // as everything else that assumes durability across processes.
+  //
+  // `onQuarantineAlert` is deliberately not wired: alert routing, severity
+  // and retention are DECISION REQUIRED (D8). Every quarantine is still
+  // audited (`stage6.quarantine.opened` / `.joined`), and the hook is the
+  // integration point once D8 is decided. There is no automatic
+  // reconciliation: an open quarantine stays open until the authoritative
+  // recovery endpoints exist.
   router.use(
     createInboundEventRouter({
-      inboundEvents: repositories.inboundEvents,
-      dispatch: {
-        stores: sql
-          ? {
-              link: createLinkAggregateStore(sql),
-              share_grant: createShareGrantAggregateStore(sql),
-              admin_assignment: createAdminAssignmentAggregateStore(sql),
-              mandate: createMandateAggregateStore(sql),
-            }
-          : {},
-      },
+      eventIntegrity: repositories.eventIntegrity,
       auditSink: repositories.audit,
       nonces: repositories.nonces,
       inboundSecrets: inboundServiceSecrets(env),
       now: () => new Date(),
+      newQuarantineId: () => randomUUID(),
       env,
     }),
   );

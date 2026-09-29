@@ -196,6 +196,85 @@ test("the sweep is a no-op when the outbound service is unconfigured", async () 
   );
   const fakeFetch = (async () => new Response(null, { status: 200 })) as typeof globalThis.fetch;
   const result = await dispatchPendingOutboxEntries(NOW, { repository: repo, config: null, fetch: fakeFetch });
-  assert.deepEqual(result, { processed: 0, acknowledged: 0, retried: 0, failedPermanent: 0 });
+  assert.deepEqual(result, {
+    processed: 0, acknowledged: 0, retried: 0, failedPermanent: 0,
+    awaitingReconciliation: 0, inQuarantine: 0, superseded: 0,
+  });
   assert.equal(repo.all[0]?.state, "pending");
+});
+
+// ---------------------------------------------------------------------------
+// Reconciliation states (contract v0.3 r3 §3.4 "Sender")
+// ---------------------------------------------------------------------------
+
+const ackBody = (outcome: string, extra: Record<string, unknown> = {}) => ({
+  schemaVersion: "lighthouse.event-ack.v1", eventId: "evt-1", aggregateKind: "link",
+  aggregateId: "link-1", version: 2, outcome, storedVersion: 1, receivedAt: NOW.toISOString(), ...extra,
+});
+
+test("classifyResponse reads the event-ack body: blocked, conflict, rejected, superseded", () => {
+  assert.deepEqual(classifyResponse(409, ackBody("blocked", { quarantineId: "Q1" })),
+    { kind: "awaiting_reconciliation", quarantineId: "Q1" });
+  assert.deepEqual(classifyResponse(409, ackBody("conflict", { quarantineId: "Q2" })),
+    { kind: "in_quarantine", quarantineId: "Q2", outcome: "conflict" });
+  assert.deepEqual(classifyResponse(422, ackBody("rejected_transition", { quarantineId: "Q3" })),
+    { kind: "in_quarantine", quarantineId: "Q3", outcome: "rejected_transition" });
+  assert.deepEqual(classifyResponse(200, ackBody("superseded")), { kind: "superseded" });
+  assert.equal(classifyResponse(200, ackBody("stale")).kind, "acknowledged");
+  // No recognisable ack body: status alone, as before.
+  assert.equal(classifyResponse(409, { state: "conflict", reason: "AGGREGATE_NOT_FOUND" }).kind, "permanent");
+  assert.equal(classifyResponse(409, { outcome: "blocked", quarantineId: "Q1" }).kind, "permanent",
+    "only a lighthouse.event-ack.v1 body is trusted");
+});
+
+test("409 blocked is awaiting_reconciliation: kept, neither failed nor delivered, never budget-exhausted", () => {
+  let entry = baseEntry();
+  for (let i = 0; i < 20; i++) {
+    entry = applyDeliveryOutcome(entry, { kind: "awaiting_reconciliation", quarantineId: "Q1" }, NOW);
+  }
+  assert.equal(entry.state, "awaiting_reconciliation");
+  assert.equal(entry.quarantineId, "Q1");
+  assert.equal(entry.acknowledgedAt, undefined);
+  assert.equal(entry.payload, baseEntry().payload, "the original bytes are kept for resubmission");
+});
+
+test("conflict / rejected_transition is in_quarantine, not delivered", () => {
+  const entry = applyDeliveryOutcome(baseEntry(), { kind: "in_quarantine", quarantineId: "Q2", outcome: "conflict" }, NOW);
+  assert.equal(entry.state, "in_quarantine");
+  assert.equal(entry.lastOutcome, "conflict");
+  assert.equal(entry.acknowledgedAt, undefined);
+});
+
+test("a reconciliation state moves on with the next response; superseded is terminal and not delivered", () => {
+  let entry = applyDeliveryOutcome(baseEntry(), { kind: "awaiting_reconciliation", quarantineId: "Q1" }, NOW);
+  entry = applyDeliveryOutcome(entry, { kind: "acknowledged", outcome: "stale" }, NOW);
+  assert.equal(entry.state, "acknowledged");
+  assert.equal(entry.quarantineId, undefined);
+
+  let probe = applyDeliveryOutcome(baseEntry(), { kind: "in_quarantine", quarantineId: "Q2", outcome: "conflict" }, NOW);
+  probe = applyDeliveryOutcome(probe, { kind: "superseded" }, NOW);
+  assert.equal(probe.state, "superseded");
+  assert.equal(probe.acknowledgedAt, undefined, "superseded is never recorded as delivered");
+  assert.ok(probe.supersededAt);
+  assert.equal(applyDeliveryOutcome(probe, { kind: "acknowledged" }, NOW).state, "superseded");
+});
+
+test("the sweep parks a blocked entry and does not pick it up again (D7b schedule undecided)", async () => {
+  const repo = new InMemoryLifecycleOutboxRepository();
+  await enqueueOutboundEvent(
+    { aggregateKind: "link", aggregateId: "link-1", payload: eventPayload() },
+    repo, enqueueDeps,
+  );
+  let calls = 0;
+  const fakeFetch = (async () => {
+    calls += 1;
+    return new Response(JSON.stringify(ackBody("blocked", { quarantineId: "Q9" })), { status: 409 });
+  }) as typeof globalThis.fetch;
+  const first = await dispatchPendingOutboxEntries(NOW, { repository: repo, config, fetch: fakeFetch });
+  assert.equal(first.awaitingReconciliation, 1);
+  assert.equal(repo.all[0]?.state, "awaiting_reconciliation");
+  const later = new Date(NOW.getTime() + 24 * 3600_000);
+  const second = await dispatchPendingOutboxEntries(later, { repository: repo, config, fetch: fakeFetch });
+  assert.equal(second.processed, 0);
+  assert.equal(calls, 1);
 });

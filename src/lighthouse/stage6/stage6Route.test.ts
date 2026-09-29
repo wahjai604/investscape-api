@@ -3,17 +3,21 @@
  * See LICENSE. Not investment, tax, or financial advice.
  *
  * Stage 6 inbound route tests. Real Express app on an ephemeral port, driven
- * with `fetch` — same pattern as stage2/stage2Route.test.ts.
+ * with `fetch` — same pattern as stage2/stage2Route.test.ts. The rules
+ * themselves are covered in eventIntegrity.test.ts; this file covers the HTTP
+ * contract around them: flag, service auth, rule 1 (schema + digest), the
+ * `lighthouse.event-ack.v1` responses and status codes, and the after-commit
+ * hooks.
  */
 
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
 import express from "express";
-import { createHash } from "node:crypto";
 import type { Server } from "node:http";
 import { createInboundEventRouter } from "./inboundEventRoute.ts";
-import { InMemoryInboundEventRepository } from "./inboundEventRepository.ts";
-import { InMemoryLifecycleAggregateStore } from "./lifecycleDispatcher.ts";
+import { InMemoryEventIntegrityStore } from "./eventIntegrityStore.ts";
+import { computeEventDigest, type EventEnvelope } from "./eventDigest.ts";
+import type { QuarantineAlert } from "./eventIntegrity.ts";
 import { InMemoryNonceStore } from "../service-auth/nonceStore.ts";
 import { InMemoryAuditSink } from "../audit/auditEvent.ts";
 import { signRequest } from "../service-auth/hmac.ts";
@@ -26,17 +30,14 @@ const PATH = "/v1/lighthouse/sync/events";
 
 let server: Server;
 let baseUrl: string;
-let inboundEvents: InMemoryInboundEventRepository;
-let linkStore: InMemoryLifecycleAggregateStore;
+let store: InMemoryEventIntegrityStore;
 let audit: InMemoryAuditSink;
-let nonces: InMemoryNonceStore;
 let clock: Date;
 let env: Record<string, string | undefined>;
 let invalidated: Array<{ kind: string; id: string }>;
-
-function hash(value: string): string {
-  return createHash("sha256").update(value).digest("hex");
-}
+let alerts: QuarantineAlert[];
+let alertShouldThrow = false;
+let quarantineCounter = 0;
 
 before(async () => {
   const app = express();
@@ -51,26 +52,27 @@ before(async () => {
     }),
   );
 
-  inboundEvents = new InMemoryInboundEventRepository();
-  linkStore = new InMemoryLifecycleAggregateStore();
+  store = new InMemoryEventIntegrityStore({ aggregateKinds: ["link", "share_grant"] });
   audit = new InMemoryAuditSink();
-  nonces = new InMemoryNonceStore();
-  clock = new Date("2026-09-02T12:00:00.000Z");
+  clock = new Date("2026-09-28T12:00:00.000Z");
   env = { ...ENABLED };
   invalidated = [];
+  alerts = [];
 
   app.use(
     "/v1/lighthouse",
     createInboundEventRouter({
-      inboundEvents,
-      dispatch: {
-        stores: { link: linkStore },
-        onInvalidate: (kind, id) => { invalidated.push({ kind, id }); },
-      },
+      eventIntegrity: store,
       auditSink: audit,
-      nonces,
+      nonces: new InMemoryNonceStore(),
       inboundSecrets: { [KEY_ID]: SECRET },
       now: () => clock,
+      newQuarantineId: () => `q-${++quarantineCounter}`,
+      onQuarantineAlert: (alert) => {
+        alerts.push(alert);
+        if (alertShouldThrow) throw new Error("alert sink down");
+      },
+      onInvalidate: (kind, id) => { invalidated.push({ kind, id }); },
       env,
     }),
   );
@@ -87,20 +89,33 @@ after(async () => {
   await new Promise<void>((resolve) => server.close(() => resolve()));
 });
 
-let eventCounter = 0;
-function freshEventBody(overrides: Record<string, unknown> = {}): Record<string, unknown> {
-  eventCounter += 1;
-  const base = {
-    eventId: `evt-${eventCounter}`,
+let counter = 0;
+
+/** A link at version 1, `active`, that InvestScape already holds locally. */
+function seededLink(): string {
+  const id = `link-${++counter}`;
+  store.seedAggregate("link", id, { state: "active", version: 1, occurredAt: "2026-09-28T11:00:00.000Z" });
+  return id;
+}
+
+function envelope(overrides: Partial<EventEnvelope> = {}): EventEnvelope {
+  counter += 1;
+  return {
+    eventId: `evt-${counter}`,
+    schemaVersion: "investscape.link.changed.v1",
     aggregateKind: "link",
-    aggregateId: `link-${eventCounter}`,
-    targetState: "active",
-    version: 1,
-    occurredAt: "2026-09-02T12:00:01.000Z",
+    aggregateId: overrides.aggregateId ?? seededLink(),
+    targetState: "suspended",
+    version: 2,
+    changeSeq: String(1000 + counter),
+    occurredAt: "2026-09-28T12:00:01.000Z",
+    payload: { reason: "test" },
+    ...overrides,
   };
-  const body = { ...base, ...overrides };
-  body.payloadHash = overrides.payloadHash ?? hash(JSON.stringify(body));
-  return body;
+}
+
+function signed(env: EventEnvelope): Record<string, unknown> {
+  return { ...env, eventDigest: computeEventDigest(env) };
 }
 
 async function postEvent(
@@ -125,14 +140,19 @@ async function postEvent(
   });
 }
 
+async function send(body: unknown): Promise<{ status: number; ack: Record<string, unknown> }> {
+  const res = await postEvent(body);
+  return { status: res.status, ack: (await res.json()) as Record<string, unknown> };
+}
+
 // ---------------------------------------------------------------------------
-// The flag
+// The flag and service authentication
 // ---------------------------------------------------------------------------
 
 test("the route is 503 while the feature flag is off", async () => {
   Object.assign(env, DISABLED);
   try {
-    const res = await postEvent(freshEventBody());
+    const res = await postEvent(signed(envelope()));
     assert.equal(res.status, 503);
   } finally {
     Object.assign(env, ENABLED);
@@ -142,11 +162,10 @@ test("the route is 503 while the feature flag is off", async () => {
 test("the flag is checked before signature verification", async () => {
   Object.assign(env, DISABLED);
   try {
-    // No signature at all — if the flag were checked after auth this would be 401.
     const res = await fetch(`${baseUrl}${PATH}`, {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(freshEventBody()),
+      body: JSON.stringify(signed(envelope())),
     });
     assert.equal(res.status, 503);
   } finally {
@@ -154,132 +173,211 @@ test("the flag is checked before signature verification", async () => {
   }
 });
 
-// ---------------------------------------------------------------------------
-// Service authentication
-// ---------------------------------------------------------------------------
-
-test("a correctly signed event is applied", async () => {
-  const res = await postEvent(freshEventBody());
-  assert.equal(res.status, 200);
-  const body = (await res.json()) as Record<string, unknown>;
-  assert.equal(body.outcome, "applied");
-});
-
 test("an unsigned request is rejected", async () => {
   const res = await fetch(`${baseUrl}${PATH}`, {
     method: "POST",
     headers: { "content-type": "application/json" },
-    body: JSON.stringify(freshEventBody()),
+    body: JSON.stringify(signed(envelope())),
   });
   assert.equal(res.status, 401);
 });
 
-test("a request signed with the wrong secret is rejected", async () => {
-  const res = await postEvent(freshEventBody(), { secret: "b".repeat(64) });
-  assert.equal(res.status, 401);
-});
-
-test("a request signed by an unknown key id is rejected", async () => {
-  const res = await postEvent(freshEventBody(), { keyId: "unknown-key" });
-  assert.equal(res.status, 401);
-});
-
-test("a request claiming to be a different service is rejected", async () => {
-  const res = await postEvent(freshEventBody(), { service: "some-other-service" });
-  assert.equal(res.status, 401);
+test("wrong secret, unknown key id and wrong service are all rejected", async () => {
+  assert.equal((await postEvent(signed(envelope()), { secret: "b".repeat(64) })).status, 401);
+  assert.equal((await postEvent(signed(envelope()), { keyId: "unknown-key" })).status, 401);
+  assert.equal((await postEvent(signed(envelope()), { service: "some-other-service" })).status, 401);
 });
 
 test("a replayed nonce is rejected even though the signature is valid", async () => {
   const nonce = "c".repeat(32);
-  const body = freshEventBody();
-  const first = await postEvent(body, { nonce });
-  assert.equal(first.status, 200);
-  const replay = await postEvent(body, { nonce });
-  assert.equal(replay.status, 401);
+  const body = signed(envelope());
+  assert.equal((await postEvent(body, { nonce })).status, 200);
+  assert.equal((await postEvent(body, { nonce })).status, 401);
 });
+
+// ---------------------------------------------------------------------------
+// Rule 1 — malformed events are rejected and NOT ledgered
+// ---------------------------------------------------------------------------
 
 test("an unexpected field is rejected rather than ignored", async () => {
-  const body = freshEventBody({ somethingElse: "nope" });
+  const res = await postEvent({ ...signed(envelope()), somethingElse: "nope" });
+  assert.equal(res.status, 400);
+});
+
+test("the legacy payloadHash field is no longer accepted", async () => {
+  const env = envelope();
+  const { eventDigest: _drop, ...rest } = signed(env);
+  const res = await postEvent({ ...rest, payloadHash: "0".repeat(64) });
+  assert.equal(res.status, 400);
+});
+
+test("eventDigest, changeSeq and payload are all required", async () => {
+  for (const field of ["eventDigest", "changeSeq", "payload", "schemaVersion"]) {
+    const body = signed(envelope());
+    delete body[field];
+    assert.equal((await postEvent(body)).status, 400, `${field} should be required`);
+  }
+});
+
+test("version 0 and a non-decimal changeSeq are malformed", async () => {
+  assert.equal((await postEvent(signed(envelope({ version: 0 })))).status, 400);
+  assert.equal((await postEvent(signed(envelope({ changeSeq: "01" })))).status, 400);
+  assert.equal((await postEvent(signed(envelope({ changeSeq: "-5" })))).status, 400);
+});
+
+test("a sent digest that differs from the recomputed one is 400 EVENT_DIGEST_MISMATCH and records nothing", async () => {
+  const env = envelope();
+  const before = store.counts;
+  const res = await postEvent({ ...env, eventDigest: computeEventDigest({ ...env, targetState: "revoked" }) });
+  assert.equal(res.status, 400);
+  const body = (await res.json()) as Record<string, unknown>;
+  assert.equal(body.reason, "EVENT_DIGEST_MISMATCH");
+  assert.deepEqual(store.counts, before);
+  assert.equal(store.ledgerEntry(env.eventId), null);
+});
+
+test("tampering with the payload after digesting is caught by the digest", async () => {
+  const body = signed(envelope());
+  (body.payload as Record<string, unknown>).reason = "tampered";
   const res = await postEvent(body);
   assert.equal(res.status, 400);
 });
 
-test("a missing payloadHash is rejected — it is required, not optional", async () => {
-  const body = freshEventBody();
-  delete (body as Record<string, unknown>).payloadHash;
-  const res = await postEvent(body);
+test("an unknown aggregate kind fails closed", async () => {
+  const res = await postEvent(signed(envelope({ aggregateKind: "not_a_real_kind" })));
   assert.equal(res.status, 400);
 });
 
 // ---------------------------------------------------------------------------
-// Idempotency: duplicate vs conflict (the P0 property)
+// Acknowledgements
 // ---------------------------------------------------------------------------
 
-test("a reused eventId with an IDENTICAL payload hash is a safe duplicate", async () => {
-  const body = freshEventBody();
-  const first = await postEvent(body);
-  assert.equal(first.status, 200);
-  assert.equal(((await first.json()) as Record<string, unknown>).outcome, "applied");
-
-  const replay = await postEvent(body);
-  assert.equal(replay.status, 200);
-  const replayBody = (await replay.json()) as Record<string, unknown>;
-  assert.equal(replayBody.outcome, "duplicate");
+test("an applied event returns a full lighthouse.event-ack.v1", async () => {
+  const env = envelope();
+  const { status, ack } = await send(signed(env));
+  assert.equal(status, 200);
+  assert.deepEqual(ack, {
+    schemaVersion: "lighthouse.event-ack.v1",
+    eventId: env.eventId,
+    aggregateKind: "link",
+    aggregateId: env.aggregateId,
+    version: 2,
+    outcome: "applied",
+    storedVersion: 2,
+    receivedAt: clock.toISOString(),
+  });
 });
 
-test("a reused eventId with a DIFFERENT payload hash is a conflict, never silently applied", async () => {
-  const body = freshEventBody();
-  const first = await postEvent(body);
-  assert.equal(first.status, 200);
-  assert.equal(((await first.json()) as Record<string, unknown>).outcome, "applied");
+test("a retry of the same bytes is 200 duplicate with originalOutcome", async () => {
+  const body = signed(envelope());
+  await send(body);
+  const { status, ack } = await send(body);
+  assert.equal(status, 200);
+  assert.equal(ack.outcome, "duplicate");
+  assert.equal(ack.originalOutcome, "applied");
+});
 
-  // Same eventId and aggregate, mutated targetState/version — different bytes,
-  // different hash.
-  const mutated = {
-    ...body,
-    targetState: "suspended",
-    payloadHash: hash(JSON.stringify({ ...body, targetState: "suspended", mutated: true })),
-  };
-  const conflictRes = await postEvent(mutated);
-  assert.equal(conflictRes.status, 200);
-  const conflictBody = (await conflictRes.json()) as Record<string, unknown>;
-  assert.equal(conflictBody.outcome, "conflict");
+test("a reused eventId with different bytes is 409 conflict with a quarantine, never 200", async () => {
+  const env = envelope();
+  await send(signed(env));
+  const { status, ack } = await send(signed({ ...env, targetState: "revoked" }));
+  assert.equal(status, 409);
+  assert.equal(ack.outcome, "conflict");
+  assert.equal(ack.conflictKind, "EVENT_ID_DIGEST_MISMATCH");
+  assert.match(String(ack.quarantineId), /^q-/);
+  assert.equal(store.aggregate("link", env.aggregateId)?.state, "suspended");
+});
 
-  // The aggregate's state must be unchanged by the conflicting event.
-  const state = await linkStore.loadState(body.aggregateId as string);
-  assert.equal(state?.state, "active");
+test("a forbidden transition is 422 rejected_transition with a quarantine", async () => {
+  const aggregateId = `link-${++counter}`;
+  store.seedAggregate("link", aggregateId, { state: "revoked", version: 3, occurredAt: "2026-09-28T11:00:00.000Z" });
+  const { status, ack } = await send(signed(envelope({ aggregateId, targetState: "active", version: 4 })));
+  assert.equal(status, 422);
+  assert.equal(ack.outcome, "rejected_transition");
+  assert.ok(ack.quarantineId);
+  assert.equal(store.aggregate("link", aggregateId)?.state, "revoked");
+});
+
+test("an event for a blocked aggregate is 409 blocked", async () => {
+  const aggregateId = seededLink();
+  await send(signed(envelope({ aggregateId, targetState: "revoked", version: 2 })));
+  const first = envelope({ aggregateId, targetState: "suspended", version: 2 });
+  const conflict = await send(signed(first)); // same version, different content
+  assert.equal(conflict.status, 409);
+  const { status, ack } = await send(signed(envelope({ aggregateId, targetState: "revoked", version: 3 })));
+  assert.equal(status, 409);
+  assert.equal(ack.outcome, "blocked");
+  assert.equal(ack.quarantineId, conflict.ack.quarantineId);
+});
+
+test("a stale event is 200 stale", async () => {
+  const aggregateId = seededLink();
+  const { status, ack } = await send(signed(envelope({ aggregateId, targetState: "revoked", version: 1 })));
+  assert.equal(status, 200);
+  assert.equal(ack.outcome, "stale");
+  assert.equal(ack.storedVersion, 1);
+});
+
+test("an aggregate InvestScape never created is 409 AGGREGATE_NOT_FOUND and records nothing", async () => {
+  const env = envelope({ aggregateId: "link-never-created" });
+  const res = await postEvent(signed(env));
+  assert.equal(res.status, 409);
+  assert.equal(((await res.json()) as Record<string, unknown>).reason, "AGGREGATE_NOT_FOUND");
+  assert.equal(store.ledgerEntry(env.eventId), null);
+});
+
+test("an aggregate kind with no wired store is 503 and records nothing", async () => {
+  const env = envelope({ aggregateKind: "mandate", aggregateId: "m-1", targetState: "active" });
+  const res = await postEvent(signed(env));
+  assert.equal(res.status, 503);
+  assert.equal(store.ledgerEntry(env.eventId), null);
 });
 
 // ---------------------------------------------------------------------------
-// Out-of-order and unknown aggregate kind
+// After-commit hooks
 // ---------------------------------------------------------------------------
 
-test("an out-of-order (stale version) event is dropped without regressing state", async () => {
-  const aggregateId = `link-stale-${++eventCounter}`;
-  const activate = freshEventBody({ aggregateId, version: 5 });
-  const activateRes = await postEvent(activate);
-  assert.equal(((await activateRes.json()) as Record<string, unknown>).outcome, "applied");
-
-  const stale = freshEventBody({ aggregateId, targetState: "suspended", version: 2 });
-  const staleRes = await postEvent(stale);
-  const staleBody = (await staleRes.json()) as Record<string, unknown>;
-  assert.equal(staleBody.outcome, "stale");
-
-  const state = await linkStore.loadState(aggregateId);
-  assert.equal(state?.state, "active");
-  assert.equal(state?.version, 5);
+test("a quarantine fires the alert hook once, with digests but no payload", async () => {
+  const before = alerts.length;
+  const env = envelope();
+  await send(signed(env));
+  await send(signed({ ...env, payload: { reason: "other" } }));
+  assert.equal(alerts.length, before + 1);
+  const alert = alerts[alerts.length - 1]!;
+  assert.equal(alert.kind, "EVENT_ID_DIGEST_MISMATCH");
+  assert.equal(alert.opened, true);
+  assert.equal(alert.eventId, env.eventId);
+  assert.ok(!JSON.stringify(alert).includes("other"), "the alert must not carry the body");
+  assert.ok(audit.events.some((e) => e.eventType === "stage6.quarantine.opened"));
 });
 
-test("an unknown aggregate_kind fails closed", async () => {
-  const body = freshEventBody({ aggregateKind: "not_a_real_kind" });
-  const res = await postEvent(body);
-  assert.equal(res.status, 400);
+test("a failing alert hook does not change the committed answer", async () => {
+  alertShouldThrow = true;
+  try {
+    const env = envelope();
+    await send(signed(env));
+    const { status, ack } = await send(signed({ ...env, targetState: "revoked" }));
+    assert.equal(status, 409);
+    assert.equal(ack.outcome, "conflict");
+  } finally {
+    alertShouldThrow = false;
+  }
 });
 
-test("a revoking transition fires the invalidation hook", async () => {
-  const aggregateId = `link-revoke-${++eventCounter}`;
-  await postEvent(freshEventBody({ aggregateId, targetState: "active", version: 1 }));
+test("a blocked event does not raise a second alert", async () => {
+  const aggregateId = seededLink();
+  await send(signed(envelope({ aggregateId, targetState: "revoked", version: 2 })));
+  await send(signed(envelope({ aggregateId, targetState: "suspended", version: 2 })));
+  const before = alerts.length;
+  await send(signed(envelope({ aggregateId, targetState: "revoked", version: 3 })));
+  assert.equal(alerts.length, before);
+});
+
+test("a revoking transition fires the invalidation hook; a replay of it does not", async () => {
+  const body = signed(envelope({ targetState: "revoked" }));
   const before = invalidated.length;
-  await postEvent(freshEventBody({ aggregateId, targetState: "revoked", version: 2 }));
-  assert.ok(invalidated.length > before, "revoking transition did not invalidate");
+  await send(body);
+  assert.equal(invalidated.length, before + 1);
+  await send(body);
+  assert.equal(invalidated.length, before + 1);
 });

@@ -50,10 +50,13 @@ import {
   type AdminAssignmentRepository,
 } from "../stage7/adminAssignmentRepository.ts";
 import {
-  SqlInboundEventRepository,
-  InMemoryInboundEventRepository,
-  type InboundEventRepository,
-} from "../stage6/inboundEventRepository.ts";
+  InMemoryEventIntegrityStore,
+  SqlEventIntegrityStore,
+} from "../stage6/eventIntegrityStore.ts";
+import type {
+  EventIntegrityStore,
+  QuarantineResolutionStore,
+} from "../stage6/eventIntegrity.ts";
 import {
   SqlLifecycleOutboxRepository,
   InMemoryLifecycleOutboxRepository,
@@ -84,8 +87,12 @@ export interface LighthouseRepositories {
   readonly mandates: DelegationMandateRepository;
   /** Stage 7: cross-product administration assignments. */
   readonly adminAssignments: AdminAssignmentRepository;
-  /** Stage 6: inbound lifecycle event idempotency ledger. */
-  readonly inboundEvents: InboundEventRepository;
+  /**
+   * Stage 6: inbound event ledgers, variants and quarantines (migration 0015).
+   * Resolution is exposed for an explicit operator path only; nothing calls
+   * it automatically.
+   */
+  readonly eventIntegrity: EventIntegrityStore & QuarantineResolutionStore;
   /** Stage 6: durable outbox for outbound lifecycle events. */
   readonly lifecycleOutbox: LifecycleOutboxRepository;
   /** Null in in-memory mode. */
@@ -124,7 +131,11 @@ export function buildRepositories(
       grants: new SqlShareGrantRepository(input.client),
       mandates: new SqlDelegationMandateRepository(input.client),
       adminAssignments: new SqlAdminAssignmentRepository(input.client),
-      inboundEvents: new SqlInboundEventRepository(input.client),
+      // The four aggregate kinds with a local table. `entitlement` has none
+      // and stays unwired: its events answer 503 and are not recorded.
+      eventIntegrity: new SqlEventIntegrityStore(input.client, {
+        aggregateKinds: ["link", "share_grant", "admin_assignment", "mandate"],
+      }),
       lifecycleOutbox: new SqlLifecycleOutboxRepository(input.client),
     };
   }
@@ -145,8 +156,13 @@ export function buildRepositories(
     );
   }
 
+  // No aggregate kinds: in-memory mode has never applied inbound events
+  // (nothing here is durable across processes), so they answer 503. The
+  // store still backs the fail-closed read predicate.
+  const eventIntegrity = new InMemoryEventIntegrityStore({ aggregateKinds: [] });
+  const isQuarantined = (kind: string, id: string) => eventIntegrity.isAggregateBlockedSync(kind, id);
   // One grant store, shared with the link store so unlink cascades into it.
-  const grants = new InMemoryShareGrantRepository();
+  const grants = new InMemoryShareGrantRepository({ isQuarantined });
   return {
     mode: "in-memory",
     sql: null,
@@ -154,12 +170,12 @@ export function buildRepositories(
     audit: new InMemoryAuditSink(),
     bindings: new InMemoryAnalysisBindingRepository(),
     handoffs: new InMemoryLaunchHandoffRepository(),
-    links: new InMemoryLinkRepository({ shareGrants: grants }),
+    links: new InMemoryLinkRepository({ shareGrants: grants, isQuarantined }),
     workspaceDisclosure: new InMemoryWorkspaceDisclosureRepository(),
     grants,
     adminAssignments: new InMemoryAdminAssignmentRepository(),
     mandates: new InMemoryDelegationMandateRepository(),
-    inboundEvents: new InMemoryInboundEventRepository(),
+    eventIntegrity,
     lifecycleOutbox: new InMemoryLifecycleOutboxRepository(),
   };
 }

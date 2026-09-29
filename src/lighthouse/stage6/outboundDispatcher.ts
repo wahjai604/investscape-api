@@ -48,6 +48,11 @@ export interface DispatchSweepResult {
   readonly acknowledged: number;
   readonly retried: number;
   readonly failedPermanent: number;
+  /** Kept durably, neither failed nor delivered (§3.4 "Sender"). */
+  readonly awaitingReconciliation: number;
+  readonly inQuarantine: number;
+  /** Terminal, logged as not delivered. */
+  readonly superseded: number;
 }
 
 /**
@@ -60,7 +65,10 @@ export async function dispatchPendingOutboxEntries(
   deps: DispatchOutboxDependencies,
 ): Promise<DispatchSweepResult> {
   if (!deps.config) {
-    return { processed: 0, acknowledged: 0, retried: 0, failedPermanent: 0 };
+    return {
+      processed: 0, acknowledged: 0, retried: 0, failedPermanent: 0,
+      awaitingReconciliation: 0, inQuarantine: 0, superseded: 0,
+    };
   }
   const config = deps.config;
 
@@ -69,6 +77,9 @@ export async function dispatchPendingOutboxEntries(
   let acknowledged = 0;
   let retried = 0;
   let failedPermanent = 0;
+  let awaitingReconciliation = 0;
+  let inQuarantine = 0;
+  let superseded = 0;
 
   for (const entry of due) {
     const url = new URL(LIFECYCLE_EVENT_PATH, config.baseUrl);
@@ -96,7 +107,13 @@ export async function dispatchPendingOutboxEntries(
         body: entry.payload,
         signal: controller.signal,
       });
-      outcome = classifyResponse(response.status);
+      let body: unknown;
+      try {
+        body = JSON.parse(await response.text());
+      } catch {
+        body = undefined; // no event-ack body: classified by status alone
+      }
+      outcome = classifyResponse(response.status, body);
     } catch (error) {
       outcome = {
         kind: "retryable",
@@ -113,8 +130,14 @@ export async function dispatchPendingOutboxEntries(
 
     if (updated.state === "acknowledged") acknowledged += 1;
     else if (updated.state === "failed_permanent") failedPermanent += 1;
+    else if (updated.state === "awaiting_reconciliation") awaitingReconciliation += 1;
+    else if (updated.state === "in_quarantine") inQuarantine += 1;
+    else if (updated.state === "superseded") superseded += 1;
     else retried += 1;
   }
 
-  return { processed: due.length, acknowledged, retried, failedPermanent };
+  return {
+    processed: due.length, acknowledged, retried, failedPermanent,
+    awaitingReconciliation, inQuarantine, superseded,
+  };
 }

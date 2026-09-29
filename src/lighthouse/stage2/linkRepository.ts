@@ -174,6 +174,18 @@ const INVITATION_COLUMNS = `invitation_id, relationship_os_person_ref, relations
   challenge_hash, notice_version, expires_at, consumed_at, consumed_by_actor_ref,
   correlation_id, created_at`;
 
+/**
+ * Fail-closed reads (contract v0.3 r3 §3.4 step 3). While an open Stage 6
+ * quarantine names a link, the two products disagree about it, so the read
+ * paths that authorise disclosure, sharing and launch behave as though the
+ * link did not exist. Revocation paths do not use these reads and stay open.
+ */
+const LINK_NOT_QUARANTINED = `not exists (
+  select 1 from lighthouse.event_quarantines q
+   where q.aggregate_kind = 'link'
+     and q.aggregate_id = cross_product_links.cross_product_link_id
+     and q.state = 'open')`;
+
 // ---------------------------------------------------------------------------
 // Postgres
 // ---------------------------------------------------------------------------
@@ -307,6 +319,7 @@ export class SqlLinkRepository implements LinkRepository {
     const result = await this.#client.query<Record<string, unknown>>(
       `select ${LINK_COLUMNS} from lighthouse.cross_product_links
         where investscape_actor_ref = $1 and state in ('pending','active','suspended')
+          and ${LINK_NOT_QUARANTINED}
         order by created_at asc`,
       [actorRef],
     );
@@ -316,7 +329,8 @@ export class SqlLinkRepository implements LinkRepository {
   async findLinkById(crossProductLinkId: string): Promise<CrossProductLink | null> {
     const result = await this.#client.query<Record<string, unknown>>(
       `select ${LINK_COLUMNS} from lighthouse.cross_product_links
-        where cross_product_link_id = $1`,
+        where cross_product_link_id = $1
+          and ${LINK_NOT_QUARANTINED}`,
       [crossProductLinkId],
     );
     const row = result.rows[0];
@@ -380,14 +394,20 @@ export class InMemoryLinkRepository implements LinkRepository {
   readonly #invitations = new Map<string, LinkInvitation>();
   readonly #links = new Map<string, CrossProductLink>();
   readonly #shareGrants: InMemoryShareGrantCascade | null;
+  readonly #isQuarantined: (aggregateKind: string, aggregateId: string) => boolean;
 
   /**
    * `shareGrants` is the store unlink cascades into. Bootstrap always passes
    * it; omitting it is only for link-only unit tests, which then revoke no
-   * grants because none exist.
+   * grants because none exist. `isQuarantined` mirrors the SQL fail-closed
+   * predicate.
    */
-  constructor(options: { readonly shareGrants?: InMemoryShareGrantCascade } = {}) {
+  constructor(options: {
+    readonly shareGrants?: InMemoryShareGrantCascade;
+    readonly isQuarantined?: (aggregateKind: string, aggregateId: string) => boolean;
+  } = {}) {
     this.#shareGrants = options.shareGrants ?? null;
+    this.#isQuarantined = options.isQuarantined ?? (() => false);
   }
 
   async createInvitation(invitation: LinkInvitation): Promise<void> {
@@ -442,11 +462,13 @@ export class InMemoryLinkRepository implements LinkRepository {
     return [...this.#links.values()].filter(
       (l) =>
         l.investscapeUserRef === actorRef &&
-        LINK_LIFECYCLE.terminal.includes(l.lifecycle.state) === false,
+        LINK_LIFECYCLE.terminal.includes(l.lifecycle.state) === false &&
+        !this.#isQuarantined("link", l.crossProductLinkId),
     );
   }
 
   async findLinkById(crossProductLinkId: string): Promise<CrossProductLink | null> {
+    if (this.#isQuarantined("link", crossProductLinkId)) return null;
     return this.#links.get(crossProductLinkId) ?? null;
   }
 

@@ -127,6 +127,12 @@ function isAggregateNotFoundError(error: unknown): boolean {
   return error instanceof Error && error.name === "AggregateNotFoundError";
 }
 
+/**
+ * NOT the inbound path any more. POST /sync/events runs stage6/eventIntegrity.ts,
+ * which applies events inside one transaction with the ledgers and quarantine
+ * (contract v0.3 r3). This non-transactional helper is kept only for its
+ * existing adapter tests; do not wire it to a route.
+ */
 export async function dispatchLifecycleEvent(
   aggregateKind: string,
   aggregateId: string,

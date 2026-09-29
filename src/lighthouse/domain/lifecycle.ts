@@ -20,9 +20,13 @@
  *   - "Do not erase immutable security/audit events when removing active
  *      projections."
  *
- * Ordering uses `version` (monotonic per aggregate) with `occurredAt` as the
- * tie-breaker. Wall-clock time alone is not trusted for ordering across two
- * products with independent clocks.
+ * Ordering uses `version` (monotonic per aggregate) ONLY. `occurredAt` is
+ * informational and never orders or tie-breaks anything (contract v0.3 r3
+ * §3.1): two products' clocks are independent, and a re-emitted event may
+ * carry a new timestamp. Two different events claiming the SAME version are
+ * not something this engine can adjudicate — the Stage 6 version ledger
+ * (stage6/eventIntegrity.ts) detects them as an alias or a conflict before
+ * this engine is ever consulted. Here a same-version event is simply stale.
  */
 
 export interface LifecycleDefinition<TState extends string> {
@@ -112,12 +116,15 @@ export function initialSnapshot<TState extends string>(
 /**
  * Applies an event to a snapshot. Pure — returns a new snapshot, mutates nothing.
  *
- * Order of checks matters:
+ * Order of checks matters (mirrors contract v0.3 r3 §3.3 rules 7–11):
  *  1. duplicate    (idempotency beats everything; a replay is never an error)
- *  2. unknown state (fail closed, invariant 8)
- *  3. terminal     (a terminal state absorbs everything)
- *  4. stale        (older version loses)
- *  5. transition   (must be permitted)
+ *  2. stale        (version <= stored loses, whatever it claims — an older
+ *                   event can never reach the transition check, so it can
+ *                   never be mistaken for a forbidden transition)
+ *  3. unknown state (fail closed, invariant 8)
+ *  4. transition   (must be permitted; a terminal state permits nothing, so
+ *                   a NEWER version against a terminal state is rejected —
+ *                   e.g. revoked -> active can never reactivate)
  */
 export function applyLifecycleEvent<TState extends string>(
   definition: LifecycleDefinition<TState>,
@@ -138,30 +145,25 @@ export function applyLifecycleEvent<TState extends string>(
     return { kind: "duplicate", snapshot };
   }
 
-  // 2. Unknown target states fail closed.
-  if (!definition.states.includes(event.targetState)) {
-    return { kind: "rejected", snapshot, reason: "UNKNOWN_STATE" };
-  }
-
-  // 3. A terminal state absorbs later events. This is the "newer terminal event
-  //    cannot be overwritten by an older active event" rule.
-  if (definition.terminal.includes(snapshot.state)) {
-    if (event.targetState === snapshot.state) {
-      return { kind: "duplicate", snapshot };
-    }
-    return { kind: "rejected", snapshot, reason: "TERMINAL_STATE" };
-  }
-
-  // 4. Out-of-order protection.
+  // 2. Out-of-order protection, by version alone. The same version as the
+  //    stored one is stale too: no timestamp tie-break (see module doc).
   if (event.version < snapshot.version) {
     return { kind: "stale", snapshot };
   }
   if (event.version === snapshot.version && snapshot.version !== 0) {
-    // Same version, different event: keep the earliest-observed decision rather
-    // than letting a coin-flip reorder change the outcome.
-    if (event.occurredAt <= snapshot.occurredAt) {
-      return { kind: "stale", snapshot };
-    }
+    return { kind: "stale", snapshot };
+  }
+
+  // 3. Unknown target states fail closed.
+  if (!definition.states.includes(event.targetState)) {
+    return { kind: "rejected", snapshot, reason: "UNKNOWN_STATE" };
+  }
+
+  // 4. A terminal state permits no transition at all — not even to itself
+  //    under a newer version. "A newer terminal event cannot be overwritten by
+  //    an older active event" is already guaranteed by step 2.
+  if (definition.terminal.includes(snapshot.state)) {
+    return { kind: "rejected", snapshot, reason: "TERMINAL_STATE" };
   }
 
   // 5. Permitted transition?
@@ -203,8 +205,10 @@ export function replayLifecycle<TState extends string>(
 ): LifecycleSnapshot<TState> {
   let snapshot = initialSnapshot(definition, startedAt);
   // Sort defensively so a shuffled batch converges on the same answer.
+  // Version only; equal versions fall back to eventId purely for determinism —
+  // never to occurredAt (see module doc).
   const ordered = [...events].sort(
-    (a, b) => a.version - b.version || a.occurredAt.localeCompare(b.occurredAt),
+    (a, b) => a.version - b.version || (a.eventId < b.eventId ? -1 : a.eventId > b.eventId ? 1 : 0),
   );
   for (const event of ordered) {
     const outcome = applyLifecycleEvent(definition, snapshot, event);

@@ -12,13 +12,37 @@
  *   - retry TRANSPORT failures with bounded exponential backoff and IDENTICAL
  *     bytes (never re-serialise; the signed bytes must match the sent bytes)
  *   - 200 acknowledgement = success
- *   - a terminal state (acknowledged / failed_permanent) is NEVER changed to
- *     another status
+ *   - a terminal state (acknowledged / failed_permanent / superseded) is NEVER
+ *     changed to another status
+ *
+ * RECONCILIATION STATES (contract v0.3 r3 §3.4 "Sender"), read from the
+ * receiver's `lighthouse.event-ack.v1` body:
+ *   - 409 blocked                  -> awaiting_reconciliation
+ *   - 409 conflict / 422 rejected  -> in_quarantine
+ *   - 200 superseded               -> superseded (terminal, NOT delivered)
+ * Neither awaiting_reconciliation nor in_quarantine is failed or delivered;
+ * the entry and its bytes are kept durably. The resubmission schedule is
+ * DECISION REQUIRED (D7b), so nothing here reschedules them: the sweep only
+ * picks up `pending` entries, and a reconciliation-state entry waits until a
+ * decided policy (or an operator) moves it back to `pending`.
  */
 
 import { createHash } from "node:crypto";
 
-export type OutboxEntryState = "pending" | "in_flight" | "acknowledged" | "failed_permanent";
+export type OutboxEntryState =
+  | "pending"
+  | "in_flight"
+  | "acknowledged"
+  | "failed_permanent"
+  | "awaiting_reconciliation"
+  | "in_quarantine"
+  | "superseded";
+
+const TERMINAL_STATES: readonly OutboxEntryState[] = ["acknowledged", "failed_permanent", "superseded"];
+
+export function isTerminalOutboxState(state: OutboxEntryState): boolean {
+  return TERMINAL_STATES.includes(state);
+}
 
 export interface LifecycleOutboxEntry {
   readonly id: string;
@@ -33,6 +57,11 @@ export interface LifecycleOutboxEntry {
   readonly correlationId?: string;
   readonly acknowledgedAt?: string;
   readonly lastError?: string;
+  /** Set while awaiting_reconciliation / in_quarantine. */
+  readonly quarantineId?: string;
+  /** The receiver's last `outcome`, when it sent an event-ack. */
+  readonly lastOutcome?: string;
+  readonly supersededAt?: string;
 }
 
 export function hashPayload(payload: string): string {
@@ -112,15 +141,45 @@ export async function enqueueOutboundEvent(
 }
 
 export type DeliveryOutcome =
-  | { readonly kind: "acknowledged" }
+  | { readonly kind: "acknowledged"; readonly outcome?: string }
+  /** 200 superseded: terminal, but the event was NOT delivered. */
+  | { readonly kind: "superseded" }
+  /** 409 blocked: the receiver discarded the body; keep it and resubmit later. */
+  | { readonly kind: "awaiting_reconciliation"; readonly quarantineId: string }
+  /** 409 conflict / 422 rejected_transition: an open quarantine names this event. */
+  | { readonly kind: "in_quarantine"; readonly quarantineId: string; readonly outcome: string }
   /** Transport/5xx — safe to retry with identical bytes. */
   | { readonly kind: "retryable"; readonly reason: string }
   /** 4xx other than 409/429 — retrying cannot help. */
   | { readonly kind: "permanent"; readonly reason: string };
 
-/** Maps an HTTP response status to a delivery outcome. */
-export function classifyResponse(status: number): DeliveryOutcome {
-  if (status === 200) return { kind: "acknowledged" };
+function ackFields(body: unknown): { outcome?: string; quarantineId?: string } {
+  if (typeof body !== "object" || body === null) return {};
+  const record = body as Record<string, unknown>;
+  if (record.schemaVersion !== "lighthouse.event-ack.v1") return {};
+  return {
+    outcome: typeof record.outcome === "string" ? record.outcome : undefined,
+    quarantineId: typeof record.quarantineId === "string" ? record.quarantineId : undefined,
+  };
+}
+
+/**
+ * Maps an HTTP response (status and, when present, the parsed event-ack body)
+ * to a delivery outcome. Never marks delivered on conflict, blocked or
+ * rejected_transition.
+ */
+export function classifyResponse(status: number, body?: unknown): DeliveryOutcome {
+  const ack = ackFields(body);
+  if (status === 200) {
+    if (ack.outcome === "superseded") return { kind: "superseded" };
+    return ack.outcome ? { kind: "acknowledged", outcome: ack.outcome } : { kind: "acknowledged" };
+  }
+  if (status === 409 && ack.outcome === "blocked" && ack.quarantineId) {
+    return { kind: "awaiting_reconciliation", quarantineId: ack.quarantineId };
+  }
+  if ((status === 409 && ack.outcome === "conflict") || (status === 422 && ack.outcome === "rejected_transition")) {
+    if (ack.quarantineId) return { kind: "in_quarantine", quarantineId: ack.quarantineId, outcome: ack.outcome };
+  }
   if (status === 409) return { kind: "permanent", reason: "conflict_409" };
   if (status >= 500) return { kind: "retryable", reason: `server_${status}` };
   if (status === 429) return { kind: "retryable", reason: "rate_limited" };
@@ -131,16 +190,16 @@ export function classifyResponse(status: number): DeliveryOutcome {
 /**
  * Applies a delivery outcome, returning the updated entry.
  *
- * A terminal state (`acknowledged` / `failed_permanent`) is never changed to
- * another status — the caller must not invoke this again on an entry already
- * in a terminal state.
+ * A terminal state (`acknowledged` / `failed_permanent` / `superseded`) is
+ * never changed to another status. A reconciliation state is not terminal: a
+ * later resubmission's response moves it on.
  */
 export function applyDeliveryOutcome(
   entry: LifecycleOutboxEntry,
   outcome: DeliveryOutcome,
   now: Date,
 ): LifecycleOutboxEntry {
-  if (entry.state === "acknowledged" || entry.state === "failed_permanent") {
+  if (isTerminalOutboxState(entry.state)) {
     return entry;
   }
 
@@ -150,6 +209,43 @@ export function applyDeliveryOutcome(
       state: "acknowledged",
       attempts: entry.attempts + 1,
       acknowledgedAt: now.toISOString(),
+      lastError: undefined,
+      quarantineId: undefined,
+      lastOutcome: outcome.outcome,
+    };
+  }
+
+  if (outcome.kind === "superseded") {
+    return {
+      ...entry,
+      state: "superseded",
+      attempts: entry.attempts + 1,
+      supersededAt: now.toISOString(),
+      lastOutcome: "superseded",
+      lastError: undefined,
+    };
+  }
+
+  // Not a failure: the retry budget is for transport faults, and these
+  // entries must survive however long reconciliation takes.
+  if (outcome.kind === "awaiting_reconciliation") {
+    return {
+      ...entry,
+      state: "awaiting_reconciliation",
+      attempts: entry.attempts + 1,
+      quarantineId: outcome.quarantineId,
+      lastOutcome: "blocked",
+      lastError: undefined,
+    };
+  }
+
+  if (outcome.kind === "in_quarantine") {
+    return {
+      ...entry,
+      state: "in_quarantine",
+      attempts: entry.attempts + 1,
+      quarantineId: outcome.quarantineId,
+      lastOutcome: outcome.outcome,
       lastError: undefined,
     };
   }
@@ -246,6 +342,11 @@ export class SqlLifecycleOutboxRepository implements LifecycleOutboxRepository {
       acknowledgedAt: row.acknowledged_at
         ? new Date(row.acknowledged_at as string).toISOString()
         : undefined,
+      quarantineId: row.quarantine_id ? String(row.quarantine_id) : undefined,
+      lastOutcome: row.last_outcome ? String(row.last_outcome) : undefined,
+      supersededAt: row.superseded_at
+        ? new Date(row.superseded_at as string).toISOString()
+        : undefined,
     };
   }
 
@@ -257,7 +358,8 @@ export class SqlLifecycleOutboxRepository implements LifecycleOutboxRepository {
        values ($1,$2,$3,$4::jsonb,$5,$6,$7,$8,$9)
        on conflict (aggregate_kind, aggregate_id, payload_hash) do nothing
        returning outbox_id, aggregate_kind, aggregate_id, event_payload, payload_hash,
-                 state, attempt_count, next_attempt_at, correlation_id, acknowledged_at`,
+                 state, attempt_count, next_attempt_at, correlation_id, acknowledged_at,
+              quarantine_id, last_outcome, superseded_at`,
       [
         entry.id, entry.aggregateKind, entry.aggregateId, entry.payload,
         entry.payloadHash, entry.state, entry.attempts, entry.nextAttemptAt,
@@ -280,7 +382,8 @@ export class SqlLifecycleOutboxRepository implements LifecycleOutboxRepository {
   ): Promise<LifecycleOutboxEntry | null> {
     const result = await this.#client.query<Record<string, unknown>>(
       `select outbox_id, aggregate_kind, aggregate_id, event_payload, payload_hash,
-              state, attempt_count, next_attempt_at, correlation_id, acknowledged_at
+              state, attempt_count, next_attempt_at, correlation_id, acknowledged_at,
+              quarantine_id, last_outcome, superseded_at
          from lighthouse.lifecycle_outbox
         where aggregate_kind = $1 and aggregate_id = $2 and payload_hash = $3`,
       [aggregateKind, aggregateId, payloadHash],
@@ -292,16 +395,22 @@ export class SqlLifecycleOutboxRepository implements LifecycleOutboxRepository {
   async update(entry: LifecycleOutboxEntry): Promise<void> {
     await this.#client.query(
       `update lighthouse.lifecycle_outbox
-          set state = $2, attempt_count = $3, next_attempt_at = $4, acknowledged_at = $5
-        where outbox_id = $1`,
-      [entry.id, entry.state, entry.attempts, entry.nextAttemptAt, entry.acknowledgedAt ?? null],
+          set state = $2, attempt_count = $3, next_attempt_at = $4, acknowledged_at = $5,
+              quarantine_id = $6, last_outcome = $7, superseded_at = $8
+        where outbox_id = $1
+          and state not in ('acknowledged','failed_permanent','superseded')`,
+      [
+        entry.id, entry.state, entry.attempts, entry.nextAttemptAt, entry.acknowledgedAt ?? null,
+        entry.quarantineId ?? null, entry.lastOutcome ?? null, entry.supersededAt ?? null,
+      ],
     );
   }
 
   async dueEntries(now: Date, limit: number): Promise<readonly LifecycleOutboxEntry[]> {
     const result = await this.#client.query<Record<string, unknown>>(
       `select outbox_id, aggregate_kind, aggregate_id, event_payload, payload_hash,
-              state, attempt_count, next_attempt_at, correlation_id, acknowledged_at
+              state, attempt_count, next_attempt_at, correlation_id, acknowledged_at,
+              quarantine_id, last_outcome, superseded_at
          from lighthouse.lifecycle_outbox
         where state = 'pending' and next_attempt_at <= $1
         order by next_attempt_at asc
