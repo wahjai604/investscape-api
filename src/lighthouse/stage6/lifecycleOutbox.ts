@@ -11,7 +11,8 @@
  *     an identical retry is a no-op, not a duplicate row
  *   - retry TRANSPORT failures with bounded exponential backoff and IDENTICAL
  *     bytes (never re-serialise; the signed bytes must match the sent bytes)
- *   - 200 acknowledgement = success
+ *   - success = a 200 whose event-ack passes `validateEventAck` against the
+ *     submitted event; a bare or mismatched 200 is NOT delivery
  *   - a terminal state (acknowledged / failed_permanent / superseded) is NEVER
  *     changed to another status
  *
@@ -153,34 +154,144 @@ export type DeliveryOutcome =
   /** 4xx other than 409/429 — retrying cannot help. */
   | { readonly kind: "permanent"; readonly reason: string };
 
-function ackFields(body: unknown): { outcome?: string; quarantineId?: string } {
-  if (typeof body !== "object" || body === null) return {};
-  const record = body as Record<string, unknown>;
-  if (record.schemaVersion !== "lighthouse.event-ack.v1") return {};
-  return {
-    outcome: typeof record.outcome === "string" ? record.outcome : undefined,
-    quarantineId: typeof record.quarantineId === "string" ? record.quarantineId : undefined,
-  };
+/** The identity of the event actually sent, which every ack must echo. */
+export interface SubmittedEventIdentity {
+  readonly eventId: string;
+  readonly aggregateKind: string;
+  readonly aggregateId: string;
+  readonly version: number;
 }
 
 /**
- * Maps an HTTP response (status and, when present, the parsed event-ack body)
- * to a delivery outcome. Never marks delivered on conflict, blocked or
- * rejected_transition.
+ * Reads the identity back out of the stored bytes and checks it against the
+ * entry's own columns. Null when the bytes cannot be matched to an ack at all;
+ * such an entry must never be sent, because no answer could acknowledge it.
  */
-export function classifyResponse(status: number, body?: unknown): DeliveryOutcome {
-  const ack = ackFields(body);
-  if (status === 200) {
-    if (ack.outcome === "superseded") return { kind: "superseded" };
-    return ack.outcome ? { kind: "acknowledged", outcome: ack.outcome } : { kind: "acknowledged" };
+export function submittedIdentity(entry: LifecycleOutboxEntry): SubmittedEventIdentity | null {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(entry.payload);
+  } catch {
+    return null;
   }
-  if (status === 409 && ack.outcome === "blocked" && ack.quarantineId) {
-    return { kind: "awaiting_reconciliation", quarantineId: ack.quarantineId };
+  if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) return null;
+  const event = parsed as Record<string, unknown>;
+  if (typeof event.eventId !== "string" || event.eventId.length === 0) return null;
+  if (typeof event.version !== "number" || !Number.isInteger(event.version) || event.version < 1) return null;
+  if ("aggregateKind" in event && event.aggregateKind !== entry.aggregateKind) return null;
+  if ("aggregateId" in event && event.aggregateId !== entry.aggregateId) return null;
+  return {
+    eventId: event.eventId,
+    aggregateKind: entry.aggregateKind,
+    aggregateId: entry.aggregateId,
+    version: event.version,
+  };
+}
+
+const OUTCOMES_BY_STATUS: Readonly<Record<number, readonly string[]>> = {
+  200: ["applied", "applied_with_gap", "duplicate", "stale", "superseded"],
+  409: ["conflict", "blocked"],
+  422: ["rejected_transition"],
+};
+const ALL_OUTCOMES = Object.values(OUTCOMES_BY_STATUS).flat();
+/** What a replayed `duplicate` / `superseded` may say the first delivery produced. */
+const ORIGINAL_OUTCOMES: Readonly<Record<string, readonly string[]>> = {
+  duplicate: ["applied", "applied_with_gap", "duplicate", "stale"],
+  superseded: ["conflict", "rejected_transition"],
+};
+const CONFLICT_KINDS = ["EVENT_ID_DIGEST_MISMATCH", "AGGREGATE_VERSION_CONTENT_MISMATCH"];
+const QUARANTINE_OUTCOMES = ["conflict", "blocked", "rejected_transition"];
+const ACK_KEYS = new Set([
+  "schemaVersion", "eventId", "aggregateKind", "aggregateId", "version", "outcome",
+  "originalOutcome", "conflictKind", "quarantineId", "storedVersion", "receivedAt",
+]);
+
+export type AckValidation =
+  | {
+      readonly ok: true;
+      readonly outcome: string;
+      readonly quarantineId?: string;
+    }
+  | { readonly ok: false; readonly reason: string };
+
+const isNonEmptyString = (v: unknown): v is string => typeof v === "string" && v.length > 0 && v.length <= 256;
+
+/**
+ * Checks a `lighthouse.event-ack.v1` body against the event that was sent and
+ * the HTTP status it arrived with (contract v0.3 r3 §3.3). An ack that is
+ * empty, malformed, about a different event, or that contradicts its own
+ * status or fields is NOT an answer about this event, whatever the status.
+ */
+export function validateEventAck(
+  status: number,
+  body: unknown,
+  submitted: SubmittedEventIdentity,
+): AckValidation {
+  const fail = (reason: string): AckValidation => ({ ok: false, reason });
+  if (typeof body !== "object" || body === null || Array.isArray(body)) return fail("ack_missing");
+  const ack = body as Record<string, unknown>;
+  for (const key of Object.keys(ack)) if (!ACK_KEYS.has(key)) return fail("ack_unknown_field");
+
+  if (ack.schemaVersion !== "lighthouse.event-ack.v1") return fail("ack_schema");
+  if (ack.eventId !== submitted.eventId) return fail("ack_event_id_mismatch");
+  if (ack.aggregateKind !== submitted.aggregateKind || ack.aggregateId !== submitted.aggregateId) {
+    return fail("ack_aggregate_mismatch");
   }
-  if ((status === 409 && ack.outcome === "conflict") || (status === 422 && ack.outcome === "rejected_transition")) {
-    if (ack.quarantineId) return { kind: "in_quarantine", quarantineId: ack.quarantineId, outcome: ack.outcome };
+  if (ack.version !== submitted.version) return fail("ack_version_mismatch");
+
+  const outcome = ack.outcome;
+  if (typeof outcome !== "string" || !ALL_OUTCOMES.includes(outcome)) return fail("ack_outcome_unknown");
+  if (!(OUTCOMES_BY_STATUS[status] ?? []).includes(outcome)) return fail("ack_status_contradiction");
+
+  if (ack.storedVersion !== null && !(Number.isInteger(ack.storedVersion) && (ack.storedVersion as number) >= 0)) {
+    return fail("ack_stored_version");
   }
-  if (status === 409) return { kind: "permanent", reason: "conflict_409" };
+  if (typeof ack.receivedAt !== "string" || Number.isNaN(Date.parse(ack.receivedAt))) return fail("ack_received_at");
+
+  if ("originalOutcome" in ack) {
+    const allowed = ORIGINAL_OUTCOMES[outcome];
+    if (!allowed || !allowed.includes(ack.originalOutcome as string)) return fail("ack_original_outcome_contradiction");
+  }
+  if (outcome === "conflict") {
+    if (!CONFLICT_KINDS.includes(ack.conflictKind as string)) return fail("ack_conflict_kind");
+  } else if ("conflictKind" in ack) {
+    return fail("ack_conflict_kind_contradiction");
+  }
+  if (QUARANTINE_OUTCOMES.includes(outcome)) {
+    if (!isNonEmptyString(ack.quarantineId)) return fail("ack_quarantine_id_missing");
+    return { ok: true, outcome, quarantineId: ack.quarantineId };
+  }
+  if ("quarantineId" in ack) return fail("ack_quarantine_id_contradiction");
+  return { ok: true, outcome };
+}
+
+/**
+ * Maps an HTTP response (status and the parsed body, if any) to a delivery
+ * outcome for the SUBMITTED event. Only a valid 200 ack with applied /
+ * applied_with_gap / duplicate / stale delivers; a valid 200 superseded is
+ * terminal but not delivered. Never marks delivered on conflict, blocked or
+ * rejected_transition, and never on an ack that fails `validateEventAck`.
+ */
+export function classifyResponse(
+  status: number,
+  body: unknown,
+  submitted: SubmittedEventIdentity,
+): DeliveryOutcome {
+  if (status === 200 || status === 409 || status === 422) {
+    const ack = validateEventAck(status, body, submitted);
+    if (ack.ok) {
+      if (ack.outcome === "superseded") return { kind: "superseded" };
+      if (ack.outcome === "blocked") return { kind: "awaiting_reconciliation", quarantineId: ack.quarantineId! };
+      if (ack.outcome === "conflict" || ack.outcome === "rejected_transition") {
+        return { kind: "in_quarantine", quarantineId: ack.quarantineId!, outcome: ack.outcome };
+      }
+      return { kind: "acknowledged", outcome: ack.outcome };
+    }
+    // A 200 without a valid ack is not an answer: resend the identical bytes,
+    // which the receiver answers from its ledger. Bounded by MAX_ATTEMPTS.
+    if (status === 200) return { kind: "retryable", reason: `invalid_ack:${ack.reason}` };
+    return { kind: "permanent", reason: `client_${status}:${ack.reason}` };
+  }
   if (status >= 500) return { kind: "retryable", reason: `server_${status}` };
   if (status === 429) return { kind: "retryable", reason: "rate_limited" };
   if (status >= 400) return { kind: "permanent", reason: `client_${status}` };

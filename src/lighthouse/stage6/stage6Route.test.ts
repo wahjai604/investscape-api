@@ -114,8 +114,23 @@ function envelope(overrides: Partial<EventEnvelope> = {}): EventEnvelope {
   };
 }
 
-function signed(env: EventEnvelope): Record<string, unknown> {
+/**
+ * Digests the envelope exactly as given. Use for events whose payload is
+ * deliberately wrong; `signed` is the well-formed default.
+ */
+function sealed(env: EventEnvelope): Record<string, unknown> {
   return { ...env, eventDigest: computeEventDigest(env) };
+}
+
+/**
+ * Binds the registered payload members to the envelope (so overriding
+ * targetState or version keeps the event valid), then digests it.
+ */
+function signed(env: EventEnvelope): Record<string, unknown> {
+  const bound = env.aggregateKind === "share_grant"
+    ? { shareGrantId: env.aggregateId, state: env.targetState, grantVersion: env.version }
+    : { crossProductLinkId: env.aggregateId, state: env.targetState, linkVersion: env.version };
+  return sealed({ ...env, payload: { ...env.payload, ...bound } });
 }
 
 async function postEvent(
@@ -326,11 +341,96 @@ test("an aggregate InvestScape never created is 409 AGGREGATE_NOT_FOUND and reco
   assert.equal(store.ledgerEntry(env.eventId), null);
 });
 
-test("an aggregate kind with no wired store is 503 and records nothing", async () => {
+test("an aggregate kind with no registered schema is 400 and records nothing", async () => {
   const env = envelope({ aggregateKind: "mandate", aggregateId: "m-1", targetState: "active" });
   const res = await postEvent(signed(env));
-  assert.equal(res.status, 503);
+  assert.equal(res.status, 400);
+  assert.equal(((await res.json()) as Record<string, unknown>).reason, "SCHEMA_AGGREGATE_KIND_MISMATCH");
   assert.equal(store.ledgerEntry(env.eventId), null);
+});
+
+// ---------------------------------------------------------------------------
+// Rule 1 — payload schema registry. Every event below is correctly signed and
+// carries a correct eventDigest; only the payload is wrong.
+// ---------------------------------------------------------------------------
+
+async function rejectedBeforeAnyWrite(env: EventEnvelope, reason: string): Promise<void> {
+  const before = store.counts;
+  const stateBefore = store.aggregate(env.aggregateKind, env.aggregateId);
+  const res = await postEvent(sealed(env));
+  assert.equal(res.status, 400, reason);
+  const body = (await res.json()) as Record<string, unknown>;
+  assert.equal(body.outcome, "rejected_malformed");
+  assert.equal(body.reason, reason);
+  assert.deepEqual(store.counts, before, `${reason}: no ledger, variant or quarantine row`);
+  assert.equal(store.ledgerEntry(env.eventId), null);
+  assert.deepEqual(store.aggregate(env.aggregateKind, env.aggregateId), stateBefore, `${reason}: state unchanged`);
+}
+
+function linkPayload(env: EventEnvelope): Record<string, unknown> {
+  return { crossProductLinkId: env.aggregateId, state: env.targetState, linkVersion: env.version };
+}
+
+test("an unknown schemaVersion is rejected before any write", async () => {
+  const env = envelope();
+  await rejectedBeforeAnyWrite({ ...env, schemaVersion: "investscape.link.changed.v9", payload: linkPayload(env) }, "UNKNOWN_SCHEMA");
+  await rejectedBeforeAnyWrite({ ...env, schemaVersion: "__proto__", payload: linkPayload(env) }, "UNKNOWN_SCHEMA");
+  await rejectedBeforeAnyWrite({ ...env, schemaVersion: "toString", payload: linkPayload(env) }, "UNKNOWN_SCHEMA");
+});
+
+test("a schema used for the wrong aggregate kind is rejected before any write", async () => {
+  const env = envelope();
+  await rejectedBeforeAnyWrite(
+    { ...env, schemaVersion: "investscape.share-grant.changed.v1", payload: linkPayload(env) },
+    "SCHEMA_AGGREGATE_KIND_MISMATCH",
+  );
+});
+
+test("a payload that does not match its schema is rejected before any write", async () => {
+  const env = envelope();
+  const good = linkPayload(env);
+  const bad: Record<string, unknown>[] = [
+    {},
+    { reason: "test" },
+    { ...good, extra: "not allowed" },
+    { ...good, state: "not_a_state" },
+    { ...good, linkVersion: "2" },
+    { ...good, linkVersion: 2.5 },
+    { ...good, crossProductLinkId: "" },
+    { ...good, reason: "Has Spaces" },
+  ];
+  for (const payload of bad) {
+    await rejectedBeforeAnyWrite({ ...env, payload }, "PAYLOAD_INVALID");
+  }
+});
+
+test("a payload that disagrees with its envelope is rejected before any write", async () => {
+  const env = envelope();
+  const good = linkPayload(env);
+  await rejectedBeforeAnyWrite({ ...env, payload: { ...good, crossProductLinkId: "some-other-link" } }, "PAYLOAD_AGGREGATE_ID_MISMATCH");
+  await rejectedBeforeAnyWrite({ ...env, payload: { ...good, state: "revoked" } }, "PAYLOAD_TARGET_STATE_MISMATCH");
+  await rejectedBeforeAnyWrite({ ...env, payload: { ...good, linkVersion: 3 } }, "PAYLOAD_VERSION_MISMATCH");
+});
+
+test("a rejected payload is audited and does not poison the eventId", async () => {
+  const env = envelope();
+  await rejectedBeforeAnyWrite({ ...env, payload: { ...linkPayload(env), state: "revoked" } }, "PAYLOAD_TARGET_STATE_MISMATCH");
+  assert.ok(audit.events.some((e) => e.eventType === "stage6.event.schema_rejected"));
+  // Nothing was ledgered, so the corrected event is evaluated afresh.
+  const { status, ack } = await send(signed(env));
+  assert.equal(status, 200);
+  assert.equal(ack.outcome, "applied");
+});
+
+test("a valid share-grant event passes the registry", async () => {
+  const aggregateId = `grant-${++counter}`;
+  store.seedAggregate("share_grant", aggregateId, { state: "active", version: 1, occurredAt: "2026-09-28T11:00:00.000Z" });
+  const { status, ack } = await send(signed(envelope({
+    schemaVersion: "investscape.share-grant.changed.v1", aggregateKind: "share_grant",
+    aggregateId, targetState: "revoked", payload: { reason: "client_revoked" },
+  })));
+  assert.equal(status, 200);
+  assert.equal(ack.outcome, "applied");
 });
 
 // ---------------------------------------------------------------------------

@@ -18,6 +18,7 @@ import { signRequest } from "../service-auth/hmac.ts";
 import {
   applyDeliveryOutcome,
   classifyResponse,
+  submittedIdentity,
   type LifecycleOutboxRepository,
 } from "./lifecycleOutbox.ts";
 
@@ -82,6 +83,17 @@ export async function dispatchPendingOutboxEntries(
   let superseded = 0;
 
   for (const entry of due) {
+    // No ack could ever be matched to bytes whose identity is unreadable, so
+    // such an entry is not sent at all.
+    const submitted = submittedIdentity(entry);
+    if (!submitted) {
+      await deps.repository.update(
+        applyDeliveryOutcome(entry, { kind: "permanent", reason: "submitted_event_unreadable" }, now),
+      );
+      failedPermanent += 1;
+      continue;
+    }
+
     const url = new URL(LIFECYCLE_EVENT_PATH, config.baseUrl);
     const headers = {
       "content-type": "application/json",
@@ -111,9 +123,9 @@ export async function dispatchPendingOutboxEntries(
       try {
         body = JSON.parse(await response.text());
       } catch {
-        body = undefined; // no event-ack body: classified by status alone
+        body = undefined; // no event-ack body: never an acknowledgement
       }
-      outcome = classifyResponse(response.status, body);
+      outcome = classifyResponse(response.status, body, submitted);
     } catch (error) {
       outcome = {
         kind: "retryable",

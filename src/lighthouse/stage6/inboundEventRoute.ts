@@ -16,8 +16,9 @@
  *   3. raw body captured                -> 503
  *   4. HMAC signature                   -> 401
  *   5. nonce replay                     -> 401
- *   6. rule 1: strict schema, JCS digest recomputed and compared -> 400,
- *      NO ledger row
+ *   6. rule 1: strict envelope, JCS digest recomputed and compared, then the
+ *      allow-listed payload schema and its envelope bindings
+ *      (eventSchemaRegistry.ts) -> 400, NO ledger row
  *   7. rules 2–11 in ONE transaction (stage6/eventIntegrity.ts)
  *   8. after commit only: audit, quarantine alert hook, invalidation hook
  *
@@ -44,6 +45,7 @@ import {
   type EventIntegrityStore,
   type QuarantineAlert,
 } from "./eventIntegrity.ts";
+import { validateEventPayload } from "./eventSchemaRegistry.ts";
 import { AGGREGATE_KINDS, definitionFor, isKnownAggregateKind, type AggregateKind } from "./lifecycleDispatcher.ts";
 
 const FLAG = "lighthouse.lifecycle_synchronization";
@@ -186,6 +188,18 @@ export function createInboundEventRouter(deps: InboundEventRouteDependencies): R
         eventId: envelope.eventId, aggregateKind: envelope.aggregateKind,
       });
       res.status(400).json({ state: "invalid", outcome: "rejected_malformed", reason: "EVENT_DIGEST_MISMATCH" });
+      return;
+    }
+
+    // Still rule 1: a correctly signed, correctly digested event must also name
+    // an allow-listed schema whose payload agrees with its envelope.
+    const schemaCheck = validateEventPayload(envelope);
+    if (!schemaCheck.ok) {
+      await audit("stage6.event.schema_rejected", "denied", envelope.aggregateId, envelope.correlationId ?? null, {
+        eventId: envelope.eventId, aggregateKind: envelope.aggregateKind,
+        schemaVersion: envelope.schemaVersion, reason: schemaCheck.reason,
+      });
+      res.status(400).json({ state: "invalid", outcome: "rejected_malformed", reason: schemaCheck.reason });
       return;
     }
 
