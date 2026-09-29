@@ -72,6 +72,13 @@ export interface ShareGrantRouteDependencies {
   readonly auditSink: AuditSink;
   /** Resolves whether a cross-product link is currently active. */
   readonly isLinkActive: (crossProductLinkId: string, clientUserRef: string) => Promise<boolean>;
+  /**
+   * True only when EVERY id exists, is not deleted, and is owned by
+   * `clientUserRef` in their personal workspace. A launched
+   * (professional_assisted) analysis is never the client's to share.
+   * Implementations must fail closed (false) when they cannot tell.
+   */
+  readonly ownsAllAnalyses: (clientUserRef: string, analysisIds: readonly string[]) => Promise<boolean>;
   readonly now: () => Date;
   readonly newShareGrantId: () => string;
   readonly env?: Record<string, string | undefined>;
@@ -89,6 +96,8 @@ function deny(res: Response, status: number): void {
  * grant's existence.
  */
 const VALIDATION_SHAPED_DENIALS: ReadonlySet<ShareCreationDenial> = new Set([
+  "UNKNOWN_RECIPIENT_CONTEXT",
+  "RECIPIENT_CONTEXT_DISABLED",
   "NO_ANALYSES_SELECTED",
   "TOO_MANY_ANALYSES",
   "NO_FIELDS_SELECTED",
@@ -153,6 +162,18 @@ export function createShareGrantRouter(deps: ShareGrantRouteDependencies): Route
       session.actorRef,
     );
 
+    const analysesOwnedByClient = await deps.ownsAllAnalyses(
+      session.actorRef,
+      parsed.data.selectedAnalysisIds,
+    );
+    // delegated_client is a known recipient type whose capability is off
+    // until delegation is agreed. professional_assisted rides on this route's
+    // own flag, which is already checked above.
+    const recipientContextEnabled =
+      parsed.data.recipientContext === "delegated_client"
+        ? isFeatureEnabled("lighthouse.delegated_portfolio_management", deps.env ?? process.env)
+        : true;
+
     const outcome = await deps.grants.create({
       shareGrantId,
       crossProductLinkId: parsed.data.crossProductLinkId,
@@ -162,7 +183,9 @@ export function createShareGrantRouter(deps: ShareGrantRouteDependencies): Route
       authenticatedUserRef: session.actorRef,
       destinationRelationshipRef: parsed.data.destinationRelationshipRef,
       recipientContext: parsed.data.recipientContext,
+      recipientContextEnabled,
       selectedAnalysisIds: parsed.data.selectedAnalysisIds,
+      analysesOwnedByClient,
       selectedFields: parsed.data.selectedFields,
       purpose: parsed.data.purpose,
       expiresAt: parsed.data.expiresAt,
@@ -189,8 +212,8 @@ export function createShareGrantRouter(deps: ShareGrantRouteDependencies): Route
         res.status(400).json({ state: "invalid", reason: outcome.reason });
         return;
       }
-      // LINK_NOT_ACTIVE, CONSENT_ACTOR_MISMATCH, FEATURE_DISABLED: authorization
-      // failures. Opaque, so the response cannot be used to probe another
+      // LINK_NOT_ACTIVE, CONSENT_ACTOR_MISMATCH, ANALYSIS_NOT_OWNED,
+      // FEATURE_DISABLED: authorization failures. Opaque, so the response cannot be used to probe another
       // actor's link state.
       deny(res, 403);
       return;

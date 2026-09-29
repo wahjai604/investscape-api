@@ -18,6 +18,7 @@ import {
   PersistenceNotConfiguredError,
 } from "./repositories.ts";
 import { generateNonce } from "../service-auth/hmac.ts";
+import { generateChallenge, hashChallenge } from "../domain/crossProductLink.ts";
 
 dotenv.config();
 
@@ -130,6 +131,10 @@ function binding(sessionId: string, analysisId: string) {
     correlationId: `${RUN}-corr`,
     propertyRef: "a".repeat(64),
     createdAt: new Date().toISOString(),
+    professionalActorRef: `${RUN}-actor-pro`,
+    operatingContext: "professional_assisted" as const,
+    initiatorPersonRef: `${RUN}-ros-person`,
+    crossProductLinkId: `${RUN}-link`,
   };
 }
 
@@ -240,7 +245,85 @@ test("a secret placed in audit metadata is redacted before it reaches the databa
   assert.ok(stored.includes("keep-me"), "benign metadata should survive");
 });
 
+// ---------------------------------------------------------------------------
+// P1 defects 1-3 against real Postgres (migration 0013 must be applied)
+// ---------------------------------------------------------------------------
+
+test("DEFECT-1 a binding persists its owner and cannot claim the personal context", { skip }, async () => {
+  const session = newSessionId();
+  await repos!.bindings.createIfAbsent(binding(session, `${RUN}-owned`));
+  const found = await repos!.bindings.findByLaunchSession(session);
+  assert.equal(found?.professionalActorRef, `${RUN}-actor-pro`);
+  assert.equal(found?.operatingContext, "professional_assisted");
+
+  await assert.rejects(
+    client!.query(
+      `insert into lighthouse.launch_analysis_bindings
+         (launch_session_id, analysis_id, analysis_type, correlation_id, property_ref,
+          professional_actor_ref, operating_context, initiator_person_ref, cross_product_link_id)
+       values ($1, $2, 'investment_quick_review', $3, 'p', 'a', 'personal', 'i', 'l')`,
+      [newSessionId(), `${RUN}-personal`, `${RUN}-corr`],
+    ),
+    /launch_binding_context_is_assisted/,
+  );
+});
+
+async function confirmedLink(actor: string) {
+  const challenge = generateChallenge();
+  const invitationId = `${RUN}-inv-${actor}`;
+  await repos!.links.createInvitation({
+    invitationId, challengeHash: hashChallenge(challenge),
+    relationshipOsPersonRef: `${RUN}-ros-${actor}`, relationshipRef: `${RUN}-rel`,
+    expiresAt: new Date(Date.now() + 600_000).toISOString(), noticeVersion: "v1",
+    correlationId: `${RUN}-link-corr`, consumedAt: null,
+  });
+  const accepted = await repos!.links.accept({
+    invitationId, presentedChallenge: challenge, investscapeActorRef: actor,
+    correlationId: `${RUN}-link-corr`, now: new Date(), isEnabled: true,
+  });
+  assert.ok(accepted.ok);
+  return accepted.link;
+}
+
+function dbGrant(id: string, linkId: string, actor: string, expiresAt: string | null) {
+  return {
+    shareGrantId: id, crossProductLinkId: linkId, linkIsActive: true,
+    clientUserRef: actor, authenticatedUserRef: actor,
+    destinationRelationshipRef: `${RUN}-rel`, recipientContext: "professional_assisted",
+    recipientContextEnabled: true, selectedAnalysisIds: [`${RUN}-analysis`], analysesOwnedByClient: true,
+    selectedFields: ["grade"], purpose: "p1-db-test", expiresAt, noticeVersion: "v1",
+    consentAffirmed: true, now: new Date(), correlationId: `${RUN}-grant-corr`, isEnabled: true,
+  };
+}
+
+test("DEFECT-3 unlink revokes the link and its active grants in one transaction", { skip }, async () => {
+  const actor = `${RUN}-client-cascade`;
+  const link = await confirmedLink(actor);
+  await repos!.grants.create(dbGrant(`${RUN}-g-cascade`, link.crossProductLinkId, actor, null));
+
+  const revocation = await repos!.links.revokeLink(link.crossProductLinkId, actor, new Date(), link.lifecycle.version);
+  assert.deepEqual(revocation?.revokedShareGrantIds, [`${RUN}-g-cascade`]);
+  assert.equal((await repos!.grants.findById(`${RUN}-g-cascade`))?.lifecycle.state, "revoked");
+});
+
+test("DEFECT-2 the relationship query excludes grants past their expiry", { skip }, async () => {
+  const actor = `${RUN}-client-expiry`;
+  const link = await confirmedLink(actor);
+  const expiresAt = new Date(Date.now() + 60_000).toISOString();
+  await repos!.grants.create(dbGrant(`${RUN}-g-expiry`, link.crossProductLinkId, actor, expiresAt));
+
+  const now = await repos!.grants.findActiveGrantsForRelationship(`${RUN}-rel`, "professional_assisted", new Date());
+  assert.ok(now.some((g) => g.shareGrantId === `${RUN}-g-expiry`));
+  const later = await repos!.grants.findActiveGrantsForRelationship(
+    `${RUN}-rel`, "professional_assisted", new Date(Date.now() + 120_000),
+  );
+  assert.equal(later.some((g) => g.shareGrantId === `${RUN}-g-expiry`), false);
+});
+
 test("cleanup", { skip }, async () => {
+  await client!.query("delete from lighthouse.share_grants where correlation_id like $1", [`${RUN}-%`]);
+  await client!.query("delete from lighthouse.cross_product_links where correlation_id like $1", [`${RUN}-%`]);
+  await client!.query("delete from lighthouse.link_invitations where correlation_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.service_request_nonces where key_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.launch_analysis_bindings where correlation_id like $1", [`${RUN}-%`]);
   await client!.query("delete from lighthouse.audit_events where correlation_id like $1", [`${RUN}-%`]);

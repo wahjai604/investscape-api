@@ -357,14 +357,14 @@ export function createLinkRouter(deps: LinkRouteDependencies): Router {
     // Ownership is enforced inside the UPDATE's WHERE clause, so a link
     // belonging to another actor and a link that does not exist are
     // indistinguishable here — which is the intended behaviour.
-    const tombstone = await deps.links.revokeLink(
+    const revocation = await deps.links.revokeLink(
       linkId,
       session.actorRef,
       now,
       parsed.data.expectedVersion,
     );
 
-    if (!tombstone) {
+    if (!revocation) {
       await deps.auditSink.record({
         eventType: "stage2.unlink.denied",
         occurredAt: now.toISOString(),
@@ -387,18 +387,19 @@ export function createLinkRouter(deps: LinkRouteDependencies): Router {
       authority: { kind: "self" },
       purpose: "identity_linking", scopes: [], outcome: "allowed",
       correlationId,
-      metadata: { crossProductLinkId: linkId },
+      metadata: {
+        crossProductLinkId: linkId,
+        revokedShareGrantIds: revocation.revokedShareGrantIds,
+      },
     });
 
-    // Stage 4 share revocation is NOT wired here yet. `unlink()` in the domain
-    // layer already computes which grants must be revoked, but no share-grant
-    // store exists to revoke them in. Returning a field that claims shares were
-    // revoked would be a lie, so this reports only what actually happened.
+    // Every active grant riding on this link was revoked in the same
+    // transaction as the link itself (LinkRepository.revokeLink).
     res.status(200).json({
       state: "unlinked",
-      crossProductLinkId: tombstone.crossProductLinkId,
-      tombstonedAt: tombstone.tombstonedAt,
-      sharesRevoked: null,
+      crossProductLinkId: revocation.tombstone.crossProductLinkId,
+      tombstonedAt: revocation.tombstone.tombstonedAt,
+      sharesRevoked: revocation.revokedShareGrantIds.length,
     });
   });
 

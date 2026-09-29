@@ -62,6 +62,20 @@ export type AcceptOutcome =
   | { readonly ok: true; readonly link: CrossProductLink; readonly created: boolean }
   | { readonly ok: false; readonly reason: AcceptanceDenial };
 
+/**
+ * What an unlink did. `revokedShareGrantIds` are the grants revoked IN THE SAME
+ * TRANSACTION as the link — never a best-effort follow-up.
+ */
+export interface LinkRevocation {
+  readonly tombstone: LinkTombstone;
+  readonly revokedShareGrantIds: readonly string[];
+}
+
+/** The slice of the share-grant store the in-memory link repo cascades into. */
+export interface InMemoryShareGrantCascade {
+  revokeAllForLink(crossProductLinkId: string, clientUserRef: string, now: Date): readonly string[];
+}
+
 export interface LinkRepository {
   createInvitation(invitation: LinkInvitation): Promise<void>;
   findInvitation(invitationId: string): Promise<LinkInvitation | null>;
@@ -70,15 +84,17 @@ export interface LinkRepository {
   findActiveLinksForActor(actorRef: string): Promise<readonly CrossProductLink[]>;
   findLinkById(crossProductLinkId: string): Promise<CrossProductLink | null>;
   /**
-   * Revokes a link. `expectedVersion` makes this a compare-and-set so a stale
-   * client cannot revoke a link that has since changed underneath it.
+   * Revokes a link AND every active share grant riding on it, atomically.
+   * `expectedVersion` makes this a compare-and-set so a stale client cannot
+   * revoke a link that has since changed underneath it. Null means nothing
+   * changed — neither the link nor any grant.
    */
   revokeLink(
     crossProductLinkId: string,
     actorRef: string,
     now: Date,
     expectedVersion: number,
-  ): Promise<LinkTombstone | null>;
+  ): Promise<LinkRevocation | null>;
 }
 
 // ---------------------------------------------------------------------------
@@ -280,28 +296,50 @@ export class SqlLinkRepository implements LinkRepository {
     actorRef: string,
     now: Date,
     expectedVersion: number,
-  ): Promise<LinkTombstone | null> {
-    // Ownership is part of the WHERE clause, not a separate check — so there is
-    // no window between "is this yours" and "revoke it", and no code path that
-    // revokes a link belonging to someone else.
-    const result = await this.#client.query<Record<string, unknown>>(
-      `update lighthouse.cross_product_links
-          set state = 'revoked', revoked_at = $3, version = version + 1, updated_at = $3
-        where cross_product_link_id = $1
-          and investscape_actor_ref = $2
-          and version = $4
-          and state in ('pending','active','suspended')
-        returning ${LINK_COLUMNS}`,
-      [crossProductLinkId, actorRef, now.toISOString(), expectedVersion],
-    );
-    const row = result.rows[0];
-    if (!row) return null;
-    return {
-      crossProductLinkId,
-      tombstonedAt: now.toISOString(),
-      reason: "unlinked",
-      correlationId: String(row.correlation_id),
-    };
+  ): Promise<LinkRevocation | null> {
+    // One transaction: the link and every grant riding on it change together
+    // or not at all. There is no committed state in which the link is revoked
+    // but a dependent grant is still active.
+    return this.#client.transaction(async (tx: SqlClient) => {
+      // Ownership is part of the WHERE clause, not a separate check — so there
+      // is no window between "is this yours" and "revoke it", and no code path
+      // that revokes a link belonging to someone else.
+      const result = await tx.query<Record<string, unknown>>(
+        `update lighthouse.cross_product_links
+            set state = 'revoked', revoked_at = $3, version = version + 1, updated_at = $3
+          where cross_product_link_id = $1
+            and investscape_actor_ref = $2
+            and version = $4
+            and state in ('pending','active','suspended')
+          returning ${LINK_COLUMNS}`,
+        [crossProductLinkId, actorRef, now.toISOString(), expectedVersion],
+      );
+      const row = result.rows[0];
+      if (!row) return null;
+
+      // Only 'active' grants move; revoked/expired/tombstoned are left alone,
+      // and nothing here can ever move a grant back to 'active'.
+      const grants = await tx.query<{ share_grant_id: string }>(
+        `update lighthouse.share_grants
+            set state = 'revoked', revoked_at = $3, version = version + 1,
+                updated_at = $3, lifecycle_occurred_at = $3
+          where cross_product_link_id = $1
+            and client_user_ref = $2
+            and state = 'active'
+          returning share_grant_id`,
+        [crossProductLinkId, actorRef, now.toISOString()],
+      );
+
+      return {
+        tombstone: {
+          crossProductLinkId,
+          tombstonedAt: now.toISOString(),
+          reason: "unlinked" as const,
+          correlationId: String(row.correlation_id),
+        },
+        revokedShareGrantIds: grants.rows.map((g) => String(g.share_grant_id)),
+      };
+    });
   }
 }
 
@@ -318,6 +356,16 @@ export class SqlLinkRepository implements LinkRepository {
 export class InMemoryLinkRepository implements LinkRepository {
   readonly #invitations = new Map<string, LinkInvitation>();
   readonly #links = new Map<string, CrossProductLink>();
+  readonly #shareGrants: InMemoryShareGrantCascade | null;
+
+  /**
+   * `shareGrants` is the store unlink cascades into. Bootstrap always passes
+   * it; omitting it is only for link-only unit tests, which then revoke no
+   * grants because none exist.
+   */
+  constructor(options: { readonly shareGrants?: InMemoryShareGrantCascade } = {}) {
+    this.#shareGrants = options.shareGrants ?? null;
+  }
 
   async createInvitation(invitation: LinkInvitation): Promise<void> {
     this.#invitations.set(invitation.invitationId, invitation);
@@ -384,7 +432,7 @@ export class InMemoryLinkRepository implements LinkRepository {
     actorRef: string,
     now: Date,
     expectedVersion: number,
-  ): Promise<LinkTombstone | null> {
+  ): Promise<LinkRevocation | null> {
     const link = this.#links.get(crossProductLinkId);
     if (
       !link ||
@@ -403,11 +451,16 @@ export class InMemoryLinkRepository implements LinkRepository {
         occurredAt: now.toISOString(),
       },
     });
+    const revokedShareGrantIds =
+      this.#shareGrants?.revokeAllForLink(crossProductLinkId, actorRef, now) ?? [];
     return {
-      crossProductLinkId,
-      tombstonedAt: now.toISOString(),
-      reason: "unlinked",
-      correlationId: link.correlationId,
+      tombstone: {
+        crossProductLinkId,
+        tombstonedAt: now.toISOString(),
+        reason: "unlinked",
+        correlationId: link.correlationId,
+      },
+      revokedShareGrantIds,
     };
   }
 }

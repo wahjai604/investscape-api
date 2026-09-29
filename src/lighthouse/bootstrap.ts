@@ -40,7 +40,13 @@ import {
   createMandateAggregateStore,
 } from "./stage6/aggregateStoreAdapters.ts";
 import { dispatchPendingOutboxEntries } from "./stage6/outboundDispatcher.ts";
-import { requireSession } from "./auth/middleware.ts";
+import { requireOperatingContext, requireSession } from "./auth/middleware.ts";
+import {
+  createAuthorityLookup,
+  isOperatingContextEnabled,
+  requirePersonalContext,
+} from "./auth/contextWiring.ts";
+import { noAnalysisOwnership, sqlAnalysisOwnership } from "./stage4/analysisOwnership.ts";
 import { createRateLimiter, LIGHTHOUSE_RATE_LIMITS } from "./http/rateLimit.ts";
 import { generateNonce } from "./service-auth/hmac.ts";
 import { LIGHTHOUSE_FEATURE_FLAGS, isFeatureEnabled } from "./config/featureFlags.ts";
@@ -295,20 +301,45 @@ export function createLighthouseSubsystem(
     };
   }
   const sessionRequired = requireSession(verifier);
+
+  // Operating-context resolution (P1 defect 6). Client-owned consent surfaces
+  // (linking, disclosure, sharing) additionally require the resolved context
+  // to be the caller acting for THEMSELVES, so a professional_assisted or
+  // delegated_client context can never create, list or revoke a client's
+  // links or grants. Order: flag -> session -> context -> personal-only.
+  const contextRequired = requireOperatingContext({
+    lookupAuthority: createAuthorityLookup(sql),
+    isContextEnabled: (kind) => isOperatingContextEnabled(kind, env),
+  });
+  const personalOnly = [contextRequired, requirePersonalContext];
+
+  // Stage 1. Session-authenticated: the launch is bound to the signed-in
+  // actor, and only if that actor is the confirmed-linked counterpart of the
+  // Relationship OS initiator (stage1/launchOwnership.ts). Not personal-only —
+  // the professional is entering professional_assisted, not their own
+  // workspace — so the context guard is not applied here.
+  router.use(
+    "/launch/redeem",
+    featureGate("lighthouse.stage1_launch_receiver"),
+    sessionRequired,
+  );
   router.use(
     ["/link/accept", "/link/status", "/link/:crossProductLinkId/unlink"],
     featureGate("lighthouse.cross_product_identity_linking"),
     sessionRequired,
+    ...personalOnly,
   );
   router.use(
     ["/workspace-disclosure", "/workspace-disclosure/:relationshipRef"],
     featureGate("lighthouse.client_workspace_disclosure"),
     sessionRequired,
+    ...personalOnly,
   );
   router.use(
     ["/shares", "/shares/:shareGrantId/revoke"],
     featureGate("lighthouse.selected_analysis_sharing"),
     sessionRequired,
+    ...personalOnly,
   );
   router.use(
     ["/admin/assignments", "/admin/assignments/:assignmentId/revoke"],
@@ -334,6 +365,7 @@ export function createLighthouseSubsystem(
         newOperationId: () => randomUUID(),
       },
       bindings: repositories.bindings,
+      links: repositories.links,
       auditSink: repositories.audit,
       newAnalysisId: () => randomUUID(),
       now: () => new Date(),
@@ -386,6 +418,9 @@ export function createLighthouseSubsystem(
           link.lifecycle.state === "active"
         );
       },
+      // In-memory mode has no personal-workspace store: nothing is provably
+      // owned, so every share is refused rather than trusted.
+      ownsAllAnalyses: sql ? sqlAnalysisOwnership(sql) : noAnalysisOwnership,
       now: () => new Date(),
       newShareGrantId: () => randomUUID(),
       env,

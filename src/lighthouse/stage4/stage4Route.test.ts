@@ -70,6 +70,9 @@ before(async () => {
       auditSink: audit,
       isLinkActive: async (crossProductLinkId, clientUserRef) =>
         activeLinks.has(`${crossProductLinkId}::${clientUserRef}`),
+      // Every analysis is the caller's own here; ownership is covered by
+      // separation.test.ts.
+      ownsAllAnalyses: async () => true,
       now: () => clock,
       newShareGrantId: () => `grant-${++grantCounter}`,
       env,

@@ -463,7 +463,7 @@ test("an actor can unlink their own link", async () => {
   const body = (await res.json()) as Record<string, unknown>;
   assert.equal(body.state, "unlinked");
   // Share revocation is not wired yet; the response must not imply it happened.
-  assert.equal(body.sharesRevoked, null);
+  assert.equal(body.sharesRevoked, 0);
 });
 
 test("an actor cannot unlink somebody else's link", async () => {

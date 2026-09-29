@@ -307,8 +307,10 @@ function shareInput(overrides: Record<string, unknown> = {}) {
     clientUserRef: CLIENT,
     authenticatedUserRef: CLIENT,
     destinationRelationshipRef: "rel-1",
-    recipientContext: "professional",
+    recipientContext: "professional_assisted",
+    recipientContextEnabled: true,
     selectedAnalysisIds: ["analysis-1"],
+    analysesOwnedByClient: true,
     selectedFields: ["grade", "primaryRisk"],
     purpose: "mortgage_review",
     expiresAt: null,
@@ -402,7 +404,8 @@ test("a share grant for the wrong relationship is refused", () => {
   const denied = authorizeSharedRead(result.grant, {
     externalAnalysisId: "analysis-1",
     relationshipRef: "rel-OTHER",
-    recipientContext: "professional",
+    recipientContext: "professional_assisted",
+    linkIsActive: true,
   }, NOW);
   assert.deepEqual(denied, { ok: false, reason: "WRONG_RELATIONSHIP" });
 });
@@ -414,7 +417,8 @@ test("an unshared analysis is refused even under a valid grant", () => {
   const denied = authorizeSharedRead(result.grant, {
     externalAnalysisId: "analysis-NOT-SHARED",
     relationshipRef: "rel-1",
-    recipientContext: "professional",
+    recipientContext: "professional_assisted",
+    linkIsActive: true,
   }, NOW);
   assert.deepEqual(denied, { ok: false, reason: "NOT_SHARED" });
 });

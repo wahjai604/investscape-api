@@ -27,6 +27,21 @@ import { SHAREABLE_FIELDS, type ShareableField } from "../contracts/crossProduct
 
 export const MAX_ANALYSES_PER_GRANT = 50;
 
+/**
+ * The only recipient contexts a grant may address. Fixed here rather than a
+ * free string so an arbitrary value can never become a read key.
+ * `delegated_client` is additionally refused while delegation is disabled —
+ * see `recipientContextEnabled` on CreateShareGrantInput.
+ */
+export const SHARE_RECIPIENT_CONTEXTS = ["professional_assisted", "delegated_client"] as const;
+export type ShareRecipientContext = (typeof SHARE_RECIPIENT_CONTEXTS)[number];
+
+const RECIPIENT_CONTEXTS: ReadonlySet<string> = new Set(SHARE_RECIPIENT_CONTEXTS);
+
+export function isShareRecipientContext(value: string): value is ShareRecipientContext {
+  return RECIPIENT_CONTEXTS.has(value);
+}
+
 /** Consent receipt. Every field is evidence of what the client actually saw. */
 export interface ConsentReceipt {
   readonly noticeVersion: string;
@@ -69,6 +84,11 @@ export type ShareCreationDenial =
   | "PURPOSE_REQUIRED"
   | "CONSENT_NOT_AFFIRMED"
   | "CONSENT_ACTOR_MISMATCH"
+  /** At least one selected analysis is not the client's own (or does not exist). */
+  | "ANALYSIS_NOT_OWNED"
+  | "UNKNOWN_RECIPIENT_CONTEXT"
+  /** A known recipient context whose capability is disabled (delegated_client today). */
+  | "RECIPIENT_CONTEXT_DISABLED"
   | "NOTICE_VERSION_REQUIRED"
   | "EXPIRY_IN_PAST";
 
@@ -85,7 +105,14 @@ export interface CreateShareGrantInput {
   readonly authenticatedUserRef: string;
   readonly destinationRelationshipRef: string;
   readonly recipientContext: string;
+  /** Server-computed: whether `recipientContext`'s capability is enabled. */
+  readonly recipientContextEnabled: boolean;
   readonly selectedAnalysisIds: readonly string[];
+  /**
+   * Server-computed: every selected analysis exists, is not deleted, and is
+   * owned by `clientUserRef`. Never taken from the request.
+   */
+  readonly analysesOwnedByClient: boolean;
   readonly selectedFields: readonly string[];
   readonly purpose: string;
   readonly expiresAt: string | null;
@@ -110,11 +137,24 @@ export function createShareGrant(input: CreateShareGrantInput): ShareCreationRes
     return { ok: false, reason: "CONSENT_ACTOR_MISMATCH" };
   }
 
+  if (!isShareRecipientContext(input.recipientContext)) {
+    return { ok: false, reason: "UNKNOWN_RECIPIENT_CONTEXT" };
+  }
+  if (!input.recipientContextEnabled) {
+    return { ok: false, reason: "RECIPIENT_CONTEXT_DISABLED" };
+  }
+
   if (input.selectedAnalysisIds.length === 0) {
     return { ok: false, reason: "NO_ANALYSES_SELECTED" };
   }
   if (input.selectedAnalysisIds.length > MAX_ANALYSES_PER_GRANT) {
     return { ok: false, reason: "TOO_MANY_ANALYSES" };
+  }
+  // After the count checks, so an empty selection reports as such. Not-owned
+  // and not-found are one reason: a client must not learn which foreign
+  // analysis ids exist.
+  if (!input.analysesOwnedByClient) {
+    return { ok: false, reason: "ANALYSIS_NOT_OWNED" };
   }
   if (input.selectedFields.length === 0) {
     return { ok: false, reason: "NO_FIELDS_SELECTED" };
@@ -185,16 +225,25 @@ export function projectSharedSummary(
   return out;
 }
 
+/**
+ * True when a grant is in force at `now`: active state AND inside its
+ * effective window. State alone is not enough — nothing flips an expired
+ * grant's state at the instant it expires.
+ */
+export function grantIsInForce(grant: ShareGrant, now: Date): boolean {
+  if (grant.lifecycle.state !== "active") return false;
+  if (new Date(grant.effectiveFrom) > now) return false;
+  if (grant.expiresAt && new Date(grant.expiresAt) <= now) return false;
+  return true;
+}
+
 /** True when the grant currently authorizes disclosure of this analysis. */
 export function grantPermitsAnalysis(
   grant: ShareGrant,
   externalAnalysisId: string,
   now: Date,
 ): boolean {
-  if (grant.lifecycle.state !== "active") return false;
-  if (new Date(grant.effectiveFrom) > now) return false;
-  if (grant.expiresAt && new Date(grant.expiresAt) <= now) return false;
-  return grant.selectedAnalysisIds.includes(externalAnalysisId);
+  return grantIsInForce(grant, now) && grant.selectedAnalysisIds.includes(externalAnalysisId);
 }
 
 /**
@@ -202,6 +251,10 @@ export function grantPermitsAnalysis(
  *
  * Rejects a grant addressed to a DIFFERENT relationship even when the analysis
  * ID matches — the "wrong-relationship callback fails" requirement.
+ *
+ * `linkIsActive` is REQUIRED and checked first, on every read. Unlink revokes
+ * dependent grants atomically, but the read path does not rely on that alone:
+ * a grant whose link is no longer active discloses nothing.
  */
 export function authorizeSharedRead(
   grant: ShareGrant,
@@ -209,9 +262,14 @@ export function authorizeSharedRead(
     readonly externalAnalysisId: string;
     readonly relationshipRef: string;
     readonly recipientContext: string;
+    /** Server-resolved state of `grant.crossProductLinkId`. */
+    readonly linkIsActive: boolean;
   },
   now: Date,
 ): { readonly ok: boolean; readonly reason?: string } {
+  if (!request.linkIsActive) {
+    return { ok: false, reason: "LINK_NOT_ACTIVE" };
+  }
   if (grant.destinationRelationshipRef !== request.relationshipRef) {
     return { ok: false, reason: "WRONG_RELATIONSHIP" };
   }

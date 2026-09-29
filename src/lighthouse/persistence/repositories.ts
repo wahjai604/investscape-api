@@ -137,15 +137,17 @@ export function buildRepositories(
     );
   }
 
+  // One grant store, shared with the link store so unlink cascades into it.
+  const grants = new InMemoryShareGrantRepository();
   return {
     mode: "in-memory",
     sql: null,
     nonces: new InMemoryNonceStore(),
     audit: new InMemoryAuditSink(),
     bindings: new InMemoryAnalysisBindingRepository(),
-    links: new InMemoryLinkRepository(),
+    links: new InMemoryLinkRepository({ shareGrants: grants }),
     workspaceDisclosure: new InMemoryWorkspaceDisclosureRepository(),
-    grants: new InMemoryShareGrantRepository(),
+    grants,
     adminAssignments: new InMemoryAdminAssignmentRepository(),
     mandates: new InMemoryDelegationMandateRepository(),
     inboundEvents: new InMemoryInboundEventRepository(),

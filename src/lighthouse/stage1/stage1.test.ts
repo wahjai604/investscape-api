@@ -25,6 +25,13 @@ import {
 const SESSION = "11111111-2222-3333-4444-555555555555";
 const CODE = "super-secret-one-time-code-abc123-xyz789";
 const NOW = new Date("2026-09-01T12:00:00.000Z");
+/** A verified launch owner (see launchOwnership.ts); binding tests are about idempotency, not ownership. */
+const OWNER = {
+  ok: true as const,
+  professionalActorRef: "actor-professional-1",
+  initiatorPersonRef: "ros-person-1",
+  crossProductLinkId: "link-1",
+};
 
 const validContext = {
   schemaVersion: "investscape-launch-context.v1",
@@ -472,7 +479,7 @@ test("a binding never carries the one-time code", () => {
   const parsed = parseLaunchContext(validContext);
   assert.ok(parsed.ok);
   if (!parsed.ok) return;
-  const { binding } = bindingFromLaunchContext(parsed.value, "analysis-1", NOW.toISOString());
+  const { binding } = bindingFromLaunchContext(parsed.value, "analysis-1", NOW.toISOString(), OWNER);
   assert.ok(!JSON.stringify(binding).includes(CODE));
   assert.deepEqual(binding.redactedScopes, ["finance.raw"]);
 });
@@ -483,9 +490,9 @@ test("binding creation is idempotent on launchSessionId", async () => {
   assert.ok(parsed.ok);
   if (!parsed.ok) return;
 
-  const first = bindingFromLaunchContext(parsed.value, "analysis-1", NOW.toISOString());
+  const first = bindingFromLaunchContext(parsed.value, "analysis-1", NOW.toISOString(), OWNER);
   const a = await repo.createIfAbsent(first.binding);
-  const second = bindingFromLaunchContext(parsed.value, "analysis-2", NOW.toISOString());
+  const second = bindingFromLaunchContext(parsed.value, "analysis-2", NOW.toISOString(), OWNER);
   const b = await repo.createIfAbsent(second.binding);
 
   assert.equal(a.created, true);
@@ -503,7 +510,7 @@ test("concurrent landing requests create exactly one analysis", async () => {
   const results = await Promise.all(
     ["a", "b", "c", "d", "e"].map((id) =>
       repo.createIfAbsent(
-        bindingFromLaunchContext(parsed.value, `analysis-${id}`, NOW.toISOString()).binding,
+        bindingFromLaunchContext(parsed.value, `analysis-${id}`, NOW.toISOString(), OWNER).binding,
       ),
     ),
   );
@@ -520,7 +527,7 @@ test("unknown modules are excluded from the persisted binding", () => {
   assert.ok(parsed.ok);
   if (!parsed.ok) return;
   const { binding, rejectedModules } = bindingFromLaunchContext(
-    parsed.value, "analysis-1", NOW.toISOString());
+    parsed.value, "analysis-1", NOW.toISOString(), OWNER);
   assert.deepEqual(binding.permittedModules, ["property_overview"]);
   assert.deepEqual(rejectedModules, ["admin_panel"]);
 });

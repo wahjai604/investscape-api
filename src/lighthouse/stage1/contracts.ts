@@ -50,6 +50,13 @@ const uuidShape = z
   });
 
 export const LAUNCH_CONTEXT_SCHEMA_VERSION = "investscape-launch-context.v1";
+/**
+ * PROPOSED, NOT AGREED with Relationship OS. v1 plus the Relationship OS
+ * person who initiated the launch, so InvestScape can bind the launch to the
+ * InvestScape account CONFIRMED-LINKED to that exact person — see
+ * launchOwnership.ts. A v1 context can never be bound to an owner.
+ */
+export const LAUNCH_CONTEXT_SCHEMA_VERSION_V2 = "investscape-launch-context.v2";
 export const RESULT_REFERENCE_SCHEMA_VERSION = "investscape-result-reference.v1";
 
 /** The only analysis type the v0.1/v0.2 gateway issues. */
@@ -132,19 +139,36 @@ export const launchPropertySchema = z
   })
   .strict();
 
-export const launchContextSchema = z
+const launchContextFields = {
+  launchSessionId: uuidShape,
+  analysisType: z.enum(ANALYSIS_TYPES),
+  modules: z.array(z.string().min(1).max(64)).max(32),
+  permittedScopes: z.array(z.string().min(1).max(64)).max(32),
+  redactedScopes: z.array(z.string().min(1).max(64)).max(32).default([]),
+  expiresAt: z.string().datetime(),
+  context: z.object({ property: launchPropertySchema }).strict(),
+  correlationId: z.string().min(1).max(128),
+};
+
+export const launchContextV1Schema = z
+  .object({ schemaVersion: z.literal(LAUNCH_CONTEXT_SCHEMA_VERSION), ...launchContextFields })
+  .strict();
+
+export const launchContextV2Schema = z
   .object({
-    schemaVersion: z.literal(LAUNCH_CONTEXT_SCHEMA_VERSION),
-    launchSessionId: uuidShape,
-    analysisType: z.enum(ANALYSIS_TYPES),
-    modules: z.array(z.string().min(1).max(64)).max(32),
-    permittedScopes: z.array(z.string().min(1).max(64)).max(32),
-    redactedScopes: z.array(z.string().min(1).max(64)).max(32).default([]),
-    expiresAt: z.string().datetime(),
-    context: z.object({ property: launchPropertySchema }).strict(),
-    correlationId: z.string().min(1).max(128),
+    schemaVersion: z.literal(LAUNCH_CONTEXT_SCHEMA_VERSION_V2),
+    ...launchContextFields,
+    /** The Relationship OS person (a professional) who issued this launch. */
+    initiatingProfessional: z
+      .object({ relationshipOsPersonRef: z.string().min(1).max(256) })
+      .strict(),
   })
   .strict();
+
+export const launchContextSchema = z.discriminatedUnion("schemaVersion", [
+  launchContextV1Schema,
+  launchContextV2Schema,
+]);
 
 export type LaunchContext = z.infer<typeof launchContextSchema>;
 

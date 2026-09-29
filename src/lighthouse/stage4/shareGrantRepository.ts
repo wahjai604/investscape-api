@@ -22,8 +22,9 @@
  * READ-SIDE SCOPING
  *
  * `findActiveGrantsForRelationship` is what a professional's client-summary
- * read will eventually call. It filters on `destination_relationship_ref` and
- * `recipient_context` and nothing else — there is no parameter that could
+ * read will eventually call. It filters on `destination_relationship_ref`,
+ * `recipient_context`, and the grant's effective window at `now`, and nothing
+ * else — there is no parameter that could
  * widen it into "every grant this client has ever made" or "every analysis
  * this client owns". A grant that was never created for this relationship
  * simply cannot appear, which is the enforcement point for receiver prompt
@@ -32,6 +33,7 @@
 
 import {
   createShareGrant,
+  grantIsInForce,
   type ConsentReceipt,
   type CreateShareGrantInput,
   type ShareCreationResult,
@@ -53,14 +55,17 @@ export interface ShareGrantRepository {
   /** The client's OWN active grants. */
   findActiveGrantsForClient(clientUserRef: string): Promise<readonly ShareGrant[]>;
   /**
-   * Active grants addressed to a specific relationship + recipient context.
-   * Must NOT be usable to list a client's unshared analyses — only grants
-   * that were explicitly created for this (relationship, context) pair can
-   * ever appear.
+   * Grants addressed to a specific relationship + recipient context that are
+   * IN FORCE at `now`: state active, effective_from <= now, and not past
+   * expires_at. Must NOT be usable to list a client's unshared analyses —
+   * only grants that were explicitly created for this (relationship, context)
+   * pair can ever appear, and a time-expired grant whose state has not yet
+   * been swept is excluded too.
    */
   findActiveGrantsForRelationship(
     destinationRelationshipRef: string,
     recipientContext: string,
+    now: Date,
   ): Promise<readonly ShareGrant[]>;
   /**
    * Compare-and-set revoke. Ownership and version are enforced inside the
@@ -201,14 +206,17 @@ export class SqlShareGrantRepository implements ShareGrantRepository {
   async findActiveGrantsForRelationship(
     destinationRelationshipRef: string,
     recipientContext: string,
+    now: Date,
   ): Promise<readonly ShareGrant[]> {
     const result = await this.#client.query<Record<string, unknown>>(
       `select ${GRANT_COLUMNS} from lighthouse.share_grants
         where destination_relationship_ref = $1
           and recipient_context = $2
           and state = 'active'
+          and effective_from <= $3
+          and (expires_at is null or expires_at > $3)
         order by created_at asc`,
-      [destinationRelationshipRef, recipientContext],
+      [destinationRelationshipRef, recipientContext, now.toISOString()],
     );
     return result.rows.map(grantFromRow);
   }
@@ -275,13 +283,41 @@ export class InMemoryShareGrantRepository implements ShareGrantRepository {
   async findActiveGrantsForRelationship(
     destinationRelationshipRef: string,
     recipientContext: string,
+    now: Date,
   ): Promise<readonly ShareGrant[]> {
     return [...this.#grants.values()].filter(
       (g) =>
         g.destinationRelationshipRef === destinationRelationshipRef &&
         g.recipientContext === recipientContext &&
-        g.lifecycle.state === "active",
+        grantIsInForce(g, now),
     );
+  }
+
+  /**
+   * Link-unlink cascade for the in-memory link store. The SQL equivalent runs
+   * inside SqlLinkRepository.revokeLink's transaction; this is its in-process
+   * twin and is only called from InMemoryLinkRepository.revokeLink.
+   */
+  revokeAllForLink(crossProductLinkId: string, clientUserRef: string, now: Date): readonly string[] {
+    const revoked: string[] = [];
+    for (const grant of this.#grants.values()) {
+      if (
+        grant.crossProductLinkId !== crossProductLinkId ||
+        grant.clientUserRef !== clientUserRef ||
+        grant.lifecycle.state !== "active"
+      ) continue;
+      this.#grants.set(grant.shareGrantId, {
+        ...grant,
+        lifecycle: {
+          ...grant.lifecycle,
+          state: "revoked",
+          version: grant.lifecycle.version + 1,
+          occurredAt: now.toISOString(),
+        },
+      });
+      revoked.push(grant.shareGrantId);
+    }
+    return revoked;
   }
 
   async revoke(

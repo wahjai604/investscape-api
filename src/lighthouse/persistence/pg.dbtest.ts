@@ -172,8 +172,10 @@ test("launch-session binding is unique — two landing requests cannot create tw
   const session = "11111111-2222-4333-8444-" + Date.now().toString().slice(-12);
   const insert = (analysisId: string) => client!.query(
     `insert into lighthouse.launch_analysis_bindings
-       (launch_session_id, analysis_id, analysis_type, correlation_id, property_ref)
-     values ($1, $2, 'investment_quick_review', 'corr-1', 'prop-1')
+       (launch_session_id, analysis_id, analysis_type, correlation_id, property_ref,
+        professional_actor_ref, operating_context, initiator_person_ref, cross_product_link_id)
+     values ($1, $2, 'investment_quick_review', 'corr-1', 'prop-1',
+             'actor-pro-1', 'professional_assisted', 'ros-person-1', 'link-1')
      on conflict (launch_session_id) do nothing
      returning analysis_id`,
     [session, analysisId],
