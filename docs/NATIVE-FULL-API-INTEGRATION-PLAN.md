@@ -1,0 +1,143 @@
+# Native Full API integration plan
+
+Prepared 2026-10-03 UTC. Design preparation only; no runtime integration or deployment.
+
+## Baseline and verified evidence
+
+Repository: wahjai604/investscape-api. Isolated branch: feat/native-full-api-adapter.
+Remote master was rechecked against e2a5ddf216a029ec7fc1f4e0d36dc848375bd53f and identical before branch creation.
+
+Railway production currently sources master, with RAILPACK and checkSuites:false. Do not merge or push integration to master as a staging mechanism: the connected branch can deploy independently of this plan.
+
+The deployed commit installs vendor/investscape-calc-engine-1.0.0.tgz. Downloaded archive SHA-512 matches package-lock.json:
+6VdHUw0fZf/LhyXE9CUxKNruwIb9bv7N6WL+3i6M/D8ZtFqc3EpQdZVZeUQCIuAs3wHi3bQNB/cl9PNHjDWV2w==
+
+Its UMD and ESM exports include calculateCapitalStack, calculateFinancingTable, calculateBudgetRollup, calculateSourcesUses and calculateAcquisitionStructure. Both distributions independently produced exact complete results against all 249 existing bounded Full golden cases using the extracted Full functions. This is bounded compatibility evidence, not an engine correctness or source-lineage audit.
+
+Package UMD LF-normalized SHA-256:
+8617fcb05b31e15ab9da46cc85cc50da179b93319f1eedf01c7f4b65d66a5c47
+The embedded reference script has a different fingerprint; do not assert byte identity.
+
+Package E78/E80/E81/E82 contain actual implementations. The inspected existing HTTP route src/routes/E78-financing-table.ts still returns a stub. The new Full operation must directly inject package functions into the shared adapter, not call individual HTTP routes.
+
+Startup observations: engine auth off, session verifier unconfigured, CORS allowlist one origin, rate 600/min per caller with forwarded IP ignored, E85 zoning disabled. These logs are not fresh endpoint verification. No secrets were retrieved.
+
+## Dependencies and release boundary
+
+The corrected shared adapter local checkpoint SHA is pending. No final tarball hash or GitHub availability is established.
+Reported package: investscape-dev-calc 0.10.0-p2-6b, CommonJS main src/index.js, private:true, UNLICENSED, no files allowlist.
+
+Before packaging:
+1. Confirm corrected checkpoint and source hashes.
+2. Review npm pack --dry-run output explicitly.
+3. Add or use a reviewed runtime-only packaging allowlist. Include source, package metadata and necessary documentation/license; exclude goldens, parity/build tools, old Quick dist artifacts and tests unless intentionally needed.
+4. Record archive SHA-256 and SHA-512 integrity, adapter version and source checkpoint; check install via npm ci in a clean isolated checkout.
+5. Preserve current calc vendored archive. Never infer that package version alone verifies engine lineage.
+6. Server manifest supplies declared adapter identity and separately verified artifact integrity. The adapter's own caller-declared engine identity remains unverified.
+
+## Proposed isolated changes
+
+- vendor/investscape-dev-calc-<reviewed-version>.tgz
+- package.json and package-lock.json
+- src/development/engineManifest.ts
+- src/development/transport.ts
+- src/routes/development/full.ts
+- minimal mount in src/routes/index.ts
+- focused tests for dependencies, transport, auth and route contract
+
+Do not modify Lighthouse/Relationship OS behavior, existing engine routes, other sessions' changes, Railway production settings or E85 gates.
+
+## Authenticated stateless endpoint
+
+Proposed route: POST /v1/development/full/calculate.
+Accept full-adapter-1 requests only. Request inputRevision is a nonnegative JSON-safe integer. No body-supplied user, project-owner or engine identifier grants authority.
+
+New route gate defaults OFF and returns 503 before authentication or calculation.
+With route enabled, unconfigured verifier returns 503. Missing/invalid Bearer session returns opaque 401. Reuse existing session verification capabilities without enabling the global engine-auth flag for every old route.
+
+Confirmed source environment names:
+- SUPABASE_JWT_ISSUER
+- SUPABASE_JWKS_URL (prefer asymmetric verification)
+- SUPABASE_JWT_AUDIENCE (source default authenticated)
+
+Confirm the correct InvestScape Supabase project and issuer before configuring staging. Do not invent values or print keys. Do not use service-role credentials in WeWeb.
+
+The server supplies deps.CALC and bounded engine identity. Full wraps only devstudioCompute; RLV, staged, tax, handoff and E85 remain separate.
+No saving in this endpoint. Future persistence requires server-derived owner identity and explicit project authorization.
+
+HTTP policy:
+- malformed JSON/envelope: 400
+- body limit: 413
+- invalid or missing session: 401
+- feature/verifier unavailable: 503
+- rate denied: 429
+- unexpected infrastructure exception: generic 500
+- authenticated adapter outcomes: 200 with status invalid/incomplete/unavailable/error/ok/partial
+
+Input adapter failures remain distinguishable from dependency/runtime errors. Never return stack traces or log complete financial inputs/tokens.
+
+## Lossless transport boundary
+
+Do not pass raw adapter output directly through JSON.stringify/res.json.
+JSON drops undefined, turns NaN and infinities into null, changes -0 to 0, and rejects cycles. A partial result can contain unavailable branches.
+
+Propose independent transport contract full-api-transport-1:
+- transportVersion
+- resultMetadata: approved JSON-safe status/revision/version/availability/disclosure metadata
+- encodedResult: tagged complete adapter result
+- deploymentIdentity: server manifest
+
+Use an all-nodes tagged tuple tree: ['null'], ['undefined'], ['boolean', value], ['string', value], ['number', finiteValue], ['negativeZero'], ['nan'], ['positiveInfinity'], ['negativeInfinity'], ['array', nodes], ['object', orderedKeyNodePairs]. Object keys never collide with tag sentinels. Reject unknown tags, duplicate keys, wrong arity and nonfinite values under the number tag. Decode with Object.create(null)/defineProperty; never merge decoded keys into global prototypes. Reject sparse arrays and extra array properties unless a later contract explicitly supports them. Preserve structural values and own undefined properties, not shared reference identity.
+Bound encoder/decoder depth, node count, string length, array length and total response bytes. Measure the 600-month maximum fixture before choosing limits: the adapter has 100000-node budgets per branch, so a 100000-node total transport budget is not equivalent. Any deliberately stricter transport refusal must be explicit and tested. Reject cycles, getters/accessors, symbols/functions/BigInt and unsupported shapes rather than silently substituting values. An unencodable response returns a bounded transport error with no raw/display permission.
+
+Requests use a small JSON-compatible envelope. Native numeric inputs should be raw decimal text strings, preserving '-0'; booleans/enums remain their contract types. Keep missing fields, null and blank distinct. Do not pass JavaScript undefined through the wire: omit it deliberately and acknowledge that explicit undefined versus missing adapter identities can differ. The client must compute freshness against the exact transmitted request representation, not its pre-serialization object. If arbitrary exact request category preservation is required later, use the same tagged codec for requests under a separate transport version.
+
+The client decodes before calling fullResultMatchesRequest. Freshness requires exact kind, contract, mode, revision, inputIdentity and packageVersion plus the intended engine identity policy. Freshness alone NEVER grants display permission: status and section availability must be checked independently.
+
+Keep production raw calculations and adapter results unchanged. Tagged transport is an outer protocol, not a replacement golden format. Supply a reviewed shared browser decoder before native Full wiring.
+
+## Staging and acceptance gates
+
+1. Corrected adapter checkpoint and runtime tarball reviewed; no unresolved local-only dependency.
+2. Clean npm ci, TypeScript/build checks and existing maintained suite.
+3. Both installed package formats retain 249-case bounded Full equality; maintain permanent delivery tests rather than one-off evidence.
+4. Transport round trips preserve undefined, -0, nonfinite categories, property order and nested optional failures. Explicit rejection tests exercise cycles/limit exhaustion/unexpected shapes.
+5. Adapter statuses, conditional inactive values, month limits, immutability and stale/version mismatches covered.
+6. Route default-off, unconfigured verifier, absent/expired/wrong-signature/wrong-issuer/wrong-audience token and valid session covered without real secrets in fixtures.
+7. Use isolated staging environment/service on the feature branch. Verify exact WeWeb preview origin in CORS preflight with Authorization and POST; Bearer auth does not require browser credential cookies.
+8. Test native decoded results, partial sections, stale rejection, network errors, and no accidental saving/auth claims.
+9. Report tested deployment commit, package/archive identities and actual browser evidence separately.
+10. Only consider production rollout after these gates and a reviewed rollout/rollback. This document authorizes no production deployment.
+
+E85 remains NOT_RELEASED and AS_OF DISABLED. No legal readiness or financial correctness is established.
+
+## Isolated implementation checkpoint (2026-10-03 UTC)
+
+The feature branch now adds a default-off stateless Full router and reviewed
+runtime tarball. No production deployment/configuration was changed.
+Adapter checkpoint 175587843b0aca4ef0d1c9f54ec112962ab24a79 comes from the reviewed
+P2-6C export metadata; no claim that this checkpoint is pushed is made.
+The archive is SHA-256 verified and installed through the lockfile.
+
+The actual response is {transportVersion, encodedResult, deploymentIdentity}.
+encodedResult is the codec's versioned JSON text, carrying the complete adapter
+result. No separate duplicated resultMetadata is delivered. Clients must decode
+it and apply freshness AND status/section display gates. The encoder/decoder
+is a Node module (Buffer-based); browser decoder delivery is still pending.
+
+Measured bounded fixtures: 600-month senior-only result encoded to 204501 bytes;
+600-month active mezz/presale fixture encoded to 248211 bytes. These examples
+are not a proof of maximum output size. Limits remain explicit fail-closed
+operational policy. Nonenumerable business properties are deliberately rejected
+by transport even if an injected adapter result accepted them; they cause a
+bounded delivery error, not silently incomplete raw data.
+
+Route tests include actual cryptographic JWT validation for issuer, audience,
+expiration and signature with local test-only keys. Synthetic token tests remain
+separately labelled. A loopback RS256 JWKS fixture also exercises the actual environment factory,
+including wrong signatures/claims and missing expiration. Production creation
+requires asymmetric JWKS; shared-secret
+and dev-token fallbacks are not configured by the new route.
+
+Pending: real Supabase JWT/JWKS staging configuration, WeWeb origin CORS and
+browser decoder acceptance, production rollout, and saved-project authorization.
