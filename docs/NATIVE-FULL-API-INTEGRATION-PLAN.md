@@ -110,3 +110,34 @@ Keep production raw calculations and adapter results unchanged. Tagged transport
 10. Only consider production rollout after these gates and a reviewed rollout/rollback. This document authorizes no production deployment.
 
 E85 remains NOT_RELEASED and AS_OF DISABLED. No legal readiness or financial correctness is established.
+
+## Isolated implementation checkpoint (2026-10-03 UTC)
+
+The feature branch now adds a default-off stateless Full router and reviewed
+runtime tarball. No production deployment/configuration was changed.
+Adapter checkpoint 175587843b0aca4ef0d1c9f54ec112962ab24a79 comes from the reviewed
+P2-6C export metadata; no claim that this checkpoint is pushed is made.
+The archive is SHA-256 verified and installed through the lockfile.
+
+The actual response is {transportVersion, encodedResult, deploymentIdentity}.
+encodedResult is the codec's versioned JSON text, carrying the complete adapter
+result. No separate duplicated resultMetadata is delivered. Clients must decode
+it and apply freshness AND status/section display gates. The encoder/decoder
+is a Node module (Buffer-based); browser decoder delivery is still pending.
+
+Measured bounded fixtures: 600-month senior-only result encoded to 204501 bytes;
+600-month active mezz/presale fixture encoded to 248211 bytes. These examples
+are not a proof of maximum output size. Limits remain explicit fail-closed
+operational policy. Nonenumerable business properties are deliberately rejected
+by transport even if an injected adapter result accepted them; they cause a
+bounded delivery error, not silently incomplete raw data.
+
+Route tests include actual cryptographic JWT validation for issuer, audience,
+expiration and signature with local test-only keys. Synthetic token tests remain
+separately labelled. A loopback RS256 JWKS fixture also exercises the actual environment factory,
+including wrong signatures/claims and missing expiration. Production creation
+requires asymmetric JWKS; shared-secret
+and dev-token fallbacks are not configured by the new route.
+
+Pending: real Supabase JWT/JWKS staging configuration, WeWeb origin CORS and
+browser decoder acceptance, production rollout, and saved-project authorization.
