@@ -122,8 +122,10 @@ The archive is SHA-256 verified and installed through the lockfile.
 The actual response is {transportVersion, encodedResult, deploymentIdentity}.
 encodedResult is the codec's versioned JSON text, carrying the complete adapter
 result. No separate duplicated resultMetadata is delivered. Clients must decode
-it and apply freshness AND status/section display gates. The encoder/decoder
-is a Node module (Buffer-based); browser decoder delivery is still pending.
+it and apply freshness AND status/section display gates. The server encoder/decoder is a Node module (Buffer-based). A separate
+Node-free browser script now exposes the strict matching decoder and API
+envelope decoder. Its six Node/empty-VM tests pass; actual WeWeb browser
+execution and page wiring remain pending.
 
 Measured bounded fixtures: 600-month senior-only result encoded to 204501 bytes;
 600-month active mezz/presale fixture encoded to 248211 bytes. These examples
