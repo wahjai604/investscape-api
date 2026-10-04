@@ -1,0 +1,17 @@
+{
+  "buildIdentity": "full-client-1",
+  "targetCalculationPackageVersion": "0.10.0-p2-6b",
+  "contractVersion": "full-adapter-1",
+  "transportVersion": "full-api-transport-1",
+  "sourcePins": {
+    "full-adapter.js": "c3e1c819d5fb8a0d14bde24e1692de533e9907ed58f995cfc7aa799dbdabda0d",
+    "version.js": "1c675949b218b6da9ee421ad699078d95d259aa56c2cfe062f753abeff48c83d",
+    "browser-decoder.js": "c4759a2adf6dc2ad0adb39ab620041feb068dbe09ad9fe0dad1d916d93f0da0d"
+  },
+  "artifact": "investscape-full-client.full-client-1.target-0.10.0-p2-6b.js",
+  "bytes": 17483,
+  "sha256": "8abbad1340077073ab4b31f3a9a4e10ee7c7a8b6aa9ea55e52beec21540b4f26",
+  "helperSelection": "exact-source-text-closure",
+  "apiReferenceCommit": "fec3213eef2ff28ddd2716bd49184a25b6ab0028",
+  "runtimeArchiveSha256": "0d1f079e121dd16093a08c50b3a025447efed2b9caa420918e2c4ff38502208d"
+}

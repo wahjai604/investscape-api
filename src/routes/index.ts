@@ -17,6 +17,7 @@
  */
 
 import { Router } from "express";
+import { fullClientAssetsRouter } from "./development/full-client-assets.ts";
 import { fullRouterFromEnv } from "./development/full.ts";
 
 // Financial engines (E1-E27) — existing 8
@@ -101,6 +102,7 @@ import miServiceRouter from "./market-intelligence/E66-service.js";
 import creCapRateBenchmarkRouter from "./market-intelligence/E86-cap-rate-benchmark.js";
 
 const router = Router();
+router.use(fullClientAssetsRouter());
 router.use(fullRouterFromEnv());
 
 // Financial, Economic & Tax (28 + 16 + 8 = 52 engines: E1-E28, E29-E45, E46-E53; E36 excluded)
