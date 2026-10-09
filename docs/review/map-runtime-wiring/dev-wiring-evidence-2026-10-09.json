@@ -1,0 +1,640 @@
+{
+  "evidenceDate": "2026-10-09",
+  "observedAt": "2026-10-09T21:32:37Z",
+  "scope": "Read-only non-secret platform and Postgres catalog metadata; source/wiring review only",
+  "authorization": {
+    "at": "2026-10-09T21:24:03Z",
+    "instruction": "Go ahead with concrete Dev wiring review; no deployment/publication/activation authority"
+  },
+  "railway": {
+    "label": "Freshly verified",
+    "project": {
+      "id": "227cdcb9-8e2c-4cf2-8e96-805454eccf56",
+      "name": "InvestScape Native Full Staging",
+      "workspaceName": "wahjai604's Projects"
+    },
+    "environment": {
+      "id": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+      "name": "production",
+      "isEphemeral": false
+    },
+    "service": {
+      "id": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+      "name": "native-full-staging-api",
+      "state": "live",
+      "source": {
+        "repo": "wahjai604/investscape-api",
+        "branch": "feat/native-full-api-adapter",
+        "checkSuites": false
+      },
+      "regions": [
+        "us-east4-eqdc4a"
+      ],
+      "replicas": 1,
+      "ipv6EgressEnabled": false
+    },
+    "domain": "native-full-staging-api-production.up.railway.app",
+    "deployment": {
+      "id": "c0f1658f-481b-4579-a297-4ba02963436e",
+      "status": "SUCCESS",
+      "createdAt": "2026-10-04T09:32:26.907Z",
+      "repository": "wahjai604/investscape-api",
+      "branch": "feat/native-full-api-adapter",
+      "commit": "2cec0ab519513a34aabbad909c4f24b1472d385c"
+    },
+    "sharedVariableNamesCount": 8,
+    "noVariableValuesRead": true,
+    "existingMapServiceFound": false,
+    "inventoryScope": "Only explicitly identified InvestScape Native Full Staging project; not a whole-account assertion",
+    "patchDiscrepancy": {
+      "resolved": false,
+      "describeEnvironmentStaged": null,
+      "describeServiceStaged": null,
+      "describeServiceFieldChanges": 0,
+      "stagedChangesToolStaged": null,
+      "getStatusStagedChanges": null,
+      "statusPendingWork": [
+        {
+          "id": "patch:2473a18c-53e2-47c1-9857-d8de0b334e14",
+          "kind": "EnvironmentPatch",
+          "status": "staged",
+          "changes": [],
+          "startedAt": "2026-10-03T14:21:08.575Z"
+        }
+      ],
+      "healthPendingWork": [
+        {
+          "id": "patch:2473a18c-53e2-47c1-9857-d8de0b334e14",
+          "kind": "EnvironmentPatch",
+          "status": "staged",
+          "changes": [],
+          "startedAt": "2026-10-03T14:21:08.575Z"
+        }
+      ],
+      "interpretation": "Old empty patch still reported by status/health. Staged, not applying; cause unknown. No accept/discard/cancel. Exclude this environment from recommended separate map project."
+    },
+    "health": {
+      "state": "online",
+      "replicas": {
+        "running": 1,
+        "crashed": 0,
+        "total": 1
+      },
+      "endpointAcceptance": false
+    }
+  },
+  "supabase": {
+    "label": "Freshly verified",
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir",
+    "region": "ca-central-1",
+    "status": "ACTIVE_HEALTHY",
+    "catalog": {
+      "role_attributes": [
+        {
+          "rolname": "mi_map_owner",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": -1,
+          "rolcreaterole": false,
+          "rolreplication": false
+        },
+        {
+          "rolname": "mi_map_reader",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": -1,
+          "rolcreaterole": false,
+          "rolreplication": false
+        },
+        {
+          "rolname": "mi_map_access_writer",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": -1,
+          "rolcreaterole": false,
+          "rolreplication": false
+        },
+        {
+          "rolname": "mi_map_ingester",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": -1,
+          "rolcreaterole": false,
+          "rolreplication": false
+        },
+        {
+          "rolname": "mi_map_reader_login",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": 2,
+          "rolcreaterole": false,
+          "rolreplication": false
+        },
+        {
+          "rolname": "mi_map_access_login",
+          "rolsuper": false,
+          "rolcanlogin": false,
+          "rolcreatedb": false,
+          "rolbypassrls": false,
+          "rolconnlimit": 2,
+          "rolcreaterole": false,
+          "rolreplication": false
+        }
+      ],
+      "shared_path_counts": [
+        {
+          "runtime_role": "mi_map_reader_login",
+          "database_connect": true,
+          "public_schema_create": false,
+          "reachable_other_relation_count": 0,
+          "reachable_non_system_function_count": 0,
+          "reachable_non_system_security_definer_count": 0
+        },
+        {
+          "runtime_role": "mi_map_access_login",
+          "database_connect": true,
+          "public_schema_create": false,
+          "reachable_other_relation_count": 0,
+          "reachable_non_system_function_count": 0,
+          "reachable_non_system_security_definer_count": 0
+        }
+      ],
+      "private_table_count": 9,
+      "private_schema_exists": true,
+      "runtime_private_privileges": [
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "access_admin_grants",
+          "schema_usage": true,
+          "column_update": true,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": true,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "approval_audit",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "catalog_releases",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": true,
+          "can_select": true,
+          "can_update": true,
+          "table_name": "member_grants",
+          "schema_usage": true,
+          "column_update": true,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "observations",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "publication_heads",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "rights_controls",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "schema_receipts",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "source_products",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "access_admin_grants",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "approval_audit",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "catalog_releases",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "member_grants",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "observations",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "publication_heads",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "rights_controls",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": false,
+          "can_update": false,
+          "table_name": "schema_receipts",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        },
+        {
+          "role_name": "mi_map_reader_login",
+          "can_insert": false,
+          "can_select": true,
+          "can_update": false,
+          "table_name": "source_products",
+          "schema_usage": true,
+          "column_update": false,
+          "schema_create": false,
+          "broad_mutation": false
+        }
+      ],
+      "privileged_membership_paths": [
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_reader_login",
+          "privileged_role": "mi_map_owner"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_reader_login",
+          "privileged_role": "service_role"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_reader_login",
+          "privileged_role": "supabase_admin"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_reader_login",
+          "privileged_role": "authenticator"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_reader_login",
+          "privileged_role": "postgres"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_access_login",
+          "privileged_role": "mi_map_owner"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_access_login",
+          "privileged_role": "service_role"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_access_login",
+          "privileged_role": "supabase_admin"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_access_login",
+          "privileged_role": "authenticator"
+        },
+        {
+          "member": false,
+          "can_set": false,
+          "inherits": false,
+          "runtime_role": "mi_map_access_login",
+          "privileged_role": "postgres"
+        }
+      ],
+      "all_private_tables_forced_rls": true,
+      "gateway_private_access_denied": true,
+      "private_schema_owner_is_map_owner": true,
+      "runtime_private_function_execute_denied": true
+    },
+    "catalogFollowup": {
+      "all_non_system_path_counts": [
+        {
+          "runtime_role": "mi_map_reader_login",
+          "reachable_other_relation_count": 0,
+          "reachable_other_sequence_count": 0
+        },
+        {
+          "runtime_role": "mi_map_access_login",
+          "reachable_other_relation_count": 0,
+          "reachable_other_sequence_count": 0
+        }
+      ],
+      "runtime_column_update_privileges": [
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "access_admin_grants",
+          "column_name": "active"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "issuer"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "subject"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "grant_id"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "revision"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "approval_method"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "approved_at"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "approved_by"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "active"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "revoked"
+        },
+        {
+          "role_name": "mi_map_access_login",
+          "table_name": "member_grants",
+          "column_name": "expires_at"
+        }
+      ],
+      "private_tables_all_owned_by_map_owner": true
+    },
+    "policyMetadata": {
+      "admin_update_policies": [
+        {
+          "command": "w",
+          "policy_name": "admin_lock",
+          "using_is_false": false,
+          "with_check_is_false": true
+        }
+      ],
+      "private_schema_policy_count": 19
+    },
+    "acceptanceChecks": {
+      "roleCount": true,
+      "allRolesNoLoginAndUnprivileged": true,
+      "runtimeRoleLimitTwo": true,
+      "nineForcedRlsTables": true,
+      "mapOwner": true,
+      "gatewayDenied": true,
+      "privateFunctionExecuteDenied": true,
+      "noPrivilegedMembershipPaths": true,
+      "noSharedCatalogReachability": true,
+      "readerReadOnly": true,
+      "writerScope": true,
+      "adminColumnGrantOnlyActive": true,
+      "adminUpdateWithCheckFalse": true,
+      "policyCountNineteen": true
+    },
+    "passed": true,
+    "limitation": "Effective catalog privileges under administrative connector; no independent runtime-principal login, TLS hostname/CA validation, policy execution or app rows queried",
+    "querySource": "dev-wiring-catalog.readonly.sql",
+    "queryCorrection": "Sequence privilege predicate was evaluated on an index before relkind filtering; two read-only attempts errored. Corrected MATERIALIZED sequence/relation catalog sets completed; no application mutation."
+  },
+  "weweb": {
+    "label": "Freshly verified",
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "name": "Investscape Dev",
+    "mcpReadSucceeded": true,
+    "publications": "No publications yet",
+    "projectPlan": "Free",
+    "publishDialog": "Only offers Publish your app; no assigned app origin exposed",
+    "published": false,
+    "appOrigin": null,
+    "domainManagementCurrent": "No additional view exposed by two observed selections; earlier Hosting-plan requirement remains historical UI evidence",
+    "session": {
+      "label": "Historical assistant-verified earlier this day",
+      "receipt": "member-session-execution-2026-10-09.json",
+      "status": "CAPABILITIES_CONFIRMED",
+      "at": "2026-10-09T21:17:15.213Z",
+      "noRerun": true
+    },
+    "signing": {
+      "label": "Historical assistant-verified metadata earlier this day",
+      "receipt": "supabase-signing-evidence-2026-10-09.json",
+      "displayedType": "ECC (P-256)",
+      "documentedAlgorithm": "ES256",
+      "actualJwtAcceptance": false
+    }
+  },
+  "source": {
+    "label": "Source intention",
+    "commit": "53b60f7ff2e8f84cd6e1a3d45f5b35ee2e8c8ca4",
+    "startup": "src/index.ts",
+    "start": "node dist/index.js",
+    "findings": [
+      "Map composition receives no resources; flags alone cannot make map routes ready",
+      "Current startup also mounts calculation/Lighthouse/static surfaces",
+      "Map pool helper exists, but no map runtime pool constructor/credential binding or dedicated map entrypoint exists",
+      "Separate map-only entrypoint is an implementation prerequisite; it must not import src/index.ts or Lighthouse bootstrap"
+    ],
+    "verifier": "src/market-intel/map/auth.ts",
+    "jwtRequirements": {
+      "issuer": "https://hwhkgrwikczwztfnsjir.supabase.co/auth/v1",
+      "audience": "authenticated",
+      "algorithms": [
+        "ES256",
+        "RS256"
+      ],
+      "requiredClaims": [
+        "iss",
+        "aud",
+        "sub",
+        "exp"
+      ],
+      "role": "authenticated",
+      "is_anonymous": false,
+      "clockTolerance": 0
+    },
+    "host": "ui/map-supabase-session-host.js",
+    "hostShapeRequirementsNotInspectedOnRealSession": [
+      "nonempty bounded user.id",
+      "bounded access_token with JWT shape"
+    ]
+  },
+  "performed": {
+    "platformMutation": false,
+    "environmentValueOrConnectionStringRead": false,
+    "credentialBinding": false,
+    "roleEnablement": false,
+    "adminAppointment": false,
+    "tableOrUserRowsQueried": false,
+    "catalogQueries": true,
+    "realTokenRead": false,
+    "realSessionRerun": false,
+    "jwksOrApplicationEndpointProbe": false,
+    "databaseSchemaChange": false,
+    "serviceOrProjectCreated": false,
+    "publication": false,
+    "deployment": false,
+    "mapActivation": false
+  },
+  "readiness": {
+    "readyToImplementOfflineHost": true,
+    "readyToBind": false,
+    "readyToDeploy": false,
+    "readyToActivate": false
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "status": "review-complete-binding-blocked",
+  "preparedAt": "2026-10-09T21:32:37Z",
+  "evidence": "dev-wiring-evidence-2026-10-09.json",
+  "targetProposal": {
+    "label": "Recommendation, not created/approved for deployment",
+    "platform": "Railway",
+    "projectName": "InvestScape Market Intel Dev",
+    "environmentName": "development",
+    "serviceName": "market-intel-api-dev",
+    "projectId": null,
+    "environmentId": null,
+    "serviceId": null,
+    "apiOrigin": null,
+    "repository": "wahjai604/investscape-api",
+    "reviewBranch": "review/market-intel-map-access-2026-10-08",
+    "reviewBaseCommit": "53b60f7ff2e8f84cd6e1a3d45f5b35ee2e8c8ca4",
+    "deploymentCommit": null,
+    "sourceAttachment": "Do not attach an auto-deploy source during empty-resource preparation; pin a separately accepted implementation commit later",
+    "copyExistingVariables": false,
+    "replicas": 1,
+    "processes": 1,
+    "region": "us-east4-eqdc4a",
+    "regionLabel": "Proposed; observed available on existing service, latency/availability on new target not verified",
+    "preDeployCommand": null,
+    "automaticMigrations": false
+  },
+  "appProposal": {
+    "project": "Investscape Dev",
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "hosting": "WeWeb-managed Staging if selected plan includes Staging",
+    "entitlementVerified": false,
+    "purchaseOrUpgrade": false,
+    "publication": false,
+    "exactOrigin": null,
+    "adminOrigin": null,
+    "doNotDeriveOriginFromEditorOrProjectId": true
+  },
+  "database": {
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir",
+    "schema": "mi_map_private",
+    "mode": "Supavisor shared session pooler",
+    "port": 5432,
+    "modeLabel": "Documentation-supported proposal for persistent IPv4 backend; actual scoped connections unverified",
+    "actualPoolerHost": null,
+    "pools": [
+      {
+        "principal": "mi_map_reader_login",
+        "secretBindingName": "MI_MAP_READER_DB_CONFIG",
+        "max": 2
+      },
+      {
+        "principal": "mi_map_access_login",
+        "secretBindingName": "MI_MAP_ACCESS_DB_CONFIG",
+        "max": 2
+      }
+    ],
+    "secretValues": null,
+    "tls": {
+      "rejectUnauthorized": true,
+      "hostnameVerification": true,
+      "caSource": null,
+      "caSha256": null,
+      "serverName": null,
+      "acceptance": false
+    },
+    "independentRuntimeConnectionAcceptance": false,
+    "noFallbackToLighthouseOrPrivilegedRoles": true,
+    "noBrowserDataApiAccess": true,
+    "buildPoolsOnlyWhenAnyMapFlagIsEnabled": true
+  },
+  "initialNonSecretPosture": {
+    "MI_MAP_READ_ENABLED": "false",
+    "MI_MAP_ADMIN_ENABLED": "false",
+    "MI_MAP_AUTH_ISSUER": "https://hwhkgrwikczwztfnsjir.supabase.co/auth/v1",
+    "MI_MAP_AUTH_AUDIENCE": "authenticated",
+    "CORS_ALLOWED_ORIGINS": null,
+    "MI_MAP_ADMIN_ORIGIN": null
+  },
+  "prerequisites": [
+    {
+      "id": "SOURCE_HOST",
+      "status": "implementation-required",
+      "work": "Dedicated map-only runtime entrypoint and explicit scoped pg pool construction/injection; no imports of broader app/Lighthouse; disabled startup constructs no pools"
+    },
+    {
+      "id": "APP_ORIGIN",
+      "status": "owner-hosting-selection-and-metadata-required",
+      "work": "Choose WeWeb plan/environment with Staging or approved alternative; obtain exact HTTPS deployed Dev app origin without publishing during review"
+    },
+    {
+      "id": "API_TARGET",
+      "status": "proposal-only",
+      "work": "Create isolated project/environment/service only under later explicit scope; record returned IDs and exact assigned API origin, no source auto-deploy during empty preparation"
+    },
+    {
+      "id": "TLS_CONNECTION",
+      "status": "unknown",
+      "work": "Privately supply each scoped binding and authenticated CA/hostname metadata; separately run acceptance through each actual principal, never postgres/SET ROLE"
+    },
+    {
+      "id": "JWT_HOST",
+      "status": "real-acceptance-pending",
+      "work": "Verify complete host behavior and signed issuer/audience/role/non-anonymous/expiry enforcement without credential/JWT/identity output, and without changing provider"
+    },
+    {
+      "id": "ADMIN_BOOTSTRAP",
+      "status": "owner-appointment-required",
+      "work": "Explicitly appoint a trusted existing Dev member by privately verified issuer/subject; create audited private bootstrap under separate reviewed scope; current sole operator does not imply a grant"
+    },
+    {
+      "id": "ACTIVATION",
+      "status": "not-authorized",
+      "work": "Keep both flags and component disabled until all chosen stage gates and acceptance pass"
+    }
+  ],
+  "operatorStatementsNeeded": [
+    "Choose WeWeb-managed Staging for Investscape Dev and identify a plan/environment that includes it, or specify an approved alternative host; provide the exact Dev app HTTPS origin when exposed.",
+    "Confirm the recommended separate InvestScape Market Intel Dev project / development environment / market-intel-api-dev service when later resource preparation is ready; do not reuse the old staging project or copy its bindings.",
+    "Confirm non-secret scoped connection metadata: project hwhkgrwikczwztfnsjir, actual session-pooler hostname/port, each expected SQL role, and CA/hostname verification receipt. Deliver credentials only through the chosen secret-binding mechanism, never chat or review files.",
+    "Explicitly appoint the intended existing Dev member as the first manual map-access administrator after private identity verification; no JWT or raw user identity is required in this review."
+  ],
+  "acceptanceSequence": [
+    "Implement and test dedicated host offline with synthetic inputs: no pool/JWKS calls while both flags off; no legacy routes; fail closed on missing/malformed binding/TLS; independent principals; bounded budgets and once-only shutdown.",
+    "Review exact hosting/target and non-secret configuration before any external resource/source attachment, credential/LOGIN binding, appointment, publication or deployment.",
+    "Initial explicitly approved Dev deployment keeps flags false and verifies no map DB construction; requires completed map-only entrypoint and concrete source commit.",
+    "Separately authorize scoped runtime role/binding and independent read-only connection acceptance; preserve RLS and shared-path denial; no schema migration or automatic admin grant.",
+    "Complete scoped host/JWT/access-denial acceptance without publishing identities/tokens; inspect client/provider mapping in intended hosted environment.",
+    "Perform any later admin/member bootstrap and activation only within explicit owner scope; tests involving writes or grants need their own concrete acceptance package."
+  ],
+  "sourceValidation": {
+    "currentSourceChanged": false,
+    "syntheticTestsRepeated": false,
+    "priorFullSuite": "624 total / 622 pass / 2 skips, recorded earlier this day",
+    "priorDiagnosticTests": 10,
+    "newMetadataAssertionsPassed": 14
+  },
+  "preserved": {
+    "existingQuickFullProject": true,
+    "connectedBranch": "feat/native-full-api-adapter",
+    "connectedCommit": "2cec0ab519513a34aabbad909c4f24b1472d385c",
+    "oldPatch": "patch:2473a18c-53e2-47c1-9857-d8de0b334e14",
+    "relationshipOs": true,
+    "originalV2Html": true
+  },
+  "readyToBind": false,
+  "readyToDeploy": false,
+  "readyToActivate": false,
+  "next": "Implement dedicated default-off map runtime entrypoint and scoped pool host offline; no live wiring."
+}

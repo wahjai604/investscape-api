@@ -20,7 +20,10 @@
     "environmentId": null,
     "origin": null,
     "commit": null,
-    "recommendation": "Separate explicitly selected Dev candidate service or environment so existing Quick/Full staging stays preserved; provisioning/deployment not requested"
+    "recommendation": "Separate new Railway project recommended; proposal only. Dedicated map-only runtime entrypoint/scoped pool constructor is required before a concrete deployment candidate.",
+    "proposedProject": "InvestScape Market Intel Dev",
+    "proposedEnvironment": "development",
+    "proposedService": "market-intel-api-dev"
   },
   "renderedAppOrigin": null,
   "nonSecretConfigProposal": {
@@ -61,7 +64,7 @@
       "max": 2
     },
     "credentialValues": null,
-    "modeRecommendation": "Supavisor shared session pooler for the currently observed IPv4 staging topology; operator must confirm actual target/role support and non-secret connection mode/TLS receipt",
+    "modeRecommendation": "Documentation-supported Supavisor shared session mode 5432 for proposed persistent IPv4 target, custom runtime roles; actual pooler host/CA/hostname verification and independent scoped connections remain unknown.",
     "poolerHost": null,
     "tls": {
       "rejectUnauthorized": true,
@@ -73,7 +76,14 @@
     "fallbackToLighthouse": false,
     "constructPoolsWhileBothFlagsOff": false,
     "helper": "createMapPoolResources",
-    "ownership": "Neither runtime principal owns objects or has SET/ADMIN/broad-role authority"
+    "ownership": "Neither runtime principal owns objects or has SET/ADMIN/broad-role authority",
+    "catalogPermissionAcceptance": {
+      "receipt": "dev-wiring-evidence-2026-10-09.json",
+      "passed": true,
+      "checks": 14,
+      "observedAt": "2026-10-09T21:32:37Z",
+      "independentRuntimeConnection": false
+    }
   },
   "topologyProposal": {
     "processes": 1,
@@ -85,15 +95,16 @@
     "Installed public accessor, getSession, auth events, stable read and subscription cleanup verified once in editor; complete map-host lifecycle remains unverified",
     "Explicitly non-anonymous/unexpired existing Dev app session verified once in editor; full map-host session shape, cryptographic JWT and deployed API acceptance remain unverified",
     "Exact rendered-app origin and separately selected map API origin/target",
-    "Resolve or expressly exclude contradictory old empty Railway patch",
     "Approved scoped role enablement/secret delivery, connection mode/verified TLS and shared PUBLIC/function-path acceptance",
-    "Trusted private administrator identity match and bootstrap authorization/receipt"
+    "Trusted private administrator identity match and bootstrap authorization/receipt",
+    "Dedicated map-only runtime entrypoint and explicit scoped pool constructor are absent; existing broader startup cannot deploy a ready isolated map service",
+    "Old empty Railway patch discrepancy persists in status/health; exclude existing staging environment through recommended new map project, or resolve before any reuse"
   ],
-  "currentAuthorization": "Owner approval at 2026-10-09T21:14:33Z covers existing Dev app member sign-in and one bounded rerun of the unchanged manual diagnostic. No account creation, map endpoint/persistence diagnostic, role/admin grant, publication, deployment or activation",
+  "currentAuthorization": "Owner go-ahead at 2026-10-09T21:24:03Z covers concrete Dev wiring review and catalog-only/non-secret metadata inspection. No live role/credential binding, administrator appointment, project/service creation, source deployment, WeWeb publication or map activation.",
   "nextInspection": {
     "requiresBrowserFallbackApproval": false,
     "browserFallbackApprovedAt": "2026-10-09T17:05:38Z",
-    "readOnly": false,
+    "readOnly": true,
     "completedEvidence": "ui-metadata-evidence-2026-10-09.json",
     "wewebOutcome": "Legacy Supabase Auth plugin/configured target verified; no version or rendered app origin exposed; no publications yet",
     "supabaseOutcome": "Signed-in target project settings verified; current ECC (P-256), documented ES256, and previous legacy HS256 status observed without key details",
@@ -108,7 +119,10 @@
     "noTokenOrIdentityFieldInspection": true,
     "sessionDiagnosticResult": "CAPABILITIES_CONFIRMED",
     "sessionDiagnosticExecutionReceipt": "member-session-execution-2026-10-09.json",
-    "nextStep": "Review exact intended hosted app origin and separately selected Dev map API candidate; close remaining host lifecycle/JWT acceptance and scoped connection/TLS/role/admin gates within authorized scope before runtime binding"
+    "nextStep": "Implement dedicated default-off map runtime host offline; exact hosting/candidate origin, scoped TLS/runtime connection and private bootstrap still require later concrete acceptance",
+    "devWiringReview": "dev-wiring-review-2026-10-09.md",
+    "devWiringPlan": "dev-wiring-plan.review.json",
+    "devWiringEvidence": "dev-wiring-evidence-2026-10-09.json"
   },
   "readyToBind": false,
   "readyToDeploy": false,
