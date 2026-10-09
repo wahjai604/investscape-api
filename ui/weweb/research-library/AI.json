@@ -1,0 +1,7 @@
+{
+  "metadata":{"name":"investscape-research-library","description":"Member-only browsing of manually approved Research summaries and source links.","keywords":["research","catalog"],"features":["Search and filters","Read-only item details","Session invalidation","Short-lived visible records"],"inherit":[]},
+  "properties":[{"name":"heading","description":"Section heading","type":"string","defaultValue":"Research"},{"name":"enabled","description":"Default-off reviewed-runtime switch","type":"boolean","defaultValue":false},{"name":"apiOrigin","description":"Exact reviewed HTTPS API origin","type":"string","defaultValue":""}],
+  "states":[],"events":[],"localContext":[],"actions":[],"slots":[],"variables":[],
+  "specifications":["Requires an explicitly registered Research session host; does not discover or modify Auth plugins.","No editor-mode requests, automatic loading, writes, full text, localStorage or direct database access.","Clears visible content after at most 30 seconds, when the tab hides, on host invalidation or runtime-property change.","Clears old results before requesting replacements; content is rendered as escaped text.","Inherits surrounding typography/colors; source dates remain unknown when not supplied."],
+  "examples":[{"description":"Default-off source review","example":"{\"heading\":\"Research\",\"enabled\":false,\"apiOrigin\":\"\"}"}],"dependencies":[]
+}

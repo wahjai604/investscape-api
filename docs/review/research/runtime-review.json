@@ -1,0 +1,10 @@
+{
+  "reviewDate":"2026-10-09","sourceOnly":true,
+  "readEnabled":false,"editorEnabled":false,"mounted":false,
+  "databaseSelected":false,"databaseProvisioned":false,"sourceRightsApproved":false,
+  "memberAuthorityBound":false,"editorIdentityBound":false,"sessionHostBound":false,
+  "apiOrigin":null,"hostedAppOrigin":null,"editorOrigin":null,"authIssuerBound":null,
+  "wewebComponentRegistered":false,"wewebPagePlaced":false,"wewebAppPublished":false,
+  "readyToDeploy":false,"readyToActivate":false,"liveMapTesting":"deferred",
+  "maxVisibleSnapshotSeconds":30,"automaticApproval":false,"aiIntegrationMounted":false
+}

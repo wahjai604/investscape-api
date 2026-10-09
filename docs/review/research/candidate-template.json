@@ -1,0 +1,9 @@
+{
+  "action":"stage","expectedRevision":0,"reason":"",
+  "draft":{
+    "id":"","title":"","publisher":"","canonicalUrl":"","geography":[],"topics":[],
+    "publishedAt":null,"retrievedAt":null,"attribution":"","summary":null,
+    "rights":{"mode":"unknown","evidenceReference":null,"checkedAt":null,"validUntil":null,"aiAllowed":false,"note":""},
+    "reviewDueAt":null
+  }
+}

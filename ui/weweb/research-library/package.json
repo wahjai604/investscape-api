@@ -1,0 +1,1 @@
+{"name":"investscape-research-library","version":"1.0.0","private":true,"type":"module","scripts":{"build":"weweb build","serve":"weweb serve"},"devDependencies":{"@weweb/cli":"latest"}}

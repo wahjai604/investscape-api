@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-09",
+  "scope": "offline synthetic source acceptance",
+  "typecheck": "passed",
+  "build": "passed",
+  "fullApiSuite": {
+    "tests": 640,
+    "passed": 638,
+    "failed": 0,
+    "skipped": 2,
+    "skipReason": "existing E85 evidence-dependent skips"
+  },
+  "researchTests": {
+    "tests": 16,
+    "passed": 16
+  },
+  "actualVueBrowser": {
+    "checks": 20,
+    "passed": true,
+    "syntheticOnly": true,
+    "liveWeweb": false
+  },
+  "liveDatabaseChanges": false,
+  "liveAuthBindings": false,
+  "deployment": false,
+  "wewebPublication": false,
+  "mapActivation": false
+}
