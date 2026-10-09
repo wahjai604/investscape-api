@@ -21,7 +21,7 @@ const changeBody = z.object({subject:z.string().min(1).max(256), action:z.enum([
   reason:z.string().trim().min(1).max(500),expiresAt:z.number().finite().positive().optional()}).strict();
 const targetQuery = z.object({subject:z.string().min(1).max(256)}).strict();
 
-/** Independent factory only. No startup imports, implicit enabling, credentials or administrator bootstrap. */
+/** Independent factory used by the default-off scoped composition. No implicit credentials or administrator bootstrap. */
 export function createMapPilotRouter(deps: PilotRouteDeps): Router {
   const router=Router(); const now=deps.now??(()=>Date.now()/1000);
   const fail=(res:Response,status:number,code:string)=>res.status(status).json({error:{code,requestId:res.locals.requestId}});

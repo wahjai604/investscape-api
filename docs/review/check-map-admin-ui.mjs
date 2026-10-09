@@ -1,5 +1,6 @@
 /** Standalone local browser check. Args: Playwright module path; optional browser executable/provider module. */
 import assert from 'node:assert/strict';
+import {resolve} from 'node:path';
 import {mkdir} from 'node:fs/promises';
 import {pathToFileURL,fileURLToPath} from 'node:url';
 import {createMapApiTestFixture} from './map-api-test-fixture.mjs';
@@ -10,11 +11,11 @@ let launch={headless:true};
 if(process.argv[3]){
   if(/\.(mjs|js)$/.test(process.argv[3])){const {default:provider}=await import(pathToFileURL(process.argv[3]).href);
     launch={...launch,args:provider.args,executablePath:await provider.executablePath()};}
-  else launch={...launch,executablePath:process.argv[3],args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']};
+  else launch={...launch,executablePath:process.argv[3],args:['--no-sandbox','--disable-dev-shm-usage','--single-process','--no-zygote','--in-process-gpu','--use-gl=angle','--use-angle=swiftshader']};
 }
 const f=await createMapApiTestFixture();let browser;let checks=0;
 const check=(v,message)=>{assert(v,message);checks++;};
-const output=new URL('./map-admin-evidence/',import.meta.url);await mkdir(output,{recursive:true});
+const output=process.argv[4]?pathToFileURL(resolve(process.argv[4])+'/'):new URL('./map-admin-evidence/',import.meta.url);await mkdir(output,{recursive:true});
 try{
   browser=await chromium.launch(launch);
   const page=await browser.newPage({viewport:{width:1100,height:1000},timezoneId:'America/Vancouver'});const errors=[];
@@ -40,7 +41,7 @@ try{
   check((await page.locator('.review').innerText()).includes('active'),'approved state must come from persisted reload');
   check((await page.locator('.audit').innerText()).includes('Synthetic browser approval'),'approval audit must render');
   const stored=await f.store.inspect(f.principals.admin,'synthetic-browser-target');
-  check(stored.ok&&stored.inspection.expiresAt===await page.evaluate(()=>new Date(document.getElementById('approval-expiry').value).getTime()/1000),
+  check(stored.ok&&stored.inspection.expiresAt===await page.evaluate(()=>new Date(document.querySelector('.controls input[type=datetime-local]').value).getTime()/1000),
     'local expiry must persist as the same instant');
   await page.getByLabel('Reason for this change').fill('Synthetic browser revocation');
   await page.getByRole('button',{name:'Revoke access'}).click();

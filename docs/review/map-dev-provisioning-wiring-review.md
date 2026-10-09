@@ -116,3 +116,7 @@ Primary docs checked Oct 9:
 - [Supabase Postgres connections](https://supabase.com/docs/guides/database/connecting-to-postgres): choose direct/session/transaction mode intentionally. No connection values were retrieved.
 - [PostgreSQL default privileges](https://www.postgresql.org/docs/current/sql-alterdefaultprivileges.html): global grants cannot be reversed through a per-schema revoke.
 - Current WeWeb connector frontend and Supabase integration documentation: SPA pages/shared sections; integration auth actions require the appropriate provider. Those docs do not establish legacy-plugin compatibility.
+
+## Source implementation follow-up — 2026-10-09
+
+The [default-off composition and packaged WeWeb wrapper checkpoint](map-composition-weweb-review.md) completes the source-only preparatory slice. Its scoped middleware runs before global CORS/preflight as well as the global parser/engine guards; startup binds no pools. Synthetic Node and actual Vue/browser verification are documented separately from unperformed live acceptance. Existing owner/admin/origin/legacy-session and staged-patch unknowns remain; no provisioning, deployment, host installation or publication occurred.

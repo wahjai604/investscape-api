@@ -1,0 +1,8 @@
+{
+  "name": "investscape-map-approval-admin",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {"build":"weweb build","serve":"weweb serve"},
+  "devDependencies": {"@weweb/cli":"latest"}
+}

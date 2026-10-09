@@ -1,0 +1,26 @@
+{
+  "metadata":{
+    "name":"investscape-map-approval-admin",
+    "description":"Manual map member approval with current revision and audit reconciliation through an explicit existing-session host.",
+    "keywords":["InvestScape","map","approval","audit"],
+    "features":["Default-off connection","Audited approve/renew/revoke","Session invalidation","Responsive scoped styling"],
+    "inherit":[]
+  },
+  "properties":[
+    {"name":"enabled","description":"Connect only after the Dev host is configured; editing mode always stays disconnected.","type":"boolean","defaultValue":false},
+    {"name":"apiOrigin","description":"Reviewed exact HTTPS Dev API origin; no paths, credentials or fallback.","type":"string","defaultValue":""}
+  ],
+  "states":[],"events":[],"localContext":[],"actions":[],"slots":[],"variables":[],
+  "specifications":[
+    "Fluid root; uses the existing approval UI with component-scoped styles and instance-unique control IDs.",
+    "Network/subscription setup runs only onMounted in runtime/preview, never setup or editing mode.",
+    "The host must be registered on wwLib.getFrontWindow() under Symbol.for('investscape.map.session-host.v1'); no plugin accessor is guessed.",
+    "Host exposes issuer, readSession() and subscribe(listener), which returns an unsubscribe function. Session values stay in the transient transport.",
+    "Content changes and unmount dispose transport, cancel requests, unsubscribe and clear administrative UI state.",
+    "Session changes clear current membership/audit and cancel old responses. The server verifies tokens and access-admin authority independently.",
+    "No token/member/audit variables, browser storage, Auth configuration or staff capability assignment.",
+    "No automatic approval POST retry; uncertain results require persisted membership/audit reload."
+  ],
+  "examples":[{"description":"Disconnected review/default","example":"{\"enabled\":false,\"apiOrigin\":\"\"}"}],
+  "dependencies":[]
+}

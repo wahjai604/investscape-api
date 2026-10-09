@@ -3,6 +3,9 @@ import { readFile } from 'node:fs/promises';
 import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import express from 'express';
+import helmet from 'helmet';
+import {createMapComposition} from '../../src/market-intel/map/composition.ts';
+import {createCorsMiddleware,resolveCorsConfiguration} from '../../src/http/cors.ts';
 import { PGlite } from '@electric-sql/pglite';
 import { createLocalJWKSet, exportJWK, generateKeyPair, SignJWT } from 'jose';
 import { createMapSessionVerifier } from '../../src/market-intel/map/auth.ts';
@@ -11,7 +14,7 @@ import { PostgresManualMapStore } from '../../src/market-intel/map/store/manualA
 import { PostgresPrivateCatalogReader } from '../../src/market-intel/map/store/catalogReader.ts';
 import { createMapPilotRouter } from '../../src/routes/market-intelligence/mapPilot.ts';
 
-export async function createMapApiTestFixture() {
+export async function createMapApiTestFixture(options={}) {
   const pg=new PGlite();let server;
   try{
     await pg.exec(await readFile(new URL('./map-store-schema.sql',import.meta.url),'utf8'));
@@ -59,10 +62,26 @@ export async function createMapApiTestFixture() {
     for(const[name,p]of Object.entries(principals))tokens[name]=await new SignJWT({role:'authenticated',is_anonymous:false})
       .setIssuer(issuer).setAudience('authenticated').setSubject(p.subject).setExpirationTime(expiry)
       .setProtectedHeader({alg:'ES256',kid:'synthetic'}).sign(privateKey);
+    tokens.foreignIssuer=await new SignJWT({role:'authenticated',is_anonymous:false})
+      .setIssuer('https://foreign.supabase.co/auth/v1').setAudience('authenticated').setSubject(principals.admin.subject)
+      .setExpirationTime(expiry).setProtectedHeader({alg:'ES256',kid:'synthetic'}).sign(privateKey);
     const deps={enabled:()=>true,adminEnabled:()=>true,adminOrigin:'https://not-configured.invalid',authority,catalog,
       administrator:store,views:new MapViewStore(),verifier:createMapSessionVerifier({issuer,audience:'authenticated'},
       {keyResolver:createLocalJWKSet({keys:[{...jwk,alg:'ES256',kid:'synthetic'}]})})};
-    const app=express();app.use('/v1',createMapPilotRouter(deps));
+    const app=express();let composition;const syntheticOrigin='https://dev.synthetic.invalid';let downstream=0;
+    if(options.composition){
+      app.use(helmet());
+      composition=createMapComposition({readEnabled:options.readEnabled??true,adminEnabled:options.adminEnabled??true,
+        auth:{issuer,audience:'authenticated'},allowedOrigins:[syntheticOrigin],adminOrigin:syntheticOrigin},
+        {resources:{reader:database('mi_map_reader'),accessWriter:database('mi_map_access_writer'),shutdown:async()=>{}},
+          verifier:deps.verifier,...options.compositionOptions});
+      app.use('/v1',composition.router);
+      // Same relevant startup order: permissive legacy CORS, global parser, engine guard/router.
+      app.use(createCorsMiddleware(resolveCorsConfiguration({})));
+      app.use(express.json({limit:'100kb'}));
+      app.use('/v1',(req,res)=>{downstream++;res.status(418).json({legacy:true});});
+    }else app.use('/v1',createMapPilotRouter(deps));
+    if(options.componentAssets)app.use('/component-check',express.static(options.componentAssets));
     app.use('/ui',express.static(fileURLToPath(new URL('../../ui/',import.meta.url))));
     // Browser tests alone use this synthetic loopback proxy; actual router still verifies every request.
     app.use('/browser-test/v1',(req,res,next)=>{req.headers.authorization='Bearer '+tokens.admin;next();},createMapPilotRouter(deps));
@@ -73,7 +92,7 @@ export async function createMapApiTestFixture() {
       if(options.body&&typeof options.body!=='string'){headers['Content-Type']='application/json';options={...options,body:JSON.stringify(options.body)};}
       const r=await fetch(url+path,{...options,headers});return {status:r.status,body:await r.json(),cache:r.headers.get('cache-control')};
     };
-    return {pg,deps,url,principals,store,catalog,request,async close(){
-      await new Promise((resolve,reject)=>server.close(e=>e?reject(e):resolve()));await pg.close();}};
+    return {pg,deps,url,principals,tokens,store,catalog,request,composition,syntheticOrigin,get downstream(){return downstream;},async close(){
+      await new Promise((resolve,reject)=>server.close(e=>e?reject(e):resolve()));await composition?.shutdown();await pg.close();}};
   }catch(error){if(server)await new Promise(resolve=>server.close(resolve));await pg.close();throw error;}
 }

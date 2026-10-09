@@ -40,6 +40,7 @@ import {
   resolveEngineRateLimitConfig,
 } from "./http/engineGuards.ts";
 import { bootstrapVancouverSpatialEvidence, describeVancouverSpatialBoot } from "./zoning/vancouver/bootstrap.ts";
+import { createMapComposition, resolveMapCompositionConfig } from "./market-intel/map/composition.ts";
 
 dotenv.config();
 
@@ -78,6 +79,13 @@ const engineAuth = createEngineAuthGuard(process.env);
 const vancouverSpatial = bootstrapVancouverSpatialEvidence(process.env);
 
 app.use(helmet());
+
+// Private map scope owns CORS/preflight, budgets and admin parsing before the
+// permissive legacy CORS and 100 KB parser below. No scoped database resources
+// are bound here: flags default off and even armed flags stay unavailable until
+// a separately reviewed host supplies the two scoped pools. Never uses Lighthouse.
+const map = createMapComposition(resolveMapCompositionConfig(process.env));
+app.use("/v1", map.router);
 
 // CORS is now allow-list driven. With CORS_ALLOWED_ORIGINS unset this behaves
 // exactly as the previous bare `cors()` did — every origin allowed — and warns
@@ -200,6 +208,7 @@ const server = app.listen(PORT, () => {
       `auth=${describeEngineAuth(engineAuth.mode)}`,
   );
   console.log(describeVancouverSpatialBoot(vancouverSpatial));
+  console.log(`[map] read=${map.status.read} · admin=${map.status.admin}`);
   // Warnings last, so they are the final thing on the screen after a boot.
   for (const problem of engineRateLimitConfig.problems) {
     console.error(`[engine] ${problem}`);
@@ -217,9 +226,10 @@ function shutdown(signal: string): void {
     // Drain the Postgres pool so in-flight queries finish and the process can
     // exit without the connection keeping the event loop alive.
     try {
-      await lighthouse.shutdown();
+      const cleanup = await Promise.allSettled([Promise.resolve().then(() => lighthouse.shutdown()), map.shutdown()]);
+      if (cleanup.some(result => result.status === "rejected")) throw new Error("RESOURCE_SHUTDOWN_FAILED");
     } catch (closeError) {
-      console.error("Error closing lighthouse resources:", closeError);
+      console.error("RESOURCE_SHUTDOWN_FAILED");
     }
     process.exit(0);
   });
