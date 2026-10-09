@@ -2,7 +2,7 @@
   "recordedAt": "2026-10-09T04:53:27-07:00",
   "evidenceDate": "2026-10-09",
   "ownerInstruction": "\"Next: confirm the recovery reference and approve the concrete provisioning package. Installed legacy-plugin compatibility and effective Auth/origin bindings remain unresolved.\" - go",
-  "authorizationInterpretation": "Approved proposed disabled Dev create, conditional on a concrete available recovery reference; not yet executed",
+  "authorizationInterpretation": "Approved disabled Dev create; recovery reference established; explicitly authorized execution at 08:12:09 America/Vancouver and now committed/verified",
   "approvedSourceCommit": "97bfe7ff27c89d9b8744537e152f3221c305db98",
   "approvedCandidateSha256": "efbe815271d4cd703a0b4e71a18ff2e5a640ef9dd79ce94769bed5c8dc93305d",
   "approvedTarget": {
@@ -38,7 +38,7 @@
     ]
   },
   "recovery": {
-    "label": "Historical reported evidence — owner-supplied screenshots, freshly visually inspected by assistant",
+    "label": "Historical reported evidence \u2014 owner-supplied screenshots, freshly visually inspected by assistant",
     "verifiedBackupReference": "recovery-evidence-2026-10-09.json",
     "backupTimestamp": "2026-10-09T11:16:52Z",
     "backupStatus": "Scheduled PHYSICAL backup listed with Restore control in owner screenshot; no explicit completion status or restore rehearsal",
@@ -53,9 +53,16 @@
     "latestInspectionScope": "Read-only backup inspection; no live DDL applied in this step"
   },
   "execution": {
-    "ddlAttempted": false,
-    "transactionOutcome": "not-started",
-    "liveLedgerReceipt": null
+    "ddlAttempted": true,
+    "transactionOutcome": "committed",
+    "liveLedgerReceipt": {
+      "version": "map-private-v1",
+      "applied_at": "2026-10-09T15:17:48.229156+00:00",
+      "receipt_ref": "map-dev-disabled-create-20261009-owner-081209",
+      "source_ddl_sha256": "d49ce9c8ba9c3f068c24e0bafdbd6fd4e5612d6e561af9f5aa4245f3685a2fe5"
+    },
+    "permissionAcceptance": "passed",
+    "receipt": "applied-receipt-2026-10-09.json"
   },
   "laterActionsNotAuthorizedByThisReceipt": [
     "Enable LOGIN or deliver credentials",
@@ -68,5 +75,10 @@
   "untouchedConnectedBranch": {
     "branch": "feat/native-full-api-adapter",
     "sha": "2cec0ab519513a34aabbad909c4f24b1472d385c"
+  },
+  "executionAuthorization": {
+    "instruction": "\"Next: disabled Dev database provisioning and permission verification. No database changes or map activation occurred during this inspection.\" - go",
+    "receivedAt": "2026-10-09T08:12:09-07:00",
+    "receipt": "applied-receipt-2026-10-09.json"
   }
 }

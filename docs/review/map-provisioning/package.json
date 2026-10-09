@@ -1,5 +1,5 @@
 {
-  "status": "review-only-not-applied",
+  "status": "applied-disabled-verified",
   "evidenceDate": "2026-10-09",
   "targetProject": {
     "name": "Investscape-Dev",
@@ -24,12 +24,13 @@
   "publishedRows": 0,
   "appointedAdmins": 0,
   "receiptTemplate": {
-    "ownerAuthorizationReference": null,
-    "recoveryReference": null,
-    "effectiveTargetConfirmed": false,
-    "appliedAt": null,
-    "transactionOutcome": "not-applied",
-    "permissionAcceptanceReference": null,
+    "ownerAuthorizationReference": "owner-approval-2026-10-09.json",
+    "recoveryReference": "recovery-evidence-2026-10-09.json",
+    "effectiveTargetConfirmed": true,
+    "appliedAt": "2026-10-09T15:17:48.229156+00:00",
+    "transactionOutcome": "committed",
+    "permissionAcceptanceReference": "permission-evidence-2026-10-09.json",
     "credentialBindingReference": null
-  }
+  },
+  "appliedReceipt": "applied-receipt-2026-10-09.json"
 }

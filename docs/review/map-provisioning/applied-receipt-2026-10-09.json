@@ -1,0 +1,97 @@
+{
+  "status": "applied-disabled-verified",
+  "ownerInstruction": "\"Next: disabled Dev database provisioning and permission verification. No database changes or map activation occurred during this inspection.\" - go",
+  "ownerInstructionAt": "2026-10-09T08:12:09-07:00",
+  "executionStartedAt": "2026-10-09T15:17:38.863Z",
+  "target": {
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir",
+    "postgresVersionNumber": 170006
+  },
+  "operator": "postgres",
+  "owner": "mi_map_owner",
+  "candidateSourceCommit": "97bfe7ff27c89d9b8744537e152f3221c305db98",
+  "candidateSha256": "efbe815271d4cd703a0b4e71a18ff2e5a640ef9dd79ce94769bed5c8dc93305d",
+  "sourceDraftSha256": "d49ce9c8ba9c3f068c24e0bafdbd6fd4e5612d6e561af9f5aa4245f3685a2fe5",
+  "submissionEnvelope": "execution-envelope-2026-10-09.sql",
+  "envelopeDescription": "One non-secret SET supplies the receipt in the same session before the unchanged approved BEGIN/COMMIT candidate; RESET follows. Candidate bytes remain exact. Tool migration-history entry verified separately.",
+  "attemptCount": 1,
+  "transactionOutcome": "committed",
+  "toolResult": {
+    "success": true
+  },
+  "mapLedger": {
+    "version": "map-private-v1",
+    "applied_at": "2026-10-09T15:17:48.229156+00:00",
+    "receipt_ref": "map-dev-disabled-create-20261009-owner-081209",
+    "source_ddl_sha256": "d49ce9c8ba9c3f068c24e0bafdbd6fd4e5612d6e561af9f5aa4245f3685a2fe5"
+  },
+  "supabaseMigration": {
+    "name": "market_intel_map_private_v1_disabled",
+    "version": "20261009151748",
+    "verified": true
+  },
+  "recovery": {
+    "reference": "recovery-evidence-2026-10-09.json",
+    "backupTimestamp": "2026-10-09T11:16:52Z",
+    "label": "Historical reported evidence \u2014 owner screenshots",
+    "pitrEnabled": false,
+    "restoreTested": false,
+    "restorePerformed": false,
+    "backupAgeAtMapCommitSeconds": 14456.229156
+  },
+  "permissionAcceptance": {
+    "status": "passed",
+    "evidence": "permission-evidence-2026-10-09.json",
+    "verifiedAt": "2026-10-09T15:22:04.160Z",
+    "method": "Managed PostgreSQL 17 catalog/effective privileges and initial aggregate counts; no authenticated runtime connection or real session tests",
+    "passed": true,
+    "failures": [],
+    "effectivePermissionMatrixRows": 45,
+    "gatewayColumns": 36,
+    "gatewaySchema": 4,
+    "gatewayTables": 36,
+    "gatewayFunctions": 24,
+    "escalationPaths": 25,
+    "internalToastObjects": 18,
+    "mapSecurityAdvisorFindings": 0
+  },
+  "allNewRolesNoLogin": true,
+  "initialStoreCounts": {
+    "observations": 0,
+    "member_grants": 0,
+    "approval_audit": 0,
+    "rights_controls": 0,
+    "source_products": 0,
+    "catalog_releases": 0,
+    "publication_heads": 0,
+    "access_admin_grants": 0
+  },
+  "credentialBindingReference": null,
+  "runtimeActivation": false,
+  "adminAppointments": 0,
+  "publishedReleases": 0,
+  "notPerformed": [
+    "LOGIN/password/credential binding",
+    "Real admin/member/publisher appointment",
+    "Auth provider/configuration change",
+    "Railway API deployment",
+    "WeWeb upload/page edit/publication",
+    "Map activation",
+    "Project restore or backup export",
+    "Lighthouse/Relationship OS runner or ledger change"
+  ],
+  "connectedApiBranch": {
+    "name": "feat/native-full-api-adapter",
+    "sha": "2cec0ab519513a34aabbad909c4f24b1472d385c",
+    "freshlyVerified": true
+  },
+  "laterVerification": [
+    "Actual installed legacy plugin and effective Auth issuer/audience/signing/session compatibility",
+    "Exact rendered app/API origins and isolated deployment topology",
+    "Shared PUBLIC and other exposed-function paths before enabling future runtime logins",
+    "Trusted private admin identity bootstrap authorization",
+    "Source/terms/boundary/geometry qualification and publication"
+  ],
+  "submissionEnvelopeSha256": "011b88c6c26320720b5ada9e205ecc35d2cb319bbc1bef995d53ab0a243be815"
+}

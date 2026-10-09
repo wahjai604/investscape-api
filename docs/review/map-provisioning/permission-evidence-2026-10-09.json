@@ -1,0 +1,2539 @@
+{
+  "label": "Freshly verified",
+  "verifiedAt": "2026-10-09T15:22:04.160Z",
+  "target": {
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir"
+  },
+  "scope": "Read-only fixed map catalog metadata, new-store aggregate counts and non-secret schema ledger; no app/Auth-user content",
+  "metadata": {
+    "section_1": [
+      {
+        "section": "schema_baseline",
+        "owner_role": "mi_map_owner",
+        "schema_name": "mi_map_private",
+        "public_usage": false,
+        "public_create": false
+      }
+    ],
+    "section_2": [
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_access_login",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      },
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_access_writer",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      },
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_ingester",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      },
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_owner",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      },
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_reader",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      },
+      {
+        "section": "role_baseline",
+        "rolsuper": false,
+        "role_name": "mi_map_reader_login",
+        "rolinherit": true,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolcreaterole": false
+      }
+    ],
+    "section_3": [
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader",
+        "broad_role": "service_role",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader",
+        "broad_role": "supabase_admin",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader",
+        "broad_role": "authenticator",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader",
+        "broad_role": "postgres",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_writer",
+        "broad_role": "service_role",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_writer",
+        "broad_role": "supabase_admin",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_writer",
+        "broad_role": "authenticator",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_writer",
+        "broad_role": "postgres",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_ingester",
+        "broad_role": "service_role",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_ingester",
+        "broad_role": "supabase_admin",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_ingester",
+        "broad_role": "authenticator",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_ingester",
+        "broad_role": "postgres",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader_login",
+        "broad_role": "service_role",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader_login",
+        "broad_role": "supabase_admin",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader_login",
+        "broad_role": "authenticator",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_reader_login",
+        "broad_role": "postgres",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_login",
+        "broad_role": "service_role",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_login",
+        "broad_role": "supabase_admin",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_login",
+        "broad_role": "authenticator",
+        "membership_path": false
+      },
+      {
+        "section": "broad_membership",
+        "map_role": "mi_map_access_login",
+        "broad_role": "postgres",
+        "membership_path": false
+      }
+    ],
+    "section_4": [
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "access_admin_grants",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "access_admin_grants_issuer_subject_key",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "access_admin_grants_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "approval_audit",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "approval_audit_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "approval_audit_request_id_key",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "catalog_releases",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "catalog_releases_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "catalog_releases_release_id_layer_id_geography_id_key",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "member_grants",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "member_grants_grant_id_key",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "member_grants_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "observation_identity",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "observations",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "observations_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "publication_heads",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "publication_heads_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "rights_controls",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "rights_controls_clearance_id_product_id_source_revision_id__key",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "rights_controls_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "schema_receipts",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "schema_receipts_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      },
+      {
+        "relkind": "r",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "source_products",
+        "relrowsecurity": true,
+        "relforcerowsecurity": true
+      },
+      {
+        "relkind": "i",
+        "section": "private_objects",
+        "owner_role": "mi_map_owner",
+        "object_name": "source_products_pkey",
+        "relrowsecurity": false,
+        "relforcerowsecurity": false
+      }
+    ],
+    "section_5": [
+      {
+        "usage": false,
+        "section": "browser_schema_access",
+        "can_create": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "usage": false,
+        "section": "browser_schema_access",
+        "can_create": false,
+        "gateway_role": "anon"
+      },
+      {
+        "usage": false,
+        "section": "browser_schema_access",
+        "can_create": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "usage": false,
+        "section": "browser_schema_access",
+        "can_create": false,
+        "gateway_role": "authenticator"
+      }
+    ],
+    "section_6": [
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "access_admin_grants",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "access_admin_grants",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "access_admin_grants",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "access_admin_grants",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "member_grants",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "member_grants",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "member_grants",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "member_grants",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "approval_audit",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "approval_audit",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "approval_audit",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "approval_audit",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "source_products",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "source_products",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "source_products",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "source_products",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "schema_receipts",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "schema_receipts",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "schema_receipts",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "schema_receipts",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "rights_controls",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "rights_controls",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "rights_controls",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "rights_controls",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "catalog_releases",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "catalog_releases",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "catalog_releases",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "catalog_releases",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "observations",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "observations",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "observations",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "observations",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "publication_heads",
+        "can_truncate": false,
+        "gateway_role": "authenticated"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "publication_heads",
+        "can_truncate": false,
+        "gateway_role": "anon"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "publication_heads",
+        "can_truncate": false,
+        "gateway_role": "service_role"
+      },
+      {
+        "section": "browser_object_access",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "object_name": "publication_heads",
+        "can_truncate": false,
+        "gateway_role": "authenticator"
+      }
+    ],
+    "section_7": [
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "guard_observation_append",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "guard_observation_append",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "guard_observation_append",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "guard_observation_append",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "guard_publication",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "guard_publication",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "guard_publication",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "guard_publication",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "bump_head",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "bump_head",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "bump_head",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "bump_head",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "deny_mutation",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "deny_mutation",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "deny_mutation",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "deny_mutation",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "bump_rights",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "bump_rights",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "bump_rights",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "bump_rights",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticated",
+        "function_name": "audit_membership",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "anon",
+        "function_name": "audit_membership",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "service_role",
+        "function_name": "audit_membership",
+        "security_definer": false
+      },
+      {
+        "section": "private_function_access",
+        "can_execute": false,
+        "gateway_role": "authenticator",
+        "function_name": "audit_membership",
+        "security_definer": false
+      }
+    ],
+    "section_8": [],
+    "section_9": [
+      {
+        "section": "candidate_exposed_function_surface",
+        "functions": 1,
+        "schema_name": "graphql_public",
+        "security_definers": 0
+      },
+      {
+        "section": "candidate_exposed_function_surface",
+        "functions": 2,
+        "schema_name": "investscape",
+        "security_definers": 1
+      }
+    ]
+  },
+  "permissions": {
+    "policies": [
+      {
+        "polcmd": "w",
+        "polname": "admin_lock",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "access_admin_grants",
+        "polpermissive": true,
+        "check_expression": "false",
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "admin_lookup",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "access_admin_grants",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "a",
+        "polname": "audit_append",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "approval_audit",
+        "polpermissive": true,
+        "check_expression": "(pg_trigger_depth() = 1)",
+        "using_expression": null
+      },
+      {
+        "polcmd": "r",
+        "polname": "audit_lookup",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "approval_audit",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "approved_release",
+        "role_names": [
+          "mi_map_reader"
+        ],
+        "table_name": "catalog_releases",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "(qualified AND (EXISTS ( SELECT 1\n   FROM (mi_map_private.publication_heads h\n     JOIN mi_map_private.rights_controls r ON ((r.clearance_id = catalog_releases.clearance_id)))\n  WHERE ((h.release_id = catalog_releases.release_id) AND (h.state = 'published'::text) AND (r.state = 'cleared'::text) AND r.allow_ui AND (r.valid_until > clock_timestamp())))))"
+      },
+      {
+        "polcmd": "a",
+        "polname": "candidate_insert",
+        "role_names": [
+          "mi_map_ingester"
+        ],
+        "table_name": "catalog_releases",
+        "polpermissive": true,
+        "check_expression": "true",
+        "using_expression": null
+      },
+      {
+        "polcmd": "w",
+        "polname": "ingest_release_lock",
+        "role_names": [
+          "mi_map_ingester"
+        ],
+        "table_name": "catalog_releases",
+        "polpermissive": true,
+        "check_expression": "false",
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "ingest_release_lookup",
+        "role_names": [
+          "mi_map_ingester"
+        ],
+        "table_name": "catalog_releases",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "a",
+        "polname": "member_insert",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "member_grants",
+        "polpermissive": true,
+        "check_expression": "true",
+        "using_expression": null
+      },
+      {
+        "polcmd": "r",
+        "polname": "member_lookup",
+        "role_names": [
+          "mi_map_reader",
+          "mi_map_access_writer"
+        ],
+        "table_name": "member_grants",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "w",
+        "polname": "member_update",
+        "role_names": [
+          "mi_map_access_writer"
+        ],
+        "table_name": "member_grants",
+        "polpermissive": true,
+        "check_expression": "true",
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "approved_observation",
+        "role_names": [
+          "mi_map_reader"
+        ],
+        "table_name": "observations",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "(EXISTS ( SELECT 1\n   FROM mi_map_private.catalog_releases r\n  WHERE (r.release_id = observations.release_id)))"
+      },
+      {
+        "polcmd": "a",
+        "polname": "observation_insert",
+        "role_names": [
+          "mi_map_ingester"
+        ],
+        "table_name": "observations",
+        "polpermissive": true,
+        "check_expression": "true",
+        "using_expression": null
+      },
+      {
+        "polcmd": "r",
+        "polname": "head_lookup",
+        "role_names": [
+          "mi_map_reader"
+        ],
+        "table_name": "publication_heads",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "ingest_head_lookup",
+        "role_names": [
+          "mi_map_ingester"
+        ],
+        "table_name": "publication_heads",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "rights_lookup",
+        "role_names": [
+          "mi_map_reader"
+        ],
+        "table_name": "rights_controls",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "a",
+        "polname": "receipt_owner_append",
+        "role_names": [
+          "mi_map_owner"
+        ],
+        "table_name": "schema_receipts",
+        "polpermissive": true,
+        "check_expression": "true",
+        "using_expression": null
+      },
+      {
+        "polcmd": "r",
+        "polname": "receipt_owner_read",
+        "role_names": [
+          "mi_map_owner"
+        ],
+        "table_name": "schema_receipts",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      },
+      {
+        "polcmd": "r",
+        "polname": "product_lookup",
+        "role_names": [
+          "mi_map_reader"
+        ],
+        "table_name": "source_products",
+        "polpermissive": true,
+        "check_expression": null,
+        "using_expression": "true"
+      }
+    ],
+    "role_attributes": [
+      {
+        "rolname": "mi_map_access_login",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": 2,
+        "rolcreaterole": false,
+        "rolreplication": false
+      },
+      {
+        "rolname": "mi_map_access_writer",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": -1,
+        "rolcreaterole": false,
+        "rolreplication": false
+      },
+      {
+        "rolname": "mi_map_ingester",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": -1,
+        "rolcreaterole": false,
+        "rolreplication": false
+      },
+      {
+        "rolname": "mi_map_owner",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": -1,
+        "rolcreaterole": false,
+        "rolreplication": false
+      },
+      {
+        "rolname": "mi_map_reader",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": -1,
+        "rolcreaterole": false,
+        "rolreplication": false
+      },
+      {
+        "rolname": "mi_map_reader_login",
+        "rolsuper": false,
+        "rolcanlogin": false,
+        "rolcreatedb": false,
+        "rolbypassrls": false,
+        "rolconnlimit": 2,
+        "rolcreaterole": false,
+        "rolreplication": false
+      }
+    ],
+    "private_functions": [
+      {
+        "proname": "audit_membership",
+        "proconfig": [
+          "search_path=pg_catalog, mi_map_private"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      },
+      {
+        "proname": "bump_head",
+        "proconfig": [
+          "search_path=pg_catalog"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      },
+      {
+        "proname": "bump_rights",
+        "proconfig": [
+          "search_path=pg_catalog"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      },
+      {
+        "proname": "deny_mutation",
+        "proconfig": [
+          "search_path=pg_catalog"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      },
+      {
+        "proname": "guard_observation_append",
+        "proconfig": [
+          "search_path=pg_catalog, mi_map_private"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      },
+      {
+        "proname": "guard_publication",
+        "proconfig": [
+          "search_path=pg_catalog, mi_map_private"
+        ],
+        "prosecdef": false,
+        "owner_role": "mi_map_owner"
+      }
+    ],
+    "runtime_privileges": [
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "access_admin_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": true
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "approval_audit",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "catalog_releases",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": true,
+        "can_update": true,
+        "table_name": "member_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": true
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "observations",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "publication_heads",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "rights_controls",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "schema_receipts",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "source_products",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "access_admin_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": true
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "approval_audit",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "catalog_releases",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": true,
+        "can_update": true,
+        "table_name": "member_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": true
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "observations",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "publication_heads",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "rights_controls",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "schema_receipts",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_access_writer",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "source_products",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "access_admin_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "approval_audit",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "catalog_releases",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": true
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "member_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": true,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "observations",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "publication_heads",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "rights_controls",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "schema_receipts",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_ingester",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "source_products",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "access_admin_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "approval_audit",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "catalog_releases",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "member_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "observations",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "publication_heads",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "rights_controls",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "schema_receipts",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "source_products",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "access_admin_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "approval_audit",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "catalog_releases",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "member_grants",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "observations",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "publication_heads",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "rights_controls",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": false,
+        "can_update": false,
+        "table_name": "schema_receipts",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      },
+      {
+        "role_name": "mi_map_reader_login",
+        "can_delete": false,
+        "can_insert": false,
+        "can_select": true,
+        "can_update": false,
+        "table_name": "source_products",
+        "can_trigger": false,
+        "can_maintain": false,
+        "can_truncate": false,
+        "schema_usage": true,
+        "can_reference": false,
+        "schema_create": false,
+        "any_column_update": false
+      }
+    ],
+    "gateway_column_access": [
+      {
+        "table_name": "access_admin_grants",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "member_grants",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "approval_audit",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "source_products",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "schema_receipts",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "rights_controls",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "catalog_releases",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "observations",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "publication_heads",
+        "gateway_role": "authenticated",
+        "has_column_access": false
+      },
+      {
+        "table_name": "access_admin_grants",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "member_grants",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "approval_audit",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "source_products",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "schema_receipts",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "rights_controls",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "catalog_releases",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "observations",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "publication_heads",
+        "gateway_role": "anon",
+        "has_column_access": false
+      },
+      {
+        "table_name": "access_admin_grants",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "member_grants",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "approval_audit",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "source_products",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "schema_receipts",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "rights_controls",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "catalog_releases",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "observations",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "publication_heads",
+        "gateway_role": "service_role",
+        "has_column_access": false
+      },
+      {
+        "table_name": "access_admin_grants",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "member_grants",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "approval_audit",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "source_products",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "schema_receipts",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "rights_controls",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "catalog_releases",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "observations",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      },
+      {
+        "table_name": "publication_heads",
+        "gateway_role": "authenticator",
+        "has_column_access": false
+      }
+    ],
+    "role_escalation_paths": [
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader",
+        "privileged_role": "mi_map_owner"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader",
+        "privileged_role": "service_role"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader",
+        "privileged_role": "supabase_admin"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader",
+        "privileged_role": "authenticator"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader",
+        "privileged_role": "postgres"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_writer",
+        "privileged_role": "mi_map_owner"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_writer",
+        "privileged_role": "service_role"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_writer",
+        "privileged_role": "supabase_admin"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_writer",
+        "privileged_role": "authenticator"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_writer",
+        "privileged_role": "postgres"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_ingester",
+        "privileged_role": "mi_map_owner"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_ingester",
+        "privileged_role": "service_role"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_ingester",
+        "privileged_role": "supabase_admin"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_ingester",
+        "privileged_role": "authenticator"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_ingester",
+        "privileged_role": "postgres"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader_login",
+        "privileged_role": "mi_map_owner"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader_login",
+        "privileged_role": "service_role"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader_login",
+        "privileged_role": "supabase_admin"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader_login",
+        "privileged_role": "authenticator"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_reader_login",
+        "privileged_role": "postgres"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_login",
+        "privileged_role": "mi_map_owner"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_login",
+        "privileged_role": "service_role"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_login",
+        "privileged_role": "supabase_admin"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_login",
+        "privileged_role": "authenticator"
+      },
+      {
+        "can_set": false,
+        "inherits": false,
+        "is_member": false,
+        "runtime_role": "mi_map_access_login",
+        "privileged_role": "postgres"
+      }
+    ],
+    "map_objects_outside_private_schema": 18
+  },
+  "finalAcceptance": {
+    "triggers": [
+      {
+        "tgname": "approval_audit_immutable",
+        "tgtype": 58,
+        "tgenabled": "O",
+        "table_name": "approval_audit",
+        "function_name": "deny_mutation"
+      },
+      {
+        "tgname": "release_immutable",
+        "tgtype": 58,
+        "tgenabled": "O",
+        "table_name": "catalog_releases",
+        "function_name": "deny_mutation"
+      },
+      {
+        "tgname": "membership_audit",
+        "tgtype": 31,
+        "tgenabled": "O",
+        "table_name": "member_grants",
+        "function_name": "audit_membership"
+      },
+      {
+        "tgname": "observation_append",
+        "tgtype": 7,
+        "tgenabled": "O",
+        "table_name": "observations",
+        "function_name": "guard_observation_append"
+      },
+      {
+        "tgname": "observation_immutable",
+        "tgtype": 58,
+        "tgenabled": "O",
+        "table_name": "observations",
+        "function_name": "deny_mutation"
+      },
+      {
+        "tgname": "head_generation",
+        "tgtype": 19,
+        "tgenabled": "O",
+        "table_name": "publication_heads",
+        "function_name": "bump_head"
+      },
+      {
+        "tgname": "publication_complete",
+        "tgtype": 23,
+        "tgenabled": "O",
+        "table_name": "publication_heads",
+        "function_name": "guard_publication"
+      },
+      {
+        "tgname": "publication_history",
+        "tgtype": 42,
+        "tgenabled": "O",
+        "table_name": "publication_heads",
+        "function_name": "deny_mutation"
+      },
+      {
+        "tgname": "rights_revision",
+        "tgtype": 19,
+        "tgenabled": "O",
+        "table_name": "rights_controls",
+        "function_name": "bump_rights"
+      },
+      {
+        "tgname": "receipt_immutable",
+        "tgtype": 58,
+        "tgenabled": "O",
+        "table_name": "schema_receipts",
+        "function_name": "deny_mutation"
+      }
+    ],
+    "runtime_function_execute_denied": true,
+    "gateway_all_table_privileges_denied": true
+  },
+  "internalStorageObjects": [
+    {
+      "schema_name": "pg_toast",
+      "relkind": "i",
+      "object_count": 9,
+      "all_linked_to_private_toast": true
+    },
+    {
+      "schema_name": "pg_toast",
+      "relkind": "t",
+      "object_count": 9,
+      "all_linked_to_private_toast": true
+    }
+  ],
+  "liveLedgerAndCounts": {
+    "ledger": [
+      {
+        "version": "map-private-v1",
+        "applied_at": "2026-10-09T15:17:48.229156+00:00",
+        "receipt_ref": "map-dev-disabled-create-20261009-owner-081209",
+        "source_ddl_sha256": "d49ce9c8ba9c3f068c24e0bafdbd6fd4e5612d6e561af9f5aa4245f3685a2fe5"
+      }
+    ],
+    "memberships": [
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_access_login",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      },
+      {
+        "set_option": false,
+        "member_role": "mi_map_access_login",
+        "admin_option": false,
+        "granted_role": "mi_map_access_writer",
+        "grantor_role": "postgres",
+        "inherit_option": true
+      },
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_access_writer",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      },
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_ingester",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      },
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_owner",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      },
+      {
+        "set_option": true,
+        "member_role": "postgres",
+        "admin_option": false,
+        "granted_role": "mi_map_owner",
+        "grantor_role": "postgres",
+        "inherit_option": false
+      },
+      {
+        "set_option": false,
+        "member_role": "mi_map_reader_login",
+        "admin_option": false,
+        "granted_role": "mi_map_reader",
+        "grantor_role": "postgres",
+        "inherit_option": true
+      },
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_reader",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      },
+      {
+        "set_option": false,
+        "member_role": "postgres",
+        "admin_option": true,
+        "granted_role": "mi_map_reader_login",
+        "grantor_role": "supabase_admin",
+        "inherit_option": false
+      }
+    ],
+    "table_count": 9,
+    "policy_count": 19,
+    "trigger_count": 10,
+    "function_count": 6,
+    "initial_store_counts": {
+      "observations": 0,
+      "member_grants": 0,
+      "approval_audit": 0,
+      "rights_controls": 0,
+      "source_products": 0,
+      "catalog_releases": 0,
+      "publication_heads": 0,
+      "access_admin_grants": 0
+    }
+  },
+  "assertions": {
+    "passed": true,
+    "failures": [],
+    "effectivePermissionMatrixRows": 45,
+    "gatewayColumns": 36,
+    "gatewaySchema": 4,
+    "gatewayTables": 36,
+    "gatewayFunctions": 24,
+    "escalationPaths": 25,
+    "internalToastObjects": 18,
+    "mapSecurityAdvisorFindings": 0
+  },
+  "securityAdvisor": {
+    "checked": true,
+    "mapFindings": [],
+    "scope": "Only map-related advisor output retained; unrelated existing notices neither changed nor copied"
+  }
+}
