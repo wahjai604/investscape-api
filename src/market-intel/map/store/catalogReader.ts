@@ -3,6 +3,8 @@ import type { MapSession } from '../auth.ts';
 import { resolveManualMapAccess } from '../memberAccess.ts';
 import { loadManualGrant } from './manualApproval.ts';
 import { databaseNow, type MapDatabase, type MapSql } from './sql.ts';
+import { PILOT_GEOGRAPHIES, PILOT_LAYERS, type PilotGeographyId } from '../pilot.ts';
+import type { LayerPin } from '../views.ts';
 
 const text = z.string().min(1).max(500);
 const date = z.iso.date();
@@ -22,6 +24,8 @@ const selectionSchema = z.object({
   layerId: z.string().regex(/^[a-z][a-z0-9-]{0,79}$/),
   geographyId: z.enum(['CA-CMA-535', 'CA-CMA-933', 'US-STATE-04', 'US-STATE-48']),
   pinnedReleaseId: text.optional(), pinnedGeneration: z.number().int().positive().max(2147483647).optional(),
+  pinnedRightsRevision: z.number().int().positive().optional(),
+  pinnedBoundaryVersion: text.optional(), pinnedBoundaryHash: z.string().regex(/^[a-f0-9]{64}$/).optional(),
 }).strict().refine(r => (r.pinnedReleaseId === undefined) === (r.pinnedGeneration === undefined));
 export type CatalogSelection = z.infer<typeof selectionSchema>;
 export type CatalogObservation = z.infer<typeof observationSchema>;
@@ -37,6 +41,12 @@ export interface CatalogLayer {
 export type CatalogReadResult = { ok: true; layer: CatalogLayer } |
   { ok: false; status: 400 | 401 | 403 | 409 | 503; code: string };
 type Control = Record<string, unknown>;
+export interface ManifestLayer { layerId: string; label: string; unit: string;
+  availability: 'readable' | 'unavailable'; reason: 'UNPUBLISHED_OR_RESTRICTED' | 'TERMS_REQUIRED' | null;
+  pin: LayerPin | null; asOf: string | null; }
+export type ManifestReadResult = { ok: true; manifest: { geographyId: PilotGeographyId;
+  layers: ManifestLayer[]; grantId: string; expiresAt: number } } |
+  { ok: false; status: 400 | 401 | 403 | 409 | 503; code: string };
 
 async function control(sql: MapSql, s: CatalogSelection): Promise<Control | null> {
   const r = await sql.query(`SELECT h.release_id, h.generation, h.state, r.clearance_id,
@@ -65,6 +75,44 @@ function iso(value: unknown): string {
 export class PostgresPrivateCatalogReader {
   private readonly db: MapDatabase;
   constructor(db: MapDatabase) { this.db = db; }
+  /** Metadata only: no observation query and no geometry bytes. Availability is distinct from coverage. */
+  async readManifest(session: MapSession, geographyId: PilotGeographyId): Promise<ManifestReadResult> {
+    if (!Object.prototype.hasOwnProperty.call(PILOT_GEOGRAPHIES, geographyId))
+      return { ok: false, status: 400, code: 'INVALID_SELECTION' };
+    try {
+      return await this.db.transaction(async sql => {
+        const authority = { resolve: (actor: MapSession) => loadManualGrant(sql, actor) };
+        const access = await resolveManualMapAccess(session, authority, await databaseNow(sql));
+        if (!access.ok) return access;
+        const layers: ManifestLayer[] = [];
+        const configured = PILOT_LAYERS.filter(layer => layer.country === PILOT_GEOGRAPHIES[geographyId].country);
+        for (const layer of configured) {
+          const c = await control(sql, { layerId: layer.layerId, geographyId });
+          const readable = deliverable(c) && c.required_agreement === null;
+          layers.push({ layerId: layer.layerId, label: layer.label, unit: layer.unit,
+            availability: readable ? 'readable' : 'unavailable',
+            reason: readable ? null : deliverable(c) ? 'TERMS_REQUIRED' : 'UNPUBLISHED_OR_RESTRICTED',
+            asOf: readable ? iso(c!.as_of) : null,
+            pin: readable ? { releaseId: text.parse(c!.release_id), generation: z.number().int().positive().parse(c!.generation),
+              rightsRevision: z.number().int().positive().parse(c!.rights_revision),
+              boundaryVersion: text.parse(c!.boundary_version), boundaryHash: z.string().regex(/^[a-f0-9]{64}$/).parse(c!.boundary_hash) } : null });
+        }
+        // Recheck controls before publishing a view, not just the member grant.
+        for (const layer of layers) if (layer.pin) {
+          const c = await control(sql, { layerId: layer.layerId, geographyId });
+          if (!deliverable(c) || c.required_agreement !== null || c.release_id !== layer.pin.releaseId ||
+              c.generation !== layer.pin.generation || c.rights_revision !== layer.pin.rightsRevision ||
+              c.boundary_version !== layer.pin.boundaryVersion || c.boundary_hash !== layer.pin.boundaryHash)
+            return { ok: false, status: 409, code: 'RELEASE_CHANGED' };
+        }
+        const current = await resolveManualMapAccess(session, authority, await databaseNow(sql));
+        if (!current.ok) return current;
+        if (current.grant.grantId !== access.grant.grantId) return { ok: false, status: 409, code: 'ACCESS_CHANGED' };
+        return { ok: true, manifest: { geographyId, layers, grantId: current.grant.grantId,
+          expiresAt: Math.min(session.expiresAt, current.grant.expiresAt) } };
+      });
+    } catch { return { ok: false, status: 503, code: 'MAP_CATALOG_UNAVAILABLE' }; }
+  }
   async readLayer(session: MapSession, input: unknown): Promise<CatalogReadResult> {
     const parsed = selectionSchema.safeParse(input);
     if (!parsed.success) return { ok: false, status: 400, code: 'INVALID_SELECTION' };
@@ -80,6 +128,10 @@ export class PostgresPrivateCatalogReader {
           return { ok: false, status: 403, code: 'TERMS_REQUIRED' };
         if (s.pinnedReleaseId !== undefined &&
             (s.pinnedReleaseId !== initial.release_id || s.pinnedGeneration !== initial.generation))
+          return { ok: false, status: 409, code: 'RELEASE_CHANGED' };
+        if ((s.pinnedRightsRevision !== undefined && s.pinnedRightsRevision !== initial.rights_revision) ||
+            (s.pinnedBoundaryVersion !== undefined && s.pinnedBoundaryVersion !== initial.boundary_version) ||
+            (s.pinnedBoundaryHash !== undefined && s.pinnedBoundaryHash !== initial.boundary_hash))
           return { ok: false, status: 409, code: 'RELEASE_CHANGED' };
         if (!Number.isSafeInteger(initial.observation_count) || Number(initial.observation_count) > 250 ||
             Number(initial.observation_count) < 0) throw new Error('MAP_CATALOG_UNAVAILABLE');

@@ -12,6 +12,22 @@ const command = z.object({ issuer, subject, expectedRevision: z.number().int().n
 export type ManualApprovalCommand = z.infer<typeof command>;
 export type ApprovalResult = { ok: true; revision: number } |
   { ok: false; status: 400 | 401 | 403 | 409 | 503; code: string };
+export interface AdminInspection { subject: string; revision: number; state: 'no_grant' | 'active' | 'expired' | 'revoked';
+  expiresAt: number | null; approvedAt: number | null;
+  audit: { eventId: string; requestId: string; action: 'approve' | 'revoke'; beforeRevision: number;
+    afterRevision: number; reason: string; occurredAt: string }[]; }
+export type AdminReadResult = { ok: true; inspection: AdminInspection } |
+  { ok: false; status: 400 | 401 | 403 | 503; code: string };
+export type AdminAuthorization = { ok: true } | { ok: false; status: 401 | 403 | 503; code: string };
+
+async function authorizeAdmin(sql: MapSql, actor: MapSession): Promise<AdminAuthorization> {
+  if (!issuer.safeParse(actor.issuer).success || !subject.safeParse(actor.subject).success ||
+      !Number.isFinite(actor.expiresAt) || actor.expiresAt <= await databaseNow(sql))
+    return { ok: false, status: 401, code: 'AUTHENTICATION_REQUIRED' };
+  const result = await sql.query(`SELECT grant_id FROM mi_map_private.access_admin_grants
+    WHERE issuer=$1 AND subject=$2 AND active AND expires_at > clock_timestamp() FOR SHARE`, [actor.issuer, actor.subject]);
+  return result.rows.length ? { ok: true } : { ok: false, status: 403, code: 'ACCESS_DENIED' };
+}
 
 export async function loadManualGrant(sql: MapSql, session: MapSession): Promise<ManualMapGrant | null> {
   const result = await sql.query(`SELECT grant_id, issuer, subject, approval_method,
@@ -31,6 +47,35 @@ export class PostgresManualMapStore implements ManualMapAuthority {
   private readonly db: MapDatabase;
   constructor(db: MapDatabase) { this.db = db; }
   resolve(session: MapSession) { return loadManualGrant(this.db, session); }
+  async authorize(actor: MapSession): Promise<AdminAuthorization> {
+    try { return await this.db.transaction(sql => authorizeAdmin(sql, actor)); }
+    catch { return { ok: false, status: 503, code: 'MAP_STORE_UNAVAILABLE' }; }
+  }
+  async inspect(actor: MapSession, targetSubject: unknown): Promise<AdminReadResult> {
+    if (!subject.safeParse(targetSubject).success) return { ok: false, status: 400, code: 'INVALID_APPROVAL' };
+    try {
+      return await this.db.transaction(async sql => {
+        const auth = await authorizeAdmin(sql, actor); if (!auth.ok) return auth;
+        const member = await sql.query(`SELECT revision, active, revoked,
+          extract(epoch FROM expires_at)::float8 AS expires_at, extract(epoch FROM approved_at)::float8 AS approved_at
+          FROM mi_map_private.member_grants WHERE issuer=$1 AND subject=$2`, [actor.issuer, targetSubject]);
+        const events = await sql.query(`SELECT event_id,request_id,action,before_revision,after_revision,reason,occurred_at
+          FROM mi_map_private.approval_audit WHERE target_issuer=$1 AND target_subject=$2
+          ORDER BY after_revision DESC LIMIT 20`, [actor.issuer, targetSubject]);
+        const current = await authorizeAdmin(sql, actor); if (!current.ok) return current;
+        const r = member.rows[0]; const now = await databaseNow(sql);
+        if (actor.expiresAt <= now) return { ok: false, status: 401, code: 'AUTHENTICATION_REQUIRED' };
+        return { ok: true, inspection: { subject: targetSubject as string,
+          revision: r ? r.revision as number : 0,
+          state: !r ? 'no_grant' : r.revoked || !r.active ? 'revoked' : Number(r.expires_at) <= now ? 'expired' : 'active',
+          expiresAt: r ? r.expires_at as number : null, approvedAt: r ? r.approved_at as number : null,
+          audit: events.rows.map(e => ({ eventId: e.event_id as string, requestId: e.request_id as string,
+            action: e.action as 'approve' | 'revoke', beforeRevision: e.before_revision as number,
+            afterRevision: e.after_revision as number, reason: e.reason as string,
+            occurredAt: (e.occurred_at as Date).toISOString() })) } };
+      });
+    } catch { return { ok: false, status: 503, code: 'MAP_STORE_UNAVAILABLE' }; }
+  }
 
   async change(actor: MapSession, input: unknown): Promise<ApprovalResult> {
     const parsed = command.safeParse(input);
@@ -47,10 +92,7 @@ export class PostgresManualMapStore implements ManualMapAuthority {
             (c.action === 'revoke' && c.expiresAt !== undefined))
           return { ok: false, status: 400, code: 'INVALID_APPROVAL' };
         // Lock the admin assignment against concurrent revocation during this write.
-        const admin = await sql.query(`SELECT grant_id FROM mi_map_private.access_admin_grants
-          WHERE issuer = $1 AND subject = $2 AND active AND expires_at > clock_timestamp() FOR SHARE`,
-          [actor.issuer, actor.subject]);
-        if (!admin.rows.length) return { ok: false, status: 403, code: 'ACCESS_DENIED' };
+        const admin = await authorizeAdmin(sql, actor); if (!admin.ok) return admin;
         // Transaction-local audit context. The SQL trigger independently validates the administrator.
         await sql.query(`SELECT set_config('mi_map.actor_issuer', $1, true),
           set_config('mi_map.actor_subject', $2, true), set_config('mi_map.actor_expiry', $3, true),
