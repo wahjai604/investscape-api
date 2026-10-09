@@ -1,0 +1,120 @@
+{
+  "evidenceDate": "2026-10-09",
+  "scope": "read-only non-secret metadata; no app/Auth-user rows or environment values",
+  "supabase": {
+    "label": "Freshly verified",
+    "projectName": "Investscape-Dev",
+    "projectRef": "hwhkgrwikczwztfnsjir",
+    "region": "ca-central-1",
+    "status": "ACTIVE_HEALTHY",
+    "catalogBaseline": {
+      "section_1": [],
+      "section_2": [],
+      "section_3": [],
+      "section_4": [],
+      "section_5": [],
+      "section_6": [],
+      "section_7": [],
+      "section_8": [],
+      "section_9": [
+        {
+          "section": "candidate_exposed_function_surface",
+          "functions": 1,
+          "schema_name": "graphql_public",
+          "security_definers": 0
+        },
+        {
+          "section": "candidate_exposed_function_surface",
+          "functions": 2,
+          "schema_name": "investscape",
+          "security_definers": 1
+        }
+      ]
+    },
+    "provisioningCapability": {
+      "postgres_major": 17,
+      "baseline_schemas": [
+        {
+          "name": "public",
+          "owner": "pg_database_owner",
+          "public_create": false
+        },
+        {
+          "name": "graphql_public",
+          "owner": "supabase_admin",
+          "public_create": false
+        },
+        {
+          "name": "investscape",
+          "owner": "postgres",
+          "public_create": false
+        }
+      ],
+      "provisioning_role": [
+        {
+          "name": "postgres",
+          "can_login": true,
+          "superuser": false,
+          "bypass_rls": true,
+          "can_create_role": true
+        }
+      ]
+    },
+    "limitations": [
+      "Recorded ACL rows only; absent defaults do not remove built-in PUBLIC function EXECUTE",
+      "Not a function-body/dependency/gateway-settings audit",
+      "No backup or restore entitlement verified"
+    ]
+  },
+  "railway": {
+    "label": "Freshly verified",
+    "project": "227cdcb9-8e2c-4cf2-8e96-805454eccf56",
+    "projectName": "InvestScape Native Full Staging",
+    "environment": {
+      "id": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+      "name": "production",
+      "isEphemeral": false
+    },
+    "service": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+    "serviceName": "native-full-staging-api",
+    "configuredReplicas": 1,
+    "repo": "wahjai604/investscape-api",
+    "branch": "feat/native-full-api-adapter",
+    "deployedCommit": "2cec0ab519513a34aabbad909c4f24b1472d385c",
+    "deploymentId": "c0f1658f-481b-4579-a297-4ba02963436e",
+    "deploymentStatus": "SUCCESS",
+    "deploymentCreatedAt": "2026-10-04T09:32:26.907Z",
+    "describeEnvironmentStaged": null,
+    "statusPendingWork": [
+      {
+        "id": "patch:2473a18c-53e2-47c1-9857-d8de0b334e14",
+        "status": "staged",
+        "kind": "EnvironmentPatch",
+        "changeCount": 0,
+        "startedAt": "2026-10-03T14:21:08.575Z"
+      }
+    ],
+    "runtimeDatabase": "Unknown",
+    "acceptedAuthIssuer": "Unknown",
+    "effectiveOrigins": "Unknown"
+  },
+  "weweb": {
+    "label": "Freshly verified integration metadata; provider binding remains historical/unknown",
+    "projectName": "Investscape Dev",
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "supabaseConnectionId": "40c528bb-150f-4ecc-9aff-846cd113dbc9",
+    "integrationReadyToUse": true,
+    "effectiveLegacyPluginVersion": "Unknown",
+    "effectiveProjectRef": "Historical reported evidence: hwhkgrwikczwztfnsjir"
+  },
+  "legacySource": {
+    "label": "Source intention; freshly inspected upstream source, not installed build evidence",
+    "repo": "weweb-assets/plugin-supabase-auth",
+    "commit": "b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645",
+    "packageVersion": "3.1.0",
+    "supabaseJsVersion": "2.50.3",
+    "getter": "wwLib.wwPlugins.supabaseAuth.publicInstance.auth.getSession()",
+    "subscription": "wwLib.wwPlugins.supabaseAuth.publicInstance.auth.onAuthStateChange(callback)",
+    "invokedWithRealSession": false
+  }
+}

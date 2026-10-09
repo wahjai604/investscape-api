@@ -1,0 +1,35 @@
+{
+  "status": "review-only-not-applied",
+  "evidenceDate": "2026-10-09",
+  "targetProject": {
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir",
+    "postgresMajor": 17
+  },
+  "operatorRole": "postgres",
+  "ownerRole": "mi_map_owner",
+  "ledger": "mi_map_private.schema_receipts",
+  "version": "map-private-v1",
+  "sourceDraftSha256": "d49ce9c8ba9c3f068c24e0bafdbd6fd4e5612d6e561af9f5aa4245f3685a2fe5",
+  "candidateSha256": "efbe815271d4cd703a0b4e71a18ff2e5a640ef9dd79ce94769bed5c8dc93305d",
+  "roles": [
+    "mi_map_owner",
+    "mi_map_reader",
+    "mi_map_access_writer",
+    "mi_map_ingester",
+    "mi_map_reader_login",
+    "mi_map_access_login"
+  ],
+  "allNewRolesNoLogin": true,
+  "publishedRows": 0,
+  "appointedAdmins": 0,
+  "receiptTemplate": {
+    "ownerAuthorizationReference": null,
+    "recoveryReference": null,
+    "effectiveTargetConfirmed": false,
+    "appliedAt": null,
+    "transactionOutcome": "not-applied",
+    "permissionAcceptanceReference": null,
+    "credentialBindingReference": null
+  }
+}
