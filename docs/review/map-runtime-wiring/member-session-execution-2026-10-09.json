@@ -1,0 +1,110 @@
+{
+  "evidenceDate": "2026-10-09",
+  "label": "Freshly verified",
+  "status": "CAPABILITIES_CONFIRMED",
+  "authorization": {
+    "source": "Owner approved existing Investscape Dev app member sign-in and diagnostic rerun",
+    "at": "2026-10-09T21:14:33Z",
+    "scope": "Existing account only; no account creation or other workflow testing"
+  },
+  "target": {
+    "wewebProject": "Investscape Dev",
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "configuredSupabaseRef": "hwhkgrwikczwztfnsjir"
+  },
+  "previousExecutionReceipt": "session-capability-execution-2026-10-09.json",
+  "diagnosticSourceCommit": "2d4a9fe7f77dfba27f81565e9142622cf4cb2818",
+  "signIn": {
+    "surface": "Existing unpublished Login preview",
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "method": "Email and password",
+    "credentialHandling": "Secure browserAuth; no credentials returned to agent",
+    "requestResult": "submitted",
+    "visibleTransition": "Login preview redirected to existing Home page",
+    "sessionSuccessEvidence": "Subsequent scoped diagnostic returned sessionPresent/explicitlyNonAnonymous/unexpired true",
+    "accountCreated": false,
+    "manualSignOut": false
+  },
+  "workflow": {
+    "id": "936f0e88-f650-4821-a837-4cd16e1686bd",
+    "name": "Market Intel session capabilities (review)",
+    "scope": "function",
+    "trigger": null,
+    "action": "inspect",
+    "exactSourceReadbackMatched": true,
+    "sourceChanged": false,
+    "manualRerunsThisStep": 1,
+    "totalRecordedRuns": 2
+  },
+  "execution": {
+    "id": "0bec3b12-d63a-4941-9f4b-e29d7cd4a7d2",
+    "createdAt": "2026-10-09T21:17:15.213Z",
+    "updatedAt": "2026-10-09T21:17:15.213Z",
+    "hasError": false,
+    "source": "Single manual workflow Test; exact workflow execution-log safe projection"
+  },
+  "safeResult": {
+    "status": "CAPABILITIES_CONFIRMED",
+    "unexpired": true,
+    "environment": "editor",
+    "renderedOrigin": "https://joyous-trellis-editor.weweb.io",
+    "sessionPresent": true,
+    "clientUnchanged": true,
+    "sdkReadSucceeded": true,
+    "stableDuringRead": true,
+    "subscriptionUsable": true,
+    "authEventsAvailable": true,
+    "getSessionAvailable": true,
+    "subscriptionReleased": true,
+    "explicitlyNonAnonymous": true
+  },
+  "interpretation": {
+    "existingOrdinarySessionMetadataVerified": true,
+    "publicSdkCapabilitiesVerified": true,
+    "clientUnchangedDuringRead": true,
+    "subscriptionUnsubscribeCompleted": true,
+    "fullMapHostSessionCompatibilityVerified": false,
+    "cryptographicJwtOrDeployedApiAcceptanceVerified": false,
+    "installedRelease": "Unknown",
+    "exactHostedAppOrigin": null,
+    "editorOriginIsNotHostedCorsBinding": true
+  },
+  "dataBoundary": {
+    "diagnosticReads": "Only session-presence, user.is_anonymous and expires_at comparisons; returns booleans/static status/origin",
+    "identityOrTokenFieldsInspected": false,
+    "rawLogsOrContextExported": false,
+    "automaticPreviewBehavior": "Existing preview Logs panel visibly reported Fetching my-deals and Login; no collection values or login workflow outputs were opened, queried or exported",
+    "sdkInternalNetworkBehavior": "Not inspected; getSession may refresh internally"
+  },
+  "performed": {
+    "existingAppMemberSignIn": true,
+    "newAccountCreation": false,
+    "diagnosticSourceChanges": false,
+    "existingSignOutOrPersistenceOrEndpointDiagnostics": false,
+    "databaseSchemaChanges": false,
+    "manualTableOrUserQueries": false,
+    "authProviderConfigurationChanges": false,
+    "roleOrAdminChanges": false,
+    "railwayChanges": false,
+    "publication": false,
+    "deployment": false,
+    "mapActivation": false
+  },
+  "verification": {
+    "unchangedDiagnosticSourceMatchesSavedReview": true,
+    "focusedSyntheticTestsPreviouslyPassed": 10,
+    "testsRepeated": false,
+    "reason": "No implementation/source change; live check supplies new evidence"
+  },
+  "remaining": [
+    "Exact intended hosted application origin and selected Dev map API candidate target",
+    "Full map-host lifecycle/session shape and cryptographic JWT/API acceptance",
+    "Scoped role/secret delivery, connection mode/TLS/shared paths and trusted private admin bootstrap",
+    "Old Railway patch resolution; installed legacy release remains unexposed"
+  ],
+  "readiness": {
+    "readyToBind": false,
+    "readyToDeploy": false,
+    "readyToActivate": false
+  }
+}

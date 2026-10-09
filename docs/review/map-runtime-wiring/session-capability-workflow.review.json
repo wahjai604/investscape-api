@@ -1,5 +1,5 @@
 {
-  "status": "installed-tested-no-session",
+  "status": "installed-tested-session-capabilities-confirmed",
   "target": {
     "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
     "name": "Investscape Dev",
@@ -48,5 +48,6 @@
     "approvedForBoundedDiagnostic": true
   },
   "preparatoryStatus": "review-only-not-installed-not-executed",
-  "executionReceipt": "session-capability-execution-2026-10-09.json"
+  "executionReceipt": "member-session-execution-2026-10-09.json",
+  "previousExecutionReceipt": "session-capability-execution-2026-10-09.json"
 }

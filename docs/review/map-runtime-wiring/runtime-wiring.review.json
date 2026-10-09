@@ -43,7 +43,9 @@
     "installedAccessorSourceVerified": true,
     "installedRuntimeCapabilityVerified": true,
     "accessorSourceEvidence": "remaining-bindings-evidence-2026-10-09.json",
-    "runtimeCapabilityEvidence": "session-capability-execution-2026-10-09.json"
+    "runtimeCapabilityEvidence": "session-capability-execution-2026-10-09.json",
+    "installedSessionMetadataVerified": true,
+    "sessionMetadataEvidence": "member-session-execution-2026-10-09.json"
   },
   "poolPreparation": {
     "reader": {
@@ -81,13 +83,13 @@
   "blockingFacts": [
     "Installed legacy Auth build/release and intended rendered-environment project binding; settings now confirm legacy plugin and configured hwhkgrwikczwztfnsjir target",
     "Installed public accessor, getSession, auth events, stable read and subscription cleanup verified once in editor; complete map-host lifecycle remains unverified",
-    "No existing app member session was present (NO_SESSION); ordinary non-anonymous/unexpired session compatibility remains unverified",
+    "Explicitly non-anonymous/unexpired existing Dev app session verified once in editor; full map-host session shape, cryptographic JWT and deployed API acceptance remain unverified",
     "Exact rendered-app origin and separately selected map API origin/target",
     "Resolve or expressly exclude contradictory old empty Railway patch",
     "Approved scoped role enablement/secret delivery, connection mode/verified TLS and shared PUBLIC/function-path acceptance",
     "Trusted private administrator identity match and bootstrap authorization/receipt"
   ],
-  "currentAuthorization": "Owner continuation at 2026-10-09T18:39:34Z covered one reversible manually invoked Dev session diagnostic; installed and executed once. No new sign-in/account, map endpoint, persistence, role/admin change, publication, deployment or activation authorized",
+  "currentAuthorization": "Owner approval at 2026-10-09T21:14:33Z covers existing Dev app member sign-in and one bounded rerun of the unchanged manual diagnostic. No account creation, map endpoint/persistence diagnostic, role/admin grant, publication, deployment or activation",
   "nextInspection": {
     "requiresBrowserFallbackApproval": false,
     "browserFallbackApprovedAt": "2026-10-09T17:05:38Z",
@@ -104,9 +106,9 @@
     "sessionDiagnosticInstalled": true,
     "sessionDiagnosticExecuted": true,
     "noTokenOrIdentityFieldInspection": true,
-    "sessionDiagnosticResult": "NO_SESSION",
-    "sessionDiagnosticExecutionReceipt": "session-capability-execution-2026-10-09.json",
-    "nextStep": "Existing Dev app member sign-in in unpublished Login preview, then one scoped rerun; Supabase dashboard sign-in does not establish an app session"
+    "sessionDiagnosticResult": "CAPABILITIES_CONFIRMED",
+    "sessionDiagnosticExecutionReceipt": "member-session-execution-2026-10-09.json",
+    "nextStep": "Review exact intended hosted app origin and separately selected Dev map API candidate; close remaining host lifecycle/JWT acceptance and scoped connection/TLS/role/admin gates within authorized scope before runtime binding"
   },
   "readyToBind": false,
   "readyToDeploy": false,
@@ -116,7 +118,10 @@
     "algorithm": "ES256",
     "sourceAlgorithmCompatible": true,
     "realSessionCompatibilityVerified": false,
-    "receipt": "supabase-signing-evidence-2026-10-09.json"
+    "receipt": "supabase-signing-evidence-2026-10-09.json",
+    "ordinarySessionMetadataVerified": true,
+    "ordinarySessionMetadataReceipt": "member-session-execution-2026-10-09.json",
+    "realSessionCompatibilityLimitation": "This check reads only non-anonymous/expiry metadata; it does not inspect token/identity shape, issuer/signature or deployed map API acceptance"
   },
   "renderedEditorFrontWindowOrigin": "https://joyous-trellis-editor.weweb.io"
 }
