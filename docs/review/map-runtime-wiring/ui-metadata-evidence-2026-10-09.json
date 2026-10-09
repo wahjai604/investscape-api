@@ -1,0 +1,104 @@
+{
+  "evidenceDate": "2026-10-09",
+  "recordedAt": "2026-10-09T17:25:14Z",
+  "authorization": {
+    "approvedAt": "2026-10-09T17:05:38Z",
+    "scope": "Read-only WeWeb plugin/provider/hosting metadata and Supabase non-secret signing-algorithm summary"
+  },
+  "weweb": {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "name": "Investscape Dev",
+    "workspaceId": "1ccb9cbe-9adc-4603-a91f-a1f06b9944ce",
+    "editorOrigin": "https://joyous-trellis-editor.weweb.io",
+    "connector": {
+      "label": "Freshly verified",
+      "source": "WeWeb getme",
+      "editedAt": "2026-10-07T01:24:53.455Z",
+      "mcpAccess": true
+    },
+    "legacyAuth": {
+      "label": "Freshly verified",
+      "source": "Editor > Data & API > Authentication, then Supabase Auth plugin settings",
+      "installed": true,
+      "displayedPlugin": "Supabase Auth",
+      "newAuthSystemBlockedByLegacyPlugin": true,
+      "displayedConfigurationLabel": "Production",
+      "displayedProjectUrl": "https://hwhkgrwikczwztfnsjir.supabase.co",
+      "projectRef": "hwhkgrwikczwztfnsjir",
+      "limitation": "Configured legacy plugin target only. Production label does not establish a released app or a particular rendered runtime binding."
+    },
+    "installedRelease": {
+      "label": "Unknown",
+      "value": null,
+      "reason": "No version/release indicator exposed in the inspected plugin settings. Upstream source package version is not installed-build evidence."
+    },
+    "publicClientAccessorAndLifecycle": {
+      "label": "Source intention",
+      "installedVerified": false,
+      "realSessionGetterInvoked": false
+    },
+    "hosting": {
+      "label": "Freshly verified",
+      "source": "Editor > Settings > Publications and Domain Management",
+      "publicationMessage": "No publications yet",
+      "displayedProjectPlan": "Free",
+      "domainMessage": "Upgrade to connect domains; custom app and email domains are available on Hosting plans.",
+      "exactRenderedAppOrigin": null,
+      "originLabel": "Unknown",
+      "limitation": "No app/preview origin exposed in inspected settings. No preview or publication launched; no hostname inferred from editor origin."
+    }
+  },
+  "supabase": {
+    "projectRef": "hwhkgrwikczwztfnsjir",
+    "name": "Investscape-Dev",
+    "metadata": {
+      "label": "Freshly verified",
+      "source": "Supabase get_project",
+      "status": "ACTIVE_HEALTHY",
+      "region": "ca-central-1",
+      "databaseVersion": "17.6.1.166"
+    },
+    "signingAlgorithm": {
+      "label": "Unknown",
+      "value": null,
+      "reason": "Dashboard redirected to sign-in before signing metadata was available."
+    },
+    "browserAccess": {
+      "secureSignInResult": "submitted",
+      "selectedMethod": "Continue with ChatGPT",
+      "signInSuccessVerified": false,
+      "blockedDestination": "auth.openai.com",
+      "blockSource": "Browser automatic approval review",
+      "statedReason": "Separate account-authentication destination was not explicitly authorized by the Supabase read-only inspection request.",
+      "noBypassAttempted": true,
+      "continuationNeeds": "Explicit approval for the selected OpenAI sign-in step, or an operator-provided non-secret active signing-algorithm statement."
+    }
+  },
+  "remainingFacts": [
+    "Installed legacy Auth release/build and verified public-client accessor/lifecycle in the intended rendered environment",
+    "Exact rendered Dev app origin; settings show no publications yet",
+    "Active Supabase signing algorithm and non-anonymous session compatibility",
+    "Separately selected map API service/environment/origin and old Railway patch resolution or explicit exclusion",
+    "Separately approved scoped-role enablement/secret delivery/TLS and shared PUBLIC/function-path acceptance; trusted private administrator bootstrap"
+  ],
+  "performed": {
+    "browserFallback": true,
+    "configurationChanges": false,
+    "databaseChanges": false,
+    "sessionOrTokenInspection": false,
+    "keyInspection": false,
+    "workflowOrPreviewExecution": false,
+    "endpointTests": false,
+    "deployment": false,
+    "mapActivation": false
+  },
+  "omitted": [
+    "Account identities",
+    "Credential values",
+    "OpenAI authentication page content",
+    "Editor handoff URLs",
+    "Raw environment values",
+    "Keys and JWTs",
+    "Auth users"
+  ]
+}

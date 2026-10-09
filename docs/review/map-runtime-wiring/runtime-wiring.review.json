@@ -75,8 +75,8 @@
     "viewStore": "Existing process-local bounded opaque views; restart requires new manifest"
   },
   "blockingFacts": [
-    "Installed legacy Auth plugin build/release and rendered-environment project mapping",
-    "Effective project Auth provider and existing public-client lifecycle/accessor availability",
+    "Installed legacy Auth build/release and intended rendered-environment project binding; settings now confirm legacy plugin and configured hwhkgrwikczwztfnsjir target",
+    "Verified existing public-client lifecycle/accessor availability in the installed build",
     "Supabase non-secret active signing algorithm and non-anonymous session compatibility",
     "Exact rendered-app origin and separately selected map API origin/target",
     "Resolve or expressly exclude contradictory old empty Railway patch",
@@ -85,13 +85,14 @@
   ],
   "currentAuthorization": "Read-only metadata verification and source/review preparation; no live role enablement, credential binding, admin appointment, platform edit, deployment or activation",
   "nextInspection": {
-    "requiresBrowserFallbackApproval": true,
-    "sites": [
-      "WeWeb Investscape Dev editor/plugin/hosting metadata",
-      "Supabase Investscape-Dev non-secret Auth signing metadata"
-    ],
+    "requiresBrowserFallbackApproval": false,
+    "browserFallbackApprovedAt": "2026-10-09T17:05:38Z",
     "readOnly": true,
-    "noSessionOrTokenInspection": true
+    "noSessionOrTokenInspection": true,
+    "completedEvidence": "ui-metadata-evidence-2026-10-09.json",
+    "wewebOutcome": "Legacy Supabase Auth plugin/configured target verified; no version or rendered app origin exposed; no publications yet",
+    "supabaseOutcome": "Signing summary unavailable at sign-in wall; selected ChatGPT sign-in transition blocked by automatic approval review",
+    "separateOpenAiSignInApprovalRequired": true
   },
   "readyToBind": false,
   "readyToDeploy": false,

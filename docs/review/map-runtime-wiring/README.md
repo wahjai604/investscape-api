@@ -2,7 +2,7 @@
 
 **2026-10-09. Status: source/review preparation complete; live binding blocked by missing non-secret facts.** Owner instruction: verify installed WeWeb Auth/session compatibility and exact app/API origins, then prepare Dev runtime wiring sequentially. Deployment and map activation remain pending. The database create was separately completed at 08:17:48 Vancouver; its immutable SQL/envelope and receipt are unchanged.
 
-## 1. Installed Auth/session verification
+## 1. Initial connector-only Auth/session verification
 
 | Fact | Evidence label / source | Result |
 | --- | --- | --- |
@@ -14,7 +14,7 @@
 
 WeWeb workflow/page follow-ups returned Internal error, NETWORK_ERROR or an access-check failure explaining the service could not be reached. The one bounded trigger-context retry also failed. This is not evidence of permission loss or an Auth configuration change. The successful connector calls are retained; failed calls establish no project fact. The environment-export/social-provider/user-list tools were not used, and a provider was not installed/replaced.
 
-The [curated binding evidence](binding-evidence-2026-10-09.json) omits account identities, editor handoff URLs, real tokens and unrelated project metadata. Browser fallback was not attempted; the browser tool requires approval before fallback when the connector is insufficient or repeatedly errors. Prior Supabase Backups inspection permission applies to that completed inspection, not this new WeWeb/Auth metadata scope.
+The [curated binding evidence](binding-evidence-2026-10-09.json) omits account identities, editor handoff URLs, real tokens and unrelated project metadata. Browser fallback was not attempted in that initial pass. The owner subsequently approved this WeWeb/Auth metadata scope at 17:05:38 UTC; the dated follow-up below records its result.
 
 ## 2. Exact origins and staging topology
 
@@ -62,3 +62,15 @@ Only these non-secret facts block live wiring:
 The next bounded inspection is read-only WeWeb plugin/provider/hosting metadata and Supabase **non-secret active signing algorithm summary**. Do not execute Auth/session getters, workflows, preview applications, logins or endpoints merely to establish metadata. Prefer an already visible staging/preview URL in settings, without launching it. No raw environment export, API/secret key control, signing-key details, Auth users, credentials or JWTs belong to this inspection. If metadata cannot be safely exposed, the exact operator statement needed is: “Investscape Dev uses installed legacy Auth build [release], rendered environment [name] targets Supabase ref [ref] through [existing accessor], app origin is [exact HTTPS origin], and active signing algorithm is [ES256/RS256/other]; intended map candidate target/origin is [reference].” Provider/key rotation and publication are not implied.
 
 Primary references: [pinned WeWeb legacy source](https://github.com/weweb-assets/plugin-supabase-auth/blob/b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645/src/wwPlugin.js), current connector Supabase integration/Auth documentation; [Supabase Auth callback deadlock guidance](https://supabase.com/docs/guides/troubleshooting/why-is-my-supabase-api-call-not-returning-PGzXw0), [onAuthStateChange](https://supabase.com/docs/reference/javascript/auth-onauthstatechange), [connection methods](https://supabase.com/docs/guides/database/connecting-to-postgres), [SSL enforcement/client modes](https://supabase.com/docs/guides/platform/ssl-enforcement). All metadata/docs reads dated Oct 9. Shared-account/hosting facts still do not establish a Relationship OS transaction domain.
+
+## 4. Approved read-only UI metadata follow-up — 2026-10-09
+
+[UI evidence receipt](ui-metadata-evidence-2026-10-09.json), recorded at 17:25:14 UTC / 10:25:14 Vancouver, narrows the earlier unknowns without changing runtime bindings. Fresh getme still identifies Investscape Dev, and Supabase get_project reports Investscape-Dev hwhkgrwikczwztfnsjir ACTIVE_HEALTHY.
+
+**Freshly verified in WeWeb:** Data & API > Authentication reports a plugin conflict because the legacy **Supabase Auth** plugin is already installed; the new authentication system cannot be configured alongside it. The legacy plugin's Configuration section displays **Production** and https://hwhkgrwikczwztfnsjir.supabase.co. This confirms the configured legacy provider/target, not the installed release, actual client accessor/lifecycle or per-rendered-environment JWT behavior. No provider migration, user/role list, secret input or real session getter was inspected.
+
+**Freshly verified hosting metadata:** Settings > Publications displays **No publications yet**, with project plan **Free**. Domain Management displays the Hosting-plan upgrade requirement for custom domains. Neither inspected view exposes an exact rendered app/preview origin. No preview or publish action was launched; the editor hostname is not a CORS proposal. The inspected plugin settings expose no version/release indicator, so installed-build compatibility remains unknown.
+
+**Supabase signing algorithm remains Unknown.** The dashboard redirected to sign-in. The secure authentication prompt selected Continue with ChatGPT and returned submitted; this does not prove successful login. The next transition to auth.openai.com was blocked by browser automatic approval review because that separate account-authentication destination was not explicitly covered by the read-only Supabase inspection approval. No OpenAI authentication content was obtained and no alternate route/bypass was attempted. Continuation requires explicit approval of that selected OpenAI sign-in step, or the operator's non-secret statement of the active signing algorithm. No signing-key details, JWT or credentials are needed in the evidence artifact.
+
+The earlier evidence JSON remains the dated initial metadata pass. This receipt supersedes only the installed-provider/configured-project uncertainty; rendered environment, installed release/accessor, app origin and signing/session compatibility stay open. Existing startup resources, NOLOGIN roles, false feature flags, candidate-origin nulls and readyToBind/Deploy/Activate=false are unchanged. No code or database/configuration change was made, and unchanged tests were not rerun. Next remains closing these metadata gaps before any separately authorized live wiring.
