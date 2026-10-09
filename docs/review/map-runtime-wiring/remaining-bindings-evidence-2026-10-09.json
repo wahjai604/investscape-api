@@ -1,0 +1,107 @@
+{
+  "evidenceDate": "2026-10-09",
+  "observedAt": "2026-10-09T18:49:14Z",
+  "scope": "Continued read-only installed source/hosting/health metadata and local diagnostic preparation",
+  "weweb": {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "name": "Investscape Dev",
+    "editedAt": "2026-10-07T01:24:53.455Z",
+    "nativeModules": {
+      "label": "Freshly verified",
+      "source": "getWeWebBackendStatus",
+      "wewebServerInstalled": false,
+      "wewebDatabaseInstalled": false,
+      "wewebAuthInstalled": false,
+      "wewebStorageInstalled": false
+    },
+    "sourceAccessor": {
+      "label": "Freshly verified installed workflow source",
+      "source": "getPageElementsByUid for existing Connection Test diagnostic",
+      "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+      "elementId": "7f6a2b53-7a62-47b0-bd92-2510b08c093a",
+      "workflowId": "e1cf57fa-8d10-4b9c-ac09-66b479cd804c",
+      "action": "signout",
+      "accessor": "wwLib.wwPlugins.supabaseAuth.publicInstance.auth.getSession()",
+      "guard": "Existing source checks editor environment and expected hwhkgrwikczwztfnsjir ref; no environment value was read",
+      "notExecuted": true,
+      "runtimeAvailability": "Unknown",
+      "installedRelease": "Unknown",
+      "limitation": "Installed configuration source references the same public accessor; existence of that code is not a live SDK/session test"
+    },
+    "installedRelease": {
+      "label": "Unknown",
+      "value": null,
+      "inspectedViews": [
+        "Added plugins",
+        "Legacy Supabase Auth configuration",
+        "All plugins",
+        "Visible title/aria-label metadata",
+        "Visible-frame script-src metadata"
+      ],
+      "result": "No installed version/release indicator or matching script bundle reference exposed; hidden state was not inspected"
+    },
+    "hosting": {
+      "label": "Freshly verified",
+      "publicationMessage": "No publications yet",
+      "projectPlan": "Free",
+      "domainMessage": "Custom app and email domains require a Hosting plan",
+      "editorFrame": {
+        "origin": "https://joyous-trellis-editor.weweb.io",
+        "path": "/ww_front/",
+        "source": "Visible editor iframe DOM src attribute; not a preview execution"
+      },
+      "exactHostedAppOrigin": null,
+      "hostedAppOriginLabel": "Unknown",
+      "limitation": "A hosted target/origin must be selected or exposed later; editor iframe origin does not authorize any CORS binding"
+    },
+    "readAvailability": {
+      "workflowAndPageReads": "Succeeded this follow-up; prior errors were not assumed permanent",
+      "loginPageIsDraft": false,
+      "connectionTestPageIsDraft": true,
+      "limitation": "isDraft=false does not establish a publication or app origin"
+    },
+    "fullSourceReference": {
+      "label": "Freshly verified installed workflow source",
+      "workflowId": "f93c02e6-2ceb-45c3-96fd-8041a76ff038",
+      "existingPinnedClientIdentity": "full-client-1",
+      "targetPackage": "0.10.0-p2-6b",
+      "origin": "https://native-full-staging-api-production.up.railway.app",
+      "notExecuted": true
+    }
+  },
+  "supabaseHealth": {
+    "label": "Freshly verified current metadata agreement",
+    "source": [
+      "Signed-in project overview",
+      "Supabase get_project"
+    ],
+    "projectRef": "hwhkgrwikczwztfnsjir",
+    "dashboardStatus": "Healthy",
+    "connectorStatus": "ACTIVE_HEALTHY",
+    "currentDiscrepancyResolved": true,
+    "earlierUnhealthyCause": "Unknown",
+    "endpointOrDatabaseAcceptance": false
+  },
+  "diagnosticPreparation": {
+    "status": "review-only-not-installed-not-executed",
+    "source": "session-capability-check.review.js",
+    "installationPackage": "session-capability-workflow.review.json",
+    "focusedSyntheticTests": 10,
+    "passed": 10,
+    "failed": 0,
+    "noRealSession": true,
+    "rootFullSuiteRepeated": false,
+    "authorization": "Owner continuation of real-session compatibility verification covers this single reversible, manually run Dev diagnostic"
+  },
+  "performed": {
+    "databaseChanges": false,
+    "wewebChanges": false,
+    "railwayChanges": false,
+    "realSessionOrTokenRead": false,
+    "userOrTableQuery": false,
+    "endpointTests": false,
+    "previewOrPublication": false,
+    "deployment": false,
+    "mapActivation": false
+  }
+}

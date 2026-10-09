@@ -1,0 +1,50 @@
+{
+  "status": "review-only-not-installed-not-executed",
+  "target": {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "name": "Investscape Dev",
+    "configuredSupabaseRef": "hwhkgrwikczwztfnsjir"
+  },
+  "purpose": "Resolve existing public-client capability, editor-front-window origin and ordinary session metadata without returning or reading token/identity fields",
+  "limitations": [
+    "Editor-origin evidence cannot become a published-app CORS binding",
+    "No cryptographic JWT/issuer/claim or map endpoint acceptance",
+    "No exact installed plugin release number is exposed by this check",
+    "SDK getSession may refresh the existing Auth session; its internal read is not abortable at the diagnostic deadline"
+  ],
+  "installationArgs": {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "scope": "function",
+    "id": "936f0e88-f650-4821-a837-4cd16e1686bd",
+    "name": "Market Intel session capabilities (review)",
+    "folder": "InvestScape/Diagnostics/",
+    "parameters": [],
+    "description": "Manually invoked editor-only diagnostic. Static statuses, booleans and exact rendered origin only. No identity/token access, app API calls, persistence, sign-in/out, map grants, provider or feature changes. getSession may refresh the existing Auth session.",
+    "firstAction": "inspect",
+    "actions": {
+      "inspect": {
+        "name": "Check existing public session capabilities",
+        "type": "custom-js",
+        "__wwdescription": "Check the existing legacy public client with one bounded SDK read and one temporary subscription; return only safe metadata and clean up once.",
+        "code": "/** Review-only diagnostic. Not imported by startup or installed in WeWeb.\n * Receives the explicitly selected existing client. Returns only a safe origin,\n * static status and booleans; never reads identity or access/refresh-token fields.\n * getSession may refresh an existing session inside the SDK. Runtime use needs\n * separate approval; this file itself neither creates a client nor calls an API.\n */\nasync function checkExistingSessionCapabilities({\n  client, getCurrentClient, environment, renderedOrigin, timeoutMs = 2000\n} = {}) {\n  const report = {\n    status: 'CAPABILITIES_UNAVAILABLE', environment: 'editor', renderedOrigin: null,\n    getSessionAvailable: false, authEventsAvailable: false, subscriptionUsable: false,\n    sdkReadSucceeded: false, sessionPresent: false, explicitlyNonAnonymous: false,\n    unexpired: false, clientUnchanged: false, stableDuringRead: false,\n    subscriptionReleased: false\n  };\n  let subscription = null, timer = null, epoch = 0;\n  const current = () => {\n    try { return typeof getCurrentClient === 'function' && getCurrentClient() === client; }\n    catch { return false; }\n  };\n  try {\n    if (environment !== 'editor') { report.status = 'EDITOR_SCOPE_REQUIRED'; return report; }\n    // Record only an exact HTTPS origin, never a path, query or credentials.\n    try {\n      const url = new URL(renderedOrigin);\n      if (url.protocol !== 'https:' || url.origin !== renderedOrigin) throw new Error();\n      report.renderedOrigin = url.origin;\n    } catch { report.status = 'ORIGIN_UNAVAILABLE'; return report; }\n    if (!Number.isFinite(timeoutMs) || timeoutMs < 10 || timeoutMs > 5000) return report;\n    const auth = client?.auth;\n    report.getSessionAvailable = typeof auth?.getSession === 'function';\n    report.authEventsAvailable = typeof auth?.onAuthStateChange === 'function';\n    if (!report.getSessionAvailable || !report.authEventsAvailable) return report;\n    if (!current()) { report.status = 'CLIENT_REPLACED'; return report; }\n    // The callback reads no session payload and performs no async SDK operation.\n    const registration = auth.onAuthStateChange(event => {\n      if (event !== 'INITIAL_SESSION') epoch++;\n    });\n    subscription = registration?.data?.subscription;\n    report.subscriptionUsable = typeof subscription?.unsubscribe === 'function';\n    if (!report.subscriptionUsable) return report;\n    const generation = epoch;\n    const deadline = Symbol('deadline');\n    const result = await Promise.race([\n      Promise.resolve().then(() => auth.getSession()),\n      new Promise(resolve => { timer = setTimeout(() => resolve(deadline), timeoutMs); })\n    ]);\n    report.clientUnchanged = current();\n    report.stableDuringRead = generation === epoch;\n    if (result === deadline) { report.status = 'DEADLINE_EXCEEDED'; return report; }\n    if (!report.clientUnchanged) { report.status = 'CLIENT_REPLACED'; return report; }\n    if (!report.stableDuringRead) { report.status = 'SESSION_CHANGED'; return report; }\n    if (result?.error) { report.status = 'SDK_READ_FAILED'; return report; }\n    report.sdkReadSucceeded = true;\n    const session = result?.data?.session;\n    report.sessionPresent = !!session;\n    if (!session) { report.status = 'NO_SESSION'; return report; }\n    report.explicitlyNonAnonymous = session.user?.is_anonymous === false;\n    report.unexpired = typeof session.expires_at === 'number' &&\n      Number.isFinite(session.expires_at) && session.expires_at > Date.now() / 1000;\n    report.status = !report.explicitlyNonAnonymous ? 'NON_ANONYMOUS_REQUIRED' :\n      !report.unexpired ? 'SESSION_EXPIRED' : 'CAPABILITIES_CONFIRMED';\n    return report;\n  } catch { report.status = 'SDK_READ_FAILED'; return report; }\n  finally {\n    if (timer !== null) clearTimeout(timer);\n    if (report.subscriptionUsable) {\n      try { subscription.unsubscribe(); report.subscriptionReleased = true; }\n      catch { report.status = 'CLEANUP_FAILED'; }\n    }\n    Object.freeze(report);\n  }\n}\n\n// This reusable workflow has no trigger and does not run on page load.\nif (globalContext?.browser?.environment !== 'editor') return { status: 'EDITOR_SCOPE_REQUIRED' };\ntry {\n  const client = wwLib.wwPlugins.supabaseAuth.publicInstance;\n  const frontWindow = wwLib.getFrontWindow();\n  return await checkExistingSessionCapabilities({\n    client, getCurrentClient: () => wwLib.wwPlugins.supabaseAuth.publicInstance,\n    environment: globalContext.browser.environment,\n    renderedOrigin: frontWindow.location.origin, timeoutMs: 2000\n  });\n} catch { return { status: 'HOST_UNAVAILABLE' }; }\n",
+        "next": null
+      }
+    }
+  },
+  "executionPlan": [
+    "Verify the new function name/ID is absent before installing; never replace an existing workflow",
+    "Install only the reviewed function in Investscape Dev, without attaching a page/app/element trigger",
+    "Manually run once in the editor against any already available Dev session; report NO_SESSION if absent, without creating an account or issuing a sign-in request",
+    "Record only returned static status/booleans/origin and whether subscriptionReleased is true",
+    "No automatic retry, sign-out/account switch, map API request, save/cleanup workflow or publication",
+    "Keep live grants, NOLOGIN roles, origin bindings and map flags unchanged"
+  ],
+  "expectedOrdinarySessionStatus": "CAPABILITIES_CONFIRMED",
+  "laterAcceptance": "Real map transport/server acceptance still requires separately approved candidate target/bindings and member access; this diagnostic does not appoint an administrator or authorize a member",
+  "authorization": {
+    "ownerInstructionAt": "2026-10-09T18:39:34Z",
+    "instruction": "Continue installed WeWeb/accessor, exact app origin and real-session compatibility work",
+    "scopeInterpretation": "One reversible manually invoked Dev capability diagnostic is necessary to perform the requested session compatibility verification; no automatic trigger, new account/sign-in, map endpoint or publication is authorized",
+    "approvedForBoundedDiagnostic": true
+  }
+}

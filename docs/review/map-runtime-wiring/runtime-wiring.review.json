@@ -39,7 +39,10 @@
     "automaticProviderDiscovery": false,
     "automaticRegistration": false,
     "serverVerifierAuthoritative": true,
-    "registrationKey": "investscape.map.session-host.v1"
+    "registrationKey": "investscape.map.session-host.v1",
+    "installedAccessorSourceVerified": true,
+    "installedRuntimeCapabilityVerified": false,
+    "accessorSourceEvidence": "remaining-bindings-evidence-2026-10-09.json"
   },
   "poolPreparation": {
     "reader": {
@@ -76,7 +79,7 @@
   },
   "blockingFacts": [
     "Installed legacy Auth build/release and intended rendered-environment project binding; settings now confirm legacy plugin and configured hwhkgrwikczwztfnsjir target",
-    "Verified existing public-client lifecycle/accessor availability in the installed build",
+    "Installed workflow source confirms expected public-client accessor, but live availability/lifecycle and session metadata require reviewed diagnostic acceptance",
     "Ordinary non-anonymous session compatibility remains unverified; current P-256/ES256 signing metadata is verified and source-algorithm compatible",
     "Exact rendered-app origin and separately selected map API origin/target",
     "Resolve or expressly exclude contradictory old empty Railway patch",
@@ -94,7 +97,12 @@
     "supabaseOutcome": "Signed-in target project settings verified; current ECC (P-256), documented ES256, and previous legacy HS256 status observed without key details",
     "separateOpenAiSignInApprovalRequired": false,
     "openAiSignInApprovedAndAccessVerified": true,
-    "signingEvidence": "supabase-signing-evidence-2026-10-09.json"
+    "signingEvidence": "supabase-signing-evidence-2026-10-09.json",
+    "remainingEvidence": "remaining-bindings-evidence-2026-10-09.json",
+    "currentSupabaseHealthMetadataAgreement": true,
+    "sessionDiagnostic": "session-capability-workflow.review.json",
+    "sessionDiagnosticInstalled": false,
+    "sessionDiagnosticExecuted": false
   },
   "readyToBind": false,
   "readyToDeploy": false,
