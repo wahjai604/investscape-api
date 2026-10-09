@@ -1,0 +1,64 @@
+# Dev Auth/origin verification and runtime wiring preparation
+
+**2026-10-09. Status: source/review preparation complete; live binding blocked by missing non-secret facts.** Owner instruction: verify installed WeWeb Auth/session compatibility and exact app/API origins, then prepare Dev runtime wiring sequentially. Deployment and map activation remain pending. The database create was separately completed at 08:17:48 Vancouver; its immutable SQL/envelope and receipt are unchanged.
+
+## 1. Installed Auth/session verification
+
+| Fact | Evidence label / source | Result |
+| --- | --- | --- |
+| Investscape Dev project / connection | Freshly verified, WeWeb getme and listIntegrationsInfo, Oct 9 | Project 4a0173ad-346d-4d29-a9b9-0201e5af6d78; Supabase connection 40c528bb-150f-4ecc-9aff-846cd113dbc9 ready |
+| Effective provider / installed legacy version | Unknown | Connector has no matching read capability. Listings mark Supabase, Custom Auth and WeWeb Auth installed; those flags do not identify the active provider |
+| Legacy Supabase project mapping | Historical reported evidence, earlier signed-in Oct 8 local / Oct 9 UTC review | Legacy Auth and data integration pointed to hwhkgrwikczwztfnsjir; rendered-environment mapping not freshly established |
+| Getter / subscription | Source intention, pinned upstream b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645 | Existing publicInstance.auth.getSession() and the same client's auth.onAuthStateChange(); not installed-build evidence |
+| Project signing mode and deployed map issuer | Unknown | No JWT, keys, raw Auth/environment values or real sessions inspected |
+
+WeWeb workflow/page follow-ups returned Internal error, NETWORK_ERROR or an access-check failure explaining the service could not be reached. The one bounded trigger-context retry also failed. This is not evidence of permission loss or an Auth configuration change. The successful connector calls are retained; failed calls establish no project fact. The environment-export/social-provider/user-list tools were not used, and a provider was not installed/replaced.
+
+The [curated binding evidence](binding-evidence-2026-10-09.json) omits account identities, editor handoff URLs, real tokens and unrelated project metadata. Browser fallback was not attempted; the browser tool requires approval before fallback when the connector is insufficient or repeatedly errors. Prior Supabase Backups inspection permission applies to that completed inspection, not this new WeWeb/Auth metadata scope.
+
+## 2. Exact origins and staging topology
+
+| Surface | Evidence label / source | Result / boundary |
+| --- | --- | --- |
+| Existing staging API origin | Freshly verified, Railway listDomains / describeService | https://native-full-staging-api-production.up.railway.app, target port 8080; exact origin only, no path |
+| Deployed source | Freshly verified, listDeployments limit 1 | investscape-api, feat/native-full-api-adapter, 2cec0ab519513a34aabbad909c4f24b1472d385c; SUCCESS c0f1658f-481b-4579-a297-4ba02963436e, Oct 4 09:32:26.907Z |
+| Running topology | Freshly verified, describeService + environmentStatus | One configured replica and 1/1 running in us-east4-eqdc4a; IPv6 egress disabled; platform reports Online |
+| WeWeb editor origin | Freshly verified, getme | https://joyous-trellis-editor.weweb.io; does not establish the rendered app origin |
+| Rendered Dev app / future map API origin | Unknown | Hosting/preview metadata not exposed by available reads. No origin is derived by stripping “editor”, and no editor handoff URL is used for CORS |
+| Effective CORS/Auth config | Unknown | Railway names only include CORS_ALLOWED_ORIGINS and existing Supabase JWT settings. Their values were not read; map posture names are not listed on the deployed service |
+| Pending patch | Freshly verified discrepancy | describeService/stagedChanges report none; status and health still report old staged EnvironmentPatch 2473a18c-53e2-47c1-9857-d8de0b334e14 with changes=[]; no applying operation or map job. Resolution/exclusion remains unknown |
+
+The project is **InvestScape Native Full Staging**, service **native-full-staging-api**, environment **production** within that staging project. The environment label is not an application production release. This verifies infrastructure metadata, not endpoint/CORS/Auth health or deployed map behavior. No healthcheck/application/JWKS/login endpoint was tested, and no staged patch was accepted or discarded.
+
+## 3. Concrete source/review wiring package
+
+[Runtime wiring review manifest](runtime-wiring.review.json) records observed facts separately from proposed bindings. Both map flags stay false, app/admin/CORS and future map origin are null, and readyToBind/Deploy/Activate remain false. The observed existing Quick/Full origin is a reference, not a deployed map candidate. Recommendation: an explicitly selected separate Dev candidate service/environment for later acceptance, preserving current Quick/Full staging; no service or environment was created.
+
+[Existing-client host factory](../../../ui/map-supabase-session-host.js) receives an explicitly verified public client, configured issuer and a getter returning the current client. It never discovers a provider, creates a client, reads cached user._session/privateInstance/browser storage, decodes a token or installs itself. Its fresh session reads return only the transport's transient four-field shape. The configured issuer is an expectation; the API remains the signed-claim authority. Non-anonymous sessions must explicitly carry user.is_anonymous=false, matching the strict existing server policy.
+
+One SDK subscription serves current consumers. Auth callbacks synchronously fence pending session reads, then defer/coalesce notifications outside the SDK lock. Multiple consumers unsubscribe independently; the last removes the SDK subscription and cancels timers. A changed public client permanently invalidates the old host until explicit teardown/recreation. Destroy invalidates consumers, cancels pending work and unsubscribes once. The factory is source-only and is not automatically imported, registered, bundled into the deployed app or installed in WeWeb.
+
+The later reviewed host installation should resolve **only** the verified existing public client, construct this factory, and use the existing registerMapSessionHost on wwLib.getFrontWindow(). Record the installed build/project mapping before installation. Own its teardown: unregister the host, destroy the factory, and destroy/unmount its consumer so pending requests and UI clear. A replaced SDK client requires a fresh verified registration; a stale host is not reused. No new Auth provider or token-storage scheme is proposed.
+
+The backend proposal uses two separately supplied pg configurations, named **MI_MAP_READER_DB_CONFIG** and **MI_MAP_ACCESS_DB_CONFIG** as proposed secret bindings, with values absent from the review artifact. They target mi_map_reader_login / mi_map_access_login, each inheriting only its capability and bounded to pool max 2. Use the existing createMapPoolResources with distinct pools and inject resources into the existing composition before global CORS/parser/engine handlers. Do not construct pools while both switches are off, and never derive either from Lighthouse DATABASE_URL, postgres, service_role or engine settings. Current startup still injects no resources.
+
+For the observed IPv4 topology, the current Supabase connection guide supports a shared **session pooler** recommendation; its actual host, custom principal support and TLS trust remain unverified. Do not compose a pooler host from the region or claim direct connectivity from the known project hostname. Require CA and hostname verification (rejectUnauthorized=true), separate secret delivery and an explicit non-secret connection-mode/target receipt. No CA file is copied from Lighthouse, SSL enforcement changed, password exposed or connection established.
+
+[Later runtime acceptance query](runtime-role-acceptance.readonly.sql) is prepared and **not executed**. It must run through each scoped connection after separately approved enablement, never through postgres or SET ROLE. It checks current/session principal, disabled broad authority, private schema usage/no CREATE, ledger denial, owner-path denial, forced RLS and transport SSL. SSL catalog status cannot establish client CA/hostname validation. Repeat the full capability/gateway/shared-PUBLIC/exposed-function acceptance in the approved binding phase; do not treat the simple query as complete no-bypass acceptance.
+
+Retain one process and replica for current opaque process-local views; restarts require a fresh manifest. Admin appointment still requires a trusted private identity match and bootstrap receipt, without storing a person's identity here. Reader/writer login enablement, credential delivery, admin/publisher appointment, map deployment/WeWeb installation and activation remain separate authorized actions.
+
+## Verification and exact remaining evidence
+
+Eleven new synthetic host tests cover fresh minimal session reads, static denials, asynchronous callback delivery, shared/idempotent subscription cleanup, pending-read fencing, client replacement, teardown, consumer failures and delayed old-session response cancellation through the actual existing transport. The initial focused host + transport run passed 21 tests. Typecheck/build passed. The first broad parallel run produced no completion summary; the single-worker run found the existing provisioning test still expected review-only-not-applied after the authorized create. That assertion now verifies the committed disabled receipt and both exact hashes/envelope bytes. A final full-suite result is recorded in validation.json. No real installed plugin/session, WeWeb platform build or browser UI was tested; the unchanged component/browser suite was not repeated. All synthetic subscriptions, timers and test fixtures close.
+
+Only these non-secret facts block live wiring:
+1. The installed legacy Auth build/release and per-rendered-environment project ref/provider/client accessor/lifecycle.
+2. The exact rendered-app origin and selected separate map API origin/target; never the editor origin.
+3. The active Supabase signing algorithm and ordinary non-anonymous session compatibility; no JWT/key/identity is needed for metadata review.
+4. Resolution or explicit exclusion of the contradictory empty Railway patch.
+5. Before enabling roles: approved secret delivery/connection mode/TLS, shared PUBLIC/function-path acceptance and the trusted private administrator-bootstrap instruction.
+
+The next bounded inspection is read-only WeWeb plugin/provider/hosting metadata and Supabase **non-secret active signing algorithm summary**. Do not execute Auth/session getters, workflows, preview applications, logins or endpoints merely to establish metadata. Prefer an already visible staging/preview URL in settings, without launching it. No raw environment export, API/secret key control, signing-key details, Auth users, credentials or JWTs belong to this inspection. If metadata cannot be safely exposed, the exact operator statement needed is: “Investscape Dev uses installed legacy Auth build [release], rendered environment [name] targets Supabase ref [ref] through [existing accessor], app origin is [exact HTTPS origin], and active signing algorithm is [ES256/RS256/other]; intended map candidate target/origin is [reference].” Provider/key rotation and publication are not implied.
+
+Primary references: [pinned WeWeb legacy source](https://github.com/weweb-assets/plugin-supabase-auth/blob/b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645/src/wwPlugin.js), current connector Supabase integration/Auth documentation; [Supabase Auth callback deadlock guidance](https://supabase.com/docs/guides/troubleshooting/why-is-my-supabase-api-call-not-returning-PGzXw0), [onAuthStateChange](https://supabase.com/docs/reference/javascript/auth-onauthstatechange), [connection methods](https://supabase.com/docs/guides/database/connecting-to-postgres), [SSL enforcement/client modes](https://supabase.com/docs/guides/platform/ssl-enforcement). All metadata/docs reads dated Oct 9. Shared-account/hosting facts still do not establish a Relationship OS transaction domain.

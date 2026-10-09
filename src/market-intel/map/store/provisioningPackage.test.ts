@@ -21,11 +21,28 @@ async function denied(pg: PGlite, query: string, pattern: RegExp) {
     await pg.exec('ROLLBACK; RESET ROLE;');
 }
 
-test('review manifest pins exact candidate bytes and unchanged source draft', async () => {
+test('provisioning manifest pins exact candidate, unchanged draft and committed disabled receipt', async () => {
     assert.equal(createHash('sha256').update(sql).digest('hex'), manifest.candidateSha256);
     const source = await readFile(new URL('../../../../docs/review/map-store-schema.sql', import.meta.url), 'utf8');
     assert.equal(createHash('sha256').update(source).digest('hex'), manifest.sourceDraftSha256);
-    assert.equal(manifest.status, 'review-only-not-applied');
+    assert.equal(manifest.status, 'applied-disabled-verified');
+    const receipt = JSON.parse(await readFile(new URL(manifest.appliedReceipt, folder), 'utf8'));
+    assert.equal(receipt.candidateSha256, manifest.candidateSha256);
+    assert.equal(receipt.sourceDraftSha256, manifest.sourceDraftSha256);
+    assert.deepEqual(receipt.target.ref, manifest.targetProject.ref);
+    assert.equal(receipt.transactionOutcome, 'committed');
+    assert.equal(receipt.allNewRolesNoLogin, true);
+    assert.equal(receipt.permissionAcceptance.passed, true);
+    assert.equal(receipt.supabaseMigration.verified, true);
+    assert.equal(receipt.runtimeActivation, false);
+    assert.equal(receipt.credentialBindingReference, null);
+    assert(Object.values(receipt.initialStoreCounts).every(value => value === 0));
+    const envelope = await readFile(new URL(receipt.submissionEnvelope, folder), 'utf8');
+    assert.equal(createHash('sha256').update(envelope).digest('hex'), receipt.submissionEnvelopeSha256);
+    const prefix = `SET mi_map.provisioning_receipt = '${receipt.mapLedger.receipt_ref}';\n`;
+    const suffix = 'RESET mi_map.provisioning_receipt;\n';
+    assert(envelope.startsWith(prefix) && envelope.endsWith(suffix));
+    assert.equal(envelope.slice(prefix.length, -suffix.length), sql);
 });
 
 test('exact candidate assigns explicit private owner and separate disabled runtime principals', async () => {

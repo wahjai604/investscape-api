@@ -1,6 +1,6 @@
 # Market Intel — Dev bindings and scoped provisioning package
 
-**Evidence date: 2026-10-09 UTC. Status: concrete review package complete; not applied or wired.** The new bounded catalog reads use the user's instruction to verify Dev bindings. They do not authorize live DDL, credential delivery, appointments, deployment, WeWeb changes or activation. Source baseline is API `bccafaa789e5b702b588ff105ef41d8eb50994d8` on `review/market-intel-map-access-2026-10-08`. The original HTML remains unchanged; implementation targets the WeWeb SaaS application.
+**Evidence date: 2026-10-09 UTC. Current status: disabled Dev package applied and permissions verified; runtime wiring remains blocked.** Earlier dated review/proposals below are retained as history. The new bounded catalog reads use the user's instruction to verify Dev bindings. They do not authorize live DDL, credential delivery, appointments, deployment, WeWeb changes or activation. Source baseline is API `bccafaa789e5b702b588ff105ef41d8eb50994d8` on `review/market-intel-map-access-2026-10-08`. The original HTML remains unchanged; implementation targets the WeWeb SaaS application.
 
 ## Verified bindings and their limits
 
@@ -75,3 +75,7 @@ The [updated recovery checkpoint](map-provisioning/recovery-confirmation.md) clo
 ## Disabled Dev create and permission acceptance — 2026-10-09
 
 The owner authorized the subsequent provisioning phase at 08:12:09 America/Vancouver. The unchanged approved candidate committed once in Investscape-Dev at 15:17:48 UTC / 08:17:48 Vancouver. The [applied receipt](map-provisioning/applied-receipt-2026-10-09.json) and [acceptance summary](map-provisioning/provisioning-acceptance.md) supersede historical review-only/not-applied status. All six new roles remain NOLOGIN; nine tables are owned by mi_map_owner with forced RLS. Fixed catalog/effective privileges and empty-store counts passed; no authenticated connection/session or independent-server concurrency test was performed. Installed legacy/Auth/origin bindings and runtime enablement remain separate. No source SQL, runtime code, connected API branch, Lighthouse runner, authentication, WeWeb page or map activation changed.
+
+## Auth/origin and runtime-wiring preparation follow-up — 2026-10-09
+
+The [sequential wiring review](map-runtime-wiring/README.md) records fresh WeWeb connection and Railway domain/deployment/replica metadata, the unavailable installed-build/effective-provider/rendered-origin facts, and the unchanged staged-patch discrepancy. A source-only existing-public-client bridge is implemented and synthetically tested without installation or registration. The runtime manifest keeps both flags false and missing app/map target bindings null; live binding, deployment and activation remain blocked. No new database/platform configuration operation occurred.

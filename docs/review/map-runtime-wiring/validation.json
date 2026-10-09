@@ -1,0 +1,50 @@
+{
+  "evidenceDate": "2026-10-09",
+  "completedAt": "2026-10-09T15:56:16.767Z",
+  "scope": "Source bridge and existing transport/receipt verification only; no live installed session or connection",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "passed": true
+  },
+  "build": {
+    "command": "npm run build",
+    "passed": true
+  },
+  "focused": {
+    "command": "node --test src/market-intel/map/supabaseSessionHost.test.ts src/market-intel/map/sessionAdapter.test.ts",
+    "tests": 21,
+    "passed": 21,
+    "failed": 0,
+    "newHostTests": 11
+  },
+  "full": {
+    "command": "node --test --test-concurrency=1 'src/**/*.test.ts'",
+    "tests": 624,
+    "passed": 622,
+    "failed": 0,
+    "skipped": 2,
+    "durationMs": 27301.156715,
+    "skipReason": "Existing E85 external evidence-dependent checks"
+  },
+  "priorRuns": [
+    {
+      "command": "npm test",
+      "result": "No completion summary; inconclusive, not counted as passed"
+    },
+    {
+      "command": "node --test --test-concurrency=1 'src/**/*.test.ts'",
+      "result": "624 total / 621 passed / 1 failed / 2 skipped; existing provisioning status assertion was stale after authorized create",
+      "correction": "Updated the assertion to check committed disabled receipt, target and exact candidate/source/envelope hashes; candidate/envelope/receipt bytes unchanged"
+    }
+  ],
+  "notPerformed": [
+    "Actual installed plugin compatibility test",
+    "Real session/token/JWKS or API endpoint tests",
+    "WeWeb CLI/platform build or UI inspection",
+    "Database or platform configuration changes",
+    "Role enablement/credentials/admin bootstrap",
+    "Deployment/WeWeb publication/map activation"
+  ],
+  "unchangedComponentBrowserChecks": "Prior results retained; component code unchanged so browser suite not repeated",
+  "fixturesClosed": true
+}

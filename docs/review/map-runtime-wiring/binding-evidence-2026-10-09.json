@@ -1,0 +1,226 @@
+{
+  "evidenceDate": "2026-10-09",
+  "observedAt": "2026-10-09T15:50:05.822Z",
+  "scope": "Read-only non-secret metadata; source preparation only",
+  "weweb": {
+    "label": "Freshly verified",
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "name": "Investscape Dev",
+    "editedAt": "2026-10-07T01:24:53.455Z",
+    "workspaceId": "1ccb9cbe-9adc-4603-a91f-a1f06b9944ce",
+    "mcpAccess": true,
+    "editorOrigin": "https://joyous-trellis-editor.weweb.io",
+    "integrations": [
+      {
+        "id": "auth0",
+        "installed": "uninstalled",
+        "readyToUse": false,
+        "connections": []
+      },
+      {
+        "id": "custom-auth",
+        "installed": "installed",
+        "readyToUse": true,
+        "connections": []
+      },
+      {
+        "id": "openid",
+        "installed": "uninstalled",
+        "readyToUse": false,
+        "connections": []
+      },
+      {
+        "id": "supabase",
+        "installed": "installed",
+        "readyToUse": true,
+        "connections": [
+          {
+            "connectionId": "40c528bb-150f-4ecc-9aff-846cd113dbc9",
+            "name": "Supabase connection"
+          }
+        ]
+      },
+      {
+        "id": "weweb-auth",
+        "installed": "installed",
+        "readyToUse": true,
+        "connections": []
+      }
+    ],
+    "limitations": "Multiple integration entries marked installed do not establish the active provider; editor origin is not rendered app origin",
+    "installedLegacyPluginVersion": {
+      "label": "Unknown",
+      "value": null
+    },
+    "effectiveAuthProvider": {
+      "label": "Unknown",
+      "value": null
+    },
+    "renderedAppOrigin": {
+      "label": "Unknown",
+      "value": null
+    },
+    "readsUnavailable": [
+      {
+        "tool": "searchFrontendAppPageFunctionWorkflows",
+        "outcome": "Internal error"
+      },
+      {
+        "tool": "getAppWorkflowTriggersContext",
+        "attempts": 2,
+        "outcomes": [
+          "Access-check failed because WeWeb could not be reached",
+          "Internal error"
+        ]
+      },
+      {
+        "tool": "searchPages",
+        "outcome": "NETWORK_ERROR"
+      }
+    ],
+    "omitted": [
+      "Account/user identities and editor handoff URLs",
+      "Environment variable exports/values",
+      "Real sessions/JWTs",
+      "Auth-user rows"
+    ]
+  },
+  "legacySource": {
+    "label": "Source intention",
+    "reference": "https://github.com/weweb-assets/plugin-supabase-auth/blob/b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645/src/wwPlugin.js",
+    "commit": "b67f2e2d9b5220f9ba0c3f824bfa36b94c6cc645",
+    "packageVersion": "3.1.0",
+    "supabaseJsVersion": "2.50.3",
+    "accessor": "wwLib.wwPlugins.supabaseAuth.publicInstance.auth.getSession()",
+    "subscription": "The same public client's auth.onAuthStateChange()",
+    "notInstalledVersionEvidence": true
+  },
+  "reportedAuthMapping": {
+    "label": "Historical reported evidence",
+    "date": "2026-10-08 local / 2026-10-09 UTC",
+    "projectRef": "hwhkgrwikczwztfnsjir",
+    "role": "Previously inspected WeWeb legacy Auth and data connection target; not freshly established effective runtime binding"
+  },
+  "railway": {
+    "label": "Freshly verified",
+    "project": {
+      "id": "227cdcb9-8e2c-4cf2-8e96-805454eccf56",
+      "name": "InvestScape Native Full Staging"
+    },
+    "service": {
+      "id": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+      "name": "native-full-staging-api",
+      "state": "live"
+    },
+    "environment": {
+      "id": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+      "name": "production"
+    },
+    "domains": {
+      "service": {
+        "id": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+        "name": "native-full-staging-api"
+      },
+      "environment": {
+        "id": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+        "name": "production"
+      },
+      "serviceDomains": [
+        {
+          "id": "ec140b01-ed29-4ae2-8f03-ea0cd89c181e",
+          "domain": "native-full-staging-api-production.up.railway.app",
+          "targetPort": 8080
+        }
+      ],
+      "customDomains": []
+    },
+    "apiOrigin": "https://native-full-staging-api-production.up.railway.app",
+    "latestDeployment": {
+      "id": "c0f1658f-481b-4579-a297-4ba02963436e",
+      "createdAt": "2026-10-04T09:32:26.907Z",
+      "status": "SUCCESS",
+      "serviceId": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+      "environmentId": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+      "source": {
+        "branch": "feat/native-full-api-adapter",
+        "commitHash": "2cec0ab519513a34aabbad909c4f24b1472d385c"
+      },
+      "regions": [
+        "us-east4-eqdc4a"
+      ]
+    },
+    "topology": {
+      "configuredReplicas": 1,
+      "runningReplicas": 1,
+      "totalReplicas": 1,
+      "region": "us-east4-eqdc4a",
+      "ipv6EgressEnabled": false,
+      "health": "online"
+    },
+    "stagedDiscrepancy": {
+      "describeServiceStaged": null,
+      "serviceChanges": [],
+      "statusStagedChanges": null,
+      "statusPendingWork": [
+        {
+          "id": "patch:2473a18c-53e2-47c1-9857-d8de0b334e14",
+          "kind": "EnvironmentPatch",
+          "status": "staged",
+          "changes": [],
+          "startedAt": "2026-10-03T14:21:08.575Z"
+        }
+      ],
+      "resolution": "Unknown; neither accepted nor discarded",
+      "emptyPatchIsRunningJob": false
+    },
+    "variableNamesOnly": [
+      "CORS_ALLOWED_ORIGINS",
+      "E85_VANCOUVER_SPATIAL_ENABLED",
+      "INVESTSCAPE_FF_NATIVE_FULL",
+      "INVESTSCAPE_FF_REQUIRE_ENGINE_AUTH",
+      "LIGHTHOUSE_ALLOW_DEV_SESSIONS",
+      "LIGHTHOUSE_ALLOW_INMEMORY_PERSISTENCE",
+      "LIGHTHOUSE_FF_STAGE1_LAUNCH_RECEIVER",
+      "NODE_ENV",
+      "SUPABASE_JWKS_URL",
+      "SUPABASE_JWT_AUDIENCE",
+      "SUPABASE_JWT_ISSUER"
+    ],
+    "limitation": "A configured API domain and SUCCESS deployment do not prove active CORS/Auth values, map routes, credentials, TLS connection or health of a map candidate; no application endpoint was contacted"
+  },
+  "mapDatabase": {
+    "label": "Historical reported evidence \u2014 prior assistant-run managed checks preserved in receipt",
+    "verifiedAt": "2026-10-09T15:17:48Z",
+    "target": "hwhkgrwikczwztfnsjir",
+    "receipt": "map-provisioning/applied-receipt-2026-10-09.json",
+    "posture": "9 forced-RLS tables; all 6 roles NOLOGIN; no new database operation in this wiring slice"
+  },
+  "futureBinding": {
+    "label": "Source intention",
+    "issuer": "https://hwhkgrwikczwztfnsjir.supabase.co/auth/v1",
+    "audience": "authenticated",
+    "algorithms": [
+      "ES256",
+      "RS256"
+    ],
+    "effectiveProjectSigningMode": {
+      "label": "Unknown",
+      "value": null
+    },
+    "deployedMapIssuer": {
+      "label": "Unknown",
+      "value": null
+    },
+    "requiredIsAnonymousValue": false
+  },
+  "performed": {
+    "databaseChanges": false,
+    "railwayChanges": false,
+    "wewebChanges": false,
+    "sessionInspection": false,
+    "endpointTests": false,
+    "deployment": false,
+    "mapActivation": false,
+    "browserFallback": false
+  }
+}
