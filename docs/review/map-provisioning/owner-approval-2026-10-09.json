@@ -38,15 +38,19 @@
     ]
   },
   "recovery": {
-    "label": "Unknown",
-    "verifiedBackupReference": null,
-    "backupTimestamp": null,
-    "backupStatus": null,
+    "label": "Historical reported evidence — owner-supplied screenshots, freshly visually inspected by assistant",
+    "verifiedBackupReference": "recovery-evidence-2026-10-09.json",
+    "backupTimestamp": "2026-10-09T11:16:52Z",
+    "backupStatus": "Scheduled PHYSICAL backup listed with Restore control in owner screenshot; no explicit completion status or restore rehearsal",
     "restoreProcedure": "https://supabase.com/docs/guides/platform/backups",
     "projectDashboard": "https://supabase.com/dashboard/project/hwhkgrwikczwztfnsjir/database/backups/scheduled",
     "connectorCapability": "No backup-list capability exposed",
-    "status": "Awaiting permitted dashboard inspection or a non-secret operator reference",
-    "waived": false
+    "status": "Concrete owner-supplied recovery reference established; no further dashboard sign-in needed for this evidence step",
+    "pitrEnabled": false,
+    "waived": false,
+    "evidenceReceivedAt": "2026-10-09T05:16:00-07:00",
+    "limitation": "Screenshot shows project name, not project ref; expected ref corroborated via Supabase get_project",
+    "latestInspectionScope": "Read-only backup inspection; no live DDL applied in this step"
   },
   "execution": {
     "ddlAttempted": false,

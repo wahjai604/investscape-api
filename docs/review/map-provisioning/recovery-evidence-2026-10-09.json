@@ -1,0 +1,70 @@
+{
+  "evidenceDate": "2026-10-09",
+  "receivedAt": "2026-10-09T05:16:00-07:00",
+  "label": "Historical reported evidence — owner-supplied screenshots, freshly visually inspected by assistant",
+  "projectNameVisible": "Investscape-Dev",
+  "projectRefExpected": "hwhkgrwikczwztfnsjir",
+  "projectRefVisibleInScreenshots": false,
+  "targetProjectCorroboration": "Fresh Supabase get_project returns Investscape-Dev for hwhkgrwikczwztfnsjir; screenshot supplied in response to this target's recovery request",
+  "branchLabel": "main",
+  "dashboardBadge": "PRODUCTION; does not establish application production release",
+  "scheduledBackup": {
+    "typeVisible": "PHYSICAL",
+    "latestListedTimestampRaw": "09 Oct 2026 11:16:52 (+0000)",
+    "timestampUtc": "2026-10-09T11:16:52Z",
+    "timestampVancouver": "2026-10-09T04:16:52-07:00",
+    "availabilityEvidence": "Listed row with Restore control",
+    "explicitCompletionStatusVisible": false,
+    "restoreTested": false
+  },
+  "listedBackupDates": [
+    "2026-10-09",
+    "2026-10-08",
+    "2026-10-07",
+    "2026-10-06",
+    "2026-10-05",
+    "2026-10-04",
+    "2026-10-03",
+    "2026-10-02"
+  ],
+  "pitr": {
+    "evidence": "Point in Time Recovery is available as an add-on; Enable add-on control",
+    "enabled": false,
+    "availableRecoveryWindow": null,
+    "changed": false
+  },
+  "lossWindow": {
+    "asOfOwnerMessageUtc": "2026-10-09T12:16:00Z",
+    "latestBackupAgeSeconds": 3548,
+    "interpretation": "A restore to this point would discard later database changes; no restore is authorized"
+  },
+  "coverage": {
+    "storageObjectsIncluded": false,
+    "evidence": "Scheduled page notice says Storage objects are not included",
+    "customRoleCredentials": "No credential inspection or export; planned roles remain NOLOGIN"
+  },
+  "sources": [
+    {
+      "filename": "image(20261009-121529).png",
+      "libraryFileId": "libfile_0c26f32ee19c8191b835fed2d365bead",
+      "sha256": "0ea8fb4cda2f5e2874cd2e139cc5b976ff810cf7e94f53ed705172d2f17407c7",
+      "view": "Scheduled backups"
+    },
+    {
+      "filename": "image(20261009-121547).png",
+      "libraryFileId": "libfile_2ece265ee22c8191a65d77449783f557",
+      "sha256": "4814a1f6d1c01f6dbe2362be8dcd2c3461aaf2a58f51221fdc4b00b3ed0726f3",
+      "view": "Point in time"
+    }
+  ],
+  "liveDashboardBackupListingRetrieved": false,
+  "noActionsPerformed": [
+    "Restore",
+    "Download or dump",
+    "Enable PITR",
+    "Billing change",
+    "Auth/user inspection"
+  ],
+  "restoreProcedureReference": "https://supabase.com/docs/guides/platform/backups",
+  "conclusion": "Concrete owner-supplied scheduled physical restore-point reference established; no restore rehearsal or fresh live backup API verification claimed"
+}
