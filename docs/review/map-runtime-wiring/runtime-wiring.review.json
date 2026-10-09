@@ -77,7 +77,7 @@
   "blockingFacts": [
     "Installed legacy Auth build/release and intended rendered-environment project binding; settings now confirm legacy plugin and configured hwhkgrwikczwztfnsjir target",
     "Verified existing public-client lifecycle/accessor availability in the installed build",
-    "Supabase non-secret active signing algorithm and non-anonymous session compatibility",
+    "Ordinary non-anonymous session compatibility remains unverified; current P-256/ES256 signing metadata is verified and source-algorithm compatible",
     "Exact rendered-app origin and separately selected map API origin/target",
     "Resolve or expressly exclude contradictory old empty Railway patch",
     "Approved scoped role enablement/secret delivery, connection mode/verified TLS and shared PUBLIC/function-path acceptance",
@@ -91,10 +91,19 @@
     "noSessionOrTokenInspection": true,
     "completedEvidence": "ui-metadata-evidence-2026-10-09.json",
     "wewebOutcome": "Legacy Supabase Auth plugin/configured target verified; no version or rendered app origin exposed; no publications yet",
-    "supabaseOutcome": "Signing summary unavailable at sign-in wall; selected ChatGPT sign-in transition blocked by automatic approval review",
-    "separateOpenAiSignInApprovalRequired": true
+    "supabaseOutcome": "Signed-in target project settings verified; current ECC (P-256), documented ES256, and previous legacy HS256 status observed without key details",
+    "separateOpenAiSignInApprovalRequired": false,
+    "openAiSignInApprovedAndAccessVerified": true,
+    "signingEvidence": "supabase-signing-evidence-2026-10-09.json"
   },
   "readyToBind": false,
   "readyToDeploy": false,
-  "readyToActivate": false
+  "readyToActivate": false,
+  "signingMetadata": {
+    "currentDisplayedType": "ECC (P-256)",
+    "algorithm": "ES256",
+    "sourceAlgorithmCompatible": true,
+    "realSessionCompatibilityVerified": false,
+    "receipt": "supabase-signing-evidence-2026-10-09.json"
+  }
 }

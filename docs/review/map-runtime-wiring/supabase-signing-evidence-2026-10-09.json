@@ -1,0 +1,70 @@
+{
+  "evidenceDate": "2026-10-09",
+  "observedAt": "2026-10-09T18:25:31Z",
+  "scope": "Approved read-only browser sign-in verification and non-secret active signing-algorithm summary",
+  "project": {
+    "name": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir"
+  },
+  "browserAccess": {
+    "label": "Freshly verified",
+    "result": "Signed-in organization dashboard and target project settings visibly accessible",
+    "source": "Supabase dashboard after owner-completed sign-in",
+    "ownerApprovedOpenAiSignIn": true,
+    "priorApprovalBlockResolved": true,
+    "secureCodePromptOutcome": "Timed out; no success inferred from that request. Owner later reported completion and signed-in dashboard was freshly verified."
+  },
+  "currentSigning": {
+    "label": "Freshly verified",
+    "source": "Supabase project settings > JWT Keys > JWT Signing Keys, current table status/type columns only",
+    "sourceUrl": "https://supabase.com/dashboard/project/hwhkgrwikczwztfnsjir/settings/jwt",
+    "displayedStatus": "Current key",
+    "displayedType": "ECC (P-256)",
+    "algorithm": "ES256",
+    "algorithmEvidence": "Inference from directly observed P-256 type and Supabase primary documentation mapping P-256 to ES256",
+    "documentation": "https://supabase.com/docs/guides/auth/signing-keys",
+    "sourceMapVerifierAlgorithms": [
+      "ES256",
+      "RS256"
+    ],
+    "algorithmCompatibility": "Compatible at signing-algorithm level only"
+  },
+  "previousSigning": {
+    "label": "Freshly verified",
+    "displayedStatus": "Previous key",
+    "displayedType": "Legacy HS256 (Shared Secret)",
+    "acceptanceOrRevocationState": "Unknown; not inferred from Previous key label"
+  },
+  "healthMetadata": {
+    "label": "Freshly verified discrepancy",
+    "dashboardOverviewStatus": "Unhealthy",
+    "connectorGetProjectStatus": "ACTIVE_HEALTHY",
+    "reason": "Unknown; different metadata signals do not establish endpoint or database health. No endpoint or database probe performed."
+  },
+  "stillUnknown": [
+    "Installed WeWeb legacy Auth release/build and verified existing public-client accessor/lifecycle",
+    "Actual ordinary non-anonymous session compatibility and intended rendered-environment binding",
+    "Exact rendered app origin and selected map candidate API target/origin",
+    "Deployed map issuer/acceptance, scoped role connection/TLS acceptance and private admin bootstrap"
+  ],
+  "performed": {
+    "readOnly": true,
+    "keyDetailsOpened": false,
+    "keysOrCredentialsRetrieved": false,
+    "sessionOrJwtInspection": false,
+    "userOrTableQuery": false,
+    "configurationChanged": false,
+    "signingMigrationOrRotation": false,
+    "databaseChanges": false,
+    "endpointTests": false,
+    "deployment": false,
+    "mapActivation": false
+  },
+  "omitted": [
+    "Account identities",
+    "Key identifiers and key material",
+    "JWTs and real sessions",
+    "Credential and verification-code values",
+    "Raw environment configuration"
+  ]
+}
