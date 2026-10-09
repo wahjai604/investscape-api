@@ -1,0 +1,98 @@
+{
+  "evidenceDate": "2026-10-09",
+  "label": "Freshly verified",
+  "status": "installed-tested-no-session",
+  "preparedReviewCommit": "a3d5f585f97863749499109b39ceebe9585aa789",
+  "authorization": {
+    "source": "Owner continuation of remaining installed/accessor/origin/session work",
+    "at": "2026-10-09T18:39:34Z",
+    "scope": "One reversible Dev editor-only function, manually run once; no new account/sign-in or other diagnostic execution"
+  },
+  "target": {
+    "wewebProject": "Investscape Dev",
+    "wewebProjectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "configuredSupabaseRef": "hwhkgrwikczwztfnsjir"
+  },
+  "workflow": {
+    "id": "936f0e88-f650-4821-a837-4cd16e1686bd",
+    "name": "Market Intel session capabilities (review)",
+    "folder": "InvestScape/Diagnostics/",
+    "scope": "function",
+    "parameters": [],
+    "actions": [
+      "inspect"
+    ],
+    "trigger": null,
+    "exactCodeReadbackMatched": true,
+    "createdOnce": true,
+    "existingWorkflowsModified": false
+  },
+  "execution": {
+    "source": "Manual workflow Test and exact workflow getWorkflowExecutionLogs safe result projection",
+    "id": "ae1de0d7-0cd0-40a0-a29b-dc76ede0acb8",
+    "createdAt": "2026-10-09T18:54:57.749Z",
+    "hasError": false,
+    "manualRunCount": 1
+  },
+  "safeResult": {
+    "status": "NO_SESSION",
+    "environment": "editor",
+    "renderedOrigin": "https://joyous-trellis-editor.weweb.io",
+    "getSessionAvailable": true,
+    "authEventsAvailable": true,
+    "subscriptionUsable": true,
+    "sdkReadSucceeded": true,
+    "sessionPresent": false,
+    "explicitlyNonAnonymous": false,
+    "unexpired": false,
+    "clientUnchanged": true,
+    "stableDuringRead": true,
+    "subscriptionReleased": true
+  },
+  "interpretation": {
+    "publicSdkCapabilitiesVerified": true,
+    "ordinaryMemberSessionCompatibilityVerified": false,
+    "absentSessionFlags": "explicitlyNonAnonymous/unexpired false are defaults for absent session, not evidence of anonymous/expired membership",
+    "cleanup": "Unsubscribe invoked once without throwing; no independent hidden listener-count inspection",
+    "editorOrigin": "Direct runtime evidence only; not a hosted app origin or CORS binding",
+    "installedAuthRelease": "Unknown; not exposed by inspected metadata",
+    "exactHostedAppOrigin": null,
+    "cryptoJwtOrMapAcceptanceVerified": false
+  },
+  "performed": {
+    "wewebChange": "Only the single reusable function, no automatic trigger",
+    "existingSignOutOrEndpointDiagnosticsExecuted": false,
+    "appMemberSignIn": false,
+    "tokenOrIdentityFieldsRead": false,
+    "rawContextOrLogExport": false,
+    "databaseChanges": false,
+    "roleOrAdminChanges": false,
+    "providerConfigurationChanges": false,
+    "railwayChanges": false,
+    "publication": false,
+    "deployment": false,
+    "mapActivation": false
+  },
+  "limitations": [
+    "SDK getSession may internally refresh an existing session; internal network behavior was not inspected",
+    "No existing session was present; no JWT signature/issuer or map-host session shape was verified",
+    "Editor-only capability success does not prove preview or published behavior"
+  ],
+  "verification": {
+    "focusedSyntheticTests": 10,
+    "passed": 10,
+    "failed": 0,
+    "rootSuiteRepeated": false,
+    "sourceDiagnosticUnchangedSinceTests": true
+  },
+  "remaining": [
+    "Existing eligible Dev app member session for bounded follow-up",
+    "Exact intended hosted app origin and separately selected map API target",
+    "Installed release number remains unexposed; lifecycle and full map-host session compatibility unverified"
+  ],
+  "readiness": {
+    "readyToBind": false,
+    "readyToDeploy": false,
+    "readyToActivate": false
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "status": "review-only-not-installed-not-executed",
+  "status": "installed-tested-no-session",
   "target": {
     "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
     "name": "Investscape Dev",
@@ -46,5 +46,7 @@
     "instruction": "Continue installed WeWeb/accessor, exact app origin and real-session compatibility work",
     "scopeInterpretation": "One reversible manually invoked Dev capability diagnostic is necessary to perform the requested session compatibility verification; no automatic trigger, new account/sign-in, map endpoint or publication is authorized",
     "approvedForBoundedDiagnostic": true
-  }
+  },
+  "preparatoryStatus": "review-only-not-installed-not-executed",
+  "executionReceipt": "session-capability-execution-2026-10-09.json"
 }

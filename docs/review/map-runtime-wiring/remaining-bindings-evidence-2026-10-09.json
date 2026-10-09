@@ -103,5 +103,7 @@
     "previewOrPublication": false,
     "deployment": false,
     "mapActivation": false
-  }
+  },
+  "snapshotRole": "Historical preparation snapshot at observedAt; performed fields describe that checkpoint only",
+  "subsequentExecutionReceipt": "session-capability-execution-2026-10-09.json"
 }

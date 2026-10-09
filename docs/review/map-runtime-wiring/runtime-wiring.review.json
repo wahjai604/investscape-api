@@ -41,8 +41,9 @@
     "serverVerifierAuthoritative": true,
     "registrationKey": "investscape.map.session-host.v1",
     "installedAccessorSourceVerified": true,
-    "installedRuntimeCapabilityVerified": false,
-    "accessorSourceEvidence": "remaining-bindings-evidence-2026-10-09.json"
+    "installedRuntimeCapabilityVerified": true,
+    "accessorSourceEvidence": "remaining-bindings-evidence-2026-10-09.json",
+    "runtimeCapabilityEvidence": "session-capability-execution-2026-10-09.json"
   },
   "poolPreparation": {
     "reader": {
@@ -79,19 +80,18 @@
   },
   "blockingFacts": [
     "Installed legacy Auth build/release and intended rendered-environment project binding; settings now confirm legacy plugin and configured hwhkgrwikczwztfnsjir target",
-    "Installed workflow source confirms expected public-client accessor, but live availability/lifecycle and session metadata require reviewed diagnostic acceptance",
-    "Ordinary non-anonymous session compatibility remains unverified; current P-256/ES256 signing metadata is verified and source-algorithm compatible",
+    "Installed public accessor, getSession, auth events, stable read and subscription cleanup verified once in editor; complete map-host lifecycle remains unverified",
+    "No existing app member session was present (NO_SESSION); ordinary non-anonymous/unexpired session compatibility remains unverified",
     "Exact rendered-app origin and separately selected map API origin/target",
     "Resolve or expressly exclude contradictory old empty Railway patch",
     "Approved scoped role enablement/secret delivery, connection mode/verified TLS and shared PUBLIC/function-path acceptance",
     "Trusted private administrator identity match and bootstrap authorization/receipt"
   ],
-  "currentAuthorization": "Read-only metadata verification and source/review preparation; no live role enablement, credential binding, admin appointment, platform edit, deployment or activation",
+  "currentAuthorization": "Owner continuation at 2026-10-09T18:39:34Z covered one reversible manually invoked Dev session diagnostic; installed and executed once. No new sign-in/account, map endpoint, persistence, role/admin change, publication, deployment or activation authorized",
   "nextInspection": {
     "requiresBrowserFallbackApproval": false,
     "browserFallbackApprovedAt": "2026-10-09T17:05:38Z",
-    "readOnly": true,
-    "noSessionOrTokenInspection": true,
+    "readOnly": false,
     "completedEvidence": "ui-metadata-evidence-2026-10-09.json",
     "wewebOutcome": "Legacy Supabase Auth plugin/configured target verified; no version or rendered app origin exposed; no publications yet",
     "supabaseOutcome": "Signed-in target project settings verified; current ECC (P-256), documented ES256, and previous legacy HS256 status observed without key details",
@@ -101,8 +101,12 @@
     "remainingEvidence": "remaining-bindings-evidence-2026-10-09.json",
     "currentSupabaseHealthMetadataAgreement": true,
     "sessionDiagnostic": "session-capability-workflow.review.json",
-    "sessionDiagnosticInstalled": false,
-    "sessionDiagnosticExecuted": false
+    "sessionDiagnosticInstalled": true,
+    "sessionDiagnosticExecuted": true,
+    "noTokenOrIdentityFieldInspection": true,
+    "sessionDiagnosticResult": "NO_SESSION",
+    "sessionDiagnosticExecutionReceipt": "session-capability-execution-2026-10-09.json",
+    "nextStep": "Existing Dev app member sign-in in unpublished Login preview, then one scoped rerun; Supabase dashboard sign-in does not establish an app session"
   },
   "readyToBind": false,
   "readyToDeploy": false,
@@ -113,5 +117,6 @@
     "sourceAlgorithmCompatible": true,
     "realSessionCompatibilityVerified": false,
     "receipt": "supabase-signing-evidence-2026-10-09.json"
-  }
+  },
+  "renderedEditorFrontWindowOrigin": "https://joyous-trellis-editor.weweb.io"
 }
