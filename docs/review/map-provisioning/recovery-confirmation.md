@@ -1,0 +1,23 @@
+# Disabled Dev create — owner approval and recovery confirmation
+
+**2026-10-09, owner instruction received 04:53:27 America/Vancouver. Status: approval recorded; recovery not verified; no live DDL attempted.**
+
+The owner's “go” accepts the proposed disabled Dev create in the preceding package, subject to establishing a concrete recovery reference. The [approval receipt](owner-approval-2026-10-09.json) pins the exact SQL SHA256 `efbe815271d4cd703a0b4e71a18ff2e5a640ef9dd79ce94769bed5c8dc93305d`, source commit `97bfe7ff27c89d9b8744537e152f3221c305db98`, target Investscape-Dev `hwhkgrwikczwztfnsjir`, controlled operator postgres, private owner mi_map_owner and independent mi_map_private.schema_receipts ledger. This approval does not waive the missing recovery evidence or authorize later activation/appointments/deployment. The generated candidate and manifest bytes are unchanged.
+
+Fresh get-project confirms the same healthy PostgreSQL 17 Dev target. The authorized read-only preflight again returns no private map schema or proposed role collisions, with the same function counts. GitHub preserves the isolated review parent and Railway-connected branch `2cec0ab519513a34aabbad909c4f24b1472d385c`. Fresh WeWeb metadata confirms the installed Supabase connection is ready; it still does not establish installed legacy plugin version or effective Auth/origin settings. No table/Auth-user rows, raw environment values, credentials, signing keys or sessions were inspected. No unchanged tests were rerun.
+
+## Missing recovery fact and exact read-only scope
+
+The available Supabase connector exposes project and SQL metadata but no backup-list tool. Project health, PostgreSQL version and generic backup documentation do not prove that this Dev project has an available recoverable backup. No plan, backup timestamp, entitlement, PITR window or successful restore rehearsal has been inferred.
+
+The next inspection is the [Investscape-Dev scheduled Backups page](https://supabase.com/dashboard/project/hwhkgrwikczwztfnsjir/database/backups/scheduled), and the PITR tab only if needed to identify the available recovery window. Record only project name/ref, backup type, completion/availability status, timestamp plus timezone (or PITR earliest/latest points), and the documented restore procedure reference. A failed, pending, expired or absent backup is not a confirmed reference. No restore/download/export, new subscription, billing change, backup configuration edit, user/table inspection or credential retrieval belongs to this inspection.
+
+The browser tool's usage instructions require user approval before falling back when the service plugin lacks a sufficient capability. This access permission has not been assumed from approval of the SQL package. No browser was initialized or session probed. Alternatively, the owner can supply the same non-secret available-backup reference and timezone/status as historical reported evidence, clearly distinguished from assistant verification. Backup contents, a database dump or tokens are unnecessary.
+
+## Proposed recovery procedure, not a restore authorization
+
+Current [Supabase backup documentation](https://supabase.com/docs/guides/platform/backups) identifies Database → Backups for available scheduled restore points and a separate PITR recovery window where enabled. A project restore requires confirmation and interrupts project availability; this would affect the whole Dev database, including unrelated saved projects. Restoration is not a map-only rollback. The reference must identify an available point before provisioning and make any intervening data-loss window explicit. Custom-role password handling and external Storage objects remain separate concerns; this initial slice leaves new roles NOLOGIN and exports no credentials or objects.
+
+If the create transaction fails, its DDL rolls back. If the result is uncertain, inspect bounded map catalog/ledger metadata before any retry; do not reapply blindly. If it commits and a later issue appears, keep map switches off, drain any later scoped pools, preserve the ledger and audits, and reconcile. No DROP CASCADE or project restore is pre-authorized. Once recovery is evidenced, fresh target/collision/hash checks and the recorded disabled-create scope can support a concrete live-create attempt; any changed candidate requires its own review.
+
+Docs/changelog were refreshed Oct 9. The Markdown changelog could not be rendered by the web tool, so the HTML index was used. Its backup scheduling/restore fixes reinforce the need to inspect actual available points rather than infer them from policy. No backup or Auth configuration was changed, and no map task remains running.
