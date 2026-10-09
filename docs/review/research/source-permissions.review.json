@@ -1,0 +1,93 @@
+{
+  "reviewDate": "2026-10-09",
+  "reviewOnly": true,
+  "owner": "Eric Tse",
+  "automaticApproval": false,
+  "defaultModeProposal": "link_only",
+  "summariesApproved": false,
+  "fullTextApproved": false,
+  "aiApproved": false,
+  "sources": [
+    {
+      "id": "statcan-terms-2026-10-09",
+      "publisher": "Statistics Canada",
+      "status": "terms_verified",
+      "urls": [
+        "https://www.statcan.gc.ca/en/terms-conditions/open-licence",
+        "https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq"
+      ],
+      "finding": "Text links encouraged without prior permission; no framing or government-symbol navigation. Reuse of covered information allows commercial use with attribution, accuracy and no endorsement; third-party rights excluded.",
+      "proposedDecision": "link_only; owner editorial approval pending",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    },
+    {
+      "id": "boc-terms-2026-10-09",
+      "publisher": "Bank of Canada",
+      "status": "terms_verified",
+      "urls": [
+        "https://www.bankofcanada.ca/terms/"
+      ],
+      "finding": "Covered content reuse permitted with attribution, accuracy/change identification and no endorsement. Paid offerings must disclose that source content is freely available. Logos, banknotes and third-party material excluded. Staff notes represent author views.",
+      "proposedDecision": "link_only; retain source-free-availability notice; owner editorial approval pending",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    },
+    {
+      "id": "cmhc-terms-2026-10-09",
+      "publisher": "CMHC",
+      "status": "item_review_pending",
+      "urls": [
+        "https://www.cmhc-schl.gc.ca/about-us/terms-conditions",
+        "https://assets.cmhc-schl.gc.ca/sites/cmhc/professional/housing-markets-data-and-research/housing-research/research-reports/2025/evictions-canada-populations-experiencing-vulnerabilities-en.pdf"
+      ],
+      "finding": "General terms restrict commercial copying without necessary rights. Selected PDF copyright page 8 has limited research/reference and commercial allowances plus hosting restrictions. No clearance inferred for member-hosted PDF, extracts, summaries or AI.",
+      "proposedDecision": "source link candidate only; owner item-specific assessment pending",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    },
+    {
+      "id": "metro-terms-2026-10-09",
+      "publisher": "Metro Vancouver",
+      "status": "item_review_pending",
+      "urls": [
+        "https://metrovancouver.org/Documents/copyright-notice-disclaimer.pdf"
+      ],
+      "finding": "Written material allowance is limited to personal noncommercial educational/informational use, unaltered and attributed. Selected study includes multiple sources. Free access inside a commercial SaaS does not establish a noncommercial use.",
+      "proposedDecision": "source link candidate only; owner item-specific assessment pending",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    },
+    {
+      "id": "bc-terms-2026-10-09",
+      "publisher": "Government of British Columbia",
+      "status": "permission_unknown",
+      "urls": [
+        "https://www2.gov.bc.ca/gov/content/data/policy-standards/data-policies/open-data/open-government-licence-bc",
+        "https://www2.gov.bc.ca/gov/content/home/copyright"
+      ],
+      "finding": "Verified OGL-BC scope is BC Data Catalogue records that specify this licence. General copyright page and selected planning page failed retrieval (502). Do not apply OGL-BC to the planning guide by assumption.",
+      "proposedDecision": "hold pending current page/rights verification",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    },
+    {
+      "id": "census-terms-2026-10-09",
+      "publisher": "US Census Bureau",
+      "status": "permission_unknown",
+      "urls": [
+        "https://www.census.gov/about/policies/copyright.html"
+      ],
+      "finding": "Selected article verified; official copyright policy retrieval failed. Government publisher identity alone is not item-specific clearance for extracts, assets or AI.",
+      "proposedDecision": "source link candidate only; owner rights evidence pending",
+      "evidenceDate": "2026-10-09",
+      "aiApproved": false,
+      "editorialApproval": null
+    }
+  ]
+}

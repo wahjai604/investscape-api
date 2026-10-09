@@ -1,0 +1,99 @@
+{
+  "reviewDate": "2026-10-09",
+  "reviewOnly": true,
+  "databaseSelected": false,
+  "databaseProvisioned": false,
+  "proposedStorage": {
+    "project": "Investscape-Dev",
+    "projectRef": "hwhkgrwikczwztfnsjir",
+    "schema": "research_private",
+    "roles": [
+      "research_owner",
+      "research_reader",
+      "research_writer"
+    ],
+    "browserDataApi": false,
+    "separateScopedReaderWriterConnections": true,
+    "connectionValuesInspected": false
+  },
+  "freshMetadata": [
+    {
+      "source": "Supabase list_projects and scoped PostgreSQL catalogs only",
+      "projectRef": "hwhkgrwikczwztfnsjir",
+      "status": "ACTIVE_HEALTHY",
+      "postgresVersion": "17.6",
+      "researchSchemaExists": false,
+      "researchRolesPresent": [],
+      "scopedSchemasPresent": [
+        "investscape",
+        "mi_map_private"
+      ],
+      "matchingInspectedDefaultAclEntries": 0,
+      "limitation": "No application/user data queried. Empty scoped default-ACL result is not proof of all effective permissions."
+    },
+    {
+      "source": "WeWeb getme/searchpages",
+      "project": "Investscape Dev",
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "researchPageSearchResults": 0,
+      "limitation": "No hosted origin or publication metadata established."
+    },
+    {
+      "source": "Railway describe_environment",
+      "project": "InvestScape Native Full Staging",
+      "projectId": "227cdcb9-8e2c-4cf2-8e96-805454eccf56",
+      "environment": "production",
+      "environmentId": "d1a3a868-f1a1-4662-80a4-22a8a5aa20d2",
+      "service": "native-full-staging-api",
+      "serviceId": "0a9b03d7-9de1-4cf0-b793-f83454465a40",
+      "repository": "wahjai604/investscape-api",
+      "branch": "feat/native-full-api-adapter",
+      "latestDeploymentId": "c0f1658f-481b-4579-a297-4ba02963436e",
+      "latestDeploymentStatus": "SUCCESS",
+      "deploymentDate": "2026-10-04",
+      "deployedCommit": "not established in this bounded inspection",
+      "limitation": "Environment label does not establish production launch. Existing staging service is not a Research host. Other listed projects uninspected."
+    }
+  ],
+  "historicalEvidence": [
+    {
+      "source": "Earlier Dev Auth/session inspection recorded in map checkpoint",
+      "date": "2026-10-09",
+      "reportedSupabaseRef": "hwhkgrwikczwztfnsjir",
+      "reportedSessionAccessor": "Supabase getSession/auth events with permanent nonanonymous session",
+      "diagnosticTimestamp": "2026-10-09T21:17:15.213Z",
+      "reportedEditorOrigin": "https://joyous-trellis-editor.weweb.io",
+      "reportedSigningSummary": "ECC P-256",
+      "limitation": "Not fresh reverified here; installed plugin version, full session-host contract, exact hosted origin and Research API JWT acceptance unverified."
+    },
+    {
+      "source": "Owner-supplied map recovery evidence, docs/review/map-provisioning/recovery-evidence-2026-10-09.json",
+      "backupTimestamp": "2026-10-09T11:16:52Z",
+      "limitation": "Historical screenshot report only; predates later map provisioning; no current Research recovery point or restore rehearsal verified."
+    }
+  ],
+  "proposedRuntime": {
+    "project": "InvestScape Research Dev",
+    "environment": "development",
+    "service": "research-api-dev",
+    "created": false,
+    "apiOrigin": null,
+    "hostedAppOrigin": null,
+    "dedicatedEntrypointExists": false,
+    "routerMounted": false,
+    "readEnabled": false,
+    "editorEnabled": false,
+    "wewebRegistered": false,
+    "wewebPublished": false
+  },
+  "remainingFacts": [
+    "Owner selection of authoritative Research database and isolated host",
+    "Current scoped recovery reference and reviewable DDL/rollback package",
+    "Effective scoped role privileges, pool/TLS configuration, direct Data API exclusion",
+    "Server-owned active-member source and explicit editor grant source; no occupational profile-role authority",
+    "Exact hosted app/API/editor origins and deployed JWT issuer/signing compatibility",
+    "Installed session-host compatibility and eventual real-session acceptance"
+  ],
+  "liveMapTesting": "deferred",
+  "relationshipOsTransactionDomain": "not established by this review"
+}

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createResearchLibrary} from '../../ui/weweb/research-library/src/utils/research-library.js';
+import {createResearchLibrary,formatResearchDate} from '../../ui/weweb/research-library/src/utils/research-library.js';
 import {createResearchSessionTransport} from '../../ui/weweb/research-library/src/utils/research-session-adapter.js';
 const issuer='https://synthetic.supabase.co/auth/v1';
 const session=()=>({issuer,subject:'synthetic-member',expiresAt:Date.now()/1000+120,accessToken:'synthetic.header.signature'});
@@ -10,6 +10,9 @@ function item(){return {id:'synthetic-report',revision:1,title:'Synthetic resear
   readValidUntil:new Date(Date.now()+30000).toISOString(),summary:null,contentMode:'link_only',
   permissionMetadata:{audience:'member',aiAllowed:false,fullTextAllowed:false}};}
 const list=(records=[item()])=>({revision:1,items:records,coverage:{status:records.length?'available':'no_data'},pagination:{offset:0,limit:25,hasMore:false}});
+test('day-only publication dates retain their supplied day rather than becoming UTC instants',()=>{
+  assert.equal(formatResearchDate('2026-09-21'),'2026-09-21');assert.equal(formatResearchDate(null),'Not supplied');
+});
 test('visible list/detail use safe projections and expire without storage',async()=>{
   let state,expire;
   const client=createResearchLibrary({request:async path=>Response.json(path.includes('/items/')?{revision:1,item:item()}:list()),

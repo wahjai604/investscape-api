@@ -1,0 +1,337 @@
+{
+  "reviewDate": "2026-10-09",
+  "reviewOnly": true,
+  "approved": false,
+  "livePublished": false,
+  "geographyMeaning": "Qualitative relevance tags only; no quantitative map boundary join or CMA-equivalence claim.",
+  "internalReviewProposal": "90 days after owner approval; not a publisher licence expiry. Runtime validity cap and publisher expiry must be recorded separately in the review evidence.",
+  "candidates": [
+    {
+      "sourceVerification": "page_verified",
+      "sourcePublicationLabel": "2026-09-21",
+      "publicationPrecision": "day",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "statcan-affordability-2024",
+          "title": "Housing affordability in Canada, 2024",
+          "publisher": "Statistics Canada",
+          "canonicalUrl": "https://www150.statcan.gc.ca/n1/daily-quotidien/260921/dq260921a-eng.htm",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "housing-affordability",
+            "rental-housing"
+          ],
+          "publishedAt": "2026-09-21",
+          "retrievedAt": null,
+          "attribution": "Statistics Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "statcan-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "page_verified",
+      "sourcePublicationLabel": "2025-10-30",
+      "publicationPrecision": "day",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "statcan-rental-conundrum",
+          "title": "The Canadian rental conundrum",
+          "publisher": "Statistics Canada",
+          "canonicalUrl": "https://www.statcan.gc.ca/o1/en/plus/8660-canadian-rental-conundrum",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "rental-housing"
+          ],
+          "publishedAt": "2025-10-30",
+          "retrievedAt": null,
+          "attribution": "Statistics Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "statcan-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "page_verified",
+      "sourcePublicationLabel": "July 2025",
+      "publicationPrecision": "month",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "boc-renewal-payments-2025",
+          "title": "How will mortgage payments change at renewal? An updated analysis",
+          "publisher": "Bank of Canada",
+          "canonicalUrl": "https://www.bankofcanada.ca/2025/07/staff-analytical-note-2025-21/",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "mortgages",
+            "household-finance"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Bank of Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "boc-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "page_verified",
+      "sourcePublicationLabel": "January 2025",
+      "publicationPrecision": "month",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "boc-mortgage-loan-data-2025",
+          "title": "Using new loan data to better understand mortgage holders",
+          "publisher": "Bank of Canada",
+          "canonicalUrl": "https://www.bankofcanada.ca/2025/01/staff-analytical-note-2025-1/",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "mortgages",
+            "household-finance"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Bank of Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "boc-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "pdf_verified",
+      "sourcePublicationLabel": "August 2025",
+      "publicationPrecision": "month",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "cmhc-evictions-vulnerabilities-2025",
+          "title": "Evictions in Canada: Populations experiencing vulnerabilities",
+          "publisher": "CMHC",
+          "canonicalUrl": "https://assets.cmhc-schl.gc.ca/sites/cmhc/professional/housing-markets-data-and-research/housing-research/research-reports/2025/evictions-canada-populations-experiencing-vulnerabilities-en.pdf",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "rental-housing",
+            "evictions"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "CMHC; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "cmhc-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "landing_page_verified",
+      "sourcePublicationLabel": null,
+      "publicationPrecision": "unknown",
+      "sourceEdition": "2025 study update linked by landing page",
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "metro-housing-transport-cost-burden",
+          "title": "Housing and Transportation Cost Burden",
+          "publisher": "Metro Vancouver",
+          "canonicalUrl": "https://metrovancouver.org/services/regional-planning/metro-2050-performance-monitoring/goal-4/housing-transporation/housing-and-transportation-cost-burden",
+          "geography": [
+            "CA-BC-METRO-VANCOUVER"
+          ],
+          "topics": [
+            "housing-affordability",
+            "transportation"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Metro Vancouver; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "metro-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "search_metadata_only",
+      "sourcePublicationLabel": null,
+      "publicationPrecision": "unknown",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "bc-local-housing-planning",
+          "title": "Housing planning for local governments",
+          "publisher": "Government of British Columbia",
+          "canonicalUrl": "https://www2.gov.bc.ca/gov/content/governments/local-governments/planning-land-use/local-government-planning/housing-planning",
+          "geography": [
+            "CA-BC"
+          ],
+          "topics": [
+            "housing-policy",
+            "planning"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Government of British Columbia; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "bc-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    },
+    {
+      "sourceVerification": "page_verified",
+      "sourcePublicationLabel": "2025-09-16",
+      "publicationPrecision": "day",
+      "sourceEdition": null,
+      "proposedDisplayMode": "link_only",
+      "ownerDecision": null,
+      "liveStaged": false,
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner review candidate; not cleared for publication",
+        "draft": {
+          "id": "census-housing-booms-busts-2025",
+          "title": "From Mortgage Crisis to Recession, 20-Year-Old American Community Survey Tracks Housing Booms and Busts",
+          "publisher": "US Census Bureau",
+          "canonicalUrl": "https://www.census.gov/library/stories/2025/09/20-years-housing.html",
+          "geography": [
+            "US"
+          ],
+          "topics": [
+            "housing-market",
+            "mortgages"
+          ],
+          "publishedAt": "2025-09-16",
+          "retrievedAt": null,
+          "attribution": "US Census Bureau; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "unknown",
+            "evidenceReference": "census-terms-2026-10-09",
+            "checkedAt": "2026-10-09T23:24:40.327257Z",
+            "validUntil": null,
+            "aiAllowed": false,
+            "note": "Evidence review only. Owner item-specific editorial and rights decision pending; source-permissions.review.json records conditions and gaps."
+          },
+          "reviewDueAt": null
+        }
+      },
+      "sourceInspectedOn": "2026-10-09"
+    }
+  ]
+}

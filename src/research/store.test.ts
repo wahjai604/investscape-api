@@ -13,6 +13,11 @@ export function draft(id='synthetic-report'):ResearchDraft{
       validUntil:new Date(Date.now()+86400000).toISOString(),aiAllowed:false,note:'Synthetic fixture only'},
     reviewDueAt:new Date(Date.now()+3600000).toISOString()};
 }
+test('source publication date accepts known calendar days and rejects invented/invalid dates',()=>{
+  assert.equal(researchDraft.parse({...draft(),publishedAt:'2026-09-21'}).publishedAt,'2026-09-21');
+  assert.equal(researchDraft.safeParse({...draft(),publishedAt:'2026-02-30'}).success,false);
+  assert.equal(researchDraft.safeParse({...draft(),publishedAt:'July 2025'}).success,false);
+});
 export async function fixture(){
   const pg=new PGlite();await pg.exec(await readFile(new URL('../../docs/review/research/catalog-schema.review.sql',import.meta.url),'utf8'));
   function database(role:string):ResearchDatabase{

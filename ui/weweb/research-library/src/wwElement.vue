@@ -35,7 +35,7 @@
 </template>
 <script>
 import {computed,ref,onBeforeUnmount,watch} from 'vue';
-import {createResearchLibrary} from './utils/research-library.js';
+import {createResearchLibrary,formatResearchDate} from './utils/research-library.js';
 import {createResearchSessionTransport,RESEARCH_SESSION_HOST_KEY} from './utils/research-session-adapter.js';
 export default {
   props:{uid:{type:String,required:true},content:{type:Object,required:true},
@@ -78,7 +78,7 @@ export default {
         ready:'Approved research is available.',empty:'No approved research matches these filters.',
         refresh_required:'Refresh to check current access and publication status.',unavailable:'Research is unavailable. Check your sign-in and try again.'}[state.value.status];
     });
-    const displayDate=value=>value?new Date(value).toLocaleDateString('en-CA'):'Not supplied';
+    const displayDate=formatResearchDate;
     return {isEditing,enabled,state,q,geography,topic,load,select,statusText,displayDate};
   },
 };

@@ -1,0 +1,24 @@
+{
+  "reviewDate": "2026-10-09",
+  "basis": "Owner clarification in this conversation: members include free and paid, including paid-to-free downgrades.",
+  "readPolicy": {
+    "permanentSignedInSessionRequired": true,
+    "serverOwnedActiveMembershipRequired": true,
+    "free": true,
+    "paid": true,
+    "downgradedToFree": true,
+    "anonymous": false,
+    "suspendedOrInactive": false,
+    "billingEntitlementRequired": false
+  },
+  "editorPolicy": {
+    "separateExplicitServerOwnedGrant": true,
+    "accountableOwner": "Eric Tse",
+    "identityBound": false,
+    "occupationalProfileRoleIsAuthority": false,
+    "userEditableMetadataIsAuthority": false,
+    "futureStaffExplicitGrantsAndAudit": true
+  },
+  "communityModeration": "Separate policy; this review does not implement Community.",
+  "authorityImplementation": "Unknown/unbound: must resolve active/inactive membership and explicit editorial grant on every request, independently of subscription tier."
+}

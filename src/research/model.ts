@@ -3,6 +3,8 @@ import { z } from 'zod';
 const text = (max: number) => z.string().trim().min(1).max(max);
 export const itemId = z.string().regex(/^[a-z][a-z0-9-]{0,79}$/);
 const date = z.iso.datetime().nullable();
+// A source may specify a calendar day without a publication instant or timezone.
+const publicationDate = z.union([z.iso.date(),z.iso.datetime()]).nullable();
 const url = z.url().max(2048).refine(value => {
   const u = new URL(value);
   return u.protocol === 'https:' && !u.username && !u.password && !u.hash;
@@ -10,7 +12,7 @@ const url = z.url().max(2048).refine(value => {
 export const researchDraft = z.object({
   id: itemId, title: text(240), publisher: text(160), canonicalUrl: url,
   geography: z.array(text(80)).min(1).max(16), topics: z.array(text(60)).min(1).max(16),
-  publishedAt: date, retrievedAt: date,
+  publishedAt: publicationDate, retrievedAt: date,
   attribution: text(1000), summary: text(4000).nullable(),
   rights: z.object({ mode: z.enum(['unknown','withheld','link_only','summary']),
     evidenceReference: text(1000).nullable(), checkedAt: date, validUntil: date,

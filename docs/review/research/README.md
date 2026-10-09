@@ -4,7 +4,7 @@ Source implementation, offline acceptance and a review-only storage proposal. No
 
 ## Governing decisions
 
-Freshly reread on 2026-10-09: `investscape-docs` canonical document 79, commit `7dc68ccb16b1b0494affe59def826c74d8165ce6`, decision ledger and recorded Q3/Q4 owner answers of 2026-10-08. Research is initially signed-in-member only; Eric Tse is the accountable editorial and rights owner. Quantitative Market Intel does not become an article store. Research search/detail and downstream AI must use the same member/rights boundary, with additional per-item AI permission. Assistant support does not approve source rights or replace the owner.
+Freshly reread on 2026-10-09: `investscape-docs` canonical document 79, commit `7dc68ccb16b1b0494affe59def826c74d8165ce6`, decision ledger and recorded Q3/Q4 owner answers of 2026-10-08. Research is initially signed-in-member only (active permanent free, paid and downgraded-to-free members; no billing gate); Eric Tse is the accountable editorial and rights owner. Quantitative Market Intel does not become an article store. Research search/detail and downstream AI must use the same member/rights boundary, with additional per-item AI permission. Assistant support does not approve source rights or replace the owner.
 
 The exact older D-R-1–D-R-3 revision-2 document text was not recovered in this workspace; this implementation follows the later explicit owner decisions above and documents remaining runtime choices. No claim that all older contract gates are closed.
 
@@ -35,7 +35,7 @@ Proposed paths: `GET /v1/research/items`, `GET /v1/research/items/:id`, editor i
 
 `npm run typecheck`; `npm run build`; `npm test`. Embedded PostgreSQL tests use only synthetic records and roles in disposable PGlite instances. No Supabase tables/users or real endpoints are queried. The component harness compiles the actual Vue SFC/styles and renders synthetic list/detail responses in Chromium. It checks default-off/editor behavior, escaped titles, nullable dates, summary rendering, eight light/dark viewport combinations (320/390/768/1100), withdrawal, sign-out and unmount. This is not installed-WeWeb or real-member acceptance.
 
-Source verification references consulted 2026-10-09: Supabase changelog index, PostgreSQL 15.19/17.11 breaking-change notice, RLS and API security documentation. Proposal uses no affected ltree/pgcrypto/btree_gist/custom operators. No project-version or advisor scan was made. Private schema grants and forced RLS are defense in depth, not proof of live effective permissions.
+Source verification references consulted 2026-10-09: Supabase changelog index, PostgreSQL 15.19/17.11 breaking-change notice, RLS and API security documentation. Proposal uses no affected ltree/pgcrypto/btree_gist/custom operators. The initial implementation made no project-version or advisor scan. The subsequent source/Dev review verified project-version metadata only; no advisor scan was made. Private schema grants and forced RLS are defense in depth, not proof of live effective permissions.
 
 ## Remaining facts before live Dev wiring
 
@@ -43,7 +43,7 @@ Source verification references consulted 2026-10-09: Supabase changelog index, P
 2. Select the authoritative Research database/schema and review a scoped provisioning/recovery package. The SQL here is a disposable-database review proposal, not a Supabase migration or authorization to run it.
 3. Bind the existing permanent app membership policy and Eric's verified editor identity server-side. No subject/email binding or role assignment has been inspected or installed; staff roles require separate explicit grants and audit.
 4. Select an isolated API runtime; establish hosted app/API/editor origins, actual issuer/key compatibility, scoped reader/writer connections with TLS, effective privileges and installed session-host compatibility. No shared Quick/Full database URL is assumed and no map host is reused automatically.
-5. Authorize/perform the eventual deployment and WeWeb registration/placement/publication separately; verify real member/editor denial, correction/withdrawal behavior and snapshot clearing. Only then enable Research. No billing entitlement or plan-access assumption is made.
+5. Authorize/perform the eventual deployment and WeWeb registration/placement/publication separately; verify real member/editor denial, correction/withdrawal behavior and snapshot clearing. Only then enable Research. Owner policy explicitly includes free, paid and downgraded-to-free members without a billing gate.
 
 ## Current official references
 
@@ -52,3 +52,9 @@ Source verification references consulted 2026-10-09: Supabase changelog index, P
 - https://supabase.com/docs/guides/database/postgres/row-level-security
 - https://supabase.com/docs/guides/api/securing-your-api
 
+
+## Source permissions and Dev wiring follow-up
+
+See `source-and-dev-review-2026-10-09.md`, `source-permissions.review.json`, `initial-catalog.review.json`, `access-policy.review.json` and `dev-storage-wiring.review.json`. Eight candidates are review-only; every command retains unknown rights and is denied publication. Four Statistics Canada/Bank of Canada text-link proposals have verified publisher terms; the others retain specific evidence gaps. The approved catalog remains empty. Proposed Dev storage is the existing Dev project with a separate private Research schema; an isolated Research host is proposed, not created. Exact member authority, editor grant, hosting, connection/TLS, recovery and runtime compatibility remain pending.
+
+Known publication days are now supported without inventing an instant or shifting the day across timezones. Month-only labels remain private review metadata with a null publication date. Final verification: 642 tests, 640 passed, two existing E85 skips, zero failures; typecheck/build passed; 18 Research tests and 21 rendered synthetic browser checks passed. No live database/platform changes or publication occurred.

@@ -2,6 +2,12 @@ const invalid=()=>new Error('RESEARCH_UNAVAILABLE');
 const id=value=>typeof value==='string'&&/^[a-z][a-z0-9-]{0,79}$/.test(value);
 const date=value=>typeof value==='string'&&Number.isFinite(Date.parse(value));
 const text=(value,max)=>typeof value==='string'&&value.length>0&&value.length<=max;
+export function formatResearchDate(value){
+  if(value===null||value===undefined)return 'Not supplied';
+  // Preserve a supplied calendar day; UTC-midnight conversion shifts it in Canadian/US timezones.
+  if(typeof value==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(value)&&date(value))return value;
+  return date(value)?new Date(value).toLocaleDateString('en-CA'):'Not supplied';
+}
 function item(value){
   if(!value||!id(value.id)||!Number.isSafeInteger(value.revision)||value.revision<1||
     !text(value.title,240)||!text(value.publisher,160)||!text(value.attribution,1000)||

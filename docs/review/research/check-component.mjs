@@ -37,11 +37,11 @@ signOut(){session=null;for(const fn of listeners)fn();},detach(){app.unmount();}
       return {contents:script.content+'\n'+template.code+'\n__sfc__.render=render;__sfc__.__scopeId="data-v-research-review";export default __sfc__;',loader:'js',resolveDir:path.dirname(args.path)};
     });}}]});
   browser=await chromium.launch({headless:true,executablePath,args:['--no-sandbox','--disable-dev-shm-usage','--single-process','--no-zygote','--in-process-gpu','--use-gl=angle','--use-angle=swiftshader']});
-  const page=await browser.newPage({viewport:{width:1100,height:1000}}),errors=[];page.on('pageerror',error=>errors.push(error.message));
+  const page=await browser.newPage({viewport:{width:1100,height:1000},timezoneId:'America/Vancouver'}),errors=[];page.on('pageerror',error=>errors.push(error.message));
   let calls=0,withdrawn=false;
   const record=()=>({id:'synthetic-report',revision:1,title:'Synthetic <script> Research',publisher:'Synthetic Publisher',
     canonicalUrl:'https://publisher.invalid/report',geography:['CA-CMA-933'],topics:['housing'],attribution:'Synthetic attribution',summary:'Synthetic permitted summary',
-    contentMode:'summary',publishedAt:null,retrievedAt:null,reviewedAt:new Date().toISOString(),reviewDueAt:new Date(Date.now()+60000).toISOString(),
+    contentMode:'summary',publishedAt:'2026-09-21',retrievedAt:null,reviewedAt:new Date().toISOString(),reviewDueAt:new Date(Date.now()+60000).toISOString(),
     readValidUntil:new Date(Date.now()+30000).toISOString(),permissionMetadata:{audience:'member',aiAllowed:false,fullTextAllowed:false}});
   await page.route('https://review.synthetic.invalid/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:1rem;font-family:Arial;background:#fff;color:#171717}@media(prefers-color-scheme:dark){body{background:#171717;color:#eee}}'+css+'</style><main id="app"></main><script type="module" src="https://assets.synthetic.invalid/harness.js"></script>'}));
   await page.route('https://assets.synthetic.invalid/**',async route=>route.fulfill({contentType:'application/javascript',body:await readFile(path.join(temp,'harness.js')),headers:{'Access-Control-Allow-Origin':'*'}}));
@@ -59,7 +59,8 @@ signOut(){session=null;for(const fn of listeners)fn();},detach(){app.unmount();}
   await page.getByRole('button',{name:'Synthetic <script> Research',exact:true}).waitFor();
   check(await page.locator('.research-results script').count()===0,'source titles escaped');
   await page.getByRole('button',{name:'Synthetic <script> Research',exact:true}).click();await page.getByRole('link',{name:'Open original source (new tab)'}).waitFor();
-  check((await page.locator('.research-detail').innerText()).includes('Published: Not supplied'),'unknown dates preserved');
+  check((await page.locator('.research-detail').innerText()).includes('Published: 2026-09-21'),'source calendar day preserved in Vancouver timezone');
+  check((await page.locator('.research-detail').innerText()).includes('Retrieved: Not supplied'),'unknown retrieval dates preserved');
   check((await page.locator('.research-detail').innerText()).includes('Synthetic permitted summary'),'approved summary rendered');
   for(const colorScheme of ['light','dark'])for(const width of [320,390,768,1100]){
     await page.setViewportSize({width,height:1000});await page.emulateMedia({colorScheme});

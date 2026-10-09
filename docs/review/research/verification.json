@@ -4,25 +4,30 @@
   "typecheck": "passed",
   "build": "passed",
   "fullApiSuite": {
-    "tests": 640,
-    "passed": 638,
+    "tests": 642,
+    "passed": 640,
     "failed": 0,
     "skipped": 2,
     "skipReason": "existing E85 evidence-dependent skips"
   },
   "researchTests": {
-    "tests": 16,
-    "passed": 16
+    "tests": 18,
+    "passed": 18
   },
   "actualVueBrowser": {
-    "checks": 20,
+    "checks": 21,
     "passed": true,
     "syntheticOnly": true,
-    "liveWeweb": false
+    "liveWeweb": false,
+    "dateOnlyTimezone": "America/Vancouver"
   },
   "liveDatabaseChanges": false,
   "liveAuthBindings": false,
   "deployment": false,
   "wewebPublication": false,
-  "mapActivation": false
+  "mapActivation": false,
+  "reviewCandidateValidation": {
+    "strictStageCommands": 8,
+    "allPublicationDeniedUntilOwnerClearance": true
+  }
 }
