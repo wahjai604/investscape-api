@@ -1,0 +1,56 @@
+{
+  "evidenceDateUTC": "2026-10-10",
+  "sources": [
+    {
+      "path": "canonical-docs/current/06-Commercial-Formula-Library.md",
+      "blobSha": "158ae729721455cdabd913b75a0075fe0f8722b7"
+    },
+    {
+      "path": "canonical-docs/current/06-Commercial-Formula-Library-Addendum-A-Development-Formulas.md",
+      "blobSha": "27c3fa785c0dbcde8007399fe7cc71d88840dac6"
+    }
+  ],
+  "formulaIds": [
+    "F-101",
+    "F-102",
+    "F-103",
+    "F-201",
+    "F-202",
+    "F-203",
+    "F-204",
+    "F-205",
+    "F-206",
+    "F-207",
+    "F-301",
+    "F-302",
+    "F-303",
+    "F-401",
+    "F-402",
+    "F-403",
+    "F-404",
+    "F-405",
+    "F-406",
+    "F-407",
+    "F-408",
+    "F-409",
+    "F-410",
+    "F-501",
+    "F-502",
+    "F-503",
+    "F-504",
+    "F-505",
+    "F-701",
+    "F-702",
+    "F-703",
+    "F-704",
+    "F-705",
+    "F-706",
+    "F-707",
+    "F-708",
+    "F-709",
+    "F-710",
+    "F-711"
+  ],
+  "formulaCount": 39,
+  "scope": "All numbered formula cards in Doc 06 plus Addendum A. Supporting glossary acronyms are definitions, not additional numbered formula cards."
+}

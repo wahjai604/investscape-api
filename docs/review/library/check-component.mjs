@@ -48,7 +48,7 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   await page.waitForFunction(()=>!!window.libraryCheck);
   check(await page.locator('.formula-card').count()===0,'default off');
   await page.evaluate(()=>window.libraryCheck.configure(true,'en',true));
-  check(await page.locator('.formula-card:disabled').count()===12,'editor interactions disabled');
+  check(await page.locator('.formula-card:disabled').count()===catalog.length,'editor interactions disabled');
   for(const locale of locales){
     await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
     await page.getByRole('button',{name:translate(labels.all,locale),exact:true}).click();
@@ -57,6 +57,8 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
       const card=page.locator('.formula-card').filter({hasText:item.id});
       await card.click();const dialog=page.getByRole('dialog');await dialog.waitFor();
       check(await dialog.getByRole('heading',{name:translate(item.name,locale),exact:true}).count()===1,'detail '+locale+' '+item.id);
+      check((await dialog.innerText()).includes(translate(item.explanation,locale)),'translated explanation '+locale+' '+item.id);
+      check((await dialog.innerText()).includes(translate(item.scope,locale)),'translated limits '+locale+' '+item.id);
       check((await dialog.innerText()).includes(translate(item.example,locale)),'translated example '+locale+' '+item.id);
       check((await dialog.innerText()).includes(item.formula),'untranslated formula '+locale+' '+item.id);
       opened.all[locale].push(item.id);
@@ -82,7 +84,7 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   const search=page.getByRole('searchbox');
   await search.fill('償債覆蓋率');check(await page.locator('.formula-card').count()===1,'cross-language search');
   await search.fill('<script>alert(1)</script>');check(await page.locator('.formula-card').count()===0,'search safely yields empty');
-  await page.getByRole('button',{name:'Clear filters',exact:true}).click();check(await page.locator('.formula-card').count()===12,'clear filters');
+  await page.getByRole('button',{name:'Clear filters',exact:true}).click();check(await page.locator('.formula-card').count()===catalog.length,'clear filters');
   await page.locator('.formula-card').filter({hasText:'F-404'}).click();
   await page.keyboard.press('Tab');check(await page.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'focus trap forward');
   await page.keyboard.press('Shift+Tab');check(await page.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'focus trap backward');
@@ -110,7 +112,7 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   check(await page.locator('.formula-card').count()===0,'disable clears cards');
   await page.evaluate(()=>window.libraryCheck.detach());check(await page.locator('.learning-library').count()===0,'clean unmount');
   check(unexpected.length===0,'zero external requests');check(errors.length===0,'zero browser errors');
-  const result={passed:true,checks,actualVueCompile:true,externalRequests:unexpected.length,uniqueCards:catalog.length,locales,opened,sourceOnly:true};
+  const result={passed:true,checks,actualVueCompile:true,externalRequests:unexpected.length,uniqueCards:catalog.length,locales,opened,sourceOnly:true,categoryCounts:Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length]))};
   await writeFile(path.join(evidence,'verification.json'),JSON.stringify(result,null,2)+'\n');
   console.log(JSON.stringify(result));
 }finally{await browser?.close();await rm(temp,{recursive:true,force:true});}

@@ -1,6 +1,7 @@
 // Original educational copy; formula IDs and example lineage reference InvestScape Docs 06/33/48.
+import {remainingCatalog} from './remaining-catalog.js';
 const text = (en, fr, hant, hans) => ({ en, 'fr-CA': fr, 'zh-Hant': hant, 'zh-Hans': hans });
-export const categories = ['capital', 'time', 'cashflow', 'performance', 'leverage'];
+export const categories = ['capital', 'time', 'cashflow', 'performance', 'leverage', 'development'];
 export const locales = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'];
 export const labels = {
   title: text('Library', 'Bibliothèque', '知識庫', '知识库'),
@@ -14,6 +15,7 @@ export const labels = {
   cashflow: text('Cash Flow Model', 'Modèle de flux de trésorerie', '現金流模型', '现金流模型'),
   performance: text('Performance', 'Rendement', '績效', '绩效'),
   leverage: text('Leverage', 'Levier financier', '財務槓桿', '财务杠杆'),
+  development: text('Development & Construction', 'Développement et construction', '開發與建築', '开发与建设'),
   explanation: text('In plain language', 'En termes simples', '白話解釋', '通俗解释'),
   example: text('Worked example', 'Exemple chiffré', '計算示例', '计算示例'),
   scope: text('Use and limits', 'Utilisation et limites', '用途與限制', '用途与限制'),
@@ -24,7 +26,7 @@ export const labels = {
   pending: text('Library will be available soon.', 'La bibliothèque sera bientôt disponible.', '知識庫即將開放。', '知识库即将开放。'),
   footer: text('Examples explain the math; they are not forecasts or lending decisions.', 'Les exemples expliquent les calculs; ils ne sont ni des prévisions ni des décisions de crédit.', '示例用於說明計算，並非預測或貸款決定。', '示例用于说明计算，并非预测或贷款决定。'),
 };
-export const catalog = [
+const initialCatalog = [
   {
     id:'F-101', category:'capital', tiers:['COM'], formula:'Total Capital = Equity + Debt', lineage:'Doc 06 F-101; illustrative example',
     name:text('Capital Stack','Structure du capital','資本結構','资本结构'),
@@ -114,14 +116,15 @@ export const catalog = [
     scope:text('A ratio of 1 means equal income and debt service. Definitions and required thresholds depend on the lender and loan.','Un ratio de 1 signifie que le revenu égale le service de la dette. Définitions et seuils exigés dépendent du prêteur et du prêt.','比率為 1 表示收入等於還本付息金額。定義與要求門檻依貸款及貸款機構而定。','比率为 1 表示收入等于还本付息金额。定义与要求门槛依贷款及贷款机构而定。'),
   },
   {
-    id:'F-707', category:'performance', tiers:['DEV'], formula:'ROC = (Effective Gross Revenue − Total Development Budget) ÷ Total Development Budget', lineage:'Doc 06 Addendum A F-707 reported 796 Main Street figures; arithmetic rechecked',
+    id:'F-707', category:'development', tiers:['DEV'], formula:'Profit = Effective Gross Revenue − Total Development Budget; ROC = Profit ÷ Total Development Budget', lineage:'Doc 06 Addendum A F-707 reported Gilley figures; arithmetic rechecked',
     name:text('Return on Cost (ROC)','Rendement sur coût (ROC)','成本回報率 (ROC)','成本回报率 (ROC)'),
     explanation:text('Compare development profit with the total development budget. It is a project return, without annualizing time.','Comparez le bénéfice de développement au budget total. C’est un rendement de projet, sans annualisation de la durée.','將開發利潤與開發總預算相比。此為項目回報，未按時間年化。','将开发利润与开发总预算相比。此为项目回报，未按时间年化。'),
-    example:text('Historical 796 Main Street project figures: $86,345,200 revenue less $75,000,196 budget gives $11,345,004 profit and about 15.13% ROC.','Chiffres historiques du projet 796 Main Street : revenus de 86 345 200 $ moins budget de 75 000 196 $ = bénéfice de 11 345 004 $ et ROC d’environ 15,13 %.','796 Main Street 的歷史項目數字：收入 $86,345,200 扣預算 $75,000,196，利潤為 $11,345,004，ROC 約為 15.13%。','796 Main Street 的历史项目数字：收入 $86,345,200 扣预算 $75,000,196，利润为 $11,345,004，ROC 约为 15.13%。'),
-    exampleFormula:'(86,345,200 − 75,000,196) ÷ 75,000,196 ≈ 15.13%',
+    example:text('Historical Gilley project figures: $56,371,262 revenue less $43,751,237 budget gives $12,620,025 profit and about 28.84% ROC.','Chiffres historiques du projet Gilley : revenus de 56 371 262 $ moins budget de 43 751 237 $ = bénéfice de 12 620 025 $ et ROC d’environ 28,84 %.','Gilley 的歷史項目數字：收入 $56,371,262 扣預算 $43,751,237，利潤為 $12,620,025，ROC 約為 28.84%。','Gilley 的历史项目数字：收入 $56,371,262 扣预算 $43,751,237，利润为 $12,620,025，ROC 约为 28.84%。'),
+    exampleFormula:'56,371,262 − 43,751,237 = 12,620,025; 12,620,025 ÷ 43,751,237 ≈ 28.84%',
     scope:text('This is not IRR or an annual yield. These are historical documented project figures, not a current project forecast.','Ce n’est ni un TRI ni un rendement annuel. Ce sont des chiffres de projet historiques documentés, pas une prévision actuelle.','此指標並非 IRR 或年度收益率。數字為已記錄的歷史項目資料，而非現時項目預測。','此指标并非 IRR 或年度收益率。数字为已记录的历史项目资料，而非现时项目预测。'),
   },
 ];
+export const catalog = [...initialCatalog, ...remainingCatalog].sort((a,b)=>a.id.localeCompare(b.id));
 
 export function normalizeLocale(value) { return locales.includes(value) ? value : 'en'; }
 export function translate(value, locale) { return value[normalizeLocale(locale)]; }

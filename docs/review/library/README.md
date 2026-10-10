@@ -1,43 +1,52 @@
-# Learning Library — bounded WeWeb slice
+# Learning Library — complete numbered catalog
 
-2026-10-09 owner-local / 2026-10-10 UTC. The owner deferred inaccessible Supabase support/live Research wiring and requested the next independent build. This slice builds and installs the educational Library, separate from Research's curated article catalog and Community discussions.
+2026-10-10 UTC / 2026-10-10 America/Vancouver. The owner requested completion of the 12-card starting slice. The component now covers all **39 numbered formula cards** in canonical Doc 06 and Addendum A: **27 added cards**. See canonical-inventory.json for the source-pinned ID list. Supporting glossary acronyms are definitions, not extra numbered cards.
 
-## Delivered behavior
+| Category | Cards |
+| --- | ---: |
+| Cost of Capital | 3 |
+| Time Value of Money | 7 |
+| Cash Flow Model | 3 |
+| Performance | 10 |
+| Leverage | 5 |
+| Development & Construction | 11 |
+| Total | 39 |
 
-Twelve initial entries, all searchable by formula ID, notation, module tag and four-language terms. Five existing categories: Cost of Capital, Time Value of Money, Cash Flow Model, Performance and Leverage. Every card opens a plain-language explanation, worked example and limitations with its existing RES/COM/DEV tags. Detail supports Escape, close/backdrop, keyboard focus trapping and opener restoration. The language control supports en, fr-CA, zh-Hant and zh-Hans; notation remains universal. Light/dark palettes follow the existing Investscape Dev design-system guidelines.
+Every card contains a four-language name, explanation, worked example and limitations: en, fr-CA, zh-Hant and zh-Hans. Formula notation, IDs and RES/COM/DEV tags remain universal. Search covers IDs, notation, tags and names/explanations in all languages. Development cards have their own filter; F-707 now belongs to it. Details support Close, backdrop, Escape, focus trapping and opener restoration. Default-off and editor-disable behavior are preserved. Module tags describe coverage and impose no paid subscription gate.
 
-This is a bounded initial catalog, not a claim to migrate every historical formula card. It deliberately excludes tax schedules, interest reserve and total-budget cards until their source reconciliation is complete. The Addendum A displayed total-budget components sum to $75,000,195 while its headline reports $75,000,196; the rounded interest factor 0.641304 yields $3,232,172.16 while its reported workbook interest budget is $3,232,174. Those differences may reflect unshown precision but are not independently established. The ROC card uses the reported revenue/budget inputs and rechecks their subtraction/ratio; it does not claim to revalidate the inaccessible original workbook.
+## Source and number handling
 
-## No live service dependency
+Source provenance and primary government cross-checks are in source-provenance.json. Explanations and translations are original educational copy, prepared for editorial review. Historical glossary policy proposals are not new owner approvals. No native-language editorial or full accessibility certification is claimed.
 
-All educational content is bundled. There are no API, database, storage, session, AI, tracking or calculation-engine calls. Search and detail operate in memory. The component does not accept user/project figures, create recommendations, mutate a deal or read private records. Module tags describe formula coverage and are not paid entitlement gates.
+Historical figures are distinguished from illustrative assumptions and fresh arithmetic. No inaccessible workbook is claimed to have been freshly validated.
 
-The enabled flag defaults false and is a display switch, not a security boundary. Bundled educational copy is non-confidential and cannot be made private by hiding this component. Member-only navigation must use the existing application's reviewed page/access policy before any public release. Equal free/paid/downgraded educational access is preserved; no new role or entitlement is granted.
+- F-702: the printed rounded 796 utilization factor gives $3,232,172.16, while its reported reserve budget is $3,232,174. The $1.84 gap and missing unrounded factor are stated on the card. F-704 explicitly uses the reported budget for its own subtraction.
+- F-705: the printed negative $153,355 adjustment produces $86,038,490. Adding it produces the reported $86,345,200. The sign is unresolved; both cases and that limitation are visible.
+- F-706: 796 component amounts sum to $75,000,195, $1 below the headline. The card uses the exactly reconciling Gilley total of $43,751,237 instead. F-707 also uses the Gilley profit/ROC figures.
+- F-708: the expense assumption is omitted from the historical Gilley example. The card labels the NOI and deduction ratio implied by its reported value as reverse-derived, not verified source assumptions.
+- F-701: the $22M example is explicitly conditional on a fully residential taxable transfer, no exemptions and no additional foreign-buyer tax. Government examples cross-check bracket rates and the conditional residential surcharge. Share/bare-trust transactions are not automatically declared exempt.
+- F-504 retains full periodic-rate precision: $910,558.73, rather than presenting the historical rounded $910,600 as exact.
+- F-709 explains reference structures and a small preferred-return/tranche example; it does not implement a full partnership hurdle calculator. F-710 distinguishes loan retirement from project-profit breakeven.
 
-Translations use Doc 33 terminology where present and original translated explanatory copy. They are prepared for editorial review; historical French-acronym and Chinese-terminology proposals are not silently converted into new owner approvals. No full accessibility or native-language editorial sign-off is claimed.
+## Dev installation
 
-## Dev wiring contract
+Project: Investscape Dev, 4a0173ad-346d-4d29-a9b9-0201e5af6d78.
+Page: Learning Library Review, fa691651-6fc1-45df-9d69-968d5baeb6ca, draft, hidden from sitemap, path learning-library-review.
+Component: investscape-learning-library, base 3d621fc9-e746-4983-a74a-9663f4c52c0f, version cc5f5257-d378-440f-a835-1ba4e8926858, internal version 3, package 1.1.0, built 2026-10-10T07:03:37.444Z.
+Instance: cd93727a-145b-46fb-8986-3bfdd93c109e; main section fcc328a2-62b5-4031-b727-de583d290f0e.
 
-Component root: ui/weweb/learning-library. Tag: investscape-learning-library.
+All six installed source files were read back and match the tested source exactly. The review instance enables non-confidential bundled content. The component default stays false. The language selector changes this component in memory; no global application locale binding is claimed. The existing theme binding follows globalContext.browser.theme with auto fallback. Shared header/navigation are preserved.
 
-1. Register/build the owned coded component in Investscape Dev. This makes an editor asset available; it does not publish the app.
-2. The isolated Learning Library Review page is draft and hidden from sitemap, with enabled=true for non-confidential educational review only. Component defaults remain false; existing shared navigation has no Library link. This is not member/public release.
-3. Bind locale to the existing app language using en / fr-CA / zh-Hant / zh-Hans and theme to light / dark (or auto for device preference).
-4. Once the existing member page policy is reviewed, wire Library into the intended member page and navigation. No Research server, Supabase schema grant, new database or runtime credentials are required by this component.
-5. Confirm the app's published page access and final editorial review before release. Publishing or changing existing routes is a separate step.
+## Verification
 
-Preserve original v2-remastered HTML, Quick/Full staging, maps, Relationship OS and Research defaults. No production deployment, plan upgrade, live database provisioning or member-role change is included.
+- Catalog tests: node --test src/library/catalog.test.ts. Four tests pass, including exact canonical ID coverage, six category totals, four-language completeness and independent example arithmetic/source discrepancy checks.
+- Actual compiled Vue harness: 1,309 assertions pass; all 39 cards open in All and across all six category filters for each of four languages, **312 detail openings**. Exact translated heading, explanation, example and limits plus unchanged formula text are checked. Search, default-off/editor-disable behavior, keyboard handling, clearing, unmount, 320/390/768/1100-width reflow and light/dark checks pass. Zero external requests and browser errors in this local harness. Results and EN/FR screenshots are in evidence/.
+- Installed Dev preview results are recorded separately in evidence/installed-preview.json; those checks are not production/member-session acceptance.
 
-## Evidence and checks
+The harness command is node docs/review/library/check-component.mjs <playwright-index.mjs> <complete-chromium-binary> <vue-esbuild-tools-root>. Restricted containers may require fresh archive extraction and matching renderer libraries alongside Chromium.
 
-Catalog unit/arithmetical checks: node --test src/library/catalog.test.ts.
+## Runtime boundary and remaining release work
 
-Actual Vue compile/render harness: node docs/review/library/check-component.mjs <playwright-index.mjs> <complete-chromium-binary> <vue-esbuild-tools-root>. Restricted containers may require fresh archive extraction and the matching software-renderer libraries alongside Chromium; the browser binary must not be truncated.
+Educational content is bundled and non-confidential. No API, database, storage, session, AI, tracking or calculation-engine calls were added. This component reads or writes no private projects and accepts no deal inputs. Its display flag is not an authorization boundary. Free, paid and downgraded members have the same educational catalog; reviewed member-page access/navigation still needs wiring before public release.
 
-The harness exercises every card in All and every category in every language, search/no-results/reset, editor/default-off behavior, focus trapping/restoration, runtime-disable clearing, unmount and four viewport widths in both color schemes. It intercepts all browser requests; only its local synthetic harness documents/assets are allowed. Results and English/French screenshots are under evidence/. These are local rendered component evidence, not hosted member-session acceptance.
-
-## Completed Dev installation
-
-Project: Investscape Dev (4a0173ad-346d-4d29-a9b9-0201e5af6d78). Page: Learning Library Review (fa691651-6fc1-45df-9d69-968d5baeb6ca), draft, hidden from sitemap, path learning-library-review. Coded component base 3d621fc9-e746-4983-a74a-9663f4c52c0f; version 05778482-b2f8-44ba-b7bf-f7c3c5b1f70b, internal version 2, package 1.0.1. Main section fcc328a2-62b5-4031-b727-de583d290f0e; component instance cd93727a-145b-46fb-8986-3bfdd93c109e. Existing shared header reused without navigation edits. Theme binding read back as globalContext.browser.theme ?? auto (the actual formula uses the quoted string auto). Locale defaults en and the in-component language control changes it in memory. No global app-language binding is claimed.
-
-Verification: 3 catalog/arithmetic tests pass; 345 actual Vue browser assertions pass; 12/12 unique cards opened in All and across all five categories for each of four languages (96 detail openings total). Zero external requests or browser errors in that harness. Fresh installed WeWeb preview separately confirms all twelve visible cards and interactive EN/FR cap-rate details; installed all-card or all-locale verification is not claimed. These are component/Dev-editor checks, not production member-route acceptance. English and French installed-preview screenshots are attached to the handoff. No tasks remain running in the background.
+Remaining release work: final source/editorial review, including the historical discrepancies and native-language terminology; existing member route/access policy review and navigation/locale wiring; separately authorized app publication. Research live wiring and live map testing stay owner-deferred. Original v2-remastered HTML, Quick/Full staging, Relationship OS and unrelated work are preserved.

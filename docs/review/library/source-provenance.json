@@ -1,21 +1,61 @@
 {
-  "evidenceDateUTC":"2026-10-10",
-  "repository":"wahjai604/investscape-docs",
-  "branch":"docs/phase2-saas-reconciliation-2026-10-02",
-  "sources":[
-    {"path":"canonical-docs/current/06-Commercial-Formula-Library.md","blobSha":"158ae729721455cdabd913b75a0075fe0f8722b7","role":"Formula definitions and original educational-copy permission statement; historical July specification"},
-    {"path":"canonical-docs/current/06-Commercial-Formula-Library-Addendum-A-Development-Formulas.md","blobSha":"27c3fa785c0dbcde8007399fe7cc71d88840dac6","role":"Reported 796 Main Street ROC inputs; source-workbook validation is historical reported evidence"},
-    {"path":"canonical-docs/current/33-Financial-Terminology-Glossary.md","blobSha":"9584eda3c5085d24d6f6b9a9900f6cd48c6df963","role":"Four-locale terminology reference; flagged policy choices remain editorial review"},
-    {"path":"canonical-docs/current/48-Library-Card-Detail-Prompt-S-Updated.md","role":"Details, examples, all-card verification and EN/FR screenshot requirements"}
+  "evidenceDateUTC": "2026-10-10",
+  "repository": "wahjai604/investscape-docs",
+  "branch": "docs/phase2-saas-reconciliation-2026-10-02",
+  "sources": [
+    {
+      "path": "canonical-docs/current/06-Commercial-Formula-Library.md",
+      "blobSha": "158ae729721455cdabd913b75a0075fe0f8722b7",
+      "role": "Canonical 28 numbered formula IDs and original educational-copy permission statement"
+    },
+    {
+      "path": "canonical-docs/current/06-Commercial-Formula-Library-Addendum-A-Development-Formulas.md",
+      "blobSha": "27c3fa785c0dbcde8007399fe7cc71d88840dac6",
+      "role": "Eleven development formula IDs and historical reported project examples; printed arithmetic independently checked"
+    },
+    {
+      "path": "canonical-docs/current/33-Financial-Terminology-Glossary.md",
+      "blobSha": "9584eda3c5085d24d6f6b9a9900f6cd48c6df963",
+      "role": "Four-locale terminology reference; editorial proposals remain proposals"
+    },
+    {
+      "path": "canonical-docs/current/48-Library-Card-Detail-Prompt-S-Updated.md",
+      "blobSha": "57f4b562c74cb29472d5905435cf991c32da1ea3",
+      "role": "All-card, all-category, all-language detail verification"
+    }
   ],
-  "primaryCrossChecks":[
-    {"url":"https://www.jpmorgan.com/insights/real-estate/commercial-term-lending/cap-rates-explained","role":"Search result confirmed annual NOI/property value cap-rate definition; direct open returned 403"},
-    {"url":"https://www.jpmorgan.com/insights/real-estate/commercial-term-lending/what-is-debt-service-coverage-ratio-dscr-in-real-estate","role":"Search result confirmed property NOI/annual debt-service definition; direct open returned 403"}
+  "primaryCrossChecks": [
+    {
+      "url": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/property-transfer-tax/calculation-examples",
+      "role": "Freshly opened government bracket and conditional residential-surcharge examples; F-701 is conditional, not a determination of tax owing"
+    },
+    {
+      "url": "https://www.canada.ca/en/financial-consumer-agency/services/industry/bulletins/information-box-examples/credit-variable-fixed-mortgage.html",
+      "role": "Freshly opened FCAC example distinguishes semi-annual compounding and monthly charges; F-206 follows specified contract conventions"
+    }
   ],
-  "publication":false,
-  "liveResearchWiring":"owner-deferred",
-  "liveMapVerification":"owner-deferred",
-  "memberAccess":"No paid-tier gate; public release requires reviewed existing member-page navigation policy",
-  "copyStatus":"Original educational text and four-language translations prepared for review",
-  "provisioningRequired":false
+  "sourceLimitations": [
+    {
+      "id": "F-702",
+      "detail": "Rounded 796 factor produces 3,232,172.16, not reported 3,232,174; unrounded factor unavailable."
+    },
+    {
+      "id": "F-705",
+      "detail": "Printed subtraction gives 86,038,490. Reported 86,345,200 requires adding 153,355 instead. Adjustment sign unresolved."
+    },
+    {
+      "id": "F-706",
+      "detail": "796 displayed components sum 75,000,195 vs headline 75,000,196. Card uses the exact Gilley sum 43,751,237."
+    },
+    {
+      "id": "F-708",
+      "detail": "Gilley expense assumption omitted. Reported value implies NOI 181,479.05 and deduction 50.113098%; these are reverse-derived, not source-workbook verification."
+    }
+  ],
+  "publication": false,
+  "liveResearchWiring": "owner-deferred",
+  "liveMapVerification": "owner-deferred",
+  "memberAccess": "No paid-tier gate. Member route/navigation policy still requires wiring review.",
+  "copyStatus": "Complete 39-card catalog and four-language educational copy prepared for editorial review",
+  "provisioningRequired": false
 }

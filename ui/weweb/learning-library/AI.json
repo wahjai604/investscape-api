@@ -1,7 +1,61 @@
 {
-  "metadata":{"name":"investscape-learning-library","description":"Educational glossary and formula browsing with four-language explanations and worked examples.","keywords":["library","learning","formula","glossary"],"features":["Search across four languages","Five category filters","Keyboard accessible formula details","English, French and two Chinese scripts"],"inherit":[]},
-  "properties":[{"name":"enabled","type":"boolean","description":"Default-off display switch. Place only on the reviewed member page; this does not authorize private data.","defaultValue":false},{"name":"locale","type":"string","description":"en, fr-CA, zh-Hant or zh-Hans; unknown values use English.","defaultValue":"en"},{"name":"theme","type":"string","description":"auto, light or dark; bind the existing app theme.","defaultValue":"auto"}],
-  "states":[],"events":[],"localContext":[],"actions":[],"slots":[],"variables":[],
-  "specifications":["Bundled non-confidential educational copy. No network, API, database, session, storage, tracking, AI or calculator calls.","All user-visible explanation/example copy lives in a four-language dictionary. Formula notation, IDs and module tags remain universal.","Twelve bounded initial entries from Docs 06/33/48; this is not the full formula library.","The modal traps keyboard focus, supports Escape, restores its opener and closes on runtime disable or editor change.","Editor interactions are disabled. Source examples are labelled documented or illustrative; module tags do not impose subscription gates.","Translations are prepared for editorial review; historical glossary policy proposals are not new owner approvals.","No public page publication or private authorization is implied by installing this component."],
-  "examples":[{"description":"Unreleased member-page default","example":"{\"enabled\":false,\"locale\":\"en\",\"theme\":\"auto\"}"}],"dependencies":[]
+  "metadata": {
+    "name": "investscape-learning-library",
+    "description": "Educational glossary and formula browsing with four-language explanations and worked examples.",
+    "keywords": [
+      "library",
+      "learning",
+      "formula",
+      "glossary"
+    ],
+    "features": [
+      "Search across four languages",
+      "Six category filters, including Development & Construction",
+      "Keyboard accessible formula details",
+      "English, French and two Chinese scripts"
+    ],
+    "inherit": []
+  },
+  "properties": [
+    {
+      "name": "enabled",
+      "type": "boolean",
+      "description": "Default-off display switch. Place only on the reviewed member page; this does not authorize private data.",
+      "defaultValue": false
+    },
+    {
+      "name": "locale",
+      "type": "string",
+      "description": "en, fr-CA, zh-Hant or zh-Hans; unknown values use English.",
+      "defaultValue": "en"
+    },
+    {
+      "name": "theme",
+      "type": "string",
+      "description": "auto, light or dark; bind the existing app theme.",
+      "defaultValue": "auto"
+    }
+  ],
+  "states": [],
+  "events": [],
+  "localContext": [],
+  "actions": [],
+  "slots": [],
+  "variables": [],
+  "specifications": [
+    "Bundled non-confidential educational copy. No network, API, database, session, storage, tracking, AI or calculator calls.",
+    "All user-visible explanation/example copy lives in a four-language dictionary. Formula notation, IDs and module tags remain universal.",
+    "Complete 39-card numbered catalog from Doc 06 plus Addendum A; 27 added cards, with source uncertainties explicitly labelled.",
+    "The modal traps keyboard focus, supports Escape, restores its opener and closes on runtime disable or editor change.",
+    "Editor interactions are disabled. Source examples are labelled documented or illustrative; module tags do not impose subscription gates.",
+    "Translations are prepared for editorial review; historical glossary policy proposals are not new owner approvals.",
+    "No public page publication or private authorization is implied by installing this component."
+  ],
+  "examples": [
+    {
+      "description": "Unreleased member-page default",
+      "example": "{\"enabled\":false,\"locale\":\"en\",\"theme\":\"auto\"}"
+    }
+  ],
+  "dependencies": []
 }

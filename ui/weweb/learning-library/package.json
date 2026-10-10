@@ -1,1 +1,13 @@
-{"name":"investscape-learning-library","version":"1.0.1","private":true,"type":"module","scripts":{"build":"weweb build","serve":"weweb serve"},"devDependencies":{"@weweb/cli":"latest"}}
+{
+  "name": "investscape-learning-library",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "weweb build",
+    "serve": "weweb serve"
+  },
+  "devDependencies": {
+    "@weweb/cli": "latest"
+  }
+}

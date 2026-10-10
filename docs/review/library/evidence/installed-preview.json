@@ -1,0 +1,796 @@
+{
+  "evidenceDateUTC": "2026-10-10T07:19:57.018Z",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "componentVersionId": "cc5f5257-d378-440f-a835-1ba4e8926858",
+  "counts": {
+    "en": 39,
+    "fr-CA": 39,
+    "zh-Hant": 39,
+    "zh-Hans": 39
+  },
+  "checked": [
+    {
+      "locale": "en",
+      "id": "F-101",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-102",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-103",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-201",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-202",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-203",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-204",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-205",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-206",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-207",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-301",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-302",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-303",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-401",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-402",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-403",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-404",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-405",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-406",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-407",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-408",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-409",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-410",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-501",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-502",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-503",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-504",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-505",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-701",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-702",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-703",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-704",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-705",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-706",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-707",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-708",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-709",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-710",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "F-711",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-101",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-102",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-103",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-201",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-202",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-203",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-204",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-205",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-206",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-207",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-301",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-302",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-303",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-401",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-402",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-403",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-404",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-405",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-406",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-407",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-408",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-409",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-410",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-501",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-502",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-503",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-504",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-505",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-701",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-702",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-703",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-704",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-705",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-706",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-707",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-708",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-709",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-710",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "F-711",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-101",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-102",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-103",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-201",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-202",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-203",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-204",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-205",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-206",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-207",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-301",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-302",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-303",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-401",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-402",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-403",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-404",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-405",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-406",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-407",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-408",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-409",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-410",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-501",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-502",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-503",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-504",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-505",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-701",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-702",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-703",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-704",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-705",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-706",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-707",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-708",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-709",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-710",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "F-711",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-101",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-102",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-103",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-201",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-202",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-203",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-204",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-205",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-206",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-207",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-301",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-302",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-303",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-401",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-402",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-403",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-404",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-405",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-406",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-407",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-408",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-409",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-410",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-501",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-502",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-503",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-504",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-505",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-701",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-702",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-703",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-704",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-705",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-706",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-707",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-708",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-709",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-710",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "F-711",
+      "passed": true
+    }
+  ],
+  "scope": "Installed Dev-editor preview: All filter in four locales. Local compiled harness covers every category. Not production/member-session acceptance.",
+  "sourceFilesReadbackMatch": true
+}

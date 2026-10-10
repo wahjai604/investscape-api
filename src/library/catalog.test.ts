@@ -1,9 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {catalog,labels,locales,categories,filterCatalog,normalizeLocale} from '../../ui/weweb/learning-library/src/utils/catalog.js';
 
-test('all twelve entries have complete four-language educational copy and known categories',()=>{
-  assert.equal(catalog.length,12);assert.equal(new Set(catalog.map(item=>item.id)).size,12);
+test('all 39 canonical entries have complete four-language copy and known categories',()=>{
+  const inventory=JSON.parse(readFileSync(new URL('../../docs/review/library/canonical-inventory.json',import.meta.url),'utf8'));
+  assert.equal(catalog.length,39);assert.equal(new Set(catalog.map(item=>item.id)).size,39);
+  assert.deepEqual(catalog.map(item=>item.id),inventory.formulaIds);
+  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11});
   for(const item of catalog){
     assert(categories.includes(item.category));assert(item.lineage);assert(item.formula);assert(item.exampleFormula);
     for(const field of ['name','explanation','example','scope'])for(const locale of locales)assert(item[field][locale]?.trim());
@@ -18,8 +22,59 @@ test('search finds canonical formula IDs and terms in all languages without inte
   assert.equal(filterCatalog('revenu net', 'leverage','fr-CA').length,0);
   assert.equal(filterCatalog('  CAPITALIZATION  ')[0]?.id,'F-404');
   assert.equal(filterCatalog('<script>alert(1)</script>').length,0);
-  assert.equal(filterCatalog(null).length,12);
+  assert.equal(filterCatalog(null).length,39);
   assert.equal(normalizeLocale('untrusted-locale'),'en');
+});
+
+test('expanded card examples match independently calculated results, including source discrepancies',()=>{
+  const money=value=>Number(value).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  const integer=value=>Number(value).toLocaleString('en-US',{maximumFractionDigits:0});
+  const caRate=(1+.052/2)**(1/6)-1;
+  const mortgageRate=(1+.06/2)**(1/6)-1;
+  const values=[
+    ['F-103',String(Math.round((.03+1.2*(.08-.03))*100))+'%'],
+    ['F-201',integer(10000*1.1**2)],
+    ['F-203',money(1000*(1.01**12-1)/.01)],
+    ['F-205',money(1000*(1-1.01**-12)/.01)],
+    ['F-206',money(300000*mortgageRate/(1-(1+mortgageRate)**-300))],
+    ['F-206',money(300000*.005/(1-1.005**-300))],
+    ['F-301',integer(26400+360000)],
+    ['F-303',integer(1200000-60000-650000)],
+    ['F-402',integer(159312-120000)],
+    ['F-405',integer(159312/.05)],
+    ['F-406',integer(1200/.04)],
+    ['F-407',String(1200000/120000)],
+    ['F-408',(84000/243312*100).toFixed(2)+'%'],
+    ['F-409','10%'],
+    ['F-410',money(-100000+10000/1.08+110000/1.08**2)],
+    ['F-503',integer(1800000*.65)],
+    ['F-504',money(5400*(1-(1+caRate)**-300)/caRate)],
+    ['F-505',String((54000-600000*.045)/300000*100)+'%'],
+    ['F-505',String((54000-600000*.075)/300000*100)+'%'],
+    ['F-701',integer(200000*.01+1800000*.02+20000000*.03+19000000*.02)],
+    ['F-702',money(60000000*.641304*2*.042)],
+    ['F-703',integer(2000000*.7*.06*21/12+3000000*.7*.5*.06*15/12)],
+    ['F-704',integer(60000000-3232174-600000-300000)],
+    ['F-705',integer(87490800-153355-1298955)],
+    ['F-705',integer(87490800+153355-1298955)],
+    ['F-706',integer(9408000+25794001+8549236)],
+    ['F-707',integer(56371262-43751237)],
+    ['F-707',((56371262-43751237)/43751237*100).toFixed(2)+'%'],
+    ['F-708',money(2.18*12*13906)],
+    ['F-708',money(3629581*.05)],
+    ['F-708',((1-3629581*.05/(2.18*12*13906))*100).toFixed(4)+'%'],
+    ['F-709',integer(1000000*(1.06**2-1))],
+    ['F-710',integer(5000000-10*500000*.95)],
+    ['F-711',integer(43751237-30000000)],
+  ];
+  for(const [id,value] of values)assert(catalog.find(item=>item.id===id).example.en.includes(value),id+' computed example '+value);
+  assert(Math.abs(-100000+10000/1.1+110000/1.1**2)<1e-8);
+  assert.equal(Math.ceil(5000000/(500000*.95)),11);
+  assert.equal(23354491+37700229+9533927+4411548,75000195);
+  assert.equal(75000196-(23354491+37700229+9533927+4411548),1);
+  assert.equal(Number((3232174-60000000*.641304*2*.042).toFixed(2)),1.84);
+  assert(catalog.find(item=>item.id==='F-705').scope.en.includes('unresolved'));
+  assert(catalog.find(item=>item.id==='F-708').scope.en.includes('reverse-derived'));
 });
 test('displayed documented and illustrative examples reconcile arithmetically',()=>{
   assert.equal(300000+700000,1000000);
