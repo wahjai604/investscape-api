@@ -1,0 +1,21 @@
+{
+  "evidenceDateUTC":"2026-10-10",
+  "repository":"wahjai604/investscape-docs",
+  "branch":"docs/phase2-saas-reconciliation-2026-10-02",
+  "sources":[
+    {"path":"canonical-docs/current/06-Commercial-Formula-Library.md","blobSha":"158ae729721455cdabd913b75a0075fe0f8722b7","role":"Formula definitions and original educational-copy permission statement; historical July specification"},
+    {"path":"canonical-docs/current/06-Commercial-Formula-Library-Addendum-A-Development-Formulas.md","blobSha":"27c3fa785c0dbcde8007399fe7cc71d88840dac6","role":"Reported 796 Main Street ROC inputs; source-workbook validation is historical reported evidence"},
+    {"path":"canonical-docs/current/33-Financial-Terminology-Glossary.md","blobSha":"9584eda3c5085d24d6f6b9a9900f6cd48c6df963","role":"Four-locale terminology reference; flagged policy choices remain editorial review"},
+    {"path":"canonical-docs/current/48-Library-Card-Detail-Prompt-S-Updated.md","role":"Details, examples, all-card verification and EN/FR screenshot requirements"}
+  ],
+  "primaryCrossChecks":[
+    {"url":"https://www.jpmorgan.com/insights/real-estate/commercial-term-lending/cap-rates-explained","role":"Search result confirmed annual NOI/property value cap-rate definition; direct open returned 403"},
+    {"url":"https://www.jpmorgan.com/insights/real-estate/commercial-term-lending/what-is-debt-service-coverage-ratio-dscr-in-real-estate","role":"Search result confirmed property NOI/annual debt-service definition; direct open returned 403"}
+  ],
+  "publication":false,
+  "liveResearchWiring":"owner-deferred",
+  "liveMapVerification":"owner-deferred",
+  "memberAccess":"No paid-tier gate; public release requires reviewed existing member-page navigation policy",
+  "copyStatus":"Original educational text and four-language translations prepared for review",
+  "provisioningRequired":false
+}
