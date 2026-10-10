@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "name": "investscape-app-ribbon",
+    "description": "One-page app main ribbon and Development sub-ribbon with accessible, four-language panel selection.",
+    "keywords": [
+      "investscape",
+      "ribbon",
+      "navigation",
+      "single-page"
+    ],
+    "features": [
+      "Internal panel selection without route/history changes",
+      "Four languages and light/dark themes",
+      "Quick and Full sub-ribbon"
+    ],
+    "inherit": []
+  },
+  "properties": [
+    {
+      "name": "locale",
+      "description": "Shared language: en, fr-CA, zh-Hant or zh-Hans.",
+      "type": "string",
+      "defaultValue": "en"
+    },
+    {
+      "name": "theme",
+      "description": "Shared light or dark theme.",
+      "type": "string",
+      "defaultValue": "light"
+    },
+    {
+      "name": "activeModule",
+      "description": "Active internal panel: workspace, quick, full, portfolio, market-intel, research, library or community.",
+      "type": "string",
+      "defaultValue": "library"
+    }
+  ],
+  "events": [
+    {
+      "name": "moduleChange",
+      "description": "User chose a different internal panel; bind to a validated update-variable action, never navigation.",
+      "payload": {
+        "value": "string"
+      }
+    }
+  ],
+  "states": [],
+  "localContext": [],
+  "actions": [],
+  "slots": [],
+  "variables": [],
+  "specifications": [
+    "Root is fluid and wraps ribbons on narrow screens.",
+    "Disable interactions in editor mode.",
+    "No authentication, data access or network requests.",
+    "Main app page host keeps inactive panels mounted to preserve module state."
+  ],
+  "examples": [
+    {
+      "description": "Default Library entry",
+      "example": "{\"locale\": \"en\", \"theme\": \"light\", \"activeModule\": \"library\"}"
+    }
+  ],
+  "dependencies": []
+}

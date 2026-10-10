@@ -1,0 +1,16 @@
+export const labels={
+  preview:{en:'Development preview','fr-CA':'Aperçu de développement','zh-Hant':'開發預覽','zh-Hans':'开发预览'},
+  modules:{en:'App modules','fr-CA':'Modules de l’app','zh-Hant':'應用程式模組','zh-Hans':'应用程序模块'},
+  workspace:{en:'Workspace','fr-CA':'Espace de travail','zh-Hant':'工作區','zh-Hans':'工作区'},
+  development:{en:'Development','fr-CA':'Développement','zh-Hant':'開發分析','zh-Hans':'开发分析'},
+  portfolio:{en:'Portfolio','fr-CA':'Portefeuille','zh-Hant':'投資組合','zh-Hans':'投资组合'},
+  'market-intel':{en:'Market Intel','fr-CA':'Veille de marché','zh-Hant':'市場情報','zh-Hans':'市场情报'},
+  research:{en:'Research','fr-CA':'Recherche','zh-Hant':'研究','zh-Hans':'研究'},
+  library:{en:'Library','fr-CA':'Bibliothèque','zh-Hant':'知識庫','zh-Hans':'知识库'},
+  community:{en:'Community','fr-CA':'Communauté','zh-Hant':'社群','zh-Hans':'社区'},
+  quick:{en:'Quick Deal Analyzer','fr-CA':'Analyse rapide de projet','zh-Hant':'專案快速分析','zh-Hans':'项目快速分析'},
+  full:{en:'Full Development Studio','fr-CA':'Studio de développement complet','zh-Hant':'完整開發工作室','zh-Hans':'完整开发工作室'},
+  developmentTools:{en:'Development tools','fr-CA':'Outils de développement','zh-Hant':'開發分析工具','zh-Hans':'开发分析工具'},
+  libraryHint:{en:'Browse the learning categories below.','fr-CA':'Parcourez les catégories d’apprentissage ci-dessous.','zh-Hant':'瀏覽下方的學習分類。','zh-Hans':'浏览下方的学习分类。'},
+  mapHint:{en:'Maps are deferred while live wiring is reviewed.','fr-CA':'Les cartes sont reportées pendant la révision des connexions.','zh-Hant':'即時連線檢查完成前，地圖功能暫緩開放。','zh-Hans':'实时连接检查完成前，地图功能暂缓开放。'},
+};

@@ -1,0 +1,3853 @@
+[
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "1f5bb1d4-394b-494b-9dd6-0d61709e286d",
+    "name": "Workspace Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Your investment workspace\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Your investment workspace\"",
+          "defaultValue": "Your investment workspace"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "0e5f2768-be00-43d5-8286-54a7a3fb6103",
+    "name": "Workspace Introduction",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Start with a development screening. Move into a detailed model as the native migration progresses.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Start with a development screening. Move into a detailed model as the native migration progresses.\"",
+          "defaultValue": "Start with a development screening. Move into a detailed model as the native migration progresses."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "0757c522-6cd0-4df3-87ce-bb3241cce43b",
+    "name": "Quick Entry Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Quick Deal Analyzer\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Quick Deal Analyzer\"",
+          "defaultValue": "Quick Deal Analyzer"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "a990c91c-0f30-4051-b058-d955a0ff702e",
+    "name": "Quick Entry Description",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Six inputs for development screening: total cost, residual land value, return on cost and simple annualized return.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Six inputs for development screening: total cost, residual land value, return on cost and simple annualized return.\"",
+          "defaultValue": "Six inputs for development screening: total cost, residual land value, return on cost and simple annualized return."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "faefe523-8a7a-4c42-a834-420ce01addc8",
+    "name": "Open Quick Analyzer",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Start screening\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Start screening\"",
+          "defaultValue": "Start screening"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "5ae90966-0fd5-41ba-a78b-ef421239e58e",
+    "name": "Persistence Disclosure",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"This draft does not save projects or provide authenticated persistence. Full Development Studio, Portfolio, Market Intel, Research and Community are still to be migrated.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Dev includes draft save/load controls. Member access and durable saving still require real-session verification. Portfolio, Market Intel, Research and Community pages are still being migrated.\"",
+          "defaultValue": "Dev includes draft save/load controls. Member access and durable saving still require real-session verification. Portfolio, Market Intel, Research and Community pages are still being migrated."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "b6137c3f-762f-498b-9052-1fd44a9655ff",
+    "name": "Connection Test Title",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Staging connection test\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Staging connection test\"",
+          "defaultValue": "Staging connection test"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "4ee8034d-dca1-45f6-a0ca-928e2e95f212",
+    "name": "Connection Test Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Development diagnostics only. Existing Supabase and Supabase Auth plugins remain configured. No project is saved and no production calculation is requested.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Development diagnostics only. Existing Supabase and Supabase Auth plugins remain configured. No project is saved and no production calculation is requested.\"",
+          "defaultValue": "Development diagnostics only. Existing Supabase and Supabase Auth plugins remain configured. No project is saved and no production calculation is requested."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "53bfc4ef-65a1-411d-9980-06459e6dfae3",
+    "name": "Observed Preview Origin",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Display only the browser origin for CORS setup; omit paths, queries and fragments.\nconst pageUrl = globalContext.browser.url ?? '';\nconst originMatch = pageUrl.match(/^https?:\\/\\/[^/?#]+/);\nreturn translateCopy(\"Preview origin: \") + (originMatch ? originMatch[0] : translateCopy(\"not available\")) + translateCopy(\" | Environment: \") + (globalContext.browser.environment ?? translateCopy(\"unknown\"));",
+          "__wwtype": "js",
+          "defaultValue": "Preview origin: open this page in Preview to inspect"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "afd61c59-929f-491e-9373-4542eca690e2",
+    "name": "Email Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Test account email\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Test account email\"",
+          "defaultValue": "Test account email"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "7e6e34ee-c109-43b8-9598-c3d0a28ec012",
+    "name": "Staging Test Email",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Email\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Email\"",
+          "defaultValue": "Email"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "6e267375-eb03-41c7-a6c5-ba515e74c663",
+    "name": "Staging Test Password",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Password — never copied into a global variable\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Password — never copied into a global variable\"",
+          "defaultValue": "Password — never copied into a global variable"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "2731dd22-802a-46b0-9acc-66ea5f6a94b2",
+    "name": "Staging Sign In Button",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Sign in to test account\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Sign in to test account\"",
+          "defaultValue": "Sign in to test account"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "04796d8c-fab2-46e3-82a0-06d890deeb9e",
+    "name": "Staging Auth Diagnostic Status",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Render only session presence, bounded codes and allowlisted shape metadata.\nconst authenticated = Boolean(variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?._session?.access_token);\nconst signInStatus = variables['be3996c8-6be6-4c12-be68-e0549d1ae729'] ?? 'notRun';\nconst errorShape = variables['3419f71f-c256-4510-912a-50392ef340fa'] ?? {type:'notRun'};\nconst safeSummary = variables['dedf7026-f6b5-450a-b116-846c64b101b2'] ?? {status:'notRun'};\nreturn translateCopy(\"Test session present: \") + authenticated + translateCopy(\"\\nSign-in status: \") + signInStatus + translateCopy(\"\\nSafe error shape: \") + JSON.stringify(errorShape) + translateCopy(\"\\nStaging test: \") + JSON.stringify(safeSummary);",
+          "__wwtype": "js",
+          "defaultValue": "Authentication diagnostic pending"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "7f6a2b53-7a62-47b0-bd92-2510b08c093a",
+    "name": "Staging Sign Out Button",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nreturn (variables['2c790334-bf74-48a7-81b8-6a0e543924d1'] === 'signingOut' ? translateCopy(\"Signing out…\") : translateCopy(\"Sign out of test account\"));",
+          "__wwtype": "js",
+          "defaultValue": "Sign out of test account"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "8ce2c5b3-4c86-4456-9aaa-ee0f1c2632ad",
+    "name": "Staging Sign Out Status",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nreturn (variables['2c790334-bf74-48a7-81b8-6a0e543924d1'] === 'verifiedSessionCleared' ? translateCopy(\"Signed out: app session cleared. Sign in as Account A above.\") : variables['2c790334-bf74-48a7-81b8-6a0e543924d1'] === 'signingOut' ? translateCopy(\"Signing out…\") : variables['2c790334-bf74-48a7-81b8-6a0e543924d1'] === 'signOutFailed' ? translateCopy(\"Sign-out failed. Session clearance is not verified.\") : variables['2c790334-bf74-48a7-81b8-6a0e543924d1'] === 'sessionStillPresent' ? translateCopy(\"App session is still present. Sign-out needs review.\") : translateCopy(\"Sign-out has not been tested.\"));",
+          "__wwtype": "js",
+          "defaultValue": "Sign-out has not been tested."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "567a1507-136b-4c62-9b27-de894593a288",
+    "name": "Staging Full Test Button",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Run synthetic Full staging test\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Run synthetic Full staging test\"",
+          "defaultValue": "Run synthetic Full staging test"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "e7c9618b-093e-425c-8823-cc1584c64e5d",
+    "name": "Full Save Draft Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save and load Full drafts\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save and load Full drafts\"",
+          "defaultValue": "Save and load Full drafts"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "a0e0208a-9ac5-42a2-bae2-51075e09da13",
+    "name": "Full Draft Persistence Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Full and Full drafts are separate.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.\"",
+          "defaultValue": "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "07883ad8-9caf-42bb-9502-b348840c5df8",
+    "name": "Full Project Name Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Project name\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Project name\"",
+          "defaultValue": "Project name"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "c10b969e-65dd-4644-845f-0dae6f7e5bed",
+    "name": "Full Saved Project Name",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Name your Full draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Name your Full draft\"",
+          "defaultValue": "Name your Full draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "9f605ff3-c79a-47a0-b5d1-dca4c89911bf",
+    "name": "Full Save Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save draft\"",
+          "defaultValue": "Save draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "40c7e235-d8f3-4b3a-95a1-ed08959c0718",
+    "name": "Full Refresh Saved Drafts",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Refresh saved drafts\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Refresh saved drafts\"",
+          "defaultValue": "Refresh saved drafts"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "9eb3b304-1293-454f-ae0e-70cb15ad9daf",
+    "name": "Full Saved Draft Select Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Saved Full drafts (newest 50)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Saved Full drafts (newest 50)\"",
+          "defaultValue": "Saved Full drafts (newest 50)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "8242414c-ab01-4ca6-84e6-e548401446ba",
+    "name": "Full Saved Draft Selection",
+    "edits": [
+      {
+        "path": "content.default.placeholder",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Refresh and choose a saved draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Refresh and choose a saved draft\"",
+          "defaultValue": "Refresh and choose a saved draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "db28509b-3760-47e1-8f78-6647d177f7c5",
+    "name": "Full Load Selected Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Load selected draft (replaces inputs)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Load selected draft (replaces inputs)\"",
+          "defaultValue": "Load selected draft (replaces inputs)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "245be4ff-2814-4781-ae95-306d9cd65592",
+    "name": "Full New Blank Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"New blank draft (clears inputs)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"New blank draft (clears inputs)\"",
+          "defaultValue": "New blank draft (clears inputs)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "21187037-5c77-47b6-9922-3ebeb0161513",
+    "name": "Full Persistence Status",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst signedIn=Boolean(variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?._session?.access_token);\nif(!signedIn) return translateCopy(\"Sign in to save or load your drafts.\");\nconst state=variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']||{};\nif(state.ownerId && state.ownerId!==variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id) return translateCopy(\"Account changed. Load one of this account’s drafts or start a new blank draft.\");\nconst status=variables['22efc6ef-7353-4817-a3c1-2f207b657bbf']||'notRun';\nconst messages={notRun:translateCopy(\"Draft not yet saved.\"),busy:translateCopy(\"Working…\"),saved:translateCopy(\"Draft saved.\"),savedWithEdits:translateCopy(\"Earlier input snapshot saved. Your newer local edits are still unsaved.\"),loaded:translateCopy(\"Draft loaded. Calculate again for current results.\"),unchanged:translateCopy(\"No changes to save; stored revision confirmed.\"),listed:translateCopy(\"Saved drafts refreshed (up to 50 newest).\"),conflict:translateCopy(\"Conflict: the saved draft changed. Your inputs were kept. Refresh and load to replace them, or start a new blank draft.\"),uncertain:translateCopy(\"Save outcome uncertain. Do not repeat the write. Click Save once to reconcile, or refresh and load the stored draft.\"),reconciled:translateCopy(\"Previous save verified. Any newer local edits are still unsaved.\"),notFound:translateCopy(\"Draft unavailable or not owned by this account. Inputs were kept.\"),signedOut:translateCopy(\"Sign in before saving or loading.\"),sessionChanged:translateCopy(\"Account or session changed. Completion was ignored.\"),accountChanged:translateCopy(\"Account changed. Load this account’s draft or start a new blank draft.\"),nameRequired:translateCopy(\"Enter a project name (1–120 characters).\"),selectRequired:translateCopy(\"Select a saved draft first.\"),invalidPayload:translateCopy(\"Unsupported or invalid saved draft. Inputs were kept.\"),httpError:translateCopy(\"Request failed. Inputs were kept.\"),connectionError:translateCopy(\"Connection failed. Inputs were kept.\"),stale:translateCopy(\"Inputs or navigation changed during the request. Completion was ignored.\"),newDraft:translateCopy(\"New blank draft. Nothing has been saved.\"),scopeMismatch:translateCopy(\"This draft integration is limited to InvestScape Dev editor.\")};\nreturn (messages[status]||translateCopy(\"Draft operation needs review.\")) + (state.id && state.revision>0 ? translateCopy(\" Stored revision: \")+state.revision+'.' : '');",
+          "__wwtype": "js",
+          "defaultValue": "Draft not yet saved."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "e32a1a86-e03d-4f99-8c17-b58b6d37a5da",
+    "name": "Full Studio Title",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Full Development Studio\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Full Development Studio\"",
+          "defaultValue": "Full Development Studio"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "75a81043-82b0-47f6-aee5-2e78bdb822ea",
+    "name": "Full Studio Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Single-phase modelling. Enter your own assumptions; percentages use whole percent, construction area uses ft². Amounts have no currency conversion. Your entries are not saved yet.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Single-phase modelling. Enter your own assumptions; percentages use whole percent, construction area uses ft². Amounts have no currency conversion. Calculating does not automatically save your entries.\"",
+          "defaultValue": "Single-phase modelling. Enter your own assumptions; percentages use whole percent, construction area uses ft². Amounts have no currency conversion. Calculating does not automatically save your entries."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "f613d00c-c4b1-48e9-8524-91b8427a4c8f",
+    "name": "Full Draft Integration Notice",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst result=variables['f6770392-ba19-4154-945b-0178de9a1e6e'];\nif(variables['4c900892-a0d7-4138-befe-b32c14d55f3d']) return translateCopy(\"Calculating…\");\nconst load=variables['7e62fd40-a083-43ed-9a40-f8d32c119760'];\nif(load!=='ready') return load==='loadFailed'||load==='versionMismatch'?translateCopy(\"Calculation connection unavailable. Reload this preview to try again.\"):translateCopy(\"Preparing calculation connection…\");\nconst status=result?.status;\nif(status==='signedOut') return translateCopy(\"Sign in with your test account before calculating.\");\nif(status==='httpError') return result.httpStatus===401?translateCopy(\"Your session is unavailable or expired. Sign in again.\"):translateCopy(\"The calculation service could not complete this request. Please try again.\");\nif(['connectionOrDecodeError','clientUnavailable','deploymentMismatch','identityMismatch','error'].includes(status)) return translateCopy(\"This calculation is unavailable. Please try again; no previous values are shown.\");\nif(status==='unavailable') return translateCopy(\"The calculation returned unavailable values. They are not displayed as zero.\");\nif(status==='invalid'||status==='incomplete'){\n const labels={landCost:translateCopy(\"Land acquisition amount\"),provinceState:translateCopy(\"Jurisdiction\"),hardCostPsf:translateCopy(\"Hard cost per ft²\"),buildableSf:translateCopy(\"Construction area\"),softCostPct:translateCopy(\"Soft costs\"),contingencyPct:translateCopy(\"Contingency\"),unitsTotal:translateCopy(\"Total sale units\"),avgUnitPrice:translateCopy(\"Average sale amount\"),constructionMonths:translateCopy(\"Construction duration\"),multiParcelAssembly:translateCopy(\"Second parcel\"),acquisitionType:translateCopy(\"Acquisition structure\"),ltcPct:translateCopy(\"Loan-to-cost\"),financingRate:translateCopy(\"Senior interest rate\"),mezzAmount:translateCopy(\"Mezzanine amount\"),presaleDepositAmount:translateCopy(\"Presale deposit amount\")};\n const meanings={missing:translateCopy(\"required\"),null:translateCopy(\"required\"),blank:translateCopy(\"required\"),notNumeric:translateCopy(\"enter a number\"),notFinite:translateCopy(\"enter a finite number\"),wrongType:translateCopy(\"invalid value\"),negative:translateCopy(\"must be zero or positive\"),notPositive:translateCopy(\"must be above zero\"),outOfRange:translateCopy(\"outside the permitted range\"),unsupported:translateCopy(\"unsupported selection\"),limitExceeded:translateCopy(\"exceeds the operational limit\")};\n return (status==='incomplete'?translateCopy(\"Complete these inputs: \"):translateCopy(\"Check these inputs: \"))+(result.issues||[]).map(issue=>(labels[issue.field]||issue.field)+': '+(meanings[issue.code]||issue.code)+(issue.params?.limit!==undefined?translateCopy(\" (limit \")+issue.params.limit+' '+(issue.params.unit||'')+')':'')).join('; ');\n}\nif(status==='ok'||status==='partial'){\n if(result._nativeUserId!==variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id||!variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?._session?.access_token)return translateCopy(\"Sign in before calculating again.\");\n return status==='partial'?translateCopy(\"Single-phase calculation complete. Some optional sections are unavailable.\"):translateCopy(\"Single-phase calculation complete.\");\n}\nreturn translateCopy(\"Staging calculation preview. Enter your assumptions, then select Calculate Full. Results clear when inputs change. Entries are not saved to your account.\");",
+          "__wwtype": "js",
+          "defaultValue": "Preparing calculation connection…"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b26a1b4e-e628-4555-96e6-e5549a048276",
+    "name": "Land and jurisdiction Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Land and jurisdiction\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Land and jurisdiction\"",
+          "defaultValue": "Land and jurisdiction"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "83764c94-2d38-440c-b146-43e8aad280e1",
+    "name": "Full landCost Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Land acquisition amount\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Land acquisition amount\"",
+          "defaultValue": "Land acquisition amount"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0eb40a1c-359a-42c4-bf42-d6ef324814ad",
+    "name": "Full Input landCost",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "7376a243-2e9d-49fc-bd57-eac2ee740aef",
+    "name": "Full provinceState Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Jurisdiction\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Jurisdiction\"",
+          "defaultValue": "Jurisdiction"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "dc99391b-5f88-43ea-b493-482282e7d62c",
+    "name": "Full Input provinceState",
+    "edits": [
+      {
+        "path": "content.default.options",
+        "value": {
+          "__wwtype": "js",
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Keep submitted option values unchanged; translate only their labels.\nconst options = [{\"label\":\"British Columbia\",\"value\":\"BC\"},{\"label\":\"Ontario\",\"value\":\"ON\"},{\"label\":\"United States\",\"value\":\"US\"}];\nreturn options.map(option => ({...option, label: translateCopy(option.label)}));",
+          "defaultValue": [
+            {
+              "label": "British Columbia",
+              "value": "BC"
+            },
+            {
+              "label": "Ontario",
+              "value": "ON"
+            },
+            {
+              "label": "United States",
+              "value": "US"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b82d84dc-0dc5-447b-ba0a-0135ed3d3452",
+    "name": "Full acquisitionType Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"BC acquisition structure\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"BC acquisition structure\"",
+          "defaultValue": "BC acquisition structure"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0bf0d5e7-f4b2-4fbb-bc34-4ffd57c300cc",
+    "name": "Full Input acquisitionType",
+    "edits": [
+      {
+        "path": "content.default.options",
+        "value": {
+          "__wwtype": "js",
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Keep submitted option values unchanged; translate only their labels.\nconst options = [{\"label\":\"Asset purchase\",\"value\":\"asset_purchase\"},{\"label\":\"Bare trust\",\"value\":\"bare_trust\"}];\nreturn options.map(option => ({...option, label: translateCopy(option.label)}));",
+          "defaultValue": [
+            {
+              "label": "Asset purchase",
+              "value": "asset_purchase"
+            },
+            {
+              "label": "Bare trust",
+              "value": "bare_trust"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "539fbddf-d954-435b-81c7-17b5a5882c56",
+    "name": "Full multiParcelAssembly Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"BC second parcel\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"BC second parcel\"",
+          "defaultValue": "BC second parcel"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "6eca3366-bc1b-4972-975a-2dac67e58923",
+    "name": "Full Input multiParcelAssembly",
+    "edits": [
+      {
+        "path": "content.default.options",
+        "value": {
+          "__wwtype": "js",
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Keep submitted option values unchanged; translate only their labels.\nconst options = [{\"label\":\"No second parcel\",\"value\":\"no\"},{\"label\":\"Add second parcel\",\"value\":\"yes\"}];\nreturn options.map(option => ({...option, label: translateCopy(option.label)}));",
+          "defaultValue": [
+            {
+              "label": "No second parcel",
+              "value": "no"
+            },
+            {
+              "label": "Add second parcel",
+              "value": "yes"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "9fba9543-e6e5-416e-8a8a-bae5915a4418",
+    "name": "Full parcel2Price Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Second parcel purchase amount\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Second parcel purchase amount\"",
+          "defaultValue": "Second parcel purchase amount"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "34a4400c-21ef-4b55-b531-931b13f2faa6",
+    "name": "Full Input parcel2Price",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "cf64ebc0-12dc-4755-9ee0-a9169029b873",
+    "name": "Full parcel2Fmv Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Second parcel fair market value — optional\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Second parcel fair market value — optional\"",
+          "defaultValue": "Second parcel fair market value — optional"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "4a61e8e1-7dde-41e2-98b6-4ad8536704af",
+    "name": "Full Input parcel2Fmv",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d93f28a5-277e-4d01-a192-a96fb53feead",
+    "name": "Construction costs and sales Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Construction costs and sales\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Construction costs and sales\"",
+          "defaultValue": "Construction costs and sales"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "e1c8ee5a-967f-4403-9c1d-242faf6ca292",
+    "name": "Full hardCostPsf Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Hard cost per ft²\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Hard cost per ft²\"",
+          "defaultValue": "Hard cost per ft²"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "a1646bf7-0ea5-4335-a313-61877e342c4d",
+    "name": "Full Input hardCostPsf",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "cc44c3e2-8bc6-4a21-aaad-f073ce57c3d3",
+    "name": "Full buildableSf Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Construction area (ft², hard-cost basis)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Construction area (ft², hard-cost basis)\"",
+          "defaultValue": "Construction area (ft², hard-cost basis)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "fe4c7343-d4b1-4a87-ba6f-fa633e882644",
+    "name": "Full Input buildableSf",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "15988462-2729-4fe1-83c4-71dd469e1977",
+    "name": "Full softCostPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Soft costs (% of hard cost)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Soft costs (% of hard cost)\"",
+          "defaultValue": "Soft costs (% of hard cost)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "150f6b5f-7fea-430f-b1fc-4134d11de8ac",
+    "name": "Full Input softCostPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "319a9943-e135-4f9c-892f-52a344f6e803",
+    "name": "Full contingencyPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Contingency (% of hard + soft costs)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Contingency (% of hard + soft costs)\"",
+          "defaultValue": "Contingency (% of hard + soft costs)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "1bdd49ed-397f-43ec-ad0d-5d205385fe39",
+    "name": "Full Input contingencyPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "18f977c7-9631-42ee-88ab-85966910243f",
+    "name": "Full unitsTotal Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Total sale units\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Total sale units\"",
+          "defaultValue": "Total sale units"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "8399bc02-5350-4b7e-bc5b-1e43df429cb5",
+    "name": "Full Input unitsTotal",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "89af4cae-18ac-4000-a538-7c76042acef5",
+    "name": "Full avgUnitPrice Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Average sale amount per unit\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Average sale amount per unit\"",
+          "defaultValue": "Average sale amount per unit"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "77bbb306-4315-49ca-9e86-c931ca6cf3cb",
+    "name": "Full Input avgUnitPrice",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "f1c255de-9786-42ca-85be-1aeb510f82b8",
+    "name": "Full constructionMonths Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Construction duration (months)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Construction duration (months)\"",
+          "defaultValue": "Construction duration (months)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "097b79ed-3967-47b0-95c8-d580689d566f",
+    "name": "Full Input constructionMonths",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "bedf69af-f351-4c6a-b945-36b9d0b4fc91",
+    "name": "Senior financing Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Senior financing\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Senior financing\"",
+          "defaultValue": "Senior financing"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "1d695029-1b00-4f7b-b035-acd738ff9cfa",
+    "name": "Full ltcPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Loan-to-cost (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Loan-to-cost (%)\"",
+          "defaultValue": "Loan-to-cost (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "784b5058-9916-46b3-9421-aa7a0f5ca62e",
+    "name": "Full Input ltcPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "3ed7189d-84c8-4229-8cdf-2181bda2ec81",
+    "name": "Full financingRate Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Senior annual interest rate (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Senior annual interest rate (%)\"",
+          "defaultValue": "Senior annual interest rate (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "8a966c1f-ffef-4f34-8e65-be9988c1e4a5",
+    "name": "Full Input financingRate",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "7474394d-c91a-45ef-a3d7-4f774024903d",
+    "name": "Full interestReservePercent Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Interest reserve funded (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Interest reserve funded (%)\"",
+          "defaultValue": "Interest reserve funded (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d7baf3cd-9e3b-46e5-ae8b-d8ce685a8ba9",
+    "name": "Full Input interestReservePercent",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "553bd8a1-8f4f-4b2a-b935-7d75b86a51b1",
+    "name": "Full withdrawalFactor Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Average drawn fraction (0–1)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Average drawn fraction (0–1)\"",
+          "defaultValue": "Average drawn fraction (0–1)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "da3d3879-6ae4-4c93-a09c-006bb95cf8fe",
+    "name": "Full Input withdrawalFactor",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "91e0824a-91e4-492e-8832-a360c9864c08",
+    "name": "Full commitmentFeePercent Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Commitment fee (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Commitment fee (%)\"",
+          "defaultValue": "Commitment fee (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b303c39d-2efb-4017-8ed8-feb3a5196911",
+    "name": "Full Input commitmentFeePercent",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0649a0a9-bc88-4557-90fa-a6f4a86de674",
+    "name": "Full seniorRepaymentType Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Senior repayment\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Senior repayment\"",
+          "defaultValue": "Senior repayment"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "4d73e54a-0680-448c-b25e-56ee8d5847fb",
+    "name": "Full Input seniorRepaymentType",
+    "edits": [
+      {
+        "path": "content.default.options",
+        "value": {
+          "__wwtype": "js",
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Keep submitted option values unchanged; translate only their labels.\nconst options = [{\"label\":\"Interest-only, bullet repayment\",\"value\":\"interest_only_bullet\"},{\"label\":\"Amortizing\",\"value\":\"amortizing\"}];\nreturn options.map(option => ({...option, label: translateCopy(option.label)}));",
+          "defaultValue": [
+            {
+              "label": "Interest-only, bullet repayment",
+              "value": "interest_only_bullet"
+            },
+            {
+              "label": "Amortizing",
+              "value": "amortizing"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "640decfe-5956-427f-88d7-a3b5c4721e26",
+    "name": "Full sellOffMonths Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Senior sell-off after construction (months)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Senior sell-off after construction (months)\"",
+          "defaultValue": "Senior sell-off after construction (months)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "f2418af6-45df-4dea-9ae0-31bbfca651ab",
+    "name": "Full Input sellOffMonths",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "acd47fa4-def5-4371-a3e9-2bb4982e2214",
+    "name": "Full sponsorEquityAmount Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Sponsor equity amount\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Sponsor equity amount\"",
+          "defaultValue": "Sponsor equity amount"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "5afbcaf1-3f88-4123-887c-d5dedd3fb7e7",
+    "name": "Full Input sponsorEquityAmount",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b0cbb9e8-7210-4440-b011-4f7f63a37be5",
+    "name": "Additional financing Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Additional financing\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Additional financing\"",
+          "defaultValue": "Additional financing"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "6ab62fd2-bf87-4226-9b73-cf7bfd603ec6",
+    "name": "Full mezzAmount Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine amount — enter 0 for none\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine amount — enter 0 for none\"",
+          "defaultValue": "Mezzanine amount — enter 0 for none"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "45918e7d-31c1-41aa-96aa-1da750e6cffa",
+    "name": "Full Input mezzAmount",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d49d742a-6bee-449d-b80b-bbf74cb9999b",
+    "name": "Full mezzRate Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine annual interest rate (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine annual interest rate (%)\"",
+          "defaultValue": "Mezzanine annual interest rate (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "7259ba73-0fa0-4347-88dc-a0c849267c5a",
+    "name": "Full Input mezzRate",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "fdb400de-e1d1-49af-ad43-84edcb509eec",
+    "name": "Full mezzAmortizationYears Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine amortization (years)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine amortization (years)\"",
+          "defaultValue": "Mezzanine amortization (years)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "e2bd3dd9-9da1-4364-b4cf-4745b22f8791",
+    "name": "Full Input mezzAmortizationYears",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "8d05c699-0ba6-424b-8387-4de2c7f53f5e",
+    "name": "Full mezzDrawMonth Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine draw month\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine draw month\"",
+          "defaultValue": "Mezzanine draw month"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0d0f654a-9da4-4cf5-af19-4e5fc29aff14",
+    "name": "Full Input mezzDrawMonth",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0e65850b-c967-45eb-a00b-463e53f7d577",
+    "name": "Full mezzRepaymentType Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine repayment\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine repayment\"",
+          "defaultValue": "Mezzanine repayment"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "20c73137-0576-45c8-8a25-1705cf4bd07c",
+    "name": "Full Input mezzRepaymentType",
+    "edits": [
+      {
+        "path": "content.default.options",
+        "value": {
+          "__wwtype": "js",
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Keep submitted option values unchanged; translate only their labels.\nconst options = [{\"label\":\"Interest-only, bullet repayment\",\"value\":\"interest_only_bullet\"},{\"label\":\"Amortizing\",\"value\":\"amortizing\"}];\nreturn options.map(option => ({...option, label: translateCopy(option.label)}));",
+          "defaultValue": [
+            {
+              "label": "Interest-only, bullet repayment",
+              "value": "interest_only_bullet"
+            },
+            {
+              "label": "Amortizing",
+              "value": "amortizing"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "db4e3ab4-5b65-4a2d-9787-7921b1aa1ecd",
+    "name": "Full mezzSellOffMonths Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Mezzanine sell-off after construction (months)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Mezzanine sell-off after construction (months)\"",
+          "defaultValue": "Mezzanine sell-off after construction (months)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "1031af23-51f8-4009-bcce-74db95865a68",
+    "name": "Full Input mezzSellOffMonths",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0a776e24-1fab-44c2-9138-4f8b4a8dfdbe",
+    "name": "Full presaleDepositAmount Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Presale deposit amount — enter 0 for none\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Presale deposit amount — enter 0 for none\"",
+          "defaultValue": "Presale deposit amount — enter 0 for none"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "ab4f0c57-a162-48d2-bda9-6b1ec5f3a660",
+    "name": "Full Input presaleDepositAmount",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "6847692f-c287-48a6-9489-eaba7b815c91",
+    "name": "Full presaleDepositMilestoneMonth Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Presale deposit release month\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Presale deposit release month\"",
+          "defaultValue": "Presale deposit release month"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "539b7262-4d56-4b32-b0a6-7f507175c42c",
+    "name": "Full Input presaleDepositMilestoneMonth",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "cc624089-ffa8-41e8-9654-6119fe88ae75",
+    "name": "Budget tracking Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Budget tracking\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Budget tracking\"",
+          "defaultValue": "Budget tracking"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "1c68fa50-7a7e-4005-b549-2bf2da62755e",
+    "name": "Full landCostActual Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Land actual amount\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Land actual amount\"",
+          "defaultValue": "Land actual amount"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "3ed02a26-2181-490e-8fc5-f687c2de3d00",
+    "name": "Full Input landCostActual",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "2c69ea4d-3a54-43e8-ad13-0c97ea93bf83",
+    "name": "Full landCostCommitted Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Land committed amount\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Land committed amount\"",
+          "defaultValue": "Land committed amount"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "ae25d002-d5bc-490d-a408-ca87a89653a4",
+    "name": "Full Input landCostCommitted",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "af88af74-8a30-4061-963a-c02f6c20e4f0",
+    "name": "Full hardCostActualPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Hard costs actual (% of budget)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Hard costs actual (% of budget)\"",
+          "defaultValue": "Hard costs actual (% of budget)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "f73f39bc-3f58-45c0-946b-4d7e8388388b",
+    "name": "Full Input hardCostActualPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d11270a0-4c7a-4b49-bdbb-8a4436ee018d",
+    "name": "Full hardCostCommittedPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Hard costs committed (% of budget)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Hard costs committed (% of budget)\"",
+          "defaultValue": "Hard costs committed (% of budget)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "6ff6dbc9-7f8e-42c3-a21f-a14237c3e051",
+    "name": "Full Input hardCostCommittedPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "bdb5c379-465f-4af7-92d3-2e9ca10ed73d",
+    "name": "Full softCostActualPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Soft costs actual (% of budget)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Soft costs actual (% of budget)\"",
+          "defaultValue": "Soft costs actual (% of budget)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "543e5fb0-1ca4-4fea-96ef-3ddfa91cb377",
+    "name": "Full Input softCostActualPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d0e517cf-3d2c-48af-b4a6-c5d3ad212630",
+    "name": "Full softCostCommittedPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Soft costs committed (% of budget)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Soft costs committed (% of budget)\"",
+          "defaultValue": "Soft costs committed (% of budget)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "7f1070e9-5c6f-438a-830c-51b4ab5902ff",
+    "name": "Full Input softCostCommittedPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "9584106d-cb42-4f9a-9ca9-ea63cf5e18cb",
+    "name": "Full contingencyActualPct Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Contingency actual (% of budget)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Contingency actual (% of budget)\"",
+          "defaultValue": "Contingency actual (% of budget)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "df8ac26b-2aa3-41a8-bf92-1709019db9ec",
+    "name": "Full Input contingencyActualPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "75002ad2-7801-4cea-869d-dbf759ec4111",
+    "name": "Calculate Native Full",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Calculate Full\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Calculate Full\"",
+          "defaultValue": "Calculate Full"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d34de536-546e-4e71-9ea4-5a21fb96ac40",
+    "name": "Full Request Loading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Calculating Full…\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Calculating Full…\"",
+          "defaultValue": "Calculating Full…"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "a6ecbb9e-d421-47be-ab7b-7616fa58f663",
+    "name": "Full Results Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Single-phase results\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Single-phase results\"",
+          "defaultValue": "Single-phase results"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "66965ccc-3c1d-4ef4-a404-20d089c89643",
+    "name": "Full Metric tdc",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst value=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.raw?.tdc; return translateCopy(\"Total development cost: \") + (typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(activeLocale,{maximumFractionDigits:2}).format(value) : translateCopy(\"Unavailable\"));",
+          "__wwtype": "js",
+          "defaultValue": "Total development cost: —"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "83620251-77af-4bd5-9dbf-0ebea5dd3f8f",
+    "name": "Full Metric netRevenue",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst value=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.raw?.netRevenue; return translateCopy(\"Net sales revenue: \") + (typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(activeLocale,{maximumFractionDigits:2}).format(value) : translateCopy(\"Unavailable\"));",
+          "__wwtype": "js",
+          "defaultValue": "Net sales revenue: —"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "82188835-26a1-449a-b6c6-5f246c32aced",
+    "name": "Full Metric profit",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst value=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.raw?.profit; return translateCopy(\"Project profit: \") + (typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(activeLocale,{maximumFractionDigits:2}).format(value) : translateCopy(\"Unavailable\"));",
+          "__wwtype": "js",
+          "defaultValue": "Project profit: —"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "e987e953-5531-47b8-bf7d-36d05ee85b39",
+    "name": "Full Metric marginOnCost",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst value=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.raw?.marginOnCost; return translateCopy(\"Return on cost: \") + (typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(activeLocale,{maximumFractionDigits:2}).format(value*100)+'%' : translateCopy(\"Unavailable\"));",
+          "__wwtype": "js",
+          "defaultValue": "Return on cost: —"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "d5316aad-d61b-4263-9c27-63f328cc7cc5",
+    "name": "Full Metric stack.wacc",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst value=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.raw?.stack?.wacc; return translateCopy(\"Weighted average cost of capital: \") + (typeof value === 'number' && Number.isFinite(value) ? new Intl.NumberFormat(activeLocale,{maximumFractionDigits:2}).format(value*100)+'%' : translateCopy(\"Unavailable\"));",
+          "__wwtype": "js",
+          "defaultValue": "Weighted average cost of capital: —"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "3b49650c-2814-475c-bbd1-e3125a343aee",
+    "name": "Full Optional Section Availability",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst sections=variables['f6770392-ba19-4154-945b-0178de9a1e6e']?.sections || {}; const labels={financingTable:translateCopy(\"Financing schedule\"),budgetAnalysis:translateCopy(\"Budget tracking\"),sourcesUses:translateCopy(\"Sources and uses\"),acquisitionStructureResult:translateCopy(\"BC acquisition structure\")}; return Object.entries(labels).map(([key,label])=>label+': '+(sections[key]==='ok'?translateCopy(\"available\"):sections[key]==='notApplicable'?translateCopy(\"not run for this jurisdiction\"):translateCopy(\"unavailable\"))).join(' · ');",
+          "__wwtype": "js",
+          "defaultValue": ""
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "0d424cee-c698-4b84-9558-c825ff1b1232",
+    "name": "Full Basis Disclosures",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Model bases and limitations\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Model bases and limitations\"",
+          "defaultValue": "Model bases and limitations"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "de9795fa-44e0-42a1-b69f-24206cf2b3f4",
+    "name": "Disclosure full.screeningBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Full single-phase basis: revenue is units times average unit price, net of a fixed 5% sales commission. Total development cost is land plus hard, soft and contingency costs and excludes financing costs. Return on cost is profit divided by that total cost. This is not the Quick basis (a lump-sum revenue with no commission or contingency).\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Full single-phase basis: revenue is units times average unit price, net of a fixed 5% sales commission. Total development cost is land plus hard, soft and contingency costs and excludes financing costs. Return on cost is profit divided by that total cost. This is not the Quick basis (a lump-sum revenue with no commission or contingency).\"",
+          "defaultValue": "Full single-phase basis: revenue is units times average unit price, net of a fixed 5% sales commission. Total development cost is land plus hard, soft and contingency costs and excludes financing costs. Return on cost is profit divided by that total cost. This is not the Quick basis (a lump-sum revenue with no commission or contingency)."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b1c24b62-144e-497f-a828-811d0a0d516f",
+    "name": "Disclosure full.areaIsConstructionBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The buildable area entered here is the construction area used to price hard cost. It is not a zoning or regulatory floor-area figure.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The buildable area entered here is the construction area used to price hard cost. It is not a zoning or regulatory floor-area figure.\"",
+          "defaultValue": "The buildable area entered here is the construction area used to price hard cost. It is not a zoning or regulatory floor-area figure."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "375f4da9-8b31-4df6-a1c7-e198ae572594",
+    "name": "Disclosure full.commission",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The 5% sales commission is a fixed constant in the calculation, not an input.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The 5% sales commission is a fixed constant in the calculation, not an input.\"",
+          "defaultValue": "The 5% sales commission is a fixed constant in the calculation, not an input."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "4016ebbe-7d0a-4264-b8e2-53e7a89abfec",
+    "name": "Disclosure full.capitalStackRates",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The capital stack uses a fixed equity rate of 0.20 and a fixed tax rate of 0.27. They are not inputs, have no stated source and are not verified. They feed the weighted average cost of capital.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The capital stack uses a fixed equity rate of 0.20 and a fixed tax rate of 0.27. They are not inputs, have no stated source and are not verified. They feed the weighted average cost of capital.\"",
+          "defaultValue": "The capital stack uses a fixed equity rate of 0.20 and a fixed tax rate of 0.27. They are not inputs, have no stated source and are not verified. They feed the weighted average cost of capital."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "984f8079-c9d2-4f9a-af62-f5e26db84707",
+    "name": "Disclosure full.financingBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The senior loan is total development cost times the loan-to-cost percentage. Financing costs are derived by the calculation engine from the facilities (interest reserve and commitment fee); senior amortisation is a fixed 25 years; the presale deposit accrues no interest. Financing costs are not part of total development cost or return on cost.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The senior loan is total development cost times the loan-to-cost percentage. Financing costs are derived by the calculation engine from the facilities (interest reserve and commitment fee); senior amortisation is a fixed 25 years; the presale deposit accrues no interest. Financing costs are not part of total development cost or return on cost.\"",
+          "defaultValue": "The senior loan is total development cost times the loan-to-cost percentage. Financing costs are derived by the calculation engine from the facilities (interest reserve and commitment fee); senior amortisation is a fixed 25 years; the presale deposit accrues no interest. Financing costs are not part of total development cost or return on cost."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "94c6726c-2851-4a16-8e07-afff21f969d1",
+    "name": "Disclosure full.rlvBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Residual land value is not computed by this operation. When a separate operation provides it, single-phase residual land value is financing-inclusive, staged per-stage residual land value is financing-excluded, and neither equals the Quick residual land value (a share of sellout value).\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Residual land value is not computed by this operation. When a separate operation provides it, single-phase residual land value is financing-inclusive, staged per-stage residual land value is financing-excluded, and neither equals the Quick residual land value (a share of sellout value).\"",
+          "defaultValue": "Residual land value is not computed by this operation. When a separate operation provides it, single-phase residual land value is financing-inclusive, staged per-stage residual land value is financing-excluded, and neither equals the Quick residual land value (a share of sellout value)."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "f470a509-9a76-484f-8664-606502a1c0c2",
+    "name": "Disclosure full.acquisitionBcOnly",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The acquisition structure is calculated for British Columbia only and assumes a 0.5-hectare parcel for every parcel regardless of the entered site. Outside British Columbia the operation was not run; this does not mean no acquisition tax applies.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The acquisition structure is calculated for British Columbia only and assumes a 0.5-hectare parcel for every parcel regardless of the entered site. Outside British Columbia the operation was not run; this does not mean no acquisition tax applies.\"",
+          "defaultValue": "The acquisition structure is calculated for British Columbia only and assumes a 0.5-hectare parcel for every parcel regardless of the entered site. Outside British Columbia the operation was not run; this does not mean no acquisition tax applies."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "ee4f6cc1-b8b7-4010-8ca5-4fc2f8fc6d98",
+    "name": "Disclosure full.taxNotIncluded",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"No tax applicability is computed by this operation. Where a separate tax operation is used later: its developer-profit figure is gross sales minus hard and soft costs only (excluding land, contingency, commissions and financing) and is not project profit or taxable income; after-tax figures are withheld; its GST/HST screening assumes a registered developer and residential units and is Canada-only.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"No tax applicability is computed by this operation. Where a separate tax operation is used later: its developer-profit figure is gross sales minus hard and soft costs only (excluding land, contingency, commissions and financing) and is not project profit or taxable income; after-tax figures are withheld; its GST/HST screening assumes a registered developer and residential units and is Canada-only.\"",
+          "defaultValue": "No tax applicability is computed by this operation. Where a separate tax operation is used later: its developer-profit figure is gross sales minus hard and soft costs only (excluding land, contingency, commissions and financing) and is not project profit or taxable income; after-tax figures are withheld; its GST/HST screening assumes a registered developer and residential units and is Canada-only."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "001a2557-1cb0-42e0-bb14-dc4ce81aaca5",
+    "name": "Disclosure full.noCurrency",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"No currency or exchange-rate handling. All amounts are in the single, unstated currency entered.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"No currency or exchange-rate handling. All amounts are in the single, unstated currency entered.\"",
+          "defaultValue": "No currency or exchange-rate handling. All amounts are in the single, unstated currency entered."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "9c54d6be-fddf-4e1e-aac5-540324818d0d",
+    "name": "Disclosure full.engineIdentity",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The calculation engine identity is declared by the caller and is not verified here. Engine release versions are unknown.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The calculation engine identity is declared by the caller and is not verified here. Engine release versions are unknown.\"",
+          "defaultValue": "The calculation engine identity is declared by the caller and is not verified here. Engine release versions are unknown."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "b6bae4aa-34af-4f74-a460-639f97be0bf8",
+    "name": "Disclosure full.notAudited",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"This result has not been audited and is not tax or investment advice. Matching the prototype shows sameness with it, not financial or tax correctness.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"This result has not been audited and is not tax or investment advice. Matching the prototype shows sameness with it, not financial or tax correctness.\"",
+          "defaultValue": "This result has not been audited and is not tax or investment advice. Matching the prototype shows sameness with it, not financial or tax correctness."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "092aa0f8-bcbd-4f28-ad5f-b5172469ed01",
+    "name": "Quick Page Title",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Quick Deal Analyzer\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Quick Deal Analyzer\"",
+          "defaultValue": "Quick Deal Analyzer"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "5be4bf38-f128-4f45-b480-224c5a95bc86",
+    "name": "Quick Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Development screening · Use one currency throughout. Enter decimal numbers without currency symbols or thousands separators. Quick and Full use different calculation bases.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Development screening · Use one currency throughout. Enter decimal numbers without currency symbols or thousands separators. Quick and Full use different calculation bases.\"",
+          "defaultValue": "Development screening · Use one currency throughout. Enter decimal numbers without currency symbols or thousands separators. Quick and Full use different calculation bases."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "a4f69cd2-1bde-4009-9c85-c8796fbb5d36",
+    "name": "Quick Save Draft Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save and load Quick drafts\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save and load Quick drafts\"",
+          "defaultValue": "Save and load Quick drafts"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "565098a0-17d3-4516-92b2-b9da3c3d0c2f",
+    "name": "Quick Draft Persistence Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.\"",
+          "defaultValue": "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "906eaf57-0869-4272-ae7f-ef61bdbfaa1c",
+    "name": "Quick Project Name Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Project name\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Project name\"",
+          "defaultValue": "Project name"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "9768e3e8-306c-46e1-ba6a-ec882d5b59ae",
+    "name": "Quick Saved Project Name",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Name your Quick draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Name your Quick draft\"",
+          "defaultValue": "Name your Quick draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "413470af-0f10-4316-88ee-2fb444a08352",
+    "name": "Quick Save Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Save draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Save draft\"",
+          "defaultValue": "Save draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "a4d597cf-ea2d-47e4-9437-cdb09b38a4f3",
+    "name": "Quick Refresh Saved Drafts",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Refresh saved drafts\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Refresh saved drafts\"",
+          "defaultValue": "Refresh saved drafts"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "592faaaf-4f7c-4c28-8eef-932353928b07",
+    "name": "Quick Saved Draft Select Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Saved Quick drafts (newest 50)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Saved Quick drafts (newest 50)\"",
+          "defaultValue": "Saved Quick drafts (newest 50)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "f9bb4554-3541-4415-90e5-e96cfa8f53b3",
+    "name": "Quick Saved Draft Selection",
+    "edits": [
+      {
+        "path": "content.default.placeholder",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Refresh and choose a saved draft\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Refresh and choose a saved draft\"",
+          "defaultValue": "Refresh and choose a saved draft"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "fc91022d-2d4c-44db-a842-1eb24f1ab6ca",
+    "name": "Quick Load Selected Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Load selected draft (replaces inputs)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Load selected draft (replaces inputs)\"",
+          "defaultValue": "Load selected draft (replaces inputs)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "f0a99aa3-74e2-416d-b157-5fee412f10f5",
+    "name": "Quick New Blank Draft",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"New blank draft (clears inputs)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"New blank draft (clears inputs)\"",
+          "defaultValue": "New blank draft (clears inputs)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "9a8e9128-5cad-4281-8492-bec4cbe6fa28",
+    "name": "Quick Persistence Status",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nconst signedIn=Boolean(variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?._session?.access_token);\nif(!signedIn) return translateCopy(\"Sign in to save or load your drafts.\");\nconst state=variables['a031b049-3422-4985-8f7f-beae3e7265e3']||{};\nif(state.ownerId && state.ownerId!==variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id) return translateCopy(\"Account changed. Load one of this account’s drafts or start a new blank draft.\");\nconst status=variables['3104d173-4038-42a9-b4c0-2baeb7c40fa4']||'notRun';\nconst messages={notRun:translateCopy(\"Draft not yet saved.\"),busy:translateCopy(\"Working…\"),saved:translateCopy(\"Draft saved.\"),savedWithEdits:translateCopy(\"Earlier input snapshot saved. Your newer local edits are still unsaved.\"),loaded:translateCopy(\"Draft loaded. Calculate again for current results.\"),unchanged:translateCopy(\"No changes to save; stored revision confirmed.\"),listed:translateCopy(\"Saved drafts refreshed (up to 50 newest).\"),conflict:translateCopy(\"Conflict: the saved draft changed. Your inputs were kept. Refresh and load to replace them, or start a new blank draft.\"),uncertain:translateCopy(\"Save outcome uncertain. Do not repeat the write. Click Save once to reconcile, or refresh and load the stored draft.\"),reconciled:translateCopy(\"Previous save verified. Any newer local edits are still unsaved.\"),notFound:translateCopy(\"Draft unavailable or not owned by this account. Inputs were kept.\"),signedOut:translateCopy(\"Sign in before saving or loading.\"),sessionChanged:translateCopy(\"Account or session changed. Completion was ignored.\"),accountChanged:translateCopy(\"Account changed. Load this account’s draft or start a new blank draft.\"),nameRequired:translateCopy(\"Enter a project name (1–120 characters).\"),selectRequired:translateCopy(\"Select a saved draft first.\"),invalidPayload:translateCopy(\"Unsupported or invalid saved draft. Inputs were kept.\"),httpError:translateCopy(\"Request failed. Inputs were kept.\"),connectionError:translateCopy(\"Connection failed. Inputs were kept.\"),stale:translateCopy(\"Inputs or navigation changed during the request. Completion was ignored.\"),newDraft:translateCopy(\"New blank draft. Nothing has been saved.\"),scopeMismatch:translateCopy(\"This draft integration is limited to InvestScape Dev editor.\")};\nreturn (messages[status]||translateCopy(\"Draft operation needs review.\")) + (state.id && state.revision>0 ? translateCopy(\" Stored revision: \")+state.revision+'.' : '');",
+          "__wwtype": "js",
+          "defaultValue": "Draft not yet saved."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "a9b83d22-a265-4565-b7f5-72f5c70a6d79",
+    "name": "Quick Inputs Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Screening inputs\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Screening inputs\"",
+          "defaultValue": "Screening inputs"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "a1118017-c10b-4992-b293-9bdcb39a5cb4",
+    "name": "Land purchase price Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Land purchase price\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Land purchase price\"",
+          "defaultValue": "Land purchase price"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "1a2807e2-f306-4405-b9e6-0f5c823e0084",
+    "name": "Quick purchasePrice",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "7ad8599f-ff68-452d-922f-b9eb0ba60ca0",
+    "name": "Land purchase price Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Amount in your chosen currency\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Amount in your chosen currency\"",
+          "defaultValue": "Amount in your chosen currency"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "9df68524-dbd0-4cc6-a517-51e4b43e2489",
+    "name": "Hold period (years) Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Hold period (years)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Hold period (years)\"",
+          "defaultValue": "Hold period (years)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "7c6343f3-810c-4f8a-aab9-33e9e471d195",
+    "name": "Quick holdPeriodYears",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "2828a806-519a-4d61-ba0d-95ab916c77f0",
+    "name": "Hold period (years) Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Positive years; annualization uses a minimum of 0.5 years\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Positive years; annualization uses a minimum of 0.5 years\"",
+          "defaultValue": "Positive years; annualization uses a minimum of 0.5 years"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "d2116e6a-42a6-4147-912c-90f0d9e0415f",
+    "name": "Construction cost total Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Construction cost total\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Construction cost total\"",
+          "defaultValue": "Construction cost total"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "f07c2951-0132-43e0-bb88-de6c406bf990",
+    "name": "Quick constructionCostTotal",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "7f240081-cc76-48ba-b39d-2e04ce3f285e",
+    "name": "Construction cost total Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Amount; independent of zoning floor area\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Amount; independent of zoning floor area\"",
+          "defaultValue": "Amount; independent of zoning floor area"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "b8aae1be-10b1-48cf-83b0-13db91f7716f",
+    "name": "Soft costs (%) Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Soft costs (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Soft costs (%)\"",
+          "defaultValue": "Soft costs (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "2e9641fe-657d-4a63-a006-731b8ec860e7",
+    "name": "Quick softCostPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "8449fe33-1ed7-4495-9465-691f01f3c8b7",
+    "name": "Soft costs (%) Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Percentage of construction cost only\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Percentage of construction cost only\"",
+          "defaultValue": "Percentage of construction cost only"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "3c570e84-75f1-47d3-98cf-557007d18b58",
+    "name": "Gross sellout value Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Gross sellout value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Gross sellout value\"",
+          "defaultValue": "Gross sellout value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "b0382055-ddaf-4133-871b-435d1e24c4c5",
+    "name": "Quick grossSelloutValue",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "7df50932-8af5-4704-8308-67ca2f740cdc",
+    "name": "Gross sellout value Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Total revenue before commission and financing\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Total revenue before commission and financing\"",
+          "defaultValue": "Total revenue before commission and financing"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "ed13026c-28e4-4c6e-93a5-d7e641d1a660",
+    "name": "Required profit margin (%) Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Required profit margin (%)\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Required profit margin (%)\"",
+          "defaultValue": "Required profit margin (%)"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "d98bb781-5a14-4352-a59f-0eb0acbc8c09",
+    "name": "Quick requiredProfitMarginPct",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter a value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter a value\"",
+          "defaultValue": "Enter a value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "42dc3deb-71cc-4bfb-aa1e-ad93cdc208db",
+    "name": "Required Margin Helper",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Percentage of gross sellout; used for residual land value\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Percentage of gross sellout; used for residual land value\"",
+          "defaultValue": "Percentage of gross sellout; used for residual land value"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "6ff84f61-7d71-4ec6-8d63-f9cbe8444d23",
+    "name": "Calculate Quick Screening",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\nreturn (variables['0448979d-aa70-4809-8d1d-9e117e8973a8'] ? translateCopy(\"Calculating…\") : translateCopy(\"Calculate screening\"));",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "911dd7c2-2a4d-43bb-bac7-3963c13f441e",
+    "name": "Quick Results Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Screen results\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Screen results\"",
+          "defaultValue": "Screen results"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "07e48a23-401c-4197-a6be-e19a59dfe047",
+    "name": "Quick Empty State",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Translate adapter codes for this English draft; do not calculate or change values.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (!latestResult?.status) return translateCopy(\"Enter your figures, then calculate. Nothing is saved in this draft.\");\nif (latestResult.status === 'ok') return translateCopy(\"Screening complete. Review the calculation basis below.\");\nif (latestResult.status === 'unavailable') return translateCopy(\"Calculation unavailable: one or more outputs exceed the supported numeric range.\");\nif (latestResult.status === 'error') return translateCopy(\"Calculator unavailable. Please try again.\");\nconst fieldLabels = {\"purchasePrice\":translateCopy(\"Land purchase price\"),\"holdPeriodYears\":translateCopy(\"Hold period (years)\"),\"constructionCostTotal\":translateCopy(\"Construction cost total\"),\"softCostPct\":translateCopy(\"Soft costs (%)\"),\"grossSelloutValue\":translateCopy(\"Gross sellout value\"),\"requiredProfitMarginPct\":translateCopy(\"Required profit margin (%)\")};\nfieldLabels.totalCost = translateCopy(\"Total cost\");\nconst issueLabels = {missing:translateCopy(\"enter a value\"),null:translateCopy(\"enter a value\"),blank:translateCopy(\"enter a value\"),wrongType:translateCopy(\"enter a number\"),notNumeric:translateCopy(\"use decimal numbers without currency symbols or separators\"),notFinite:translateCopy(\"enter a finite number\"),negative:translateCopy(\"must be zero or greater\"),notPositive:translateCopy(\"must be above zero\"),unsupported:translateCopy(\"calculator configuration unavailable\")};\nreturn (latestResult.issues || []).map(issue => (fieldLabels[issue.field] || translateCopy(\"Input\")) + ': ' + (issueLabels[issue.code] || translateCopy(\"check this value\"))).join('\\n');",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "0e952cf6-aa84-48b8-ab44-bef0c7d08c10",
+    "name": "Quick Result 0",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.totalCost == null) return translateCopy(\"Total cost (land + construction + soft) —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {maximumFractionDigits:2}).format(latestResult.raw.totalCost);\nreturn translateCopy(\"Total cost (land + construction + soft) — \") + formattedValue;",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "ccb33b07-68e6-4126-b3e3-fbc30ac1d4df",
+    "name": "Quick Result 1",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.grossSelloutValue == null) return translateCopy(\"Gross sellout value —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {maximumFractionDigits:2}).format(latestResult.raw.grossSelloutValue);\nreturn translateCopy(\"Gross sellout value — \") + formattedValue;",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "0409cef8-7224-4b03-bce9-d6f6e9af1221",
+    "name": "Quick Result 2",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.residualLandValue == null) return translateCopy(\"Residual land value (screening, before financing) —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {maximumFractionDigits:2}).format(latestResult.raw.residualLandValue);\nreturn translateCopy(\"Residual land value (screening, before financing) — \") + formattedValue;",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "e9c7a81d-1a0f-4ccc-a534-86c743a13983",
+    "name": "Quick Result 3",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.landCost == null) return translateCopy(\"Actual land cost —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {maximumFractionDigits:2}).format(latestResult.raw.landCost);\nreturn translateCopy(\"Actual land cost — \") + formattedValue + (latestResult.raw.residualCoversLand ? translateCopy(\" · room to pay more\") : translateCopy(\" · paying above residual value\"));",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "3a9dc8ee-e180-4af3-8141-d37e08495300",
+    "name": "Quick Result 4",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.returnOnCost == null) return translateCopy(\"Return on cost (screening) —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {style:'percent',maximumFractionDigits:2}).format(latestResult.raw.returnOnCost);\nreturn translateCopy(\"Return on cost (screening) — \") + formattedValue;",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "c7de44b7-bd64-4974-b5ca-2c30e5893a9d",
+    "name": "Quick Result 5",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "code": "// Read the shared preference once; localize display text without changing data or API codes.\nconst requestedLocale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en';\nconst activeLocale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(requestedLocale) ? requestedLocale : 'en';\nfunction translateCopy(phrase) { return variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[phrase]?.[activeLocale] ?? phrase; }\n// Format raw output only after the adapter reports success.\nconst latestResult = variables['d1322df2-1b67-4dcb-95d4-b445cef34119'];\nif (latestResult?.status !== 'ok' || latestResult.raw?.simpleIrr == null) return translateCopy(\"Simple annualized return (screening only) —\");\nconst formattedValue = new Intl.NumberFormat(activeLocale, {style:'percent',maximumFractionDigits:2}).format(latestResult.raw.simpleIrr);\nreturn translateCopy(\"Simple annualized return (screening only) — \") + formattedValue;",
+          "__wwtype": "js"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "00b9b1be-51d2-459a-bfa7-62f91051027b",
+    "name": "Quick Basis Heading",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Understand the screening basis\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Understand the screening basis\"",
+          "defaultValue": "Understand the screening basis"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "654a3f7b-22ee-4fcf-9145-d63f4880727a",
+    "name": "quick.screening",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Quick is a screening calculation, not a development appraisal. It is a different basis from the Full development calculation and the two are not unified.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Quick is a screening calculation, not a development appraisal. It is a different basis from the Full development calculation and the two are not unified.\"",
+          "defaultValue": "Quick is a screening calculation, not a development appraisal. It is a different basis from the Full development calculation and the two are not unified."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "1ea12146-2f23-4670-a167-750d67dae37f",
+    "name": "quick.revenueBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Revenue is the gross sellout value you enter as a single total. No sales commissions, taxes or price assumptions are applied to it.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Revenue is the gross sellout value you enter as a single total. No sales commissions, taxes or price assumptions are applied to it.\"",
+          "defaultValue": "Revenue is the gross sellout value you enter as a single total. No sales commissions, taxes or price assumptions are applied to it."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "385d5897-ff64-4a15-a43d-128c44d5cabb",
+    "name": "quick.requiredMarginBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The required profit margin is a percentage of gross sellout value (not of cost) and is used only for the residual land value. Full uses a return on cost, which is a different basis.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The required profit margin is a percentage of gross sellout value (not of cost) and is used only for the residual land value. Full uses a return on cost, which is a different basis.\"",
+          "defaultValue": "The required profit margin is a percentage of gross sellout value (not of cost) and is used only for the residual land value. Full uses a return on cost, which is a different basis."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "71942f64-2b3b-4035-9ed8-aa64a8a87df5",
+    "name": "quick.softCostBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Soft costs are the soft-cost percentage applied to the construction cost total only.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Soft costs are the soft-cost percentage applied to the construction cost total only.\"",
+          "defaultValue": "Soft costs are the soft-cost percentage applied to the construction cost total only."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "7f14aadf-cfef-41bd-954b-109df3ab0eb3",
+    "name": "quick.returnOnCostBasis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Return on cost is actual profit divided by total cost, where total cost is land plus construction plus soft costs. Financing, taxes, contingency and commissions are not included.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Return on cost is actual profit divided by total cost, where total cost is land plus construction plus soft costs. Financing, taxes, contingency and commissions are not included.\"",
+          "defaultValue": "Return on cost is actual profit divided by total cost, where total cost is land plus construction plus soft costs. Financing, taxes, contingency and commissions are not included."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "19428c68-dc2f-487d-a9ca-78f04c6d8f7f",
+    "name": "quick.simpleAnnualisedReturn",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"The annualised return is a simple compound annualisation of profit over total cost across the hold period, as one lump sum with no cash-flow timing. The hold period used is never less than 0.5 years.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"The annualised return is a simple compound annualisation of profit over total cost across the hold period, as one lump sum with no cash-flow timing. The hold period used is never less than 0.5 years.\"",
+          "defaultValue": "The annualised return is a simple compound annualisation of profit over total cost across the hold period, as one lump sum with no cash-flow timing. The hold period used is never less than 0.5 years."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "5692c47b-65a6-434e-ba99-1b2cc4c93251",
+    "name": "quick.noTaxFinancingCurrency",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"No taxes, financing or currency conversion are included. All amounts are in the single currency you entered.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"No taxes, financing or currency conversion are included. All amounts are in the single currency you entered.\"",
+          "defaultValue": "No taxes, financing or currency conversion are included. All amounts are in the single currency you entered."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "b5e1045f-8fe4-428b-bc46-a8a7a66badf8",
+    "name": "quick.notAudited",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"This result has not been audited and is not tax advice or a statement of production readiness.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"This result has not been audited and is not tax advice or a statement of production readiness.\"",
+          "defaultValue": "This result has not been audited and is not tax advice or a statement of production readiness."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "8f900022-6ad7-4c34-8ecc-456b13779c4f",
+    "name": "Quick Cost And RLV Basis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Total cost is land + construction + soft costs. Residual land value subtracts construction, soft costs and required profit from gross sellout. Required profit is a percentage of gross sellout, not cost. Quick excludes contingency, sales commission, financing and taxes.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Total cost is land + construction + soft costs. Residual land value subtracts construction, soft costs and required profit from gross sellout. Required profit is a percentage of gross sellout, not cost. Quick excludes contingency, sales commission, financing and taxes.\"",
+          "defaultValue": "Total cost is land + construction + soft costs. Residual land value subtracts construction, soft costs and required profit from gross sellout. Required profit is a percentage of gross sellout, not cost. Quick excludes contingency, sales commission, financing and taxes."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "ed7ac880-0a13-4aed-bc08-a295d0a1924a",
+    "name": "Quick Return Basis",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Return on cost divides profit by total cost. Simple annualized return compounds the lump-sum return across the hold period, with a minimum of 0.5 years. It is not a cash-flow-timed IRR. Full uses a different basis and the results are not directly comparable.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Return on cost divides profit by total cost. Simple annualized return compounds the lump-sum return across the hold period, with a minimum of 0.5 years. It is not a cash-flow-timed IRR. Full uses a different basis and the results are not directly comparable.\"",
+          "defaultValue": "Return on cost divides profit by total cost. Simple annualized return compounds the lump-sum return across the hold period, with a minimum of 0.5 years. It is not a cash-flow-timed IRR. Full uses a different basis and the results are not directly comparable."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "f1ba5c60-73df-4d00-9df9-c78a6cafce1a",
+    "name": "Quick Handoff Scope",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Opening a new Full project will be added with native project creation and persistence. This draft does not provide that handoff, authenticated saving or live zoning lookup.\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Opening a new Full project will be added with native project creation and persistence. This draft does not yet provide that handoff or live zoning lookup.\"",
+          "defaultValue": "Opening a new Full project will be added with native project creation and persistence. This draft does not yet provide that handoff or live zoning lookup."
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "923686ed-ddab-4b04-b064-5e0633c0a4ab",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Goal</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Goal</div>\"",
+          "defaultValue": "<div>Goal</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "53039d07-9973-4c32-9607-03d4c5eb3b8e",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Status</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Status</div>\"",
+          "defaultValue": "<div>Status</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "e71b15d4-ad62-4818-9523-81ddb7ad6201",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Due date</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Due date</div>\"",
+          "defaultValue": "<div>Due date</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "2f0df19e-abe0-48c9-b4a2-2217fc35a42d",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Assignee</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Assignee</div>\"",
+          "defaultValue": "<div>Assignee</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "c8031b35-4f28-4d72-b509-403ebc4bd59b",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Action</div>\"",
+          "defaultValue": "<div>Action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "d0fc028e-5303-42d6-bc19-49b368f0aa8f",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Another action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Another action</div>\"",
+          "defaultValue": "<div>Another action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "979dc621-37eb-410b-a572-a85e17f967df",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Something else</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Something else</div>\"",
+          "defaultValue": "<div>Something else</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "e1dfd344-6c3e-4c5a-96f1-abd57cbbdae9",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Completed</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Completed</div>\"",
+          "defaultValue": "<div>Completed</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "1325bd5b-3294-423c-927d-fc980ced8d27",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Action</div>\"",
+          "defaultValue": "<div>Action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "902d9594-a00e-41ae-baa1-167961179fd3",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Another action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Another action</div>\"",
+          "defaultValue": "<div>Another action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "546e9690-44e1-4df4-a1bd-3f29c0884675",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Something else</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Something else</div>\"",
+          "defaultValue": "<div>Something else</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "af89697c-adb7-4b8b-acf0-a87ea83cbb15",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>In progress</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>In progress</div>\"",
+          "defaultValue": "<div>In progress</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "6dfe9a86-7297-4941-9f7b-ee4b52909378",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Action</div>\"",
+          "defaultValue": "<div>Action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "19d7824b-70e5-4a08-8764-ff8a3866d451",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Another action</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Another action</div>\"",
+          "defaultValue": "<div>Another action</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "91cf39a1-f741-4c21-8405-0ab962e2cc80",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Something else</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Something else</div>\"",
+          "defaultValue": "<div>Something else</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "e3b576e7-3d8d-4b5b-85d8-3e95eeeee0d2",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Sign up</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Sign up</div>\"",
+          "defaultValue": "<div>Sign up</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "3a49c5ea-493c-43df-a628-8a5615116bdb",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Free access to our dashboard.</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Free access to our dashboard.</div>\"",
+          "defaultValue": "<div>Free access to our dashboard.</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "484db68e-2218-438c-8d7a-569c854ea23c",
+    "name": "Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Email</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Email</div>\"",
+          "defaultValue": "<div>Email</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "72f964ae-e94a-4fa4-be44-31deafa55cb0",
+    "name": "Email Input",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter your email\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter your email\"",
+          "defaultValue": "Enter your email"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "ec5d3a0f-800a-476c-80fc-a5c324b4c7b3",
+    "name": "Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Password</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Password</div>\"",
+          "defaultValue": "<div>Password</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "5f97ea95-a3e9-4cdb-b4cd-1a70c0de8090",
+    "name": "Password Input",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter your password\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter your password\"",
+          "defaultValue": "Enter your password"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "876cc316-37f3-4501-83fa-527f8a2ed6b9",
+    "name": "Signin Btn",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Sign up</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Sign up</div>\"",
+          "defaultValue": "<div>Sign up</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--778d4e67-5960-4618-aea9-28fc2fcb9bf7,#b91c1c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "f0043c7f-07f8-45a0-9afa-e999e612edf9",
+    "name": null,
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Login to your account</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Login to your account</div>\"",
+          "defaultValue": "<div>Login to your account</div>"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "b6ec63bd-07b5-4e43-8ded-a1be1de213c8",
+    "name": "Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Email</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Email</div>\"",
+          "defaultValue": "<div>Email</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "d99b0f0c-e231-47f5-b41a-2b24a01d9437",
+    "name": "Email Input",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter your email\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter your email\"",
+          "defaultValue": "Enter your email"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "20580d7a-839f-4ebd-ab35-8d629036ba44",
+    "name": "Label",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Password</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Password</div>\"",
+          "defaultValue": "<div>Password</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "d702f3a7-ae41-448b-8bad-19782c0ca67c",
+    "name": "Password Input",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Enter your password\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Enter your password\"",
+          "defaultValue": "Enter your password"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "513a8d34-5039-4dfd-b7db-4a7a5c895331",
+    "name": "Forgot Btn",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Forgot password?</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Forgot password?</div>\"",
+          "defaultValue": "<div>Forgot password?</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "51eaf9b2-0ec7-4c7f-8b93-477450cf2661",
+    "name": "Primary button",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Sign in</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Sign in</div>\"",
+          "defaultValue": "<div>Sign in</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--778d4e67-5960-4618-aea9-28fc2fcb9bf7,#b91c1c)"
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "25c9d9a7-4580-457a-890f-9b188ac56ea9",
+    "name": "First Name",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"First Name\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"First Name\"",
+          "defaultValue": "First Name"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "c82e8892-2828-4619-b609-25d5c8bbdcac",
+    "name": "Last Name",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Last Name\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Last Name\"",
+          "defaultValue": "Last Name"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "9d0312e4-afbf-48c5-a8c1-b0d635679c67",
+    "name": "Role",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Role\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Role\"",
+          "defaultValue": "Role"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "64ccb181-1647-4271-930c-661fa51fef0a",
+    "name": "Country",
+    "edits": [
+      {
+        "path": "content.default.placeholder.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Country\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Country\"",
+          "defaultValue": "Country"
+        }
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "8dccb965-bb96-4be9-a99a-e7253c10267f",
+    "name": "Save",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"<div>Save</div>\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"<div>Save</div>\"",
+          "defaultValue": "<div>Save</div>"
+        }
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--778d4e67-5960-4618-aea9-28fc2fcb9bf7,#b91c1c)"
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "c9a1474b-3198-45f3-a867-7ba42494fb2d",
+    "name": "Workspace Navigation",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Workspace\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Workspace\"",
+          "defaultValue": "Workspace"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "7912593e-0708-4fd1-bf23-d42fbc447d0f",
+    "name": "Quick Deal Analyzer Navigation",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Quick Deal Analyzer\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Quick Deal Analyzer\"",
+          "defaultValue": "Quick Deal Analyzer"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "78d73f5d-6b4b-4c11-9986-a04f20e6a930",
+    "name": "Full Development Studio Navigation",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Full Development Studio\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Full Development Studio\"",
+          "defaultValue": "Full Development Studio"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "f72eb630-9015-4ab3-b72d-c7d862ebf1c7",
+    "name": "Library Navigation",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Library\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Library\"",
+          "defaultValue": "Library"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "827a912e-ae48-4b25-a251-cd07e7f4e040",
+    "name": "Development Draft Badge",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Development preview\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Development preview\"",
+          "defaultValue": "Development preview"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "93a5f76a-68b3-4756-b528-aea2b2c1f0c9",
+    "name": "Theme Toggle",
+    "edits": [
+      {
+        "path": "content.default.text.en",
+        "value": {
+          "__wwtype": "f",
+          "code": "variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[\"Light / Dark\"]?.[variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'] ?? \"Light / Dark\"",
+          "defaultValue": "Light / Dark"
+        }
+      }
+    ]
+  },
+  {
+    "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+    "uid": "a16a95bd-11b3-4a25-a870-ed2a2e176e56",
+    "name": "InvestScape Workspace Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "1005895d-bf81-4f39-b9da-7e871a776390",
+    "uid": "d658318a-1210-43a3-ac1b-d782a2e9a57f",
+    "name": "InvestScape Connection Test Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+    "uid": "ad8ea673-b402-46af-af0b-ee8973abb552",
+    "name": "Full Development Studio Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+    "uid": "54cf6229-f535-419d-a34c-8b6b9f5302fe",
+    "name": "Quick Deal Analyzer Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "57b4316a-7e7e-4d12-9e71-0307f3e2f407",
+    "name": "Home Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "ac359d9e-b724-46c8-948a-bff57b11c513",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "ed24936d-5b77-4ab7-9963-8f105b01fea8",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "67452759-d625-462b-9138-e3f3c9c25704",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "9ba80376-141f-4a4a-b7e0-87ea4715ac78",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "7fe8da94-0159-4159-9e4b-014987dfadbc",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "c3d4a642-f0ee-4377-8b9e-7825e626a710",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "f223d840-d779-43ed-bd39-348891d65386",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "b9c3edb3-952b-47f4-b5d5-e8dab9186c68",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "5f09b213-efa2-4caf-ae20-1198387d585d",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "a3fd6cd8-3e94-43fa-81ec-ff9ef7e27693",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      }
+    ]
+  },
+  {
+    "pageId": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+    "uid": "ddde040a-e9ad-4595-8194-e2c7e5df83c8",
+    "name": "Home Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "844cd190-512c-4834-b94b-83cabeada2f5",
+    "name": "Login Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "9d7aa08b-1676-4fcf-a9f5-62126df2fc7b",
+    "name": "Login Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "ac6cb733-8e1e-4dc6-9539-6c535dbfd8b0",
+    "name": "Login Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "ada92b57-396c-49f2-8de6-5a9929c69ff5",
+    "name": "Login Theme",
+    "edits": [
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "447e6fd2-2a5e-4e3c-ae91-846f262429ed",
+    "name": "Login Theme",
+    "edits": [
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      }
+    ]
+  },
+  {
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "7951d7ec-7005-41b3-b932-ed2bc2798479",
+    "name": "Login Theme",
+    "edits": [
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "ac77d086-a043-4e16-9808-0251891afb0a",
+    "name": "User Profile Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  },
+  {
+    "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "uid": "fcc328a2-62b5-4031-b727-de583d290f0e",
+    "name": "Learning Library Review Root",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--58680c68-e2cd-4ff9-bd05-3c5357f142eb,#ece4d3)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      }
+    ]
+  }
+]

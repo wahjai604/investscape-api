@@ -1,0 +1,1634 @@
+{
+  "Your investment workspace": {
+    "en": "Your investment workspace",
+    "fr-CA": "Votre espace d’investissement",
+    "zh-Hant": "您的投資工作區",
+    "zh-Hans": "您的投资工作区"
+  },
+  "Start with a development screening. Move into a detailed model as the native migration progresses.": {
+    "en": "Start with a development screening. Move into a detailed model as the native migration progresses.",
+    "fr-CA": "Commencez par une analyse préliminaire de développement. Passez à un modèle détaillé à mesure que la migration progresse.",
+    "zh-Hant": "先進行開發初步分析，再隨移轉進度使用詳細模型。",
+    "zh-Hans": "先进行开发初步分析，再随迁移进度使用详细模型。"
+  },
+  "Quick Deal Analyzer": {
+    "en": "Quick Deal Analyzer",
+    "fr-CA": "Analyse rapide de projet",
+    "zh-Hant": "專案快速分析",
+    "zh-Hans": "项目快速分析"
+  },
+  "Six inputs for development screening: total cost, residual land value, return on cost and simple annualized return.": {
+    "en": "Six inputs for development screening: total cost, residual land value, return on cost and simple annualized return.",
+    "fr-CA": "Six données pour l’analyse préliminaire : coût total, valeur résiduelle du terrain, rendement sur coût et rendement annualisé simple.",
+    "zh-Hant": "以六項輸入進行開發初步分析：總成本、土地殘值、成本回報率及簡單年化回報。",
+    "zh-Hans": "以六项输入进行开发初步分析：总成本、土地残值、成本回报率及简单年化回报。"
+  },
+  "Start screening": {
+    "en": "Start screening",
+    "fr-CA": "Commencer l’analyse",
+    "zh-Hant": "開始初步分析",
+    "zh-Hans": "开始初步分析"
+  },
+  "This draft does not save projects or provide authenticated persistence. Full Development Studio, Portfolio, Market Intel, Research and Community are still to be migrated.": {
+    "en": "Dev includes draft save/load controls. Member access and durable saving still require real-session verification. Portfolio, Market Intel, Research and Community pages are still being migrated.",
+    "fr-CA": "La version Dev propose des commandes d’enregistrement et de chargement des brouillons. L’accès des membres et l’enregistrement durable restent à vérifier avec des sessions réelles. Les pages Portefeuille, Veille de marché, Recherche et Communauté sont encore en migration.",
+    "zh-Hant": "Dev 已提供草稿儲存與載入控制。會員存取及持久儲存仍待真實工作階段驗證。投資組合、市場情報、研究與社群頁面仍在移轉中。",
+    "zh-Hans": "Dev 已提供草稿保存与加载控件。会员访问及持久保存仍待真实会话验证。投资组合、市场情报、研究与社区页面仍在迁移中。"
+  },
+  "Staging connection test": {
+    "en": "Staging connection test",
+    "fr-CA": "Test de connexion de préproduction",
+    "zh-Hant": "預備環境連線測試",
+    "zh-Hans": "预备环境连接测试"
+  },
+  "Development diagnostics only. Existing Supabase and Supabase Auth plugins remain configured. No project is saved and no production calculation is requested.": {
+    "en": "Development diagnostics only. Existing Supabase and Supabase Auth plugins remain configured. No project is saved and no production calculation is requested.",
+    "fr-CA": "Diagnostics de développement uniquement. Les extensions Supabase et Supabase Auth restent configurées. Aucun projet n’est enregistré et aucun calcul de production n’est demandé.",
+    "zh-Hant": "僅供開發診斷。既有 Supabase 與 Supabase Auth 外掛維持設定。此測試不儲存專案，也不要求正式環境計算。",
+    "zh-Hans": "仅供开发诊断。现有 Supabase 与 Supabase Auth 插件保持配置。此测试不保存项目，也不请求正式环境计算。"
+  },
+  "not available": {
+    "en": "not available",
+    "fr-CA": "indisponible",
+    "zh-Hant": "無法取得",
+    "zh-Hans": "无法获取"
+  },
+  "unknown": {
+    "en": "unknown",
+    "fr-CA": "inconnu",
+    "zh-Hant": "未知",
+    "zh-Hans": "未知"
+  },
+  "Test account email": {
+    "en": "Test account email",
+    "fr-CA": "Courriel du compte de test",
+    "zh-Hant": "測試帳戶電子郵件",
+    "zh-Hans": "测试账户电子邮件"
+  },
+  "Email": {
+    "en": "Email",
+    "fr-CA": "Courriel",
+    "zh-Hant": "電子郵件",
+    "zh-Hans": "电子邮件"
+  },
+  "Password — never copied into a global variable": {
+    "en": "Password — never copied into a global variable",
+    "fr-CA": "Mot de passe — jamais copié dans une variable globale",
+    "zh-Hant": "密碼 — 不會複製至全域變數",
+    "zh-Hans": "密码 — 不会复制到全局变量"
+  },
+  "Sign in to test account": {
+    "en": "Sign in to test account",
+    "fr-CA": "Se connecter au compte de test",
+    "zh-Hant": "登入測試帳戶",
+    "zh-Hans": "登录测试账户"
+  },
+  "Signing out…": {
+    "en": "Signing out…",
+    "fr-CA": "Déconnexion…",
+    "zh-Hant": "正在登出…",
+    "zh-Hans": "正在退出…"
+  },
+  "Sign out of test account": {
+    "en": "Sign out of test account",
+    "fr-CA": "Se déconnecter du compte de test",
+    "zh-Hant": "登出測試帳戶",
+    "zh-Hans": "退出测试账户"
+  },
+  "Signed out: app session cleared. Sign in as Account A above.": {
+    "en": "Signed out: app session cleared. Sign in as Account A above.",
+    "fr-CA": "Déconnexion : la session de l’app est effacée. Connectez-vous au compte A ci-dessus.",
+    "zh-Hant": "已登出：應用程式工作階段已清除。請在上方登入帳戶 A。",
+    "zh-Hans": "已退出：应用会话已清除。请在上方登录账户 A。"
+  },
+  "Sign-out failed. Session clearance is not verified.": {
+    "en": "Sign-out failed. Session clearance is not verified.",
+    "fr-CA": "Échec de la déconnexion. L’effacement de la session n’est pas confirmé.",
+    "zh-Hant": "登出失敗。尚未確認工作階段已清除。",
+    "zh-Hans": "退出失败。尚未确认会话已清除。"
+  },
+  "App session is still present. Sign-out needs review.": {
+    "en": "App session is still present. Sign-out needs review.",
+    "fr-CA": "La session de l’app est toujours présente. La déconnexion doit être vérifiée.",
+    "zh-Hant": "應用程式工作階段仍存在。需要檢查登出。",
+    "zh-Hans": "应用会话仍存在。需要检查退出。"
+  },
+  "Sign-out has not been tested.": {
+    "en": "Sign-out has not been tested.",
+    "fr-CA": "La déconnexion n’a pas été testée.",
+    "zh-Hant": "尚未測試登出。",
+    "zh-Hans": "尚未测试退出。"
+  },
+  "Run synthetic Full staging test": {
+    "en": "Run synthetic Full staging test",
+    "fr-CA": "Exécuter le test Full avec données fictives",
+    "zh-Hant": "執行 Full 合成資料測試",
+    "zh-Hans": "运行 Full 合成数据测试"
+  },
+  "Save and load Full drafts": {
+    "en": "Save and load Full drafts",
+    "fr-CA": "Enregistrer et charger des brouillons Full",
+    "zh-Hant": "儲存與載入 Full 草稿",
+    "zh-Hans": "保存与加载 Full 草稿"
+  },
+  "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Full and Full drafts are separate.": {
+    "en": "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.",
+    "fr-CA": "Enregistrez les données saisies dans votre compte. Le chargement remplace les données de cette page et efface les résultats calculés. Les brouillons Quick et Full sont distincts.",
+    "zh-Hant": "將輸入資料儲存至帳戶。載入會取代本頁輸入並清除計算結果。Quick 與 Full 草稿各自獨立。",
+    "zh-Hans": "将输入数据保存到账户。加载会替换本页输入并清除计算结果。Quick 与 Full 草稿相互独立。"
+  },
+  "Project name": {
+    "en": "Project name",
+    "fr-CA": "Nom du projet",
+    "zh-Hant": "專案名稱",
+    "zh-Hans": "项目名称"
+  },
+  "Name your Full draft": {
+    "en": "Name your Full draft",
+    "fr-CA": "Nommez votre brouillon Full",
+    "zh-Hant": "命名您的 Full 草稿",
+    "zh-Hans": "命名您的 Full 草稿"
+  },
+  "Save draft": {
+    "en": "Save draft",
+    "fr-CA": "Enregistrer le brouillon",
+    "zh-Hant": "儲存草稿",
+    "zh-Hans": "保存草稿"
+  },
+  "Refresh saved drafts": {
+    "en": "Refresh saved drafts",
+    "fr-CA": "Actualiser les brouillons enregistrés",
+    "zh-Hant": "重新整理已儲存草稿",
+    "zh-Hans": "刷新已保存草稿"
+  },
+  "Saved Full drafts (newest 50)": {
+    "en": "Saved Full drafts (newest 50)",
+    "fr-CA": "Brouillons Full enregistrés (50 plus récents)",
+    "zh-Hant": "已儲存 Full 草稿（最新 50 筆）",
+    "zh-Hans": "已保存 Full 草稿（最新 50 条）"
+  },
+  "Refresh and choose a saved draft": {
+    "en": "Refresh and choose a saved draft",
+    "fr-CA": "Actualisez et choisissez un brouillon enregistré",
+    "zh-Hant": "重新整理並選擇已儲存草稿",
+    "zh-Hans": "刷新并选择已保存草稿"
+  },
+  "Load selected draft (replaces inputs)": {
+    "en": "Load selected draft (replaces inputs)",
+    "fr-CA": "Charger le brouillon choisi (remplace les données)",
+    "zh-Hant": "載入所選草稿（取代輸入）",
+    "zh-Hans": "加载所选草稿（替换输入）"
+  },
+  "New blank draft (clears inputs)": {
+    "en": "New blank draft (clears inputs)",
+    "fr-CA": "Nouveau brouillon vide (efface les données)",
+    "zh-Hant": "新增空白草稿（清除輸入）",
+    "zh-Hans": "新建空白草稿（清除输入）"
+  },
+  "Sign in to save or load your drafts.": {
+    "en": "Sign in to save or load your drafts.",
+    "fr-CA": "Connectez-vous pour enregistrer ou charger vos brouillons.",
+    "zh-Hant": "請登入以儲存或載入草稿。",
+    "zh-Hans": "请登录以保存或加载草稿。"
+  },
+  "Account changed. Load one of this account’s drafts or start a new blank draft.": {
+    "en": "Account changed. Load one of this account’s drafts or start a new blank draft.",
+    "fr-CA": "Le compte a changé. Chargez un brouillon de ce compte ou commencez un nouveau brouillon vide.",
+    "zh-Hant": "帳戶已變更。請載入此帳戶的草稿，或新增空白草稿。",
+    "zh-Hans": "账户已更改。请加载此账户的草稿，或新建空白草稿。"
+  },
+  "Draft not yet saved.": {
+    "en": "Draft not yet saved.",
+    "fr-CA": "Brouillon non encore enregistré.",
+    "zh-Hant": "草稿尚未儲存。",
+    "zh-Hans": "草稿尚未保存。"
+  },
+  "Working…": {
+    "en": "Working…",
+    "fr-CA": "Traitement…",
+    "zh-Hant": "處理中…",
+    "zh-Hans": "处理中…"
+  },
+  "Draft saved.": {
+    "en": "Draft saved.",
+    "fr-CA": "Brouillon enregistré.",
+    "zh-Hant": "草稿已儲存。",
+    "zh-Hans": "草稿已保存。"
+  },
+  "Earlier input snapshot saved. Your newer local edits are still unsaved.": {
+    "en": "Earlier input snapshot saved. Your newer local edits are still unsaved.",
+    "fr-CA": "L’instantané antérieur est enregistré. Vos modifications locales plus récentes ne le sont pas encore.",
+    "zh-Hant": "較早的輸入快照已儲存。較新的本機修改仍未儲存。",
+    "zh-Hans": "较早的输入快照已保存。较新的本地修改仍未保存。"
+  },
+  "Draft loaded. Calculate again for current results.": {
+    "en": "Draft loaded. Calculate again for current results.",
+    "fr-CA": "Brouillon chargé. Recalculez pour obtenir les résultats actuels.",
+    "zh-Hant": "草稿已載入。請重新計算以取得最新結果。",
+    "zh-Hans": "草稿已加载。请重新计算以获取最新结果。"
+  },
+  "No changes to save; stored revision confirmed.": {
+    "en": "No changes to save; stored revision confirmed.",
+    "fr-CA": "Aucune modification à enregistrer; la révision stockée est confirmée.",
+    "zh-Hant": "沒有變更需要儲存；已確認儲存版本。",
+    "zh-Hans": "没有更改需要保存；已确认保存版本。"
+  },
+  "Saved drafts refreshed (up to 50 newest).": {
+    "en": "Saved drafts refreshed (up to 50 newest).",
+    "fr-CA": "Brouillons actualisés (jusqu’aux 50 plus récents).",
+    "zh-Hant": "已重新整理草稿（最多最新 50 筆）。",
+    "zh-Hans": "已刷新草稿（最多最新 50 条）。"
+  },
+  "Conflict: the saved draft changed. Your inputs were kept. Refresh and load to replace them, or start a new blank draft.": {
+    "en": "Conflict: the saved draft changed. Your inputs were kept. Refresh and load to replace them, or start a new blank draft.",
+    "fr-CA": "Conflit : le brouillon enregistré a changé. Vos données sont conservées. Actualisez et chargez pour les remplacer, ou commencez un nouveau brouillon vide.",
+    "zh-Hant": "衝突：已儲存草稿有變更。您的輸入已保留。請重新整理並載入以取代輸入，或新增空白草稿。",
+    "zh-Hans": "冲突：已保存草稿发生更改。您的输入已保留。请刷新并加载以替换输入，或新建空白草稿。"
+  },
+  "Save outcome uncertain. Do not repeat the write. Click Save once to reconcile, or refresh and load the stored draft.": {
+    "en": "Save outcome uncertain. Do not repeat the write. Click Save once to reconcile, or refresh and load the stored draft.",
+    "fr-CA": "Le résultat de l’enregistrement est incertain. Ne répétez pas l’écriture. Cliquez une fois sur Enregistrer pour vérifier, ou actualisez et chargez le brouillon stocké.",
+    "zh-Hant": "儲存結果未確定。請勿重複寫入。按一次「儲存草稿」以核對，或重新整理並載入已儲存草稿。",
+    "zh-Hans": "保存结果未确定。请勿重复写入。按一次“保存草稿”以核对，或刷新并加载已保存草稿。"
+  },
+  "Previous save verified. Any newer local edits are still unsaved.": {
+    "en": "Previous save verified. Any newer local edits are still unsaved.",
+    "fr-CA": "L’enregistrement précédent est vérifié. Vos modifications locales plus récentes ne sont pas encore enregistrées.",
+    "zh-Hant": "已驗證上次儲存。較新的本機修改仍未儲存。",
+    "zh-Hans": "已验证上次保存。较新的本地修改仍未保存。"
+  },
+  "Draft unavailable or not owned by this account. Inputs were kept.": {
+    "en": "Draft unavailable or not owned by this account. Inputs were kept.",
+    "fr-CA": "Brouillon indisponible ou appartenant à un autre compte. Vos données sont conservées.",
+    "zh-Hant": "草稿無法取得，或不屬於此帳戶。您的輸入已保留。",
+    "zh-Hans": "草稿无法获取，或不属于此账户。您的输入已保留。"
+  },
+  "Sign in before saving or loading.": {
+    "en": "Sign in before saving or loading.",
+    "fr-CA": "Connectez-vous avant d’enregistrer ou de charger.",
+    "zh-Hant": "儲存或載入前請先登入。",
+    "zh-Hans": "保存或加载前请先登录。"
+  },
+  "Account or session changed. Completion was ignored.": {
+    "en": "Account or session changed. Completion was ignored.",
+    "fr-CA": "Le compte ou la session a changé. Le résultat de l’opération a été ignoré.",
+    "zh-Hant": "帳戶或工作階段已變更。已忽略操作完成結果。",
+    "zh-Hans": "账户或会话已更改。已忽略操作完成结果。"
+  },
+  "Account changed. Load this account’s draft or start a new blank draft.": {
+    "en": "Account changed. Load this account’s draft or start a new blank draft.",
+    "fr-CA": "Le compte a changé. Chargez son brouillon ou commencez un nouveau brouillon vide.",
+    "zh-Hant": "帳戶已變更。請載入此帳戶的草稿，或新增空白草稿。",
+    "zh-Hans": "账户已更改。请加载此账户的草稿，或新建空白草稿。"
+  },
+  "Enter a project name (1–120 characters).": {
+    "en": "Enter a project name (1–120 characters).",
+    "fr-CA": "Saisissez un nom de projet (1 à 120 caractères).",
+    "zh-Hant": "請輸入專案名稱（1–120 個字元）。",
+    "zh-Hans": "请输入项目名称（1–120 个字符）。"
+  },
+  "Select a saved draft first.": {
+    "en": "Select a saved draft first.",
+    "fr-CA": "Choisissez d’abord un brouillon enregistré.",
+    "zh-Hant": "請先選擇已儲存草稿。",
+    "zh-Hans": "请先选择已保存草稿。"
+  },
+  "Unsupported or invalid saved draft. Inputs were kept.": {
+    "en": "Unsupported or invalid saved draft. Inputs were kept.",
+    "fr-CA": "Brouillon enregistré non pris en charge ou invalide. Vos données sont conservées.",
+    "zh-Hant": "已儲存草稿不受支援或無效。您的輸入已保留。",
+    "zh-Hans": "已保存草稿不受支持或无效。您的输入已保留。"
+  },
+  "Request failed. Inputs were kept.": {
+    "en": "Request failed. Inputs were kept.",
+    "fr-CA": "Échec de la requête. Vos données sont conservées.",
+    "zh-Hant": "要求失敗。您的輸入已保留。",
+    "zh-Hans": "请求失败。您的输入已保留。"
+  },
+  "Connection failed. Inputs were kept.": {
+    "en": "Connection failed. Inputs were kept.",
+    "fr-CA": "Échec de la connexion. Vos données sont conservées.",
+    "zh-Hant": "連線失敗。您的輸入已保留。",
+    "zh-Hans": "连接失败。您的输入已保留。"
+  },
+  "Inputs or navigation changed during the request. Completion was ignored.": {
+    "en": "Inputs or navigation changed during the request. Completion was ignored.",
+    "fr-CA": "Les données ou la navigation ont changé pendant la requête. Le résultat a été ignoré.",
+    "zh-Hant": "要求處理期間輸入或頁面已變更。已忽略完成結果。",
+    "zh-Hans": "请求处理期间输入或页面已更改。已忽略完成结果。"
+  },
+  "New blank draft. Nothing has been saved.": {
+    "en": "New blank draft. Nothing has been saved.",
+    "fr-CA": "Nouveau brouillon vide. Rien n’a été enregistré.",
+    "zh-Hant": "新的空白草稿。尚未儲存任何資料。",
+    "zh-Hans": "新的空白草稿。尚未保存任何数据。"
+  },
+  "This draft integration is limited to InvestScape Dev editor.": {
+    "en": "This draft integration is limited to InvestScape Dev editor.",
+    "fr-CA": "Cette intégration de brouillons est limitée à l’éditeur InvestScape Dev.",
+    "zh-Hant": "草稿整合僅限於 InvestScape Dev 編輯器。",
+    "zh-Hans": "草稿集成仅限于 InvestScape Dev 编辑器。"
+  },
+  "Draft operation needs review.": {
+    "en": "Draft operation needs review.",
+    "fr-CA": "L’opération sur le brouillon doit être vérifiée.",
+    "zh-Hant": "草稿操作需要檢查。",
+    "zh-Hans": "草稿操作需要检查。"
+  },
+  "Full Development Studio": {
+    "en": "Full Development Studio",
+    "fr-CA": "Studio de développement complet",
+    "zh-Hant": "完整開發工作室",
+    "zh-Hans": "完整开发工作室"
+  },
+  "Single-phase modelling. Enter your own assumptions; percentages use whole percent, construction area uses ft². Amounts have no currency conversion. Your entries are not saved yet.": {
+    "en": "Single-phase modelling. Enter your own assumptions; percentages use whole percent, construction area uses ft². Amounts have no currency conversion. Calculating does not automatically save your entries.",
+    "fr-CA": "Modélisation en une phase. Saisissez vos hypothèses; les pourcentages sont des nombres entiers et la superficie de construction est en pi². Aucune conversion de devise. Le calcul n’enregistre pas automatiquement vos données.",
+    "zh-Hant": "單階段建模。請輸入您的假設；百分比使用整數百分比，建築面積使用平方呎。金額不進行貨幣換算。計算不會自動儲存您的輸入。",
+    "zh-Hans": "单阶段建模。请输入您的假设；百分比使用整数百分比，建筑面积使用平方英尺。金额不进行货币换算。计算不会自动保存您的输入。"
+  },
+  "Calculating…": {
+    "en": "Calculating…",
+    "fr-CA": "Calcul en cours…",
+    "zh-Hant": "計算中…",
+    "zh-Hans": "计算中…"
+  },
+  "Calculation connection unavailable. Reload this preview to try again.": {
+    "en": "Calculation connection unavailable. Reload this preview to try again.",
+    "fr-CA": "Connexion de calcul indisponible. Rechargez cet aperçu pour réessayer.",
+    "zh-Hant": "計算連線無法使用。請重新載入預覽後重試。",
+    "zh-Hans": "计算连接不可用。请重新加载预览后重试。"
+  },
+  "Preparing calculation connection…": {
+    "en": "Preparing calculation connection…",
+    "fr-CA": "Préparation de la connexion de calcul…",
+    "zh-Hant": "正在準備計算連線…",
+    "zh-Hans": "正在准备计算连接…"
+  },
+  "Sign in with your test account before calculating.": {
+    "en": "Sign in with your test account before calculating.",
+    "fr-CA": "Connectez-vous avec votre compte de test avant de calculer.",
+    "zh-Hant": "計算前請先登入測試帳戶。",
+    "zh-Hans": "计算前请先登录测试账户。"
+  },
+  "Your session is unavailable or expired. Sign in again.": {
+    "en": "Your session is unavailable or expired. Sign in again.",
+    "fr-CA": "Votre session est indisponible ou expirée. Reconnectez-vous.",
+    "zh-Hant": "工作階段無法使用或已過期。請重新登入。",
+    "zh-Hans": "会话不可用或已过期。请重新登录。"
+  },
+  "The calculation service could not complete this request. Please try again.": {
+    "en": "The calculation service could not complete this request. Please try again.",
+    "fr-CA": "Le service de calcul n’a pas pu terminer cette requête. Réessayez.",
+    "zh-Hant": "計算服務無法完成此要求。請重試。",
+    "zh-Hans": "计算服务无法完成此请求。请重试。"
+  },
+  "This calculation is unavailable. Please try again; no previous values are shown.": {
+    "en": "This calculation is unavailable. Please try again; no previous values are shown.",
+    "fr-CA": "Ce calcul est indisponible. Réessayez; aucune valeur antérieure n’est affichée.",
+    "zh-Hant": "此計算無法使用。請重試；不會顯示先前數值。",
+    "zh-Hans": "此计算不可用。请重试；不会显示先前数值。"
+  },
+  "The calculation returned unavailable values. They are not displayed as zero.": {
+    "en": "The calculation returned unavailable values. They are not displayed as zero.",
+    "fr-CA": "Le calcul a renvoyé des valeurs indisponibles. Elles ne sont pas affichées comme des zéros.",
+    "zh-Hant": "計算傳回無法取得的數值，不會將它們顯示為零。",
+    "zh-Hans": "计算返回无法获取的数值，不会将其显示为零。"
+  },
+  "Land acquisition amount": {
+    "en": "Land acquisition amount",
+    "fr-CA": "Montant d’acquisition du terrain",
+    "zh-Hant": "土地取得金額",
+    "zh-Hans": "土地取得金额"
+  },
+  "Jurisdiction": {
+    "en": "Jurisdiction",
+    "fr-CA": "Juridiction",
+    "zh-Hant": "司法管轄區",
+    "zh-Hans": "司法管辖区"
+  },
+  "Hard cost per ft²": {
+    "en": "Hard cost per ft²",
+    "fr-CA": "Coût direct par pi²",
+    "zh-Hant": "每平方呎硬成本",
+    "zh-Hans": "每平方英尺硬成本"
+  },
+  "Construction area": {
+    "en": "Construction area",
+    "fr-CA": "Superficie de construction",
+    "zh-Hant": "建築面積",
+    "zh-Hans": "建筑面积"
+  },
+  "Soft costs": {
+    "en": "Soft costs",
+    "fr-CA": "Coûts indirects",
+    "zh-Hant": "軟成本",
+    "zh-Hans": "软成本"
+  },
+  "Contingency": {
+    "en": "Contingency",
+    "fr-CA": "Provision pour imprévus",
+    "zh-Hant": "備用金",
+    "zh-Hans": "备用金"
+  },
+  "Total sale units": {
+    "en": "Total sale units",
+    "fr-CA": "Nombre total d’unités à vendre",
+    "zh-Hant": "待售單位總數",
+    "zh-Hans": "待售单元总数"
+  },
+  "Average sale amount": {
+    "en": "Average sale amount",
+    "fr-CA": "Montant moyen de vente",
+    "zh-Hant": "平均售價",
+    "zh-Hans": "平均售价"
+  },
+  "Construction duration": {
+    "en": "Construction duration",
+    "fr-CA": "Durée de construction",
+    "zh-Hant": "施工期",
+    "zh-Hans": "施工期"
+  },
+  "Second parcel": {
+    "en": "Second parcel",
+    "fr-CA": "Deuxième parcelle",
+    "zh-Hant": "第二地塊",
+    "zh-Hans": "第二地块"
+  },
+  "Acquisition structure": {
+    "en": "Acquisition structure",
+    "fr-CA": "Structure d’acquisition",
+    "zh-Hant": "取得架構",
+    "zh-Hans": "取得结构"
+  },
+  "Loan-to-cost": {
+    "en": "Loan-to-cost",
+    "fr-CA": "Ratio prêt/coût",
+    "zh-Hant": "貸款成本比",
+    "zh-Hans": "贷款成本比"
+  },
+  "Senior interest rate": {
+    "en": "Senior interest rate",
+    "fr-CA": "Taux d’intérêt de premier rang",
+    "zh-Hant": "優先貸款利率",
+    "zh-Hans": "优先贷款利率"
+  },
+  "Mezzanine amount": {
+    "en": "Mezzanine amount",
+    "fr-CA": "Montant du financement mezzanine",
+    "zh-Hant": "夾層融資金額",
+    "zh-Hans": "夹层融资金额"
+  },
+  "Presale deposit amount": {
+    "en": "Presale deposit amount",
+    "fr-CA": "Montant des dépôts de prévente",
+    "zh-Hant": "預售訂金金額",
+    "zh-Hans": "预售定金金额"
+  },
+  "required": {
+    "en": "required",
+    "fr-CA": "obligatoire",
+    "zh-Hant": "必填",
+    "zh-Hans": "必填"
+  },
+  "enter a number": {
+    "en": "enter a number",
+    "fr-CA": "saisissez un nombre",
+    "zh-Hant": "請輸入數字",
+    "zh-Hans": "请输入数字"
+  },
+  "enter a finite number": {
+    "en": "enter a finite number",
+    "fr-CA": "saisissez un nombre fini",
+    "zh-Hant": "請輸入有限數值",
+    "zh-Hans": "请输入有限数值"
+  },
+  "invalid value": {
+    "en": "invalid value",
+    "fr-CA": "valeur invalide",
+    "zh-Hant": "數值無效",
+    "zh-Hans": "数值无效"
+  },
+  "must be zero or positive": {
+    "en": "must be zero or positive",
+    "fr-CA": "doit être nul ou positif",
+    "zh-Hant": "必須為零或正值",
+    "zh-Hans": "必须为零或正值"
+  },
+  "must be above zero": {
+    "en": "must be above zero",
+    "fr-CA": "doit être supérieur à zéro",
+    "zh-Hant": "必須大於零",
+    "zh-Hans": "必须大于零"
+  },
+  "outside the permitted range": {
+    "en": "outside the permitted range",
+    "fr-CA": "hors de la plage permise",
+    "zh-Hant": "超出允許範圍",
+    "zh-Hans": "超出允许范围"
+  },
+  "unsupported selection": {
+    "en": "unsupported selection",
+    "fr-CA": "choix non pris en charge",
+    "zh-Hant": "選項不受支援",
+    "zh-Hans": "选项不受支持"
+  },
+  "exceeds the operational limit": {
+    "en": "exceeds the operational limit",
+    "fr-CA": "dépasse la limite opérationnelle",
+    "zh-Hant": "超過操作上限",
+    "zh-Hans": "超过操作上限"
+  },
+  "Complete these inputs: ": {
+    "en": "Complete these inputs: ",
+    "fr-CA": "Complétez ces données : ",
+    "zh-Hant": "請完成以下輸入：",
+    "zh-Hans": "请完成以下输入："
+  },
+  "Check these inputs: ": {
+    "en": "Check these inputs: ",
+    "fr-CA": "Vérifiez ces données : ",
+    "zh-Hant": "請檢查以下輸入：",
+    "zh-Hans": "请检查以下输入："
+  },
+  "Sign in before calculating again.": {
+    "en": "Sign in before calculating again.",
+    "fr-CA": "Connectez-vous avant de recalculer.",
+    "zh-Hant": "重新計算前請先登入。",
+    "zh-Hans": "重新计算前请先登录。"
+  },
+  "Single-phase calculation complete. Some optional sections are unavailable.": {
+    "en": "Single-phase calculation complete. Some optional sections are unavailable.",
+    "fr-CA": "Calcul en une phase terminé. Certaines sections facultatives sont indisponibles.",
+    "zh-Hant": "單階段計算完成。部分選用區段無法取得。",
+    "zh-Hans": "单阶段计算完成。部分可选区段无法获取。"
+  },
+  "Single-phase calculation complete.": {
+    "en": "Single-phase calculation complete.",
+    "fr-CA": "Calcul en une phase terminé.",
+    "zh-Hant": "單階段計算完成。",
+    "zh-Hans": "单阶段计算完成。"
+  },
+  "Staging calculation preview. Enter your assumptions, then select Calculate Full. Results clear when inputs change. Entries are not saved to your account.": {
+    "en": "Staging calculation preview. Enter your assumptions, then select Calculate Full. Results clear when inputs change. Calculating does not save inputs; use the draft controls separately.",
+    "fr-CA": "Aperçu de calcul en préproduction. Saisissez vos hypothèses, puis choisissez Calculer Full. Les résultats s’effacent si les données changent. Le calcul n’enregistre pas vos données; utilisez séparément les commandes de brouillon.",
+    "zh-Hant": "預備環境計算預覽。輸入假設後，選擇「計算 Full」。輸入變更時結果會清除。計算不會儲存輸入；請另行使用草稿控制。",
+    "zh-Hans": "预备环境计算预览。输入假设后，选择“计算 Full”。输入更改时结果会清除。计算不会保存输入；请另行使用草稿控件。"
+  },
+  "Land and jurisdiction": {
+    "en": "Land and jurisdiction",
+    "fr-CA": "Terrain et juridiction",
+    "zh-Hant": "土地與司法管轄區",
+    "zh-Hans": "土地与司法管辖区"
+  },
+  "Enter a value": {
+    "en": "Enter a value",
+    "fr-CA": "Saisissez une valeur",
+    "zh-Hant": "請輸入數值",
+    "zh-Hans": "请输入数值"
+  },
+  "British Columbia": {
+    "en": "British Columbia",
+    "fr-CA": "Colombie-Britannique",
+    "zh-Hant": "卑詩省",
+    "zh-Hans": "不列颠哥伦比亚省"
+  },
+  "Ontario": {
+    "en": "Ontario",
+    "fr-CA": "Ontario",
+    "zh-Hant": "安大略省",
+    "zh-Hans": "安大略省"
+  },
+  "United States": {
+    "en": "United States",
+    "fr-CA": "États-Unis",
+    "zh-Hant": "美國",
+    "zh-Hans": "美国"
+  },
+  "BC acquisition structure": {
+    "en": "BC acquisition structure",
+    "fr-CA": "Structure d’acquisition en C.-B.",
+    "zh-Hant": "卑詩省取得架構",
+    "zh-Hans": "卑诗省取得结构"
+  },
+  "Asset purchase": {
+    "en": "Asset purchase",
+    "fr-CA": "Achat d’actifs",
+    "zh-Hant": "資產購買",
+    "zh-Hans": "资产购买"
+  },
+  "Bare trust": {
+    "en": "Bare trust",
+    "fr-CA": "Fiducie simple",
+    "zh-Hant": "單純信託",
+    "zh-Hans": "单纯信托"
+  },
+  "BC second parcel": {
+    "en": "BC second parcel",
+    "fr-CA": "Deuxième parcelle en C.-B.",
+    "zh-Hant": "卑詩省第二地塊",
+    "zh-Hans": "卑诗省第二地块"
+  },
+  "No second parcel": {
+    "en": "No second parcel",
+    "fr-CA": "Aucune deuxième parcelle",
+    "zh-Hant": "無第二地塊",
+    "zh-Hans": "无第二地块"
+  },
+  "Add second parcel": {
+    "en": "Add second parcel",
+    "fr-CA": "Ajouter une deuxième parcelle",
+    "zh-Hant": "新增第二地塊",
+    "zh-Hans": "添加第二地块"
+  },
+  "Second parcel purchase amount": {
+    "en": "Second parcel purchase amount",
+    "fr-CA": "Montant d’achat de la deuxième parcelle",
+    "zh-Hant": "第二地塊購買金額",
+    "zh-Hans": "第二地块购买金额"
+  },
+  "Second parcel fair market value — optional": {
+    "en": "Second parcel fair market value — optional",
+    "fr-CA": "Juste valeur marchande de la deuxième parcelle — facultatif",
+    "zh-Hant": "第二地塊公平市值 — 選填",
+    "zh-Hans": "第二地块公平市值 — 选填"
+  },
+  "Construction costs and sales": {
+    "en": "Construction costs and sales",
+    "fr-CA": "Coûts de construction et ventes",
+    "zh-Hant": "建築成本與銷售",
+    "zh-Hans": "建筑成本与销售"
+  },
+  "Construction area (ft², hard-cost basis)": {
+    "en": "Construction area (ft², hard-cost basis)",
+    "fr-CA": "Superficie de construction (pi², base des coûts directs)",
+    "zh-Hant": "建築面積（平方呎，硬成本基準）",
+    "zh-Hans": "建筑面积（平方英尺，硬成本基准）"
+  },
+  "Soft costs (% of hard cost)": {
+    "en": "Soft costs (% of hard cost)",
+    "fr-CA": "Coûts indirects (% des coûts directs)",
+    "zh-Hant": "軟成本（硬成本百分比）",
+    "zh-Hans": "软成本（硬成本百分比）"
+  },
+  "Contingency (% of hard + soft costs)": {
+    "en": "Contingency (% of hard + soft costs)",
+    "fr-CA": "Imprévus (% des coûts directs + indirects)",
+    "zh-Hant": "備用金（硬成本＋軟成本百分比）",
+    "zh-Hans": "备用金（硬成本＋软成本百分比）"
+  },
+  "Average sale amount per unit": {
+    "en": "Average sale amount per unit",
+    "fr-CA": "Montant moyen de vente par unité",
+    "zh-Hant": "每單位平均售價",
+    "zh-Hans": "每单元平均售价"
+  },
+  "Construction duration (months)": {
+    "en": "Construction duration (months)",
+    "fr-CA": "Durée de construction (mois)",
+    "zh-Hant": "施工期（月）",
+    "zh-Hans": "施工期（月）"
+  },
+  "Senior financing": {
+    "en": "Senior financing",
+    "fr-CA": "Financement de premier rang",
+    "zh-Hant": "優先融資",
+    "zh-Hans": "优先融资"
+  },
+  "Loan-to-cost (%)": {
+    "en": "Loan-to-cost (%)",
+    "fr-CA": "Ratio prêt/coût (%)",
+    "zh-Hant": "貸款成本比（%）",
+    "zh-Hans": "贷款成本比（%）"
+  },
+  "Senior annual interest rate (%)": {
+    "en": "Senior annual interest rate (%)",
+    "fr-CA": "Taux annuel de premier rang (%)",
+    "zh-Hant": "優先貸款年利率（%）",
+    "zh-Hans": "优先贷款年利率（%）"
+  },
+  "Interest reserve funded (%)": {
+    "en": "Interest reserve funded (%)",
+    "fr-CA": "Réserve d’intérêts financée (%)",
+    "zh-Hant": "已融資利息儲備（%）",
+    "zh-Hans": "已融资利息储备（%）"
+  },
+  "Average drawn fraction (0–1)": {
+    "en": "Average drawn fraction (0–1)",
+    "fr-CA": "Fraction moyenne tirée (0–1)",
+    "zh-Hant": "平均提款比例（0–1）",
+    "zh-Hans": "平均提款比例（0–1）"
+  },
+  "Commitment fee (%)": {
+    "en": "Commitment fee (%)",
+    "fr-CA": "Frais d’engagement (%)",
+    "zh-Hant": "承諾費（%）",
+    "zh-Hans": "承诺费（%）"
+  },
+  "Senior repayment": {
+    "en": "Senior repayment",
+    "fr-CA": "Remboursement de premier rang",
+    "zh-Hant": "優先貸款償還方式",
+    "zh-Hans": "优先贷款偿还方式"
+  },
+  "Interest-only, bullet repayment": {
+    "en": "Interest-only, bullet repayment",
+    "fr-CA": "Intérêts seulement, capital à l’échéance",
+    "zh-Hant": "僅付利息，到期償還本金",
+    "zh-Hans": "仅付利息，到期偿还本金"
+  },
+  "Amortizing": {
+    "en": "Amortizing",
+    "fr-CA": "Avec amortissement",
+    "zh-Hant": "攤還",
+    "zh-Hans": "摊还"
+  },
+  "Senior sell-off after construction (months)": {
+    "en": "Senior sell-off after construction (months)",
+    "fr-CA": "Vente après construction, prêt de premier rang (mois)",
+    "zh-Hant": "完工後銷售期，優先貸款（月）",
+    "zh-Hans": "完工后销售期，优先贷款（月）"
+  },
+  "Sponsor equity amount": {
+    "en": "Sponsor equity amount",
+    "fr-CA": "Apport du promoteur en capitaux propres",
+    "zh-Hant": "發起人權益投入金額",
+    "zh-Hans": "发起人权益投入金额"
+  },
+  "Additional financing": {
+    "en": "Additional financing",
+    "fr-CA": "Financement supplémentaire",
+    "zh-Hant": "額外融資",
+    "zh-Hans": "额外融资"
+  },
+  "Mezzanine amount — enter 0 for none": {
+    "en": "Mezzanine amount — enter 0 for none",
+    "fr-CA": "Montant mezzanine — 0 si aucun",
+    "zh-Hant": "夾層融資金額 — 無則填 0",
+    "zh-Hans": "夹层融资金额 — 无则填 0"
+  },
+  "Mezzanine annual interest rate (%)": {
+    "en": "Mezzanine annual interest rate (%)",
+    "fr-CA": "Taux annuel mezzanine (%)",
+    "zh-Hant": "夾層融資年利率（%）",
+    "zh-Hans": "夹层融资年利率（%）"
+  },
+  "Mezzanine amortization (years)": {
+    "en": "Mezzanine amortization (years)",
+    "fr-CA": "Amortissement mezzanine (années)",
+    "zh-Hant": "夾層融資攤還期（年）",
+    "zh-Hans": "夹层融资摊还期（年）"
+  },
+  "Mezzanine draw month": {
+    "en": "Mezzanine draw month",
+    "fr-CA": "Mois du tirage mezzanine",
+    "zh-Hant": "夾層融資提款月份",
+    "zh-Hans": "夹层融资提款月份"
+  },
+  "Mezzanine repayment": {
+    "en": "Mezzanine repayment",
+    "fr-CA": "Remboursement mezzanine",
+    "zh-Hant": "夾層融資償還方式",
+    "zh-Hans": "夹层融资偿还方式"
+  },
+  "Mezzanine sell-off after construction (months)": {
+    "en": "Mezzanine sell-off after construction (months)",
+    "fr-CA": "Vente après construction, mezzanine (mois)",
+    "zh-Hant": "完工後銷售期，夾層融資（月）",
+    "zh-Hans": "完工后销售期，夹层融资（月）"
+  },
+  "Presale deposit amount — enter 0 for none": {
+    "en": "Presale deposit amount — enter 0 for none",
+    "fr-CA": "Dépôts de prévente — 0 si aucun",
+    "zh-Hant": "預售訂金金額 — 無則填 0",
+    "zh-Hans": "预售定金金额 — 无则填 0"
+  },
+  "Presale deposit release month": {
+    "en": "Presale deposit release month",
+    "fr-CA": "Mois de libération des dépôts de prévente",
+    "zh-Hant": "預售訂金釋放月份",
+    "zh-Hans": "预售定金释放月份"
+  },
+  "Budget tracking": {
+    "en": "Budget tracking",
+    "fr-CA": "Suivi du budget",
+    "zh-Hant": "預算追蹤",
+    "zh-Hans": "预算跟踪"
+  },
+  "Land actual amount": {
+    "en": "Land actual amount",
+    "fr-CA": "Montant réel du terrain",
+    "zh-Hant": "土地實際金額",
+    "zh-Hans": "土地实际金额"
+  },
+  "Land committed amount": {
+    "en": "Land committed amount",
+    "fr-CA": "Montant engagé pour le terrain",
+    "zh-Hant": "土地已承諾金額",
+    "zh-Hans": "土地已承诺金额"
+  },
+  "Hard costs actual (% of budget)": {
+    "en": "Hard costs actual (% of budget)",
+    "fr-CA": "Coûts directs réels (% du budget)",
+    "zh-Hant": "硬成本實際支出（預算百分比）",
+    "zh-Hans": "硬成本实际支出（预算百分比）"
+  },
+  "Hard costs committed (% of budget)": {
+    "en": "Hard costs committed (% of budget)",
+    "fr-CA": "Coûts directs engagés (% du budget)",
+    "zh-Hant": "硬成本已承諾支出（預算百分比）",
+    "zh-Hans": "硬成本已承诺支出（预算百分比）"
+  },
+  "Soft costs actual (% of budget)": {
+    "en": "Soft costs actual (% of budget)",
+    "fr-CA": "Coûts indirects réels (% du budget)",
+    "zh-Hant": "軟成本實際支出（預算百分比）",
+    "zh-Hans": "软成本实际支出（预算百分比）"
+  },
+  "Soft costs committed (% of budget)": {
+    "en": "Soft costs committed (% of budget)",
+    "fr-CA": "Coûts indirects engagés (% du budget)",
+    "zh-Hant": "軟成本已承諾支出（預算百分比）",
+    "zh-Hans": "软成本已承诺支出（预算百分比）"
+  },
+  "Contingency actual (% of budget)": {
+    "en": "Contingency actual (% of budget)",
+    "fr-CA": "Imprévus réels (% du budget)",
+    "zh-Hant": "備用金實際支出（預算百分比）",
+    "zh-Hans": "备用金实际支出（预算百分比）"
+  },
+  "Calculate Full": {
+    "en": "Calculate Full",
+    "fr-CA": "Calculer Full",
+    "zh-Hant": "計算 Full",
+    "zh-Hans": "计算 Full"
+  },
+  "Calculating Full…": {
+    "en": "Calculating Full…",
+    "fr-CA": "Calcul Full en cours…",
+    "zh-Hant": "正在計算 Full…",
+    "zh-Hans": "正在计算 Full…"
+  },
+  "Single-phase results": {
+    "en": "Single-phase results",
+    "fr-CA": "Résultats en une phase",
+    "zh-Hant": "單階段結果",
+    "zh-Hans": "单阶段结果"
+  },
+  "Unavailable": {
+    "en": "Unavailable",
+    "fr-CA": "Indisponible",
+    "zh-Hant": "無法取得",
+    "zh-Hans": "无法获取"
+  },
+  "Financing schedule": {
+    "en": "Financing schedule",
+    "fr-CA": "Échéancier de financement",
+    "zh-Hant": "融資時程",
+    "zh-Hans": "融资日程"
+  },
+  "Sources and uses": {
+    "en": "Sources and uses",
+    "fr-CA": "Sources et emplois des fonds",
+    "zh-Hant": "資金來源與運用",
+    "zh-Hans": "资金来源与运用"
+  },
+  "available": {
+    "en": "available",
+    "fr-CA": "disponible",
+    "zh-Hant": "可取得",
+    "zh-Hans": "可获取"
+  },
+  "not run for this jurisdiction": {
+    "en": "not run for this jurisdiction",
+    "fr-CA": "non exécuté pour cette juridiction",
+    "zh-Hant": "未在此司法管轄區執行",
+    "zh-Hans": "未在此司法管辖区执行"
+  },
+  "unavailable": {
+    "en": "unavailable",
+    "fr-CA": "indisponible",
+    "zh-Hant": "無法取得",
+    "zh-Hans": "无法获取"
+  },
+  "Model bases and limitations": {
+    "en": "Model bases and limitations",
+    "fr-CA": "Bases et limites du modèle",
+    "zh-Hant": "模型基準與限制",
+    "zh-Hans": "模型基准与限制"
+  },
+  "Full single-phase basis: revenue is units times average unit price, net of a fixed 5% sales commission. Total development cost is land plus hard, soft and contingency costs and excludes financing costs. Return on cost is profit divided by that total cost. This is not the Quick basis (a lump-sum revenue with no commission or contingency).": {
+    "en": "Full single-phase basis: revenue is units times average unit price, net of a fixed 5% sales commission. Total development cost is land plus hard, soft and contingency costs and excludes financing costs. Return on cost is profit divided by that total cost. This is not the Quick basis (a lump-sum revenue with no commission or contingency).",
+    "fr-CA": "Base Full en une phase : revenu = nombre d’unités × prix moyen, moins une commission fixe de 5 %. Le coût total comprend le terrain, les coûts directs, indirects et les imprévus, mais exclut le financement. Le rendement sur coût est le profit divisé par ce coût total. La base Quick diffère : revenu global, sans commission ni imprévus.",
+    "zh-Hant": "Full 單階段基準：收入為單位數乘平均售價，再扣除固定 5% 銷售佣金。總開發成本包括土地、硬成本、軟成本及備用金，但不含融資成本。成本回報率為利潤除以該總成本。此基準與 Quick 不同；Quick 使用總額收入，不含佣金或備用金。",
+    "zh-Hans": "Full 单阶段基准：收入为单元数乘平均售价，再扣除固定 5% 销售佣金。总开发成本包括土地、硬成本、软成本及备用金，但不含融资成本。成本回报率为利润除以该总成本。此基准与 Quick 不同；Quick 使用总额收入，不含佣金或备用金。"
+  },
+  "The buildable area entered here is the construction area used to price hard cost. It is not a zoning or regulatory floor-area figure.": {
+    "en": "The buildable area entered here is the construction area used to price hard cost. It is not a zoning or regulatory floor-area figure.",
+    "fr-CA": "La superficie saisie est celle utilisée pour chiffrer les coûts directs de construction. Ce n’est pas une superficie réglementaire ou de zonage.",
+    "zh-Hant": "此處輸入的面積是計算硬成本所用的建築面積，並非分區或法規樓面面積。",
+    "zh-Hans": "此处输入的面积是计算硬成本所用的建筑面积，并非分区或法规楼面面积。"
+  },
+  "The 5% sales commission is a fixed constant in the calculation, not an input.": {
+    "en": "The 5% sales commission is a fixed constant in the calculation, not an input.",
+    "fr-CA": "La commission de vente de 5 % est une constante du calcul, pas une donnée saisie.",
+    "zh-Hant": "5% 銷售佣金是計算中的固定常數，並非輸入欄位。",
+    "zh-Hans": "5% 销售佣金是计算中的固定常数，并非输入字段。"
+  },
+  "The capital stack uses a fixed equity rate of 0.20 and a fixed tax rate of 0.27. They are not inputs, have no stated source and are not verified. They feed the weighted average cost of capital.": {
+    "en": "The capital stack uses a fixed equity rate of 0.20 and a fixed tax rate of 0.27. They are not inputs, have no stated source and are not verified. They feed the weighted average cost of capital.",
+    "fr-CA": "La structure de financement utilise un taux fixe des capitaux propres de 0,20 et un taux d’impôt fixe de 0,27. Ce ne sont pas des données saisies; leur source n’est pas indiquée et ils ne sont pas vérifiés. Ils servent au coût moyen pondéré du capital.",
+    "zh-Hant": "資本結構使用固定權益成本率 0.20 及固定稅率 0.27。兩者不是輸入欄位，未註明來源，也未經驗證。它們用於加權平均資金成本。",
+    "zh-Hans": "资本结构使用固定权益成本率 0.20 及固定税率 0.27。两者不是输入字段，未注明来源，也未经验证。它们用于加权平均资金成本。"
+  },
+  "The senior loan is total development cost times the loan-to-cost percentage. Financing costs are derived by the calculation engine from the facilities (interest reserve and commitment fee); senior amortisation is a fixed 25 years; the presale deposit accrues no interest. Financing costs are not part of total development cost or return on cost.": {
+    "en": "The senior loan is total development cost times the loan-to-cost percentage. Financing costs are derived by the calculation engine from the facilities (interest reserve and commitment fee); senior amortisation is a fixed 25 years; the presale deposit accrues no interest. Financing costs are not part of total development cost or return on cost.",
+    "fr-CA": "Le prêt de premier rang est le coût total de développement × le ratio prêt/coût. Le moteur calcule les coûts de financement à partir des facilités (réserve d’intérêts et frais d’engagement); l’amortissement de premier rang est fixé à 25 ans; les dépôts de prévente ne portent pas intérêt. Le financement est exclu du coût total de développement et du rendement sur coût.",
+    "zh-Hant": "優先貸款為總開發成本乘貸款成本比。引擎依融資安排計算融資成本（利息儲備及承諾費）；優先貸款攤還期固定為 25 年；預售訂金不計利息。融資成本不計入總開發成本或成本回報率。",
+    "zh-Hans": "优先贷款为总开发成本乘贷款成本比。引擎按融资安排计算融资成本（利息储备及承诺费）；优先贷款摊还期固定为 25 年；预售定金不计利息。融资成本不计入总开发成本或成本回报率。"
+  },
+  "Residual land value is not computed by this operation. When a separate operation provides it, single-phase residual land value is financing-inclusive, staged per-stage residual land value is financing-excluded, and neither equals the Quick residual land value (a share of sellout value).": {
+    "en": "Residual land value is not computed by this operation. When a separate operation provides it, single-phase residual land value is financing-inclusive, staged per-stage residual land value is financing-excluded, and neither equals the Quick residual land value (a share of sellout value).",
+    "fr-CA": "Cette opération ne calcule pas la valeur résiduelle du terrain. Lorsqu’une opération distincte la fournit, la valeur en une phase inclut le financement et la valeur par phase l’exclut. Aucune n’est égale à la valeur Quick, fondée sur une part de la valeur totale de vente.",
+    "zh-Hant": "本操作不計算土地殘值。若日後由獨立操作提供，單階段土地殘值含融資，分階段的各階段土地殘值不含融資；兩者均不等同於按總銷售價值比例計算的 Quick 土地殘值。",
+    "zh-Hans": "本操作不计算土地残值。若日后由独立操作提供，单阶段土地残值含融资，分阶段的各阶段土地残值不含融资；两者均不等同于按总销售价值比例计算的 Quick 土地残值。"
+  },
+  "The acquisition structure is calculated for British Columbia only and assumes a 0.5-hectare parcel for every parcel regardless of the entered site. Outside British Columbia the operation was not run; this does not mean no acquisition tax applies.": {
+    "en": "The acquisition structure is calculated for British Columbia only and assumes a 0.5-hectare parcel for every parcel regardless of the entered site. Outside British Columbia the operation was not run; this does not mean no acquisition tax applies.",
+    "fr-CA": "La structure d’acquisition est calculée uniquement pour la Colombie-Britannique, en supposant 0,5 hectare par parcelle, quel que soit le terrain saisi. Hors de cette province, l’opération n’a pas été exécutée; cela ne signifie pas qu’aucune taxe d’acquisition ne s’applique.",
+    "zh-Hant": "取得架構僅針對卑詩省計算，且不論輸入地盤為何，每一地塊均假設為 0.5 公頃。卑詩省以外未執行此操作；這不代表沒有取得稅。",
+    "zh-Hans": "取得结构仅针对卑诗省计算，且不论输入地块为何，每一地块均假设为 0.5 公顷。卑诗省以外未运行此操作；这不代表没有取得税。"
+  },
+  "No tax applicability is computed by this operation. Where a separate tax operation is used later: its developer-profit figure is gross sales minus hard and soft costs only (excluding land, contingency, commissions and financing) and is not project profit or taxable income; after-tax figures are withheld; its GST/HST screening assumes a registered developer and residential units and is Canada-only.": {
+    "en": "No tax applicability is computed by this operation. Where a separate tax operation is used later: its developer-profit figure is gross sales minus hard and soft costs only (excluding land, contingency, commissions and financing) and is not project profit or taxable income; after-tax figures are withheld; its GST/HST screening assumes a registered developer and residential units and is Canada-only.",
+    "fr-CA": "Cette opération ne détermine pas les taxes applicables. Si une opération fiscale distincte est utilisée plus tard : son profit du promoteur est la vente brute moins les seuls coûts directs et indirects (hors terrain, imprévus, commissions et financement); ce n’est ni le profit du projet ni le revenu imposable. Les résultats après impôt sont retenus. Son analyse TPS/TVH suppose un promoteur inscrit et des unités résidentielles, au Canada seulement.",
+    "zh-Hant": "本操作不判定稅務適用性。若日後使用獨立稅務操作，其開發商利潤僅為總銷售收入減硬成本及軟成本（不含土地、備用金、佣金及融資），並非專案利潤或應稅所得；稅後數值暫不提供。其 GST/HST 初步分析假設為已登記開發商及住宅單位，僅適用加拿大。",
+    "zh-Hans": "本操作不判定税务适用性。若日后使用独立税务操作，其开发商利润仅为总销售收入减硬成本及软成本（不含土地、备用金、佣金及融资），并非项目利润或应税所得；税后数值暂不提供。其 GST/HST 初步分析假设为已登记开发商及住宅单元，仅适用加拿大。"
+  },
+  "No currency or exchange-rate handling. All amounts are in the single, unstated currency entered.": {
+    "en": "No currency or exchange-rate handling. All amounts are in the single, unstated currency entered.",
+    "fr-CA": "Aucune gestion de devise ou de taux de change. Tous les montants sont exprimés dans l’unique devise saisie, non précisée.",
+    "zh-Hant": "不處理貨幣或匯率。所有金額均以輸入的單一、未註明貨幣表示。",
+    "zh-Hans": "不处理货币或汇率。所有金额均以输入的单一、未注明货币表示。"
+  },
+  "The calculation engine identity is declared by the caller and is not verified here. Engine release versions are unknown.": {
+    "en": "The calculation engine identity is declared by the caller and is not verified here. Engine release versions are unknown.",
+    "fr-CA": "L’identité du moteur de calcul est déclarée par l’appelant et n’est pas vérifiée ici. Les versions de publication des moteurs sont inconnues.",
+    "zh-Hant": "計算引擎身分由呼叫端宣告，本處未驗證。引擎發行版本未知。",
+    "zh-Hans": "计算引擎身份由调用方声明，本处未验证。引擎发布版本未知。"
+  },
+  "This result has not been audited and is not tax or investment advice. Matching the prototype shows sameness with it, not financial or tax correctness.": {
+    "en": "This result has not been audited and is not tax or investment advice. Matching the prototype shows sameness with it, not financial or tax correctness.",
+    "fr-CA": "Ce résultat n’a pas été audité et ne constitue pas un conseil fiscal ou d’investissement. La concordance avec le prototype établit une équivalence, pas l’exactitude financière ou fiscale.",
+    "zh-Hant": "此結果未經審核，也不構成稅務或投資建議。與原型一致僅表示結果相同，並不證明財務或稅務正確。",
+    "zh-Hans": "此结果未经审核，也不构成税务或投资建议。与原型一致仅表示结果相同，并不证明财务或税务正确。"
+  },
+  "Development screening · Use one currency throughout. Enter decimal numbers without currency symbols or thousands separators. Quick and Full use different calculation bases.": {
+    "en": "Development screening · Use one currency throughout. Enter decimal numbers without currency symbols or thousands separators. Quick and Full use different calculation bases.",
+    "fr-CA": "Analyse préliminaire de développement · Utilisez une seule devise. Saisissez des nombres décimaux sans symbole monétaire ni séparateur de milliers. Quick et Full utilisent des bases de calcul différentes.",
+    "zh-Hant": "開發初步分析 · 全程使用單一貨幣。請輸入不含貨幣符號或千位分隔符的十進位數字。Quick 與 Full 採用不同計算基準。",
+    "zh-Hans": "开发初步分析 · 全程使用单一货币。请输入不含货币符号或千位分隔符的十进制数字。Quick 与 Full 采用不同计算基准。"
+  },
+  "Save and load Quick drafts": {
+    "en": "Save and load Quick drafts",
+    "fr-CA": "Enregistrer et charger des brouillons Quick",
+    "zh-Hant": "儲存與載入 Quick 草稿",
+    "zh-Hans": "保存与加载 Quick 草稿"
+  },
+  "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.": {
+    "en": "Save entered inputs to your account. Loading replaces the inputs on this page and clears calculated results. Quick and Full drafts are separate.",
+    "fr-CA": "Enregistrez les données saisies dans votre compte. Le chargement remplace les données de cette page et efface les résultats calculés. Les brouillons Quick et Full sont distincts.",
+    "zh-Hant": "將輸入資料儲存至帳戶。載入會取代本頁輸入並清除計算結果。Quick 與 Full 草稿各自獨立。",
+    "zh-Hans": "将输入数据保存到账户。加载会替换本页输入并清除计算结果。Quick 与 Full 草稿相互独立。"
+  },
+  "Name your Quick draft": {
+    "en": "Name your Quick draft",
+    "fr-CA": "Nommez votre brouillon Quick",
+    "zh-Hant": "命名您的 Quick 草稿",
+    "zh-Hans": "命名您的 Quick 草稿"
+  },
+  "Saved Quick drafts (newest 50)": {
+    "en": "Saved Quick drafts (newest 50)",
+    "fr-CA": "Brouillons Quick enregistrés (50 plus récents)",
+    "zh-Hant": "已儲存 Quick 草稿（最新 50 筆）",
+    "zh-Hans": "已保存 Quick 草稿（最新 50 条）"
+  },
+  "Screening inputs": {
+    "en": "Screening inputs",
+    "fr-CA": "Données de l’analyse préliminaire",
+    "zh-Hant": "初步分析輸入",
+    "zh-Hans": "初步分析输入"
+  },
+  "Land purchase price": {
+    "en": "Land purchase price",
+    "fr-CA": "Prix d’achat du terrain",
+    "zh-Hant": "土地購買價",
+    "zh-Hans": "土地购买价"
+  },
+  "Amount in your chosen currency": {
+    "en": "Amount in your chosen currency",
+    "fr-CA": "Montant dans la devise choisie",
+    "zh-Hant": "所選貨幣的金額",
+    "zh-Hans": "所选货币的金额"
+  },
+  "Hold period (years)": {
+    "en": "Hold period (years)",
+    "fr-CA": "Durée de détention (années)",
+    "zh-Hant": "持有期（年）",
+    "zh-Hans": "持有期（年）"
+  },
+  "Positive years; annualization uses a minimum of 0.5 years": {
+    "en": "Positive years; annualization uses a minimum of 0.5 years",
+    "fr-CA": "Durée positive; l’annualisation utilise au moins 0,5 année",
+    "zh-Hant": "須為正年數；年化計算最低採用 0.5 年",
+    "zh-Hans": "须为正年数；年化计算最低采用 0.5 年"
+  },
+  "Construction cost total": {
+    "en": "Construction cost total",
+    "fr-CA": "Coût total de construction",
+    "zh-Hant": "建築成本總額",
+    "zh-Hans": "建筑成本总额"
+  },
+  "Amount; independent of zoning floor area": {
+    "en": "Amount; independent of zoning floor area",
+    "fr-CA": "Montant; indépendant de la superficie de zonage",
+    "zh-Hant": "金額；與分區樓面面積無關",
+    "zh-Hans": "金额；与分区楼面面积无关"
+  },
+  "Soft costs (%)": {
+    "en": "Soft costs (%)",
+    "fr-CA": "Coûts indirects (%)",
+    "zh-Hant": "軟成本（%）",
+    "zh-Hans": "软成本（%）"
+  },
+  "Percentage of construction cost only": {
+    "en": "Percentage of construction cost only",
+    "fr-CA": "Pourcentage du seul coût de construction",
+    "zh-Hant": "僅以建築成本為基準的百分比",
+    "zh-Hans": "仅以建筑成本为基准的百分比"
+  },
+  "Gross sellout value": {
+    "en": "Gross sellout value",
+    "fr-CA": "Valeur brute totale de vente",
+    "zh-Hant": "總銷售價值",
+    "zh-Hans": "总销售价值"
+  },
+  "Total revenue before commission and financing": {
+    "en": "Total revenue before commission and financing",
+    "fr-CA": "Revenu total avant commission et financement",
+    "zh-Hant": "佣金及融資前總收入",
+    "zh-Hans": "佣金及融资前总收入"
+  },
+  "Required profit margin (%)": {
+    "en": "Required profit margin (%)",
+    "fr-CA": "Marge bénéficiaire requise (%)",
+    "zh-Hant": "所需利潤率（%）",
+    "zh-Hans": "所需利润率（%）"
+  },
+  "Percentage of gross sellout; used for residual land value": {
+    "en": "Percentage of gross sellout; used for residual land value",
+    "fr-CA": "Pourcentage de la vente brute; utilisé pour la valeur résiduelle du terrain",
+    "zh-Hant": "總銷售價值百分比；用於土地殘值",
+    "zh-Hans": "总销售价值百分比；用于土地残值"
+  },
+  "Calculate screening": {
+    "en": "Calculate screening",
+    "fr-CA": "Calculer l’analyse préliminaire",
+    "zh-Hant": "計算初步分析",
+    "zh-Hans": "计算初步分析"
+  },
+  "Screen results": {
+    "en": "Screen results",
+    "fr-CA": "Résultats préliminaires",
+    "zh-Hant": "初步分析結果",
+    "zh-Hans": "初步分析结果"
+  },
+  "Enter your figures, then calculate. Nothing is saved in this draft.": {
+    "en": "Enter your figures, then calculate. Calculating does not save inputs; use Save draft separately.",
+    "fr-CA": "Saisissez vos chiffres, puis calculez. Le calcul n’enregistre pas les données; utilisez séparément Enregistrer le brouillon.",
+    "zh-Hant": "請輸入數字後計算。計算不會儲存輸入；請另行使用「儲存草稿」。",
+    "zh-Hans": "请输入数字后计算。计算不会保存输入；请另行使用“保存草稿”。"
+  },
+  "Screening complete. Review the calculation basis below.": {
+    "en": "Screening complete. Review the calculation basis below.",
+    "fr-CA": "Analyse terminée. Vérifiez la base de calcul ci-dessous.",
+    "zh-Hant": "初步分析完成。請檢查下方計算基準。",
+    "zh-Hans": "初步分析完成。请检查下方计算基准。"
+  },
+  "Calculation unavailable: one or more outputs exceed the supported numeric range.": {
+    "en": "Calculation unavailable: one or more outputs exceed the supported numeric range.",
+    "fr-CA": "Calcul indisponible : au moins un résultat dépasse la plage numérique prise en charge.",
+    "zh-Hant": "計算無法使用：至少一項結果超出支援的數值範圍。",
+    "zh-Hans": "计算不可用：至少一项结果超出支持的数值范围。"
+  },
+  "Calculator unavailable. Please try again.": {
+    "en": "Calculator unavailable. Please try again.",
+    "fr-CA": "Calculateur indisponible. Réessayez.",
+    "zh-Hant": "計算工具無法使用。請重試。",
+    "zh-Hans": "计算工具不可用。请重试。"
+  },
+  "Total cost": {
+    "en": "Total cost",
+    "fr-CA": "Coût total",
+    "zh-Hant": "總成本",
+    "zh-Hans": "总成本"
+  },
+  "enter a value": {
+    "en": "enter a value",
+    "fr-CA": "saisissez une valeur",
+    "zh-Hant": "請輸入數值",
+    "zh-Hans": "请输入数值"
+  },
+  "use decimal numbers without currency symbols or separators": {
+    "en": "use decimal numbers without currency symbols or separators",
+    "fr-CA": "utilisez des nombres décimaux sans symbole monétaire ni séparateur",
+    "zh-Hant": "請使用不含貨幣符號或分隔符的十進位數字",
+    "zh-Hans": "请使用不含货币符号或分隔符的十进制数字"
+  },
+  "must be zero or greater": {
+    "en": "must be zero or greater",
+    "fr-CA": "doit être nul ou supérieur",
+    "zh-Hant": "必須為零或以上",
+    "zh-Hans": "必须为零或以上"
+  },
+  "calculator configuration unavailable": {
+    "en": "calculator configuration unavailable",
+    "fr-CA": "configuration du calculateur indisponible",
+    "zh-Hant": "計算工具設定無法使用",
+    "zh-Hans": "计算工具配置不可用"
+  },
+  "Input": {
+    "en": "Input",
+    "fr-CA": "Donnée",
+    "zh-Hant": "輸入",
+    "zh-Hans": "输入"
+  },
+  "check this value": {
+    "en": "check this value",
+    "fr-CA": "vérifiez cette valeur",
+    "zh-Hant": "請檢查此數值",
+    "zh-Hans": "请检查此数值"
+  },
+  "Total cost (land + construction + soft) —": {
+    "en": "Total cost (land + construction + soft) —",
+    "fr-CA": "Coût total (terrain + construction + coûts indirects) —",
+    "zh-Hant": "總成本（土地＋建築＋軟成本）—",
+    "zh-Hans": "总成本（土地＋建筑＋软成本）—"
+  },
+  "Gross sellout value —": {
+    "en": "Gross sellout value —",
+    "fr-CA": "Valeur brute totale de vente —",
+    "zh-Hant": "總銷售價值 —",
+    "zh-Hans": "总销售价值 —"
+  },
+  "Residual land value (screening, before financing) —": {
+    "en": "Residual land value (screening, before financing) —",
+    "fr-CA": "Valeur résiduelle du terrain (préliminaire, avant financement) —",
+    "zh-Hant": "土地殘值（初步分析，融資前）—",
+    "zh-Hans": "土地残值（初步分析，融资前）—"
+  },
+  "Actual land cost —": {
+    "en": "Actual land cost —",
+    "fr-CA": "Coût réel du terrain —",
+    "zh-Hant": "土地實際成本 —",
+    "zh-Hans": "土地实际成本 —"
+  },
+  " · room to pay more": {
+    "en": " · room to pay more",
+    "fr-CA": " · capacité de payer davantage",
+    "zh-Hant": " · 可支付更高價格",
+    "zh-Hans": " · 可支付更高价格"
+  },
+  " · paying above residual value": {
+    "en": " · paying above residual value",
+    "fr-CA": " · prix supérieur à la valeur résiduelle",
+    "zh-Hant": " · 購買價高於殘值",
+    "zh-Hans": " · 购买价高于残值"
+  },
+  "Return on cost (screening) —": {
+    "en": "Return on cost (screening) —",
+    "fr-CA": "Rendement sur coût (préliminaire) —",
+    "zh-Hant": "成本回報率（初步分析）—",
+    "zh-Hans": "成本回报率（初步分析）—"
+  },
+  "Simple annualized return (screening only) —": {
+    "en": "Simple annualized return (screening only) —",
+    "fr-CA": "Rendement annualisé simple (préliminaire seulement) —",
+    "zh-Hant": "簡單年化回報（僅供初步分析）—",
+    "zh-Hans": "简单年化回报（仅供初步分析）—"
+  },
+  "Understand the screening basis": {
+    "en": "Understand the screening basis",
+    "fr-CA": "Comprendre la base préliminaire",
+    "zh-Hant": "了解初步分析基準",
+    "zh-Hans": "了解初步分析基准"
+  },
+  "Quick is a screening calculation, not a development appraisal. It is a different basis from the Full development calculation and the two are not unified.": {
+    "en": "Quick is a screening calculation, not a development appraisal. It is a different basis from the Full development calculation and the two are not unified.",
+    "fr-CA": "Quick est un calcul préliminaire, pas une évaluation de développement. Sa base diffère de celle du calcul Full; les deux ne sont pas unifiés.",
+    "zh-Hant": "Quick 是初步分析計算，並非開發估價。其基準與 Full 開發計算不同，兩者並未統一。",
+    "zh-Hans": "Quick 是初步分析计算，并非开发估价。其基准与 Full 开发计算不同，两者并未统一。"
+  },
+  "Revenue is the gross sellout value you enter as a single total. No sales commissions, taxes or price assumptions are applied to it.": {
+    "en": "Revenue is the gross sellout value you enter as a single total. No sales commissions, taxes or price assumptions are applied to it.",
+    "fr-CA": "Le revenu est la valeur totale de vente que vous saisissez en un seul montant. Aucune commission, taxe ou hypothèse de prix ne lui est appliquée.",
+    "zh-Hant": "收入為您輸入的一筆總銷售價值，不另套用銷售佣金、稅項或價格假設。",
+    "zh-Hans": "收入为您输入的一笔总销售价值，不另套用销售佣金、税项或价格假设。"
+  },
+  "The required profit margin is a percentage of gross sellout value (not of cost) and is used only for the residual land value. Full uses a return on cost, which is a different basis.": {
+    "en": "The required profit margin is a percentage of gross sellout value (not of cost) and is used only for the residual land value. Full uses a return on cost, which is a different basis.",
+    "fr-CA": "La marge bénéficiaire requise est un pourcentage de la vente brute, non du coût, et sert uniquement à la valeur résiduelle du terrain. Full utilise un rendement sur coût, dont la base est différente.",
+    "zh-Hant": "所需利潤率為總銷售價值的百分比，而非成本百分比，僅用於土地殘值。Full 使用成本回報率，基準不同。",
+    "zh-Hans": "所需利润率为总销售价值的百分比，而非成本百分比，仅用于土地残值。Full 使用成本回报率，基准不同。"
+  },
+  "Soft costs are the soft-cost percentage applied to the construction cost total only.": {
+    "en": "Soft costs are the soft-cost percentage applied to the construction cost total only.",
+    "fr-CA": "Les coûts indirects sont leur pourcentage appliqué uniquement au coût total de construction.",
+    "zh-Hant": "軟成本為軟成本百分比乘建築成本總額，不包含其他成本。",
+    "zh-Hans": "软成本为软成本百分比乘建筑成本总额，不包含其他成本。"
+  },
+  "Return on cost is actual profit divided by total cost, where total cost is land plus construction plus soft costs. Financing, taxes, contingency and commissions are not included.": {
+    "en": "Return on cost is actual profit divided by total cost, where total cost is land plus construction plus soft costs. Financing, taxes, contingency and commissions are not included.",
+    "fr-CA": "Le rendement sur coût est le profit réel divisé par le coût total : terrain + construction + coûts indirects. Le financement, les taxes, les imprévus et les commissions sont exclus.",
+    "zh-Hant": "成本回報率為實際利潤除以總成本；總成本為土地加建築加軟成本。不含融資、稅項、備用金及佣金。",
+    "zh-Hans": "成本回报率为实际利润除以总成本；总成本为土地加建筑加软成本。不含融资、税项、备用金及佣金。"
+  },
+  "The annualised return is a simple compound annualisation of profit over total cost across the hold period, as one lump sum with no cash-flow timing. The hold period used is never less than 0.5 years.": {
+    "en": "The annualised return is a simple compound annualisation of profit over total cost across the hold period, as one lump sum with no cash-flow timing. The hold period used is never less than 0.5 years.",
+    "fr-CA": "Le rendement annualisé est l’annualisation composée simple du profit sur le coût total pendant la détention, en une somme globale sans échéancier de flux. La durée utilisée n’est jamais inférieure à 0,5 année.",
+    "zh-Hant": "年化回報是持有期間利潤相對總成本的簡單複合年化計算，以單筆總額處理，不考慮現金流時點。採用的持有期不低於 0.5 年。",
+    "zh-Hans": "年化回报是持有期间利润相对总成本的简单复合年化计算，以单笔总额处理，不考虑现金流时点。采用的持有期不低于 0.5 年。"
+  },
+  "No taxes, financing or currency conversion are included. All amounts are in the single currency you entered.": {
+    "en": "No taxes, financing or currency conversion are included. All amounts are in the single currency you entered.",
+    "fr-CA": "Aucune taxe, aucun financement ni conversion de devise n’est inclus. Tous les montants sont dans l’unique devise saisie.",
+    "zh-Hant": "不含稅項、融資或貨幣換算。所有金額均以輸入的單一貨幣表示。",
+    "zh-Hans": "不含税项、融资或货币换算。所有金额均以输入的单一货币表示。"
+  },
+  "This result has not been audited and is not tax advice or a statement of production readiness.": {
+    "en": "This result has not been audited and is not tax advice or a statement of production readiness.",
+    "fr-CA": "Ce résultat n’a pas été audité et ne constitue pas un conseil fiscal ni une déclaration de préparation à la production.",
+    "zh-Hant": "此結果未經審核，不構成稅務建議，也不表示已可投入正式環境。",
+    "zh-Hans": "此结果未经审核，不构成税务建议，也不表示已可投入正式环境。"
+  },
+  "Total cost is land + construction + soft costs. Residual land value subtracts construction, soft costs and required profit from gross sellout. Required profit is a percentage of gross sellout, not cost. Quick excludes contingency, sales commission, financing and taxes.": {
+    "en": "Total cost is land + construction + soft costs. Residual land value subtracts construction, soft costs and required profit from gross sellout. Required profit is a percentage of gross sellout, not cost. Quick excludes contingency, sales commission, financing and taxes.",
+    "fr-CA": "Coût total = terrain + construction + coûts indirects. La valeur résiduelle soustrait construction, coûts indirects et profit requis de la vente brute. Le profit requis est un pourcentage de la vente brute, non du coût. Quick exclut imprévus, commissions de vente, financement et taxes.",
+    "zh-Hant": "總成本為土地加建築加軟成本。土地殘值為總銷售價值減建築、軟成本及所需利潤。所需利潤為總銷售價值百分比，而非成本百分比。Quick 不含備用金、銷售佣金、融資及稅項。",
+    "zh-Hans": "总成本为土地加建筑加软成本。土地残值为总销售价值减建筑、软成本及所需利润。所需利润为总销售价值百分比，而非成本百分比。Quick 不含备用金、销售佣金、融资及税项。"
+  },
+  "Return on cost divides profit by total cost. Simple annualized return compounds the lump-sum return across the hold period, with a minimum of 0.5 years. It is not a cash-flow-timed IRR. Full uses a different basis and the results are not directly comparable.": {
+    "en": "Return on cost divides profit by total cost. Simple annualized return compounds the lump-sum return across the hold period, with a minimum of 0.5 years. It is not a cash-flow-timed IRR. Full uses a different basis and the results are not directly comparable.",
+    "fr-CA": "Le rendement sur coût divise le profit par le coût total. Le rendement annualisé simple compose le rendement global pendant la détention, avec au moins 0,5 année. Ce n’est pas un TRI fondé sur les dates des flux. Full utilise une autre base; les résultats ne sont pas directement comparables.",
+    "zh-Hant": "成本回報率為利潤除以總成本。簡單年化回報將總額回報依持有期複合年化，最低採用 0.5 年。此數值並非考慮現金流時點的 IRR。Full 採用不同基準，結果不可直接比較。",
+    "zh-Hans": "成本回报率为利润除以总成本。简单年化回报将总额回报按持有期复合年化，最低采用 0.5 年。此数值并非考虑现金流时点的 IRR。Full 采用不同基准，结果不可直接比较。"
+  },
+  "Opening a new Full project will be added with native project creation and persistence. This draft does not provide that handoff, authenticated saving or live zoning lookup.": {
+    "en": "Opening a new Full project will be added with native project creation and persistence. This draft does not yet provide that handoff or live zoning lookup.",
+    "fr-CA": "Le transfert vers un nouveau projet Full doit être ajouté avec la création et la persistance natives des projets. Ce brouillon ne propose pas encore ce transfert ni la recherche de zonage en direct.",
+    "zh-Hant": "Quick 轉入新的 Full 專案仍待原生專案建立與持久儲存整合。本草稿尚未提供此轉移或即時分區查詢。",
+    "zh-Hans": "Quick 转入新的 Full 项目仍待原生项目创建与持久保存集成。本草稿尚未提供此转移或实时分区查询。"
+  },
+  "<div>Goal</div>": {
+    "en": "<div>Goal</div>",
+    "fr-CA": "<div>Objectif</div>",
+    "zh-Hant": "<div>目標</div>",
+    "zh-Hans": "<div>目标</div>"
+  },
+  "<div>Status</div>": {
+    "en": "<div>Status</div>",
+    "fr-CA": "<div>Statut</div>",
+    "zh-Hant": "<div>狀態</div>",
+    "zh-Hans": "<div>状态</div>"
+  },
+  "<div>Due date</div>": {
+    "en": "<div>Due date</div>",
+    "fr-CA": "<div>Échéance</div>",
+    "zh-Hant": "<div>到期日</div>",
+    "zh-Hans": "<div>到期日</div>"
+  },
+  "<div>Assignee</div>": {
+    "en": "<div>Assignee</div>",
+    "fr-CA": "<div>Responsable</div>",
+    "zh-Hant": "<div>負責人</div>",
+    "zh-Hans": "<div>负责人</div>"
+  },
+  "<div>Action</div>": {
+    "en": "<div>Action</div>",
+    "fr-CA": "<div>Action</div>",
+    "zh-Hant": "<div>操作</div>",
+    "zh-Hans": "<div>操作</div>"
+  },
+  "<div>Another action</div>": {
+    "en": "<div>Another action</div>",
+    "fr-CA": "<div>Autre action</div>",
+    "zh-Hant": "<div>其他操作</div>",
+    "zh-Hans": "<div>其他操作</div>"
+  },
+  "<div>Something else</div>": {
+    "en": "<div>Something else</div>",
+    "fr-CA": "<div>Autre option</div>",
+    "zh-Hant": "<div>其他選項</div>",
+    "zh-Hans": "<div>其他选项</div>"
+  },
+  "<div>Completed</div>": {
+    "en": "<div>Completed</div>",
+    "fr-CA": "<div>Terminé</div>",
+    "zh-Hant": "<div>已完成</div>",
+    "zh-Hans": "<div>已完成</div>"
+  },
+  "<div>In progress</div>": {
+    "en": "<div>In progress</div>",
+    "fr-CA": "<div>En cours</div>",
+    "zh-Hant": "<div>進行中</div>",
+    "zh-Hans": "<div>进行中</div>"
+  },
+  "<div>Sign up</div>": {
+    "en": "<div>Sign up</div>",
+    "fr-CA": "<div>Créer un compte</div>",
+    "zh-Hant": "<div>註冊</div>",
+    "zh-Hans": "<div>注册</div>"
+  },
+  "<div>Free access to our dashboard.</div>": {
+    "en": "<div>Free access to our dashboard.</div>",
+    "fr-CA": "<div>Accès gratuit au tableau de bord.</div>",
+    "zh-Hant": "<div>免費存取儀表板。</div>",
+    "zh-Hans": "<div>免费访问仪表板。</div>"
+  },
+  "<div>Email</div>": {
+    "en": "<div>Email</div>",
+    "fr-CA": "<div>Courriel</div>",
+    "zh-Hant": "<div>電子郵件</div>",
+    "zh-Hans": "<div>电子邮件</div>"
+  },
+  "Enter your email": {
+    "en": "Enter your email",
+    "fr-CA": "Saisissez votre courriel",
+    "zh-Hant": "請輸入電子郵件",
+    "zh-Hans": "请输入电子邮件"
+  },
+  "<div>Password</div>": {
+    "en": "<div>Password</div>",
+    "fr-CA": "<div>Mot de passe</div>",
+    "zh-Hant": "<div>密碼</div>",
+    "zh-Hans": "<div>密码</div>"
+  },
+  "Enter your password": {
+    "en": "Enter your password",
+    "fr-CA": "Saisissez votre mot de passe",
+    "zh-Hant": "請輸入密碼",
+    "zh-Hans": "请输入密码"
+  },
+  "<div>Login to your account</div>": {
+    "en": "<div>Login to your account</div>",
+    "fr-CA": "<div>Connectez-vous à votre compte</div>",
+    "zh-Hant": "<div>登入您的帳戶</div>",
+    "zh-Hans": "<div>登录您的账户</div>"
+  },
+  "<div>Forgot password?</div>": {
+    "en": "<div>Forgot password?</div>",
+    "fr-CA": "<div>Mot de passe oublié?</div>",
+    "zh-Hant": "<div>忘記密碼？</div>",
+    "zh-Hans": "<div>忘记密码？</div>"
+  },
+  "<div>Sign in</div>": {
+    "en": "<div>Sign in</div>",
+    "fr-CA": "<div>Se connecter</div>",
+    "zh-Hant": "<div>登入</div>",
+    "zh-Hans": "<div>登录</div>"
+  },
+  "First Name": {
+    "en": "First Name",
+    "fr-CA": "Prénom",
+    "zh-Hant": "名字",
+    "zh-Hans": "名字"
+  },
+  "Last Name": {
+    "en": "Last Name",
+    "fr-CA": "Nom",
+    "zh-Hant": "姓氏",
+    "zh-Hans": "姓氏"
+  },
+  "Role": {
+    "en": "Role",
+    "fr-CA": "Rôle",
+    "zh-Hant": "角色",
+    "zh-Hans": "角色"
+  },
+  "Country": {
+    "en": "Country",
+    "fr-CA": "Pays",
+    "zh-Hant": "國家",
+    "zh-Hans": "国家"
+  },
+  "<div>Save</div>": {
+    "en": "<div>Save</div>",
+    "fr-CA": "<div>Enregistrer</div>",
+    "zh-Hant": "<div>儲存</div>",
+    "zh-Hans": "<div>保存</div>"
+  },
+  "Workspace": {
+    "en": "Workspace",
+    "fr-CA": "Espace de travail",
+    "zh-Hant": "工作區",
+    "zh-Hans": "工作区"
+  },
+  "Library": {
+    "en": "Library",
+    "fr-CA": "Bibliothèque",
+    "zh-Hant": "知識庫",
+    "zh-Hans": "知识库"
+  },
+  "Development preview": {
+    "en": "Development preview",
+    "fr-CA": "Aperçu de développement",
+    "zh-Hant": "開發預覽",
+    "zh-Hans": "开发预览"
+  },
+  "Light / Dark": {
+    "en": "Light / Dark",
+    "fr-CA": "Clair / Sombre",
+    "zh-Hant": "淺色／深色",
+    "zh-Hans": "浅色／深色"
+  },
+  "Preview origin: ": {
+    "en": "Preview origin: ",
+    "fr-CA": "Origine de l’aperçu : ",
+    "zh-Hant": "預覽來源：",
+    "zh-Hans": "预览来源："
+  },
+  " | Environment: ": {
+    "en": " | Environment: ",
+    "fr-CA": " | Environnement : ",
+    "zh-Hant": " | 環境：",
+    "zh-Hans": " | 环境："
+  },
+  "Test session present: ": {
+    "en": "Test session present: ",
+    "fr-CA": "Session de test présente : ",
+    "zh-Hant": "測試工作階段存在：",
+    "zh-Hans": "测试会话存在："
+  },
+  "\nSign-in status: ": {
+    "en": "\nSign-in status: ",
+    "fr-CA": "\nStatut de connexion : ",
+    "zh-Hant": "\n登入狀態：",
+    "zh-Hans": "\n登录状态："
+  },
+  "\nSafe error shape: ": {
+    "en": "\nSafe error shape: ",
+    "fr-CA": "\nStructure d’erreur sécurisée : ",
+    "zh-Hant": "\n安全錯誤結構：",
+    "zh-Hans": "\n安全错误结构："
+  },
+  "\nStaging test: ": {
+    "en": "\nStaging test: ",
+    "fr-CA": "\nTest de préproduction : ",
+    "zh-Hant": "\n預備環境測試：",
+    "zh-Hans": "\n预备环境测试："
+  },
+  " Stored revision: ": {
+    "en": " Stored revision: ",
+    "fr-CA": " Révision stockée : ",
+    "zh-Hant": " 儲存版本：",
+    "zh-Hans": " 保存版本："
+  },
+  " (limit ": {
+    "en": " (limit ",
+    "fr-CA": " (limite ",
+    "zh-Hant": "（上限 ",
+    "zh-Hans": "（上限 "
+  },
+  "Total development cost: ": {
+    "en": "Total development cost: ",
+    "fr-CA": "Coût total de développement : ",
+    "zh-Hant": "總開發成本：",
+    "zh-Hans": "总开发成本："
+  },
+  "Net sales revenue: ": {
+    "en": "Net sales revenue: ",
+    "fr-CA": "Revenu net des ventes : ",
+    "zh-Hant": "淨銷售收入：",
+    "zh-Hans": "净销售收入："
+  },
+  "Project profit: ": {
+    "en": "Project profit: ",
+    "fr-CA": "Profit du projet : ",
+    "zh-Hant": "專案利潤：",
+    "zh-Hans": "项目利润："
+  },
+  "Return on cost: ": {
+    "en": "Return on cost: ",
+    "fr-CA": "Rendement sur coût : ",
+    "zh-Hant": "成本回報率：",
+    "zh-Hans": "成本回报率："
+  },
+  "Weighted average cost of capital: ": {
+    "en": "Weighted average cost of capital: ",
+    "fr-CA": "Coût moyen pondéré du capital : ",
+    "zh-Hant": "加權平均資金成本：",
+    "zh-Hans": "加权平均资金成本："
+  },
+  "Total cost (land + construction + soft) — ": {
+    "en": "Total cost (land + construction + soft) — ",
+    "fr-CA": "Coût total (terrain + construction + coûts indirects) — ",
+    "zh-Hant": "總成本（土地＋建築＋軟成本）— ",
+    "zh-Hans": "总成本（土地＋建筑＋软成本）— "
+  },
+  "Gross sellout value — ": {
+    "en": "Gross sellout value — ",
+    "fr-CA": "Valeur brute totale de vente — ",
+    "zh-Hant": "總銷售價值 — ",
+    "zh-Hans": "总销售价值 — "
+  },
+  "Residual land value (screening, before financing) — ": {
+    "en": "Residual land value (screening, before financing) — ",
+    "fr-CA": "Valeur résiduelle du terrain (préliminaire, avant financement) — ",
+    "zh-Hant": "土地殘值（初步分析，融資前）— ",
+    "zh-Hans": "土地残值（初步分析，融资前）— "
+  },
+  "Actual land cost — ": {
+    "en": "Actual land cost — ",
+    "fr-CA": "Coût réel du terrain — ",
+    "zh-Hant": "土地實際成本 — ",
+    "zh-Hans": "土地实际成本 — "
+  },
+  "Return on cost (screening) — ": {
+    "en": "Return on cost (screening) — ",
+    "fr-CA": "Rendement sur coût (préliminaire) — ",
+    "zh-Hant": "成本回報率（初步分析）— ",
+    "zh-Hans": "成本回报率（初步分析）— "
+  },
+  "Simple annualized return (screening only) — ": {
+    "en": "Simple annualized return (screening only) — ",
+    "fr-CA": "Rendement annualisé simple (préliminaire seulement) — ",
+    "zh-Hant": "簡單年化回報（僅供初步分析）— ",
+    "zh-Hans": "简单年化回报（仅供初步分析）— "
+  },
+  "User Profile": {
+    "en": "User profile",
+    "fr-CA": "Profil utilisateur",
+    "zh-Hant": "使用者資料",
+    "zh-Hans": "用户资料"
+  },
+  "Home": {
+    "en": "Home",
+    "fr-CA": "Accueil",
+    "zh-Hant": "首頁",
+    "zh-Hans": "首页"
+  },
+  "Authentication message: ": {
+    "en": "Authentication message: ",
+    "fr-CA": "Message d’authentification : ",
+    "zh-Hant": "驗證訊息：",
+    "zh-Hans": "验证消息："
+  },
+  "Portfolio": {
+    "en": "Portfolio",
+    "fr-CA": "Portefeuille",
+    "zh-Hant": "投資組合",
+    "zh-Hans": "投资组合"
+  },
+  "Market Intel": {
+    "en": "Market Intel",
+    "fr-CA": "Veille de marché",
+    "zh-Hant": "市場情報",
+    "zh-Hans": "市场情报"
+  },
+  "Research": {
+    "en": "Research",
+    "fr-CA": "Recherche",
+    "zh-Hant": "研究",
+    "zh-Hans": "研究"
+  },
+  "Community": {
+    "en": "Community",
+    "fr-CA": "Communauté",
+    "zh-Hant": "社群",
+    "zh-Hans": "社区"
+  },
+  "Portfolio is being prepared. Holdings and currency conversion are not connected yet.": {
+    "en": "Portfolio is being prepared. Holdings and currency conversion are not connected yet.",
+    "fr-CA": "Le portefeuille est en préparation. Les avoirs et la conversion des devises ne sont pas encore connectés.",
+    "zh-Hant": "投資組合功能正在準備中。持倉資料與貨幣換算尚未連線。",
+    "zh-Hans": "投资组合功能正在准备中。持仓数据与货币换算尚未连接。"
+  },
+  "Live maps are deferred. Catalog and runtime wiring still require verification.": {
+    "en": "Live maps are deferred. Catalog and runtime wiring still require verification.",
+    "fr-CA": "Les cartes en direct sont reportées. Le catalogue et les connexions doivent encore être vérifiés.",
+    "zh-Hant": "即時地圖暫緩開放。目錄與執行環境連線仍需驗證。",
+    "zh-Hans": "实时地图暂缓开放。目录与运行环境连接仍需验证。"
+  },
+  "Curated articles will appear here once the approved catalog and member access are connected.": {
+    "en": "Curated articles will appear here once the approved catalog and member access are connected.",
+    "fr-CA": "Les articles sélectionnés apparaîtront ici lorsque le catalogue approuvé et l’accès membre seront connectés.",
+    "zh-Hant": "核准目錄與會員存取完成連線後，精選文章會顯示在此。",
+    "zh-Hans": "批准目录与会员访问完成连接后，精选文章会显示在此。"
+  },
+  "Community boards are being prepared. Posting and moderation are not connected yet.": {
+    "en": "Community boards are being prepared. Posting and moderation are not connected yet.",
+    "fr-CA": "Les forums communautaires sont en préparation. La publication et la modération ne sont pas encore connectées.",
+    "zh-Hant": "社群討論區正在準備中。發文與審核功能尚未連線。",
+    "zh-Hans": "社区讨论区正在准备中。发帖与审核功能尚未连接。"
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "name": "investscape-global-settings",
+    "description": "Shared four-language, theme and country/currency display preferences with a device-local host store.",
+    "keywords": [
+      "preferences",
+      "locale",
+      "theme",
+      "country",
+      "currency"
+    ],
+    "features": [
+      "Four distinct languages",
+      "Accessible expandable settings",
+      "Responsive controls",
+      "No network or account writes"
+    ],
+    "inherit": []
+  },
+  "properties": [
+    {
+      "name": "locale",
+      "description": "Language",
+      "type": "string",
+      "defaultValue": "en"
+    },
+    {
+      "name": "theme",
+      "description": "Theme",
+      "type": "string",
+      "defaultValue": "light"
+    },
+    {
+      "name": "homeCountry",
+      "description": "Home country",
+      "type": "string",
+      "defaultValue": "CA"
+    },
+    {
+      "name": "baseCurrency",
+      "description": "Portfolio display currency",
+      "type": "string",
+      "defaultValue": "CAD"
+    },
+    {
+      "name": "baseCurrencyMode",
+      "description": "Currency selection mode",
+      "type": "string",
+      "defaultValue": "country-default"
+    },
+    {
+      "name": "pageTitle",
+      "description": "Localized page title",
+      "type": "string",
+      "defaultValue": "InvestScape"
+    },
+    {
+      "name": "startingModule",
+      "description": "Preferred internal panel opened on entry to the main app page; defaults to Library.",
+      "type": "string",
+      "defaultValue": "library"
+    }
+  ],
+  "states": [],
+  "events": [
+    {
+      "name": "preferenceChange",
+      "description": "A supported field changed; host validates and persists the shared preferences then applies the native theme.",
+      "payload": {
+        "field": "locale | theme | homeCountry | baseCurrency | startingModule",
+        "value": "supported string"
+      }
+    }
+  ],
+  "localContext": [],
+  "actions": [],
+  "slots": [],
+  "variables": [],
+  "specifications": [
+    "Host owns persistence; component emits only validated user changes.",
+    "No Auth, subscription, database, FX service or calculation calls.",
+    "Home country and portfolio currency never modify project amounts or property jurisdiction.",
+    "No widget customization or unimplemented shell choices shown.",
+    "Document language and title follow the shared locale in runtime; native page language key remains en.",
+    "Editor interactions disabled.",
+    "Labels are draft translations pending native-language approval."
+  ],
+  "examples": [
+    {
+      "description": "Canadian French light display",
+      "example": "{\"locale\": \"fr-CA\", \"theme\": \"light\", \"homeCountry\": \"CA\", \"baseCurrency\": \"CAD\", \"baseCurrencyMode\": \"country-default\", \"pageTitle\": \"InvestScape\"}"
+    }
+  ],
+  "dependencies": []
+}

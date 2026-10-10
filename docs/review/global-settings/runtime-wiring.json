@@ -1,0 +1,987 @@
+{
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "mainPageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "preferencesUid": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+  "copyUid": "33c40b55-031f-41f7-b0ce-5aa3fe05a7e2",
+  "activeModuleUid": "6391f7e9-1397-4424-b85f-4fd8ad76bb7c",
+  "settingsSectionUid": "36c29906-d652-40cf-b9db-272f2df41fda",
+  "settingsElementUid": "17de0906-4666-47a7-9162-4a87832ae6b7",
+  "ribbonSectionUid": "2f6acb2c-2fa5-4d2d-bdb8-7f1a6c1109b2",
+  "ribbonElementUid": "91075dae-91ae-45ff-b694-d407686d6aa9",
+  "workflows": [
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "id": "ae0918d0-a64a-4ba3-a140-0b2c46bd0401",
+      "scope": "app",
+      "name": "Apply shared display preferences",
+      "description": "Validate display-only device preferences and apply the native theme on page entry. Never read or change account/project data.",
+      "folder": "InvestScape/Global Settings/",
+      "trigger": "onload",
+      "firstAction": "preferences",
+      "actions": {
+        "preferences": {
+          "type": "update-variable",
+          "name": "Normalize display preferences",
+          "__wwdescription": "Import legacy language once, then use the shared four-language preference",
+          "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\n// Import the old Library language only when no valid global language has been saved.\nreturn normalizePreferences(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);",
+            "defaultValue": {}
+          },
+          "next": "theme"
+        },
+        "theme": {
+          "type": "change-theme",
+          "name": "Apply saved theme",
+          "__wwdescription": "Use the validated shared light or dark preference",
+          "theme": {
+            "__wwtype": "f",
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'"
+          },
+          "next": null
+        }
+      }
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "scope": "element",
+      "firstAction": "preferences",
+      "actions": {
+        "preferences": {
+          "type": "update-variable",
+          "name": "Save validated display preference",
+          "__wwdescription": "Persist only supported display preference values on this device",
+          "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn changePreference(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], event?.field, event?.value, variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);"
+          },
+          "next": "theme"
+        },
+        "theme": {
+          "type": "change-theme",
+          "name": "Apply global appearance",
+          "__wwdescription": "Apply the saved display theme without changing Auth or project data",
+          "theme": {
+            "__wwtype": "f",
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'"
+          },
+          "next": null
+        }
+      },
+      "id": "19b1390e-2d38-4a69-b9aa-40ea4ed2e070",
+      "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+      "elementUid": "17de0906-4666-47a7-9162-4a87832ae6b7",
+      "name": "Save global settings",
+      "description": "Supported user display changes update the shared device preference; member/account authority is untouched.",
+      "trigger": "preferenceChange"
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "scope": "element",
+      "firstAction": "preferences",
+      "actions": {
+        "preferences": {
+          "type": "update-variable",
+          "name": "Save validated display preference",
+          "__wwdescription": "Persist only supported display preference values on this device",
+          "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn changePreference(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], 'locale', event?.value, variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);"
+          },
+          "next": "theme"
+        },
+        "theme": {
+          "type": "change-theme",
+          "name": "Apply global appearance",
+          "__wwdescription": "Apply the saved display theme without changing Auth or project data",
+          "theme": {
+            "__wwtype": "f",
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'"
+          },
+          "next": null
+        }
+      },
+      "id": "0bd5fdf8-21cc-404c-bb27-4188070db89e",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "elementUid": "cd93727a-145b-46fb-8986-3bfdd93c109e",
+      "name": "Set global language from Library",
+      "description": "Library language selection updates the same shared four-language display preference.",
+      "trigger": "localeChange"
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "scope": "element",
+      "firstAction": "preferences",
+      "actions": {
+        "preferences": {
+          "type": "update-variable",
+          "name": "Save validated display preference",
+          "__wwdescription": "Persist only supported display preference values on this device",
+          "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn changePreference(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], 'theme', globalContext.browser.theme === 'dark' ? 'light' : 'dark', variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);"
+          },
+          "next": "theme"
+        },
+        "theme": {
+          "type": "change-theme",
+          "name": "Apply global appearance",
+          "__wwdescription": "Apply the saved display theme without changing Auth or project data",
+          "theme": {
+            "__wwtype": "f",
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'"
+          },
+          "next": null
+        }
+      },
+      "id": "d44c5b2e-9fbc-4d15-88db-74db27a1c5ed",
+      "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+      "elementUid": "93a5f76a-68b3-4756-b528-aea2b2c1f0c9",
+      "name": "Save and toggle shared theme",
+      "description": "Retain the header theme button and persist its shared display preference.",
+      "trigger": "click"
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "elementUid": "91075dae-91ae-45ff-b694-d407686d6aa9",
+      "id": "1c9d3422-497c-49b4-8f96-8c8b50a7d344",
+      "scope": "element",
+      "name": "Switch internal app panel",
+      "description": "Validate the internal module choice without navigation. Keep inactive module elements mounted. Only selecting Full loads its existing pinned helper asset; no calculation or persistence is called.",
+      "trigger": "moduleChange",
+      "firstAction": "module",
+      "actions": {
+        "module": {
+          "type": "update-variable",
+          "name": "Choose an internal panel",
+          "__wwdescription": "Validate the emitted module choice and update only display state",
+          "varId": "6391f7e9-1397-4424-b85f-4fd8ad76bb7c",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "// Custom component payloads are exposed through the runtime event global.\nconst value = event?.value;\nconst allowed = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'];\nreturn allowed.includes(value) ? value : variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] ?? 'library';"
+          },
+          "next": "fullOnly"
+        },
+        "fullOnly": {
+          "type": "filter",
+          "name": "Load Full helper only for Full",
+          "__wwdescription": "Library and other panels do not load the remote calculation helper",
+          "value": {
+            "__wwtype": "f",
+            "code": "variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] === 'full'"
+          },
+          "next": "fullLoading"
+        },
+        "fullLoading": {
+          "type": "update-variable",
+          "name": "Show Full helper loading",
+          "__wwdescription": "Expose the native module's existing client availability state",
+          "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+          "varValue": "loading",
+          "next": "fullLoad",
+          "value": "loading"
+        },
+        "fullLoad": {
+          "id": "fullLoad",
+          "code": "// Load only the reviewed client helper; Full calculations run on Railway.\ntry {\n const existing = globalThis.InvestScapeFullClient;\n const matches = value => value?.buildIdentity === 'full-client-1' && value?.targetCalculationPackageVersion === '0.10.0-p2-6b';\n if (existing) return matches(existing) ? 'ready' : 'versionMismatch';\n await new Promise((resolve,reject) => {\n  const script = document.createElement('script');\n  script.src = 'https://native-full-staging-api-production.up.railway.app/v1/development/assets/full-client-1/investscape-full-client.full-client-1.target-0.10.0-p2-6b.js';\n  script.integrity = 'sha256-irutE0AHcHOrSzHzqaThDufHqLaqnqVeUr7sIVQLTyY=';\n  script.crossOrigin = 'anonymous';\n  script.onload = resolve;\n  script.onerror = () => reject(new Error('Client load failed'));\n  document.head.appendChild(script);\n });\n return matches(globalThis.InvestScapeFullClient) ? 'ready' : 'versionMismatch';\n} catch (_) { return 'loadFailed'; }",
+          "name": "Load pinned helper",
+          "next": "fullStatus",
+          "type": "custom-js",
+          "__wwdescription": "Verify browser helper build and version; no financial calculations"
+        },
+        "fullStatus": {
+          "id": "fullStatus",
+          "name": "Record helper availability",
+          "next": null,
+          "type": "update-variable",
+          "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+          "varValue": {
+            "__wwtype": "f",
+            "code": "context.workflow['fullLoad'].result"
+          },
+          "__wwdescription": "Readable client connection state",
+          "value": {
+            "__wwtype": "f",
+            "code": "context.workflow['fullLoad'].result"
+          }
+        }
+      }
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "id": "fb1a2169-8f71-4821-9226-33b54fe1324f",
+      "scope": "page",
+      "name": "Initialize main app panels",
+      "description": "Open validated preferred module and restore the existing owner-scoped Quick/Full session drafts once on app-page entry. Full helper loads only if Full is the preferred panel. Module switching does not rerun restoration or reset results.",
+      "folder": "InvestScape/Main App/",
+      "trigger": "onload",
+      "firstAction": "module",
+      "actions": {
+        "module": {
+          "type": "update-variable",
+          "name": "Open preferred starting module",
+          "__wwdescription": "Default to Library, without module URL parameters",
+          "varId": "6391f7e9-1397-4424-b85f-4fd8ad76bb7c",
+          "varValue": {
+            "__wwtype": "js",
+            "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn normalizePreferences(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme).startingModule;"
+          },
+          "next": "quick_ownerDraft"
+        },
+        "quick_name": {
+          "id": "quick_name",
+          "name": "Restore Quick project name",
+          "next": "quick_clearResult",
+          "type": "update-variable",
+          "varId": "9768e3e8-306c-46e1-ba6a-ec882d5b59ae-value",
+          "varValue": {
+            "code": "variables['a031b049-3422-4985-8f7f-beae3e7265e3']?.draftName ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Quick project name"
+        },
+        "quick_owner": {
+          "id": "quick_owner",
+          "name": "Discard other account Quick project metadata",
+          "next": "quick_name",
+          "type": "update-variable",
+          "varId": "a031b049-3422-4985-8f7f-beae3e7265e3",
+          "varValue": {
+            "code": "!variables['a031b049-3422-4985-8f7f-beae3e7265e3']?.ownerId || variables['a031b049-3422-4985-8f7f-beae3e7265e3']?.ownerId === (variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id ?? null) ? variables['a031b049-3422-4985-8f7f-beae3e7265e3'] : {}",
+            "__wwtype": "f",
+            "defaultValue": {}
+          },
+          "__wwdescription": "Discard other account Quick project metadata"
+        },
+        "quick_restore0": {
+          "id": "quick_restore0",
+          "name": "Restore purchasePrice",
+          "next": "quick_restore1",
+          "type": "update-variable",
+          "varId": "1a2807e2-f306-4405-b9e6-0f5c823e0084-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.purchasePrice ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_restore1": {
+          "id": "quick_restore1",
+          "name": "Restore holdPeriodYears",
+          "next": "quick_restore2",
+          "type": "update-variable",
+          "varId": "7c6343f3-810c-4f8a-aab9-33e9e471d195-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.holdPeriodYears ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_restore2": {
+          "id": "quick_restore2",
+          "name": "Restore constructionCostTotal",
+          "next": "quick_restore3",
+          "type": "update-variable",
+          "varId": "f07c2951-0132-43e0-bb88-de6c406bf990-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.constructionCostTotal ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_restore3": {
+          "id": "quick_restore3",
+          "name": "Restore softCostPct",
+          "next": "quick_restore4",
+          "type": "update-variable",
+          "varId": "2e9641fe-657d-4a63-a006-731b8ec860e7-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.softCostPct ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_restore4": {
+          "id": "quick_restore4",
+          "name": "Restore grossSelloutValue",
+          "next": "quick_restore5",
+          "type": "update-variable",
+          "varId": "b0382055-ddaf-4133-871b-435d1e24c4c5-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.grossSelloutValue ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_restore5": {
+          "id": "quick_restore5",
+          "name": "Restore requiredProfitMarginPct",
+          "next": "full_restoreSource",
+          "type": "update-variable",
+          "varId": "d98bb781-5a14-4352-a59f-0eb0acbc8c09-value",
+          "varValue": {
+            "code": "variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e']?.requiredProfitMarginPct ?? ''",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Restore the native field from the session-only navigation draft without recalculating"
+        },
+        "quick_ownerDraft": {
+          "id": "quick_ownerDraft",
+          "name": "Restore only matching account Quick navigation draft",
+          "next": "quick_owner",
+          "type": "update-variable",
+          "varId": "a3ec9f3f-8fea-4d3d-927c-e63e7017e54e",
+          "varValue": {
+            "code": "const state=variables['a031b049-3422-4985-8f7f-beae3e7265e3']||{};\nconst ownerId=variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id??null;\nif(state.ownerId && state.ownerId!==ownerId)return {\"purchasePrice\":\"\",\"holdPeriodYears\":\"\",\"constructionCostTotal\":\"\",\"softCostPct\":\"\",\"grossSelloutValue\":\"\",\"requiredProfitMarginPct\":\"\"};\nreturn state.navigationInputs ?? variables['a3ec9f3f-8fea-4d3d-927c-e63e7017e54e'] ?? {\"purchasePrice\":\"\",\"holdPeriodYears\":\"\",\"constructionCostTotal\":\"\",\"softCostPct\":\"\",\"grossSelloutValue\":\"\",\"requiredProfitMarginPct\":\"\"};",
+            "__wwtype": "js"
+          },
+          "__wwdescription": "Restore only matching account Quick navigation draft"
+        },
+        "quick_clearResult": {
+          "id": "quick_clearResult",
+          "name": "Withhold earlier result on page visit",
+          "next": "quick_restore0",
+          "type": "update-variable",
+          "varId": "d1322df2-1b67-4dcb-95d4-b445cef34119",
+          "varValue": {},
+          "__wwdescription": "Withhold earlier result on page visit"
+        },
+        "full_name": {
+          "id": "full_name",
+          "name": "Restore navigation project name",
+          "next": "full_restore0",
+          "type": "update-variable",
+          "varId": "c10b969e-65dd-4644-845f-0dae6f7e5bed-value",
+          "varValue": {
+            "code": "variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']?.draftName ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore navigation project name"
+        },
+        "full_epoch": {
+          "id": "full_epoch",
+          "name": "New page generation",
+          "next": "fullOnly",
+          "type": "update-variable",
+          "varId": "157c4d82-bd7a-4ce1-bc6a-7aa52f194c23",
+          "varValue": {
+            "code": "(variables['157c4d82-bd7a-4ce1-bc6a-7aa52f194c23'] || 0) + 1",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Reject responses from earlier page visits"
+        },
+        "full_owner": {
+          "id": "full_owner",
+          "name": "Discard other account project metadata",
+          "next": "full_name",
+          "type": "update-variable",
+          "varId": "4083e27a-107c-4ccb-8e20-fa4bb6b0e579",
+          "varValue": {
+            "code": "variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']?.ownerId === (variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id ?? null) ? variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579'] : {}",
+            "__wwtype": "f",
+            "defaultValue": {}
+          },
+          "__wwdescription": "Discard other account project metadata"
+        },
+        "full_restore0": {
+          "id": "full_restore0",
+          "name": "Restore Full landCost",
+          "next": "full_restore1",
+          "type": "update-variable",
+          "varId": "0eb40a1c-359a-42c4-bf42-d6ef324814ad-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"landCost\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full landCost"
+        },
+        "full_restore1": {
+          "id": "full_restore1",
+          "name": "Restore Full parcel2Price",
+          "next": "full_restore2",
+          "type": "update-variable",
+          "varId": "34a4400c-21ef-4b55-b531-931b13f2faa6-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"parcel2Price\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full parcel2Price"
+        },
+        "full_restore2": {
+          "id": "full_restore2",
+          "name": "Restore Full parcel2Fmv",
+          "next": "full_restore3",
+          "type": "update-variable",
+          "varId": "4a61e8e1-7dde-41e2-98b6-4ad8536704af-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"parcel2Fmv\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full parcel2Fmv"
+        },
+        "full_restore3": {
+          "id": "full_restore3",
+          "name": "Restore Full hardCostPsf",
+          "next": "full_restore4",
+          "type": "update-variable",
+          "varId": "a1646bf7-0ea5-4335-a313-61877e342c4d-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"hardCostPsf\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full hardCostPsf"
+        },
+        "full_restore4": {
+          "id": "full_restore4",
+          "name": "Restore Full buildableSf",
+          "next": "full_restore5",
+          "type": "update-variable",
+          "varId": "fe4c7343-d4b1-4a87-ba6f-fa633e882644-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"buildableSf\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full buildableSf"
+        },
+        "full_restore5": {
+          "id": "full_restore5",
+          "name": "Restore Full softCostPct",
+          "next": "full_restore6",
+          "type": "update-variable",
+          "varId": "150f6b5f-7fea-430f-b1fc-4134d11de8ac-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"softCostPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full softCostPct"
+        },
+        "full_restore6": {
+          "id": "full_restore6",
+          "name": "Restore Full contingencyPct",
+          "next": "full_restore7",
+          "type": "update-variable",
+          "varId": "1bdd49ed-397f-43ec-ad0d-5d205385fe39-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"contingencyPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full contingencyPct"
+        },
+        "full_restore7": {
+          "id": "full_restore7",
+          "name": "Restore Full unitsTotal",
+          "next": "full_restore8",
+          "type": "update-variable",
+          "varId": "8399bc02-5350-4b7e-bc5b-1e43df429cb5-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"unitsTotal\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full unitsTotal"
+        },
+        "full_restore8": {
+          "id": "full_restore8",
+          "name": "Restore Full avgUnitPrice",
+          "next": "full_restore9",
+          "type": "update-variable",
+          "varId": "77bbb306-4315-49ca-9e86-c931ca6cf3cb-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"avgUnitPrice\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full avgUnitPrice"
+        },
+        "full_restore9": {
+          "id": "full_restore9",
+          "name": "Restore Full constructionMonths",
+          "next": "full_restore10",
+          "type": "update-variable",
+          "varId": "097b79ed-3967-47b0-95c8-d580689d566f-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"constructionMonths\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full constructionMonths"
+        },
+        "full_restore10": {
+          "id": "full_restore10",
+          "name": "Restore Full ltcPct",
+          "next": "full_restore11",
+          "type": "update-variable",
+          "varId": "784b5058-9916-46b3-9421-aa7a0f5ca62e-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"ltcPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full ltcPct"
+        },
+        "full_restore11": {
+          "id": "full_restore11",
+          "name": "Restore Full financingRate",
+          "next": "full_restore12",
+          "type": "update-variable",
+          "varId": "8a966c1f-ffef-4f34-8e65-be9988c1e4a5-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"financingRate\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full financingRate"
+        },
+        "full_restore12": {
+          "id": "full_restore12",
+          "name": "Restore Full interestReservePercent",
+          "next": "full_restore13",
+          "type": "update-variable",
+          "varId": "d7baf3cd-9e3b-46e5-ae8b-d8ce685a8ba9-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"interestReservePercent\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full interestReservePercent"
+        },
+        "full_restore13": {
+          "id": "full_restore13",
+          "name": "Restore Full withdrawalFactor",
+          "next": "full_restore14",
+          "type": "update-variable",
+          "varId": "da3d3879-6ae4-4c93-a09c-006bb95cf8fe-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"withdrawalFactor\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full withdrawalFactor"
+        },
+        "full_restore14": {
+          "id": "full_restore14",
+          "name": "Restore Full commitmentFeePercent",
+          "next": "full_restore15",
+          "type": "update-variable",
+          "varId": "b303c39d-2efb-4017-8ed8-feb3a5196911-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"commitmentFeePercent\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full commitmentFeePercent"
+        },
+        "full_restore15": {
+          "id": "full_restore15",
+          "name": "Restore Full sellOffMonths",
+          "next": "full_restore16",
+          "type": "update-variable",
+          "varId": "f2418af6-45df-4dea-9ae0-31bbfca651ab-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"sellOffMonths\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full sellOffMonths"
+        },
+        "full_restore16": {
+          "id": "full_restore16",
+          "name": "Restore Full sponsorEquityAmount",
+          "next": "full_restore17",
+          "type": "update-variable",
+          "varId": "5afbcaf1-3f88-4123-887c-d5dedd3fb7e7-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"sponsorEquityAmount\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full sponsorEquityAmount"
+        },
+        "full_restore17": {
+          "id": "full_restore17",
+          "name": "Restore Full mezzAmount",
+          "next": "full_restore18",
+          "type": "update-variable",
+          "varId": "45918e7d-31c1-41aa-96aa-1da750e6cffa-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"mezzAmount\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full mezzAmount"
+        },
+        "full_restore18": {
+          "id": "full_restore18",
+          "name": "Restore Full mezzRate",
+          "next": "full_restore19",
+          "type": "update-variable",
+          "varId": "7259ba73-0fa0-4347-88dc-a0c849267c5a-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"mezzRate\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full mezzRate"
+        },
+        "full_restore19": {
+          "id": "full_restore19",
+          "name": "Restore Full mezzAmortizationYears",
+          "next": "full_restore20",
+          "type": "update-variable",
+          "varId": "e2bd3dd9-9da1-4364-b4cf-4745b22f8791-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"mezzAmortizationYears\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full mezzAmortizationYears"
+        },
+        "full_restore20": {
+          "id": "full_restore20",
+          "name": "Restore Full mezzDrawMonth",
+          "next": "full_restore21",
+          "type": "update-variable",
+          "varId": "0d0f654a-9da4-4cf5-af19-4e5fc29aff14-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"mezzDrawMonth\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full mezzDrawMonth"
+        },
+        "full_restore21": {
+          "id": "full_restore21",
+          "name": "Restore Full mezzSellOffMonths",
+          "next": "full_restore22",
+          "type": "update-variable",
+          "varId": "1031af23-51f8-4009-bcce-74db95865a68-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"mezzSellOffMonths\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full mezzSellOffMonths"
+        },
+        "full_restore22": {
+          "id": "full_restore22",
+          "name": "Restore Full presaleDepositAmount",
+          "next": "full_restore23",
+          "type": "update-variable",
+          "varId": "ab4f0c57-a162-48d2-bda9-6b1ec5f3a660-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"presaleDepositAmount\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full presaleDepositAmount"
+        },
+        "full_restore23": {
+          "id": "full_restore23",
+          "name": "Restore Full presaleDepositMilestoneMonth",
+          "next": "full_restore24",
+          "type": "update-variable",
+          "varId": "539b7262-4d56-4b32-b0a6-7f507175c42c-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"presaleDepositMilestoneMonth\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full presaleDepositMilestoneMonth"
+        },
+        "full_restore24": {
+          "id": "full_restore24",
+          "name": "Restore Full landCostActual",
+          "next": "full_restore25",
+          "type": "update-variable",
+          "varId": "3ed02a26-2181-490e-8fc5-f687c2de3d00-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"landCostActual\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full landCostActual"
+        },
+        "full_restore25": {
+          "id": "full_restore25",
+          "name": "Restore Full landCostCommitted",
+          "next": "full_restore26",
+          "type": "update-variable",
+          "varId": "ae25d002-d5bc-490d-a408-ca87a89653a4-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"landCostCommitted\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full landCostCommitted"
+        },
+        "full_restore26": {
+          "id": "full_restore26",
+          "name": "Restore Full hardCostActualPct",
+          "next": "full_restore27",
+          "type": "update-variable",
+          "varId": "f73f39bc-3f58-45c0-946b-4d7e8388388b-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"hardCostActualPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full hardCostActualPct"
+        },
+        "full_restore27": {
+          "id": "full_restore27",
+          "name": "Restore Full hardCostCommittedPct",
+          "next": "full_restore28",
+          "type": "update-variable",
+          "varId": "6ff6dbc9-7f8e-42c3-a21f-a14237c3e051-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"hardCostCommittedPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full hardCostCommittedPct"
+        },
+        "full_restore28": {
+          "id": "full_restore28",
+          "name": "Restore Full softCostActualPct",
+          "next": "full_restore29",
+          "type": "update-variable",
+          "varId": "543e5fb0-1ca4-4fea-96ef-3ddfa91cb377-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"softCostActualPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full softCostActualPct"
+        },
+        "full_restore29": {
+          "id": "full_restore29",
+          "name": "Restore Full softCostCommittedPct",
+          "next": "full_restore30",
+          "type": "update-variable",
+          "varId": "7f1070e9-5c6f-438a-830c-51b4ab5902ff-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"softCostCommittedPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full softCostCommittedPct"
+        },
+        "full_restore30": {
+          "id": "full_restore30",
+          "name": "Restore Full contingencyActualPct",
+          "next": "full_clearResult",
+          "type": "update-variable",
+          "varId": "df8ac26b-2aa3-41a8-bf92-1709019db9ec-value",
+          "varValue": {
+            "code": "variables['e7b66c7e-8921-4797-a42b-f34f88581ed0']?.[\"contingencyActualPct\"] ?? ''",
+            "__wwtype": "f",
+            "defaultValue": ""
+          },
+          "__wwdescription": "Restore Full contingencyActualPct"
+        },
+        "full_clearResult": {
+          "id": "full_clearResult",
+          "name": "Withhold prior calculation after navigation",
+          "next": "full_epoch",
+          "type": "update-variable",
+          "varId": "f6770392-ba19-4154-945b-0178de9a1e6e",
+          "varValue": {
+            "status": "notRun"
+          },
+          "__wwdescription": "Withhold prior calculation after navigation"
+        },
+        "full_restoreSource": {
+          "id": "full_restoreSource",
+          "name": "Restore this owner's Full draft only",
+          "next": "full_owner",
+          "type": "update-variable",
+          "varId": "e7b66c7e-8921-4797-a42b-f34f88581ed0",
+          "varValue": {
+            "code": "variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']?.ownerId === (variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id ?? null) ? (variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']?.navigationInputs ?? {}) : {}",
+            "__wwtype": "f",
+            "defaultValue": {}
+          },
+          "__wwdescription": "Restore this owner's Full draft only"
+        },
+        "fullOnly": {
+          "type": "filter",
+          "name": "Load Full helper only for Full",
+          "__wwdescription": "Library and other panels do not load the remote calculation helper",
+          "value": {
+            "__wwtype": "f",
+            "code": "variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] === 'full'"
+          },
+          "next": "fullLoading"
+        },
+        "fullLoading": {
+          "type": "update-variable",
+          "name": "Show Full helper loading",
+          "__wwdescription": "Expose the native module's existing client availability state",
+          "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+          "varValue": "loading",
+          "next": "fullLoad"
+        },
+        "fullLoad": {
+          "id": "fullLoad",
+          "code": "// Load only the reviewed client helper; Full calculations run on Railway.\ntry {\n const existing = globalThis.InvestScapeFullClient;\n const matches = value => value?.buildIdentity === 'full-client-1' && value?.targetCalculationPackageVersion === '0.10.0-p2-6b';\n if (existing) return matches(existing) ? 'ready' : 'versionMismatch';\n await new Promise((resolve,reject) => {\n  const script = document.createElement('script');\n  script.src = 'https://native-full-staging-api-production.up.railway.app/v1/development/assets/full-client-1/investscape-full-client.full-client-1.target-0.10.0-p2-6b.js';\n  script.integrity = 'sha256-irutE0AHcHOrSzHzqaThDufHqLaqnqVeUr7sIVQLTyY=';\n  script.crossOrigin = 'anonymous';\n  script.onload = resolve;\n  script.onerror = () => reject(new Error('Client load failed'));\n  document.head.appendChild(script);\n });\n return matches(globalThis.InvestScapeFullClient) ? 'ready' : 'versionMismatch';\n} catch (_) { return 'loadFailed'; }",
+          "name": "Load pinned helper",
+          "next": "fullStatus",
+          "type": "custom-js",
+          "__wwdescription": "Verify browser helper build and version; no financial calculations"
+        },
+        "fullStatus": {
+          "id": "fullStatus",
+          "name": "Record helper availability",
+          "next": null,
+          "type": "update-variable",
+          "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+          "varValue": {
+            "__wwtype": "f",
+            "code": "context.workflow['fullLoad'].result"
+          },
+          "__wwdescription": "Readable client connection state"
+        }
+      }
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "id": "0c37a29a-9cda-462a-af1a-09843f0f20de",
+      "scope": "page",
+      "name": "Retain main app module drafts on exit",
+      "description": "Retain the existing owner-scoped Quick/Full raw navigation drafts and fence late operations when leaving the app page; same-page ribbon switches retain mounted state.",
+      "folder": "InvestScape/Main App/",
+      "trigger": "page-unload",
+      "firstAction": "quick_retain",
+      "actions": {
+        "quick_cancel": {
+          "id": "quick_cancel",
+          "name": "Fence late persistence operations",
+          "next": "full_retain",
+          "type": "update-variable",
+          "varId": "7d1b3a8a-9b04-49b2-aeaa-829eb86d6e2c",
+          "varValue": "",
+          "__wwdescription": "Fence late persistence operations"
+        },
+        "quick_retain": {
+          "id": "quick_retain",
+          "name": "Retain owner-scoped Quick navigation draft",
+          "next": "quick_cancel",
+          "type": "update-variable",
+          "varId": "a031b049-3422-4985-8f7f-beae3e7265e3",
+          "varValue": {
+            "code": "const previous=variables['a031b049-3422-4985-8f7f-beae3e7265e3']||{};\nconst ownerId=variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id??null;\nif(previous.ownerId && previous.ownerId!==ownerId)return {};\nconst map={\"purchasePrice\":\"1a2807e2-f306-4405-b9e6-0f5c823e0084-value\",\"holdPeriodYears\":\"7c6343f3-810c-4f8a-aab9-33e9e471d195-value\",\"constructionCostTotal\":\"f07c2951-0132-43e0-bb88-de6c406bf990-value\",\"softCostPct\":\"2e9641fe-657d-4a63-a006-731b8ec860e7-value\",\"grossSelloutValue\":\"b0382055-ddaf-4133-871b-435d1e24c4c5-value\",\"requiredProfitMarginPct\":\"d98bb781-5a14-4352-a59f-0eb0acbc8c09-value\"}, inputs={};\nfor(const[k,path]of Object.entries(map))inputs[k]=variables[path]??'';\nreturn {...previous,ownerId,navigationInputs:inputs,draftName:String(variables['9768e3e8-306c-46e1-ba6a-ec882d5b59ae-value']||'')};",
+            "__wwtype": "js"
+          },
+          "__wwdescription": "Retain owner-scoped Quick navigation draft"
+        },
+        "full_epoch": {
+          "id": "full_epoch",
+          "name": "Leave page generation",
+          "next": null,
+          "type": "update-variable",
+          "varId": "157c4d82-bd7a-4ce1-bc6a-7aa52f194c23",
+          "varValue": {
+            "code": "(variables['157c4d82-bd7a-4ce1-bc6a-7aa52f194c23'] || 0) + 1",
+            "__wwtype": "f"
+          },
+          "__wwdescription": "Reject pending Full requests after navigation"
+        },
+        "full_cancel": {
+          "id": "full_cancel",
+          "name": "Fence late persistence operations",
+          "next": "full_epoch",
+          "type": "update-variable",
+          "varId": "b8aa4e07-c794-4ad1-89c6-e96157d24467",
+          "varValue": "",
+          "__wwdescription": "Fence late persistence operations"
+        },
+        "full_retain": {
+          "id": "full_retain",
+          "name": "Retain owner-scoped Full navigation draft",
+          "next": "full_cancel",
+          "type": "update-variable",
+          "varId": "4083e27a-107c-4ccb-8e20-fa4bb6b0e579",
+          "varValue": {
+            "code": "const previous=variables['4083e27a-107c-4ccb-8e20-fa4bb6b0e579']||{};\nconst ownerId=variables['1fa0dd68-5069-436c-9a7d-3b54c340f1fa-user']?.id??null;\nif(previous.ownerId && previous.ownerId!==ownerId)return {};\nconst map={\"landCost\":\"0eb40a1c-359a-42c4-bf42-d6ef324814ad-value\",\"provinceState\":\"dc99391b-5f88-43ea-b493-482282e7d62c-value\",\"acquisitionType\":\"0bf0d5e7-f4b2-4fbb-bc34-4ffd57c300cc-value\",\"multiParcelAssembly\":\"6eca3366-bc1b-4972-975a-2dac67e58923-value\",\"parcel2Price\":\"34a4400c-21ef-4b55-b531-931b13f2faa6-value\",\"parcel2Fmv\":\"4a61e8e1-7dde-41e2-98b6-4ad8536704af-value\",\"hardCostPsf\":\"a1646bf7-0ea5-4335-a313-61877e342c4d-value\",\"buildableSf\":\"fe4c7343-d4b1-4a87-ba6f-fa633e882644-value\",\"softCostPct\":\"150f6b5f-7fea-430f-b1fc-4134d11de8ac-value\",\"contingencyPct\":\"1bdd49ed-397f-43ec-ad0d-5d205385fe39-value\",\"unitsTotal\":\"8399bc02-5350-4b7e-bc5b-1e43df429cb5-value\",\"avgUnitPrice\":\"77bbb306-4315-49ca-9e86-c931ca6cf3cb-value\",\"constructionMonths\":\"097b79ed-3967-47b0-95c8-d580689d566f-value\",\"ltcPct\":\"784b5058-9916-46b3-9421-aa7a0f5ca62e-value\",\"financingRate\":\"8a966c1f-ffef-4f34-8e65-be9988c1e4a5-value\",\"interestReservePercent\":\"d7baf3cd-9e3b-46e5-ae8b-d8ce685a8ba9-value\",\"withdrawalFactor\":\"da3d3879-6ae4-4c93-a09c-006bb95cf8fe-value\",\"commitmentFeePercent\":\"b303c39d-2efb-4017-8ed8-feb3a5196911-value\",\"seniorRepaymentType\":\"4d73e54a-0680-448c-b25e-56ee8d5847fb-value\",\"sellOffMonths\":\"f2418af6-45df-4dea-9ae0-31bbfca651ab-value\",\"sponsorEquityAmount\":\"5afbcaf1-3f88-4123-887c-d5dedd3fb7e7-value\",\"mezzAmount\":\"45918e7d-31c1-41aa-96aa-1da750e6cffa-value\",\"mezzRate\":\"7259ba73-0fa0-4347-88dc-a0c849267c5a-value\",\"mezzAmortizationYears\":\"e2bd3dd9-9da1-4364-b4cf-4745b22f8791-value\",\"mezzDrawMonth\":\"0d0f654a-9da4-4cf5-af19-4e5fc29aff14-value\",\"mezzRepaymentType\":\"20c73137-0576-45c8-8a25-1705cf4bd07c-value\",\"mezzSellOffMonths\":\"1031af23-51f8-4009-bcce-74db95865a68-value\",\"presaleDepositAmount\":\"ab4f0c57-a162-48d2-bda9-6b1ec5f3a660-value\",\"presaleDepositMilestoneMonth\":\"539b7262-4d56-4b32-b0a6-7f507175c42c-value\",\"landCostActual\":\"3ed02a26-2181-490e-8fc5-f687c2de3d00-value\",\"landCostCommitted\":\"ae25d002-d5bc-490d-a408-ca87a89653a4-value\",\"hardCostActualPct\":\"f73f39bc-3f58-45c0-946b-4d7e8388388b-value\",\"hardCostCommittedPct\":\"6ff6dbc9-7f8e-42c3-a21f-a14237c3e051-value\",\"softCostActualPct\":\"543e5fb0-1ca4-4fea-96ef-3ddfa91cb377-value\",\"softCostCommittedPct\":\"7f1070e9-5c6f-438a-830c-51b4ab5902ff-value\",\"contingencyActualPct\":\"df8ac26b-2aa3-41a8-bf92-1709019db9ec-value\"}, inputs={};\nfor(const[k,path]of Object.entries(map))inputs[k]=variables[path]??'';\nreturn {...previous,ownerId,navigationInputs:inputs,draftName:String(variables['c10b969e-65dd-4644-845f-0dae6f7e5bed-value']||'')};",
+            "__wwtype": "js"
+          },
+          "__wwdescription": "Retain owner-scoped Full navigation draft"
+        }
+      }
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "elementUid": "faefe523-8a7a-4c42-a834-420ce01addc8",
+      "id": "6d9471d5-b1d0-4898-9ccd-f58e21cec17e",
+      "scope": "element",
+      "name": "Open Quick inside main app",
+      "description": "Keep the URL fixed on the main app page. The standalone Workspace draft retains its original internal page link.",
+      "trigger": "click",
+      "firstAction": "scope",
+      "actions": {
+        "scope": {
+          "type": "filter",
+          "name": "Use only inside main app",
+          "__wwdescription": "Preserve standalone Workspace navigation",
+          "value": {
+            "__wwtype": "f",
+            "code": "globalContext.browser.path?.includes('fa691651-6fc1-45df-9d69-968d5baeb6ca') || globalContext.browser.path === '/app' || globalContext.browser.path === 'app'"
+          },
+          "next": "module"
+        },
+        "module": {
+          "type": "update-variable",
+          "name": "Open Quick panel",
+          "__wwdescription": "Mounted forms retain their own native values",
+          "varId": "6391f7e9-1397-4424-b85f-4fd8ad76bb7c",
+          "varValue": "quick",
+          "next": null
+        }
+      }
+    }
+  ],
+  "titleBinding": {
+    "__wwtype": "js",
+    "code": "// Build a display title from the current page or internal module, using the shared copy catalog.\nconst path = globalContext.browser.path ?? '';\nconst isApp = path.includes('fa691651-6fc1-45df-9d69-968d5baeb6ca') || path === '/app' || path === 'app';\nconst modules = {workspace: 'Your investment workspace', quick: 'Quick Deal Analyzer', full: 'Full Development Studio', portfolio: 'Portfolio', 'market-intel': 'Market Intel', research: 'Research', library: 'Library', community: 'Community'};\nconst pages = {'0638fef4-2a31-489a-b7a8-bde95c384ce6': 'Your investment workspace', '1005895d-bf81-4f39-b9da-7e871a776390': 'Staging connection test', 'd789a8fd-f136-46ed-8ac1-3355db79c635': 'Full Development Studio', 'f57615c4-7e3c-4b97-8078-eb575a075f14': 'Quick Deal Analyzer'};\nconst pageKey = Object.keys(pages).find(key => path.includes(key));\nconst label = isApp ? modules[variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c']] ?? 'Library' : pages[pageKey];\nconst locale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? 'en';\nconst translated = variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[label]?.[locale] ?? label;\nreturn translated ? 'InvestScape · ' + translated : 'InvestScape';",
+    "defaultValue": "InvestScape"
+  },
+  "pendingPanels": [
+    {
+      "key": "portfolio",
+      "sectionUid": "dfbe5f87-4413-4457-b8be-92344c9e9976",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "market-intel",
+      "sectionUid": "b069e76b-d2fc-427c-a5ae-9de9b6431208",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "research",
+      "sectionUid": "09fb3ce1-1187-4d3f-9d7f-b16c2523d9c3",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "community",
+      "sectionUid": "baaf7827-2643-417e-bc66-fe48d891efd6",
+      "status": "Pending module wiring; no live data or mock content"
+    }
+  ]
+}

@@ -1,0 +1,537 @@
+{
+  "date": "2026-10-10",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pages": [
+    {
+      "id": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+      "name": "InvestScape Workspace",
+      "isDraft": true,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "7dc18c1a-77ca-41b9-804a-5cc82f26b011:InvestScape Shared Header\n36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\na16a95bd-11b3-4a25-a870-ed2a2e176e56:Workspace Main",
+      "paths": {
+        "default": "workspace"
+      }
+    },
+    {
+      "id": "1005895d-bf81-4f39-b9da-7e871a776390",
+      "name": "InvestScape Connection Test",
+      "isDraft": true,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "7dc18c1a-77ca-41b9-804a-5cc82f26b011:InvestScape Shared Header\n36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\nd658318a-1210-43a3-ac1b-d782a2e9a57f:Staging Connection Diagnostic",
+      "paths": {
+        "default": "connection-test"
+      }
+    },
+    {
+      "id": "d789a8fd-f136-46ed-8ac1-3355db79c635",
+      "name": "Full Development Studio",
+      "isDraft": true,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "7dc18c1a-77ca-41b9-804a-5cc82f26b011:InvestScape Shared Header\n36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\nad8ea673-b402-46af-af0b-ee8973abb552:Full Studio Main",
+      "paths": {
+        "default": "development-studio"
+      }
+    },
+    {
+      "id": "f57615c4-7e3c-4b97-8078-eb575a075f14",
+      "name": "Quick Deal Analyzer",
+      "isDraft": true,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "7dc18c1a-77ca-41b9-804a-5cc82f26b011:InvestScape Shared Header\n36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\n54cf6229-f535-419d-a34c-8b6b9f5302fe:Quick Screening Main",
+      "paths": {
+        "default": "quick-deal-analyzer"
+      }
+    },
+    {
+      "id": "c4a4acc8-56f5-45ce-88cc-b15c2291d87a",
+      "name": "Home",
+      "isDraft": false,
+      "isHomePage": true,
+      "canBeHomePage": true,
+      "sections": "36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\n57b4316a-7e7e-4d12-9e71-0307f3e2f407:New section",
+      "paths": {
+        "default": "home"
+      }
+    },
+    {
+      "id": "cc933e69-4bce-4b67-9133-208234129dc4",
+      "name": "Login",
+      "isDraft": false,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\n844cd190-512c-4834-b94b-83cabeada2f5:Login\n9d7aa08b-1676-4fcf-a9f5-62126df2fc7b:Sign up",
+      "paths": {
+        "default": "login"
+      }
+    },
+    {
+      "id": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+      "name": "User Profile",
+      "isDraft": false,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\nac77d086-a043-4e16-9808-0251891afb0a:New section",
+      "paths": {
+        "default": "user-profiles"
+      }
+    },
+    {
+      "id": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "name": "InvestScape Main App",
+      "isDraft": true,
+      "isHomePage": false,
+      "canBeHomePage": true,
+      "sections": "7dc18c1a-77ca-41b9-804a-5cc82f26b011:InvestScape Shared Header\n2f6acb2c-2fa5-4d2d-bdb8-7f1a6c1109b2:InvestScape Main App Ribbon\n36c29906-d652-40cf-b9db-272f2df41fda:InvestScape Global Settings\na16a95bd-11b3-4a25-a870-ed2a2e176e56:Workspace Main\nfcc328a2-62b5-4031-b727-de583d290f0e:Library Review Main\n54cf6229-f535-419d-a34c-8b6b9f5302fe:Quick Screening Main\nad8ea673-b402-46af-af0b-ee8973abb552:Full Studio Main\ndfbe5f87-4413-4457-b8be-92344c9e9976:Main App Portfolio Panel\nb069e76b-d2fc-427c-a5ae-9de9b6431208:Main App Market Intel Panel\n09fb3ce1-1187-4d3f-9d7f-b16c2523d9c3:Main App Research Panel\nbaaf7827-2643-417e-bc66-fe48d891efd6:Main App Community Panel",
+      "paths": {
+        "default": "app"
+      }
+    }
+  ],
+  "components": {
+    "components": [
+      {
+        "wwObjectBaseId": "b2e4a5f0-a6d1-4df4-b0f5-778193887b23",
+        "wwObjectBaseVersionId": "98e53fe1-8f79-421a-b901-30762ce7958e",
+        "name": "investscape-global-settings",
+        "tag": "investscape-global-settings",
+        "type": "ai",
+        "isOwner": true,
+        "isEditable": true,
+        "isReady": true,
+        "description": "Shared four-language, theme and country/currency display preferences with a device-local host store."
+      },
+      {
+        "wwObjectBaseId": "3d621fc9-e746-4983-a74a-9663f4c52c0f",
+        "wwObjectBaseVersionId": "bef62685-1d7e-4268-b40e-ca35351f4e8e",
+        "name": "investscape-learning-library",
+        "tag": "investscape-learning-library",
+        "type": "ai",
+        "isOwner": true,
+        "isEditable": true,
+        "isReady": true,
+        "description": "Educational glossary and formula browsing with four-language explanations and worked examples."
+      },
+      {
+        "wwObjectBaseId": "a248e975-57b3-4663-80a5-92b11c368070",
+        "wwObjectBaseVersionId": "8438bed3-fb4f-4f14-a0d6-61cbedeacfc3",
+        "name": "investscape-app-ribbon",
+        "tag": "investscape-app-ribbon",
+        "type": "ai",
+        "isOwner": true,
+        "isEditable": true,
+        "isReady": true,
+        "description": "One-page app main ribbon and Development sub-ribbon with accessible, four-language panel selection."
+      }
+    ]
+  },
+  "displayElements": [
+    {
+      "uid": "17de0906-4666-47a7-9162-4a87832ae6b7",
+      "tag": "investscape-global-settings",
+      "name": "Shared Global Settings",
+      "content": {
+        "default": {
+          "theme": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? \"light\"",
+            "__wwtype": "f"
+          },
+          "locale": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? \"en\"",
+            "__wwtype": "f"
+          },
+          "pageTitle": {
+            "code": "// Build a display title from the current page or internal module, using the shared copy catalog.\nconst path = globalContext.browser.path ?? '';\nconst isApp = path.includes('fa691651-6fc1-45df-9d69-968d5baeb6ca') || path === '/app' || path === 'app';\nconst modules = {workspace: 'Your investment workspace', quick: 'Quick Deal Analyzer', full: 'Full Development Studio', portfolio: 'Portfolio', 'market-intel': 'Market Intel', research: 'Research', library: 'Library', community: 'Community'};\nconst pages = {'0638fef4-2a31-489a-b7a8-bde95c384ce6': 'Your investment workspace', '1005895d-bf81-4f39-b9da-7e871a776390': 'Staging connection test', 'd789a8fd-f136-46ed-8ac1-3355db79c635': 'Full Development Studio', 'f57615c4-7e3c-4b97-8078-eb575a075f14': 'Quick Deal Analyzer'};\nconst pageKey = Object.keys(pages).find(key => path.includes(key));\nconst label = isApp ? modules[variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c']] ?? 'Library' : pages[pageKey];\nconst locale = variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? 'en';\nconst translated = variables['33c40b55-031f-41f7-b0ce-5aa3fe05a7e2']?.[label]?.[locale] ?? label;\nreturn translated ? 'InvestScape · ' + translated : 'InvestScape';",
+            "__wwtype": "js",
+            "defaultValue": "InvestScape"
+          },
+          "homeCountry": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.homeCountry ?? \"CA\"",
+            "__wwtype": "f"
+          },
+          "baseCurrency": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.baseCurrency ?? \"CAD\"",
+            "__wwtype": "f"
+          },
+          "startingModule": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.startingModule ?? \"library\"",
+            "__wwtype": "f"
+          },
+          "baseCurrencyMode": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.baseCurrencyMode ?? \"country-default\"",
+            "__wwtype": "f"
+          }
+        }
+      },
+      "slots": [],
+      "classes": {},
+      "subClasses": {},
+      "states": [],
+      "attributes": {},
+      "workflows": [
+        {
+          "id": "19b1390e-2d38-4a69-b9aa-40ea4ed2e070",
+          "name": "Save global settings",
+          "scope": "element",
+          "folder": "",
+          "pageId": "0638fef4-2a31-489a-b7a8-bde95c384ce6",
+          "actions": {
+            "theme": {
+              "id": "theme",
+              "name": "Apply global appearance",
+              "next": null,
+              "type": "change-theme",
+              "theme": {
+                "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'",
+                "__wwtype": "f"
+              },
+              "__wwdescription": "Apply the saved display theme without changing Auth or project data"
+            },
+            "preferences": {
+              "id": "preferences",
+              "name": "Save validated display preference",
+              "next": "theme",
+              "type": "update-variable",
+              "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+              "varValue": {
+                "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn changePreference(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], event?.field, event?.value, variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);",
+                "__wwtype": "js"
+              },
+              "__wwdescription": "Persist only supported display preference values on this device"
+            }
+          },
+          "trigger": "preferenceChange",
+          "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+          "elementUid": "17de0906-4666-47a7-9162-4a87832ae6b7",
+          "description": "Supported user display changes update the shared device preference; member/account authority is untouched.",
+          "firstAction": "preferences"
+        }
+      ],
+      "style": {
+        "default": {}
+      }
+    },
+    {
+      "uid": "91075dae-91ae-45ff-b694-d407686d6aa9",
+      "tag": "investscape-app-ribbon",
+      "name": "Main Ribbon And Development Subribbon",
+      "content": {
+        "default": {
+          "theme": {
+            "code": "globalContext.browser.theme",
+            "__wwtype": "f",
+            "defaultValue": "light"
+          },
+          "locale": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? 'en'",
+            "__wwtype": "f",
+            "defaultValue": "en"
+          },
+          "activeModule": {
+            "code": "variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] ?? 'library'",
+            "__wwtype": "f",
+            "defaultValue": "library"
+          }
+        }
+      },
+      "slots": [],
+      "classes": {},
+      "subClasses": {},
+      "states": [],
+      "attributes": {},
+      "workflows": [
+        {
+          "id": "1c9d3422-497c-49b4-8f96-8c8b50a7d344",
+          "name": "Switch internal app panel",
+          "scope": "element",
+          "folder": "",
+          "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+          "actions": {
+            "module": {
+              "id": "module",
+              "name": "Choose an internal panel",
+              "next": "fullOnly",
+              "type": "update-variable",
+              "varId": "6391f7e9-1397-4424-b85f-4fd8ad76bb7c",
+              "varValue": {
+                "code": "// Custom component payloads are exposed through the runtime event global.\nconst value = event?.value;\nconst allowed = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'];\nreturn allowed.includes(value) ? value : variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] ?? 'library';",
+                "__wwtype": "js"
+              },
+              "__wwdescription": "Validate the emitted module choice and update only display state"
+            },
+            "fullLoad": {
+              "id": "fullLoad",
+              "code": "// Load only the reviewed client helper; Full calculations run on Railway.\ntry {\n const existing = globalThis.InvestScapeFullClient;\n const matches = value => value?.buildIdentity === 'full-client-1' && value?.targetCalculationPackageVersion === '0.10.0-p2-6b';\n if (existing) return matches(existing) ? 'ready' : 'versionMismatch';\n await new Promise((resolve,reject) => {\n  const script = document.createElement('script');\n  script.src = 'https://native-full-staging-api-production.up.railway.app/v1/development/assets/full-client-1/investscape-full-client.full-client-1.target-0.10.0-p2-6b.js';\n  script.integrity = 'sha256-irutE0AHcHOrSzHzqaThDufHqLaqnqVeUr7sIVQLTyY=';\n  script.crossOrigin = 'anonymous';\n  script.onload = resolve;\n  script.onerror = () => reject(new Error('Client load failed'));\n  document.head.appendChild(script);\n });\n return matches(globalThis.InvestScapeFullClient) ? 'ready' : 'versionMismatch';\n} catch (_) { return 'loadFailed'; }",
+              "name": "Load pinned helper",
+              "next": "fullStatus",
+              "type": "custom-js",
+              "__wwdescription": "Verify browser helper build and version; no financial calculations"
+            },
+            "fullOnly": {
+              "id": "fullOnly",
+              "name": "Load Full helper only for Full",
+              "next": "fullLoading",
+              "type": "filter",
+              "value": {
+                "code": "variables['6391f7e9-1397-4424-b85f-4fd8ad76bb7c'] === 'full'",
+                "__wwtype": "f"
+              },
+              "__wwdescription": "Library and other panels do not load the remote calculation helper"
+            },
+            "fullStatus": {
+              "id": "fullStatus",
+              "name": "Record helper availability",
+              "next": null,
+              "type": "update-variable",
+              "value": {
+                "code": "context.workflow['fullLoad'].result",
+                "__wwtype": "f"
+              },
+              "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+              "varValue": {
+                "code": "context.workflow['fullLoad'].result",
+                "__wwtype": "f"
+              },
+              "__wwdescription": "Readable client connection state"
+            },
+            "fullLoading": {
+              "id": "fullLoading",
+              "name": "Show Full helper loading",
+              "next": "fullLoad",
+              "type": "update-variable",
+              "value": "loading",
+              "varId": "7e62fd40-a083-43ed-9a40-f8d32c119760",
+              "varValue": "loading",
+              "__wwdescription": "Expose the native module's existing client availability state"
+            }
+          },
+          "trigger": "moduleChange",
+          "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+          "elementUid": "91075dae-91ae-45ff-b694-d407686d6aa9",
+          "description": "Validate the internal module choice without navigation. Keep inactive module elements mounted. Only selecting Full loads its existing pinned helper asset; no calculation or persistence is called.",
+          "firstAction": "module"
+        }
+      ],
+      "style": {
+        "default": {}
+      }
+    },
+    {
+      "uid": "cd93727a-145b-46fb-8986-3bfdd93c109e",
+      "tag": "investscape-learning-library",
+      "name": "Learning Library",
+      "content": {
+        "default": {
+          "theme": {
+            "code": "globalContext.browser.theme ?? 'auto'",
+            "__wwtype": "f",
+            "defaultValue": "auto"
+          },
+          "locale": {
+            "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.locale ?? variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'",
+            "__wwtype": "f",
+            "defaultValue": "en"
+          },
+          "enabled": true
+        }
+      },
+      "slots": [],
+      "classes": {},
+      "subClasses": {},
+      "states": [],
+      "attributes": {},
+      "workflows": [
+        {
+          "id": "0bd5fdf8-21cc-404c-bb27-4188070db89e",
+          "name": "Set global language from Library",
+          "scope": "element",
+          "folder": "",
+          "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+          "actions": {
+            "theme": {
+              "id": "theme",
+              "name": "Apply global appearance",
+              "next": null,
+              "type": "change-theme",
+              "theme": {
+                "code": "variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75']?.theme ?? 'light'",
+                "__wwtype": "f"
+              },
+              "__wwdescription": "Apply the saved display theme without changing Auth or project data"
+            },
+            "preferences": {
+              "id": "preferences",
+              "name": "Save validated display preference",
+              "next": "theme",
+              "type": "update-variable",
+              "varId": "02eeeb96-2c85-4339-83f0-da9bdffd4a75",
+              "varValue": {
+                "code": "const SUPPORTED_LOCALES = Object.freeze(['en', 'fr-CA', 'zh-Hant', 'zh-Hans']);\n\n// Normalize only display preferences. Never copy account or project data into this store.\nfunction normalizePreferences(input, legacyLocale = 'en', currentTheme = 'light') {\n    const candidate = input && typeof input === 'object' && !Array.isArray(input) && input.schemaVersion === 1 ? input : {};\n    const chosenLocale = candidate.locale === 'fr' ? 'fr-CA' : candidate.locale;\n    const importedLocale = legacyLocale === 'fr' ? 'fr-CA' : legacyLocale;\n    const locale = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(chosenLocale) ? chosenLocale :\n        ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(importedLocale) ? importedLocale : 'en';\n    const theme = ['light', 'dark'].includes(candidate.theme) ? candidate.theme : currentTheme === 'dark' ? 'dark' : 'light';\n    const homeCountry = candidate.homeCountry === 'US' ? 'US' : 'CA';\n    const baseCurrencyMode = candidate.baseCurrencyMode === 'explicit' && ['CAD', 'USD'].includes(candidate.baseCurrency) ? 'explicit' : 'country-default';\n    const baseCurrency = baseCurrencyMode === 'explicit' ? candidate.baseCurrency : homeCountry === 'CA' ? 'CAD' : 'USD';\n    const startingModule = ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(candidate.startingModule) ? candidate.startingModule : 'library';\n    return {schemaVersion: 1, locale, theme, homeCountry, baseCurrency, baseCurrencyMode, startingModule, shellPreset: 'original-horizontal', layoutOverrides: {}};\n}\n\n// A country default is a display preference, never a change to a property's jurisdiction or amounts.\nfunction changePreference(input, field, value, legacyLocale = 'en', currentTheme = 'light') {\n    const previous = normalizePreferences(input, legacyLocale, currentTheme);\n    const next = {...previous};\n    if (field === 'locale' && ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'].includes(value)) next.locale = value;\n    else if (field === 'theme' && ['light', 'dark'].includes(value)) next.theme = value;\n    else if (field === 'homeCountry' && ['CA', 'US'].includes(value)) next.homeCountry = value;\n    else if (field === 'startingModule' && ['workspace', 'quick', 'full', 'portfolio', 'market-intel', 'research', 'library', 'community'].includes(value)) next.startingModule = value;\n    else if (field === 'baseCurrency' && value === 'country-default') next.baseCurrencyMode = 'country-default';\n    else if (field === 'baseCurrency' && ['CAD', 'USD'].includes(value)) { next.baseCurrencyMode = 'explicit'; next.baseCurrency = value; }\n    const normalized = normalizePreferences(next, legacyLocale, currentTheme);\n    return JSON.stringify(previous) === JSON.stringify(normalized) ? previous : normalized;\n}\n\nreturn changePreference(variables['02eeeb96-2c85-4339-83f0-da9bdffd4a75'], 'locale', event?.value, variables['876defac-74c0-4f03-99d1-038f7bd94d68'], globalContext.browser.theme);",
+                "__wwtype": "js"
+              },
+              "__wwdescription": "Persist only supported display preference values on this device"
+            }
+          },
+          "trigger": "localeChange",
+          "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+          "elementUid": "cd93727a-145b-46fb-8986-3bfdd93c109e",
+          "description": "Library language selection updates the same shared four-language display preference.",
+          "firstAction": "preferences"
+        }
+      ],
+      "style": {
+        "default": {
+          "width": "100%"
+        }
+      }
+    }
+  ],
+  "pendingPanels": [
+    {
+      "key": "portfolio",
+      "sectionUid": "dfbe5f87-4413-4457-b8be-92344c9e9976",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "market-intel",
+      "sectionUid": "b069e76b-d2fc-427c-a5ae-9de9b6431208",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "research",
+      "sectionUid": "09fb3ce1-1187-4d3f-9d7f-b16c2523d9c3",
+      "status": "Pending module wiring; no live data or mock content"
+    },
+    {
+      "key": "community",
+      "sectionUid": "baaf7827-2643-417e-bc66-fe48d891efd6",
+      "status": "Pending module wiring; no live data or mock content"
+    }
+  ],
+  "styleCorrections": [
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "uid": "ec8badd7-ddb6-4db2-9b77-a86bec9638b1",
+      "edits": [
+        {
+          "path": "classes.default",
+          "value": [
+            "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+          ]
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "uid": "e41e8026-efa2-4a53-ba75-44c7a69d3356",
+      "edits": [
+        {
+          "path": "classes.default",
+          "value": [
+            "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+          ]
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "uid": "92e6d847-4605-4df9-80eb-5754299a7f7c",
+      "edits": [
+        {
+          "path": "classes.default",
+          "value": [
+            "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+          ]
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+      "uid": "658d2d34-cda6-4408-a801-e513fd95cfa6",
+      "edits": [
+        {
+          "path": "classes.default",
+          "value": [
+            "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+          ]
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+      "uid": "876cc316-37f3-4501-83fa-527f8a2ed6b9",
+      "edits": [
+        {
+          "path": "style.default.backgroundColor",
+          "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+        },
+        {
+          "path": "style.default.color",
+          "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+        },
+        {
+          "path": "style.default.border",
+          "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+        },
+        {
+          "path": "style._wwHover_default.backgroundColor",
+          "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+      "uid": "51eaf9b2-0ec7-4c7f-8b93-477450cf2661",
+      "edits": [
+        {
+          "path": "style.default.backgroundColor",
+          "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+        },
+        {
+          "path": "style.default.color",
+          "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+        },
+        {
+          "path": "style.default.border",
+          "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+        },
+        {
+          "path": "style._wwHover_default.backgroundColor",
+          "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+        }
+      ]
+    },
+    {
+      "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+      "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+      "uid": "8dccb965-bb96-4be9-a99a-e7253c10267f",
+      "edits": [
+        {
+          "path": "style.default.backgroundColor",
+          "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+        },
+        {
+          "path": "style.default.color",
+          "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+        },
+        {
+          "path": "style.default.border",
+          "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+        },
+        {
+          "path": "style._wwHover_default.backgroundColor",
+          "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+        }
+      ]
+    }
+  ]
+}

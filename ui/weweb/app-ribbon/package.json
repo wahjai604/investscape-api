@@ -1,0 +1,1 @@
+{"name":"investscape-app-ribbon","version":"1.0.0","scripts":{"build":"weweb build","serve":"weweb serve"},"devDependencies":{"@weweb/cli":"latest"}}

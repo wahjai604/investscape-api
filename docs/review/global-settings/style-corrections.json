@@ -1,0 +1,123 @@
+[
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "uid": "ec8badd7-ddb6-4db2-9b77-a86bec9638b1",
+    "edits": [
+      {
+        "path": "classes.default",
+        "value": [
+          "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "uid": "e41e8026-efa2-4a53-ba75-44c7a69d3356",
+    "edits": [
+      {
+        "path": "classes.default",
+        "value": [
+          "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "uid": "92e6d847-4605-4df9-80eb-5754299a7f7c",
+    "edits": [
+      {
+        "path": "classes.default",
+        "value": [
+          "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "uid": "658d2d34-cda6-4408-a801-e513fd95cfa6",
+    "edits": [
+      {
+        "path": "classes.default",
+        "value": [
+          "355aff1f-6091-4253-9bb2-ac5ba5fc4883"
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "876cc316-37f3-4501-83fa-527f8a2ed6b9",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style._wwHover_default.backgroundColor",
+        "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "cc933e69-4bce-4b67-9133-208234129dc4",
+    "uid": "51eaf9b2-0ec7-4c7f-8b93-477450cf2661",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style._wwHover_default.backgroundColor",
+        "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+      }
+    ]
+  },
+  {
+    "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+    "pageId": "2056f02f-1c97-4851-a14f-b2db89ca0da9",
+    "uid": "8dccb965-bb96-4be9-a99a-e7253c10267f",
+    "edits": [
+      {
+        "path": "style.default.backgroundColor",
+        "value": "var(--b8e9b391-71ce-4310-9442-0961b32b4489,#faf6ed)"
+      },
+      {
+        "path": "style.default.color",
+        "value": "var(--a7a3194c-5a7f-4a26-a014-0306d2f49eae,#14161c)"
+      },
+      {
+        "path": "style.default.border",
+        "value": "1px solid var(--b0479118-3ec8-4ae5-8a4b-8be2bbb6ab47,#767064)"
+      },
+      {
+        "path": "style._wwHover_default.backgroundColor",
+        "value": "var(--f4ba929b-1456-43f2-b09f-07bd70bffa53,#f5efe0)"
+      }
+    ]
+  }
+]
