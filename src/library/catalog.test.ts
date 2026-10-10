@@ -3,13 +3,15 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {catalog,labels,locales,categories,filterCatalog,normalizeLocale} from '../../ui/weweb/learning-library/src/utils/catalog.js';
 
-test('all 39 canonical and 18 statistics entries have complete four-language copy and known categories',()=>{
+test('all 39 canonical, 18 statistics and six economics entries have complete four-language copy and known categories',()=>{
   const inventory=JSON.parse(readFileSync(new URL('../../docs/review/library/canonical-inventory.json',import.meta.url),'utf8'));
   const statistics=JSON.parse(readFileSync(new URL('../../docs/review/library/statistics-inventory.json',import.meta.url),'utf8'));
-  assert.equal(catalog.length,57);assert.equal(new Set(catalog.map(item=>item.id)).size,57);
+  const economics=JSON.parse(readFileSync(new URL('../../docs/review/library/economics-inventory.json',import.meta.url),'utf8'));
+  assert.equal(catalog.length,63);assert.equal(new Set(catalog.map(item=>item.id)).size,63);
+  assert.deepEqual(catalog.filter(item=>item.id.startsWith('EC-')).map(item=>item.id),economics.cards.map(item=>item.id));
   assert.deepEqual(catalog.filter(item=>item.id.startsWith('F-')).map(item=>item.id),inventory.formulaIds);
   assert.deepEqual(catalog.filter(item=>item.id.startsWith('S-')).map(item=>item.id),statistics.cards.map(item=>item.id));
-  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11,statistics:18});
+  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11,statistics:18,economics:6});
   for(const item of catalog){
     assert(categories.includes(item.category));assert(item.lineage);assert(item.formula);assert(item.exampleFormula);
     for(const field of ['name','explanation','example','scope'])for(const locale of locales)assert(item[field][locale]?.trim());
@@ -56,7 +58,7 @@ test('search finds canonical formula IDs and terms in all languages without inte
   assert.equal(filterCatalog('revenu net', 'leverage','fr-CA').length,0);
   assert.equal(filterCatalog('  CAPITALIZATION  ')[0]?.id,'F-404');
   assert.equal(filterCatalog('<script>alert(1)</script>').length,0);
-  assert.equal(filterCatalog(null).length,57);
+  assert.equal(filterCatalog(null).length,63);
   assert.equal(filterCatalog('百分位排名')[0]?.id,'S-006');
   assert.equal(filterCatalog('moyenne pondérée')[0]?.id,'S-003');
   assert.equal(normalizeLocale('untrusted-locale'),'en');
@@ -161,4 +163,28 @@ test('statistics examples distinguish interpolation, ties, sample denominators a
   assert(byId('S-010').scope.en.includes('ending zero'));
   assert(byId('S-011').scope.en.includes('not zero'));
   assert(byId('S-012').scope.en.includes('non-zero'));
+});
+
+
+test('economics examples preserve denominators, time units and conditional assumptions',()=>{
+  const byId=id=>catalog.find(item=>item.id===id);
+  assert(Math.abs((103/100-1)*100-3)<1e-10);
+  assert.equal(7-6,1);
+  assert.equal(10000/4000,2.5);
+  assert.equal(600000/750,800);assert.equal(660000/825,800);assert.equal(800*800,640000);
+  assert.equal(2400/800,3);assert.equal(2400*11/12,2200);
+  assert.equal(600/100,6);assert.equal((100/600*100).toFixed(2),'16.67');assert.equal(100/200*100,50);
+  assert.equal(100000/.05,2000000);assert.equal(100000/.0625,1600000);assert.equal(90000/.0625,1440000);
+  assert.equal((1600000-2000000)/2000000*100,-20);
+  for(const [id,token] of [['EC-001','3%'],['EC-002','2.5'],['EC-003','640,000'],['EC-004','2,200'],['EC-005','16.67%'],['EC-006','1,440,000']])assert(byId(id).exampleFormula.includes(token));
+  assert(byId('EC-002').scope.en.includes('same private-household population'));
+  assert(byId('EC-003').scope.en.includes('not interchangeable'));
+  assert(byId('EC-004').scope.en.includes('undiscounted arithmetic average'));
+  assert(byId('EC-005').scope.en.includes('Zero sales'));
+  assert(byId('EC-006').scope.en.includes('not an exhaustive range'));
+  for(const item of catalog.filter(x=>x.category==='economics'))for(const locale of locales){
+    assert.equal(item.example[locale].replace(/\D/g,''),item.example.en.replace(/\D/g,''),'economics numeric parity '+item.id+' '+locale);
+    if(locale.startsWith('zh-'))for(const field of ['name','explanation','example','scope'])assert(/\p{Script=Han}/u.test(item[field][locale]));
+  }
+  for(const query of ['EC-005','經濟指標','经济指标','scénarios'])assert(filterCatalog(query,'economics').length>0);
 });

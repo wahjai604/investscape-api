@@ -100,10 +100,19 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   await page.keyboard.press('Escape');
   check(await statisticsOpener.evaluate(node=>document.activeElement===node),'related navigation restores original card');
   check(await page.locator('.formula-card').count()===catalog.filter(item=>item.category==='statistics').length,'related navigation preserves category filter');
+  await page.getByRole('button',{name:labels.economics.en,exact:true}).click();
+  const economicsOpener=page.locator('.formula-card').filter({hasText:'EC-006'});
+  await economicsOpener.click();
+  await page.getByRole('dialog').getByRole('button',{name:'F-405 · Direct Capitalization',exact:true}).click();
+  check(await page.getByRole('dialog').getByRole('heading',{name:'Direct Capitalization',exact:true}).count()===1,'economics reuses valuation card');
+  await page.keyboard.press('Escape');
+  check(await economicsOpener.evaluate(node=>document.activeElement===node),'economics related navigation restores opener');
+  check(await page.locator('.formula-card').count()===6,'economics related navigation preserves filter');
+  await page.getByRole('button',{name:'All',exact:true}).click();
   for(const locale of locales)for(const colorScheme of ['light','dark']){
     await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
     await page.setViewportSize({width:320,height:1000});await page.emulateMedia({colorScheme});
-    for(const id of ['S-005','S-013','S-015','S-016','S-018']){
+    for(const id of ['S-005','S-013','S-015','S-016','S-018','EC-001','EC-002','EC-003','EC-004','EC-005','EC-006']){
       await page.locator('.formula-card').filter({hasText:id}).click();
       check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'long statistical formula reflow '+id+' '+locale+' '+colorScheme);
       const dimensions=await page.getByRole('dialog').evaluate(node=>({scroll:node.scrollWidth,width:node.clientWidth}));

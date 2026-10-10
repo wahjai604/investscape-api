@@ -10,7 +10,7 @@
     ],
     "features": [
       "Search across four languages",
-      "Seven category filters, including Market Statistics & Risk",
+      "Eight category filters, including Market Statistics & Risk and Economics & Market Conditions",
       "Keyboard accessible formula details",
       "English, French and two Chinese scripts",
       "Related-card navigation preserves the original opener"
@@ -46,7 +46,7 @@
   "specifications": [
     "Bundled non-confidential educational copy. No network, API, database, session, storage, tracking, AI or calculator calls.",
     "All user-visible explanation/example copy lives in a four-language dictionary. Formula notation, IDs and module tags remain universal.",
-    "57 cards: unchanged 39 canonical F cards plus 18 original educational statistics S cards with synthetic examples and source conventions.",
+    "63 cards: unchanged 39 canonical F cards and 18 statistics S cards, plus six EC educational economics cards with synthetic examples; EC IDs are Library identifiers, not engine numbers.",
     "The modal traps keyboard focus, supports Escape, restores its opener and closes on runtime disable or editor change.",
     "Editor interactions are disabled. Source examples are labelled documented or illustrative; module tags do not impose subscription gates.",
     "Translations are prepared for editorial review; historical glossary policy proposals are not new owner approvals.",

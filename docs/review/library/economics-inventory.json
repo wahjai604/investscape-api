@@ -1,0 +1,144 @@
+{
+  "evidenceDateUTC": "2026-10-10",
+  "repository": "wahjai604/investscape-economic-engine",
+  "branch": "master",
+  "commit": "d850ee82297ddfccd2f1340fb065550789cb516c",
+  "scope": "Six original four-language educational cards with synthetic examples. EC Library identifiers are not engine numbers; no live data, engine invocation, scoring or forecast calibration.",
+  "sourcePins": [
+    {
+      "path": "src/E29-regional-macro-context.ts",
+      "blobSha": "7710eb27d825fac08546593d82e85ca579fd805e"
+    },
+    {
+      "path": "src/E31-neighborhood-demographics.ts",
+      "blobSha": "aa995365ad969c7c49bd18c3a75e500c06311362"
+    },
+    {
+      "path": "src/E32-comparable-sales-analysis.ts",
+      "blobSha": "237afc8dc66a49907541d8a3c806b03f5cba6881"
+    },
+    {
+      "path": "src/E33-rental-comp-engine.ts",
+      "blobSha": "d29238f257039ecc2bbb880a78292597f5116cc2"
+    },
+    {
+      "path": "src/E37-market-velocity-analyzer.ts",
+      "blobSha": "5840e3932def3dd56709344ab7c7d3d6242ce626"
+    },
+    {
+      "path": "src/E38-macro-micro-sensitivity.ts",
+      "blobSha": "189da9ef0800115379c7de2822140adde4fbdff0"
+    },
+    {
+      "path": "src/E45-scenario-batch-processor.ts",
+      "blobSha": "916a408c7fa2756184eb9e55bc6e9551958ad3ec"
+    }
+  ],
+  "primaryCrossChecks": [
+    {
+      "url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes/faq",
+      "role": "Index percent-change horizons and CPI interpretation; no current rate copied"
+    },
+    {
+      "url": "https://www.statcan.gc.ca/en/statistical-programs/document/NHS_D63_T7_V1",
+      "role": "Private-household population and household-size meaning"
+    },
+    {
+      "url": "https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/surveys/methods/methodology-rental-market-survey",
+      "role": "Occupied/vacant/asking/turnover rent populations and services"
+    },
+    {
+      "url": "https://www150.statcan.gc.ca/n1/pub/46-28-0001/2025001/article/00004-eng.htm",
+      "role": "Asking rent differs from signed rent; incentives and service differences affect comparability"
+    },
+    {
+      "url": "https://economics.gvrealtors.ca/res_chartbook_mobile_ojs.html",
+      "role": "Explicit month-end sales-to-active denominator; no universal market cutoff adopted"
+    },
+    {
+      "url": "https://creastats.crea.ca/mls/vani-market-conditions/",
+      "role": "Months of inventory is pace-based; no current market counts copied"
+    }
+  ],
+  "sourceQualifications": [
+    "E29/E31 lookup dated fixtures, not current feeds or demographic projection evidence.",
+    "E32/E33/E37/E38 return fixtures with the validated request date; that date does not verify observation freshness or implemented comparable/sensitivity methods.",
+    "E37 ratio comments and fixture market scores are not adopted as universal methods or buyer/seller thresholds.",
+    "E38 elasticity and probability fixtures are not calibrated forecast evidence.",
+    "E45 computes supplied scenario outcomes with defaults and constraints; supplied scenario probabilities are carried through, not calibrated by that fact.",
+    "EC-006 reuses F-405/F-406 direct-capitalization math and teaches assumptions; it is not an E45 runtime adapter."
+  ],
+  "cards": [
+    {
+      "id": "EC-001",
+      "topicKey": "EC01",
+      "name": "Economic Indicators: Levels, Changes and Rates",
+      "relatedIds": [
+        "S-009",
+        "S-012",
+        "S-018",
+        "EC-002"
+      ]
+    },
+    {
+      "id": "EC-002",
+      "topicKey": "EC02",
+      "name": "Demographics, Households and Geography",
+      "relatedIds": [
+        "S-002",
+        "S-016",
+        "S-018",
+        "EC-001"
+      ]
+    },
+    {
+      "id": "EC-003",
+      "topicKey": "EC03",
+      "name": "Sales Comparables and Price per Area",
+      "relatedIds": [
+        "S-002",
+        "S-013",
+        "S-016",
+        "S-018",
+        "EC-004"
+      ]
+    },
+    {
+      "id": "EC-004",
+      "topicKey": "EC04",
+      "name": "Rental Comparables, Area and Incentives",
+      "relatedIds": [
+        "EC-003",
+        "S-016",
+        "S-018",
+        "F-401",
+        "F-708"
+      ]
+    },
+    {
+      "id": "EC-005",
+      "topicKey": "EC05",
+      "name": "Market Velocity, Inventory and Absorption",
+      "relatedIds": [
+        "EC-003",
+        "EC-004",
+        "S-009",
+        "S-011",
+        "S-018"
+      ]
+    },
+    {
+      "id": "EC-006",
+      "topicKey": "EC06",
+      "name": "Scenarios, Sensitivity and Assumptions",
+      "relatedIds": [
+        "F-405",
+        "F-406",
+        "F-409",
+        "F-410",
+        "S-015",
+        "EC-001"
+      ]
+    }
+  ]
+}

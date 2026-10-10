@@ -1,0 +1,149 @@
+{
+  "evidenceDateUTC": "2026-10-10T10:40:31.813Z",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "componentVersionId": "03081e9f-8ec2-42cf-ac05-a2760bdd78d2",
+  "counts": {
+    "en": 63,
+    "fr-CA": 63,
+    "zh-Hant": 63,
+    "zh-Hans": 63
+  },
+  "filteredCounts": {
+    "en": 6,
+    "fr-CA": 6,
+    "zh-Hant": 6,
+    "zh-Hans": 6
+  },
+  "checked": [
+    {
+      "id": "EC-001",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-002",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-003",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-004",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-005",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-006",
+      "locale": "en",
+      "passed": true
+    },
+    {
+      "id": "EC-001",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-002",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-003",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-004",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-005",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-006",
+      "locale": "fr-CA",
+      "passed": true
+    },
+    {
+      "id": "EC-001",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-002",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-003",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-004",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-005",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-006",
+      "locale": "zh-Hant",
+      "passed": true
+    },
+    {
+      "id": "EC-001",
+      "locale": "zh-Hans",
+      "passed": true
+    },
+    {
+      "id": "EC-002",
+      "locale": "zh-Hans",
+      "passed": true
+    },
+    {
+      "id": "EC-003",
+      "locale": "zh-Hans",
+      "passed": true
+    },
+    {
+      "id": "EC-004",
+      "locale": "zh-Hans",
+      "passed": true
+    },
+    {
+      "id": "EC-005",
+      "locale": "zh-Hans",
+      "passed": true
+    },
+    {
+      "id": "EC-006",
+      "locale": "zh-Hans",
+      "passed": true
+    }
+  ],
+  "sourceFilesReadbackMatch": true,
+  "scope": "Installed Dev editor preview: all 63 overview cards and six economics filter counts; six new detail hashes in each locale. Local compiled Vue harness checks all 63. Not production/member-session acceptance.",
+  "relatedNavigation": {
+    "from": "EC-006",
+    "to": "F-405",
+    "heading": "Direct Capitalization",
+    "filterPreserved": 6,
+    "focusRestored": true
+  }
+}

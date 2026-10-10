@@ -56,6 +56,30 @@
     {
       "url": "https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html",
       "role": "Sample covariance denominator and aligned-pair/missing-value conventions; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://www.statcan.gc.ca/en/subjects-start/prices_and_price_indexes/consumer_price_indexes/faq",
+      "role": "Index percent-change horizons and CPI interpretation; no current rate copied; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://www.statcan.gc.ca/en/statistical-programs/document/NHS_D63_T7_V1",
+      "role": "Private-household population and household-size meaning; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/surveys/methods/methodology-rental-market-survey",
+      "role": "Occupied/vacant/asking/turnover rent populations and services; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://www150.statcan.gc.ca/n1/pub/46-28-0001/2025001/article/00004-eng.htm",
+      "role": "Asking rent differs from signed rent; incentives and service differences affect comparability; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://economics.gvrealtors.ca/res_chartbook_mobile_ojs.html",
+      "role": "Explicit month-end sales-to-active denominator; no universal market cutoff adopted; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://creastats.crea.ca/mls/vani-market-conditions/",
+      "role": "Months of inventory is pace-based; no current market counts copied; freshly opened 2026-10-10"
     }
   ],
   "sourceLimitations": [
@@ -80,8 +104,9 @@
   "liveResearchWiring": "owner-deferred",
   "liveMapVerification": "owner-deferred",
   "memberAccess": "No paid-tier gate. Member route/navigation policy still requires wiring review.",
-  "copyStatus": "57 educational cards in four languages prepared for editorial review: 39 canonical formula cards plus 18 statistics cards",
+  "copyStatus": "63 educational cards in four languages prepared for editorial review: 39 canonical formula cards, 18 statistics cards and six economics cards",
   "provisioningRequired": false,
   "statisticsInventory": "statistics-inventory.json",
-  "topicGroupReclassification": "topic-group-reclassification.json"
+  "topicGroupReclassification": "topic-group-reclassification.json",
+  "economicsInventory": "economics-inventory.json"
 }

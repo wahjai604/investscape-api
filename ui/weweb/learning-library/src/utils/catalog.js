@@ -2,8 +2,9 @@
 import {remainingCatalog} from './remaining-catalog.js';
 import {statisticsCatalog} from './statistics-catalog.js';
 import {statisticsMethodsCatalog} from './statistics-methods-catalog.js';
+import {economicsCatalog} from './economics-catalog.js';
 const text = (en, fr, hant, hans) => ({ en, 'fr-CA': fr, 'zh-Hant': hant, 'zh-Hans': hans });
-export const categories = ['capital', 'time', 'cashflow', 'performance', 'leverage', 'development', 'statistics'];
+export const categories = ['capital', 'time', 'cashflow', 'performance', 'leverage', 'development', 'statistics', 'economics'];
 export const locales = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'];
 export const labels = {
   title: text('Library', 'Bibliothèque', '知識庫', '知识库'),
@@ -19,6 +20,7 @@ export const labels = {
   leverage: text('Leverage', 'Levier financier', '財務槓桿', '财务杠杆'),
   development: text('Development & Construction', 'Développement et construction', '開發與建築', '开发与建设'),
   statistics: text('Market Statistics & Risk', 'Statistiques de marché et risque', '市場統計與風險', '市场统计与风险'),
+  economics: text('Economics & Market Conditions', 'Économie et conditions du marché', '經濟與市場狀況', '经济与市场状况'),
   related: text('Related entries', 'Entrées connexes', '相關條目', '相关条目'),
   explanation: text('In plain language', 'En termes simples', '白話解釋', '通俗解释'),
   example: text('Worked example', 'Exemple chiffré', '計算示例', '计算示例'),
@@ -128,7 +130,7 @@ const initialCatalog = [
     scope:text('This is not IRR or an annual yield. These are historical documented project figures, not a current project forecast.','Ce n’est ni un TRI ni un rendement annuel. Ce sont des chiffres de projet historiques documentés, pas une prévision actuelle.','此指標並非 IRR 或年度收益率。數字為已記錄的歷史項目資料，而非現時項目預測。','此指标并非 IRR 或年度收益率。数字为已记录的历史项目资料，而非现时项目预测。'),
   },
 ];
-export const catalog = [...initialCatalog, ...remainingCatalog, ...statisticsCatalog, ...statisticsMethodsCatalog].sort((a,b)=>a.id.localeCompare(b.id));
+export const catalog = [...initialCatalog, ...remainingCatalog, ...statisticsCatalog, ...statisticsMethodsCatalog, ...economicsCatalog].sort((a,b)=>a.id.localeCompare(b.id));
 
 export function normalizeLocale(value) { return locales.includes(value) ? value : 'en'; }
 export function translate(value, locale) { return value[normalizeLocale(locale)]; }
