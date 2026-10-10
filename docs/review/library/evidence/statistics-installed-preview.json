@@ -1,0 +1,269 @@
+{
+  "evidenceDateUTC": "2026-10-10T08:00:57.924Z",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "componentVersionId": "796e07eb-f18a-4600-a11b-07aba1431ae9",
+  "counts": {
+    "en": 51,
+    "fr-CA": 51,
+    "zh-Hant": 51,
+    "zh-Hans": 51
+  },
+  "filteredCounts": {
+    "en": 12,
+    "fr-CA": 12,
+    "zh-Hant": 12,
+    "zh-Hans": 12
+  },
+  "checked": [
+    {
+      "locale": "en",
+      "id": "S-001",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-002",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-003",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-004",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-005",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-006",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-007",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-008",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-009",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-010",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-011",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-012",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-001",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-002",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-003",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-004",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-005",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-006",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-007",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-008",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-009",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-010",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-011",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-012",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-001",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-002",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-003",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-004",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-005",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-006",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-007",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-008",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-009",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-010",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-011",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-012",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-001",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-002",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-003",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-004",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-005",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-006",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-007",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-008",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-009",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-010",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-011",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-012",
+      "passed": true
+    }
+  ],
+  "sourceFilesReadbackMatch": true,
+  "scope": "Installed Dev editor preview: 51-card overview counts, 12 statistics detail cards in four locales. Local compiled Vue harness covers all 51 cards and seven categories. Not production/member-session acceptance.",
+  "relatedNavigation": {
+    "from": "S-010",
+    "to": "F-202",
+    "crossCategory": true,
+    "filterPreserved": true,
+    "focusRestored": true
+  }
+}

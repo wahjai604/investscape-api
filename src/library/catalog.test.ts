@@ -3,14 +3,17 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {catalog,labels,locales,categories,filterCatalog,normalizeLocale} from '../../ui/weweb/learning-library/src/utils/catalog.js';
 
-test('all 39 canonical entries have complete four-language copy and known categories',()=>{
+test('all 39 canonical and 12 statistics entries have complete four-language copy and known categories',()=>{
   const inventory=JSON.parse(readFileSync(new URL('../../docs/review/library/canonical-inventory.json',import.meta.url),'utf8'));
-  assert.equal(catalog.length,39);assert.equal(new Set(catalog.map(item=>item.id)).size,39);
-  assert.deepEqual(catalog.map(item=>item.id),inventory.formulaIds);
-  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11});
+  const statistics=JSON.parse(readFileSync(new URL('../../docs/review/library/statistics-inventory.json',import.meta.url),'utf8'));
+  assert.equal(catalog.length,51);assert.equal(new Set(catalog.map(item=>item.id)).size,51);
+  assert.deepEqual(catalog.filter(item=>item.id.startsWith('F-')).map(item=>item.id),inventory.formulaIds);
+  assert.deepEqual(catalog.filter(item=>item.id.startsWith('S-')).map(item=>item.id),statistics.cards.map(item=>item.id));
+  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11,statistics:12});
   for(const item of catalog){
     assert(categories.includes(item.category));assert(item.lineage);assert(item.formula);assert(item.exampleFormula);
     for(const field of ['name','explanation','example','scope'])for(const locale of locales)assert(item[field][locale]?.trim());
+    for(const id of item.relatedIds??[])assert(catalog.some(target=>target.id===id)&&id!==item.id,'valid related target');
   }
   for(const value of Object.values(labels))for(const locale of locales)assert(value[locale]?.trim());
   for(const category of categories)assert(filterCatalog('',category).length>0);
@@ -22,7 +25,9 @@ test('search finds canonical formula IDs and terms in all languages without inte
   assert.equal(filterCatalog('revenu net', 'leverage','fr-CA').length,0);
   assert.equal(filterCatalog('  CAPITALIZATION  ')[0]?.id,'F-404');
   assert.equal(filterCatalog('<script>alert(1)</script>').length,0);
-  assert.equal(filterCatalog(null).length,39);
+  assert.equal(filterCatalog(null).length,51);
+  assert.equal(filterCatalog('百分位排名')[0]?.id,'S-006');
+  assert.equal(filterCatalog('moyenne pondérée')[0]?.id,'S-003');
   assert.equal(normalizeLocale('untrusted-locale'),'en');
 });
 
@@ -90,4 +95,39 @@ test('displayed documented and illustrative examples reconcile arithmetically',(
   assert.equal(159312/120000,1.3276);
   assert.equal(86345200-75000196,11345004);
   assert.equal(Number((11345004/75000196*100).toFixed(2)),15.13);
+});
+
+test('statistics examples distinguish interpolation, ties, sample denominators and growth windows',()=>{
+  const byId=id=>catalog.find(item=>item.id===id);
+  const includes=(id,value)=>assert(byId(id).exampleFormula.includes(value),id+' worked result '+value);
+  includes('S-001',((1000+1200+1800)/3).toFixed(2).replace('1333','1,333'));
+  includes('S-002',String((1200+1400)/2).replace('1300','1,300'));
+  includes('S-003',((2*1000+1500)/3).toFixed(2).replace('1166','1,166'));
+  includes('S-004',String(1800-1000));
+  const sorted=[1000,1200,1400,1600],n=sorted.length;
+  const q=p=>{const h=(n-1)*p;return sorted[Math.floor(h)]+(h%1)*(sorted[Math.ceil(h)]-sorted[Math.floor(h)]);};
+  assert.deepEqual([q(.25),q(.5),q(.75)],[1150,1300,1450]);
+  for(const amount of [1150,1300,1450])includes('S-005',amount.toLocaleString('en-US'));
+  const reference=[1000,1200,1200,1600],target=1200;
+  const midrank=(reference.filter(x=>x<target).length+.5*reference.filter(x=>x===target).length)/reference.length;
+  includes('S-006',midrank*100+'%');assert.equal(midrank,.5);
+  const rents=[1000,1200,1400],mean=1200,ss=rents.reduce((sum,x)=>sum+(x-mean)**2,0);
+  assert.equal(ss,80000);assert.equal(ss/(rents.length-1),40000);assert.equal(Math.sqrt(ss/(rents.length-1)),200);
+  includes('S-007',Math.sqrt(ss/rents.length).toFixed(2));
+  includes('S-008',(200/1200*100).toFixed(2)+'%');
+  includes('S-009',(1100-1000)/1000*100+'%');
+  includes('S-010',String(Math.round(((121/100)**.5-1)*100))+'%');
+  includes('S-011','[—, —, 110, 120]');includes('S-011',(130-100)/100*100+'%');
+  includes('S-012','[100, 110, 90]');
+  for(const item of catalog.filter(x=>x.category==='statistics'))for(const locale of locales){
+    assert.equal(item.example[locale].replace(/\D/g,''),item.example.en.replace(/\D/g,''),'worked-example numeric parity '+item.id+' '+locale);
+    if(locale.startsWith('zh-'))for(const field of ['name','explanation','example','scope'])assert(/\p{Script=Han}/u.test(item[field][locale]));
+  }
+  assert(byId('S-006').scope.en.includes('fraction'));
+  assert(byId('S-007').scope.en.includes('at least two'));
+  assert(byId('S-008').scope.en.includes('near-zero'));
+  assert(byId('S-009').scope.en.includes('zero prior'));
+  assert(byId('S-010').scope.en.includes('ending zero'));
+  assert(byId('S-011').scope.en.includes('not zero'));
+  assert(byId('S-012').scope.en.includes('non-zero'));
 });

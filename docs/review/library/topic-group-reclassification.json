@@ -1,0 +1,226 @@
+{
+  "evidenceDateUTC": "2026-10-10",
+  "originalGroups": 18,
+  "decision": "Concept preparation may proceed separately from evidence-dependent claims; no automatic card-count expansion",
+  "groups": [
+    {
+      "id": "D01",
+      "title": "Mortgage-rate forecasts",
+      "refs": [
+        "economic:E39"
+      ],
+      "note": "Source returns mock forecast data; require an approved real data/model basis before forecast-method or output cards.",
+      "conceptScope": "Interest-rate scenarios and forecast uncertainty",
+      "reuse": "EC06; S-010; S-011",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D02",
+      "title": "Appreciation probabilities and risk-adjusted forecasts",
+      "refs": [
+        "economic:E40"
+      ],
+      "note": "Mock probabilities are not verified calibrated predictions; no example presented as current evidence.",
+      "conceptScope": "Reading probabilities, uncertainty and model calibration",
+      "reuse": "ST18; distinct concept scope",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D03",
+      "title": "Market-cycle timing and turning points",
+      "refs": [
+        "economic:E41"
+      ],
+      "note": "Mock cycle assessments; approve definitions, model and evidence before this collection.",
+      "conceptScope": "Market-cycle vocabulary and indicator limitations",
+      "reuse": "EC01; distinct concept scope",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D04",
+      "title": "Composite investment, diversification and currency grades",
+      "refs": [
+        "economic:E42",
+        "economic:E43",
+        "economic:E44"
+      ],
+      "note": "Implemented proprietary scoring policies need owner/editorial review; generic concentration/exposure math remains proposed separately.",
+      "conceptScope": "How weighted scores, missing inputs and policy choices affect grades",
+      "reuse": "ST03; ST18; EC08; EC09",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D05",
+      "title": "School ratings",
+      "refs": [
+        "economic:E34"
+      ],
+      "note": "Mock data and external rating methodology/source rights; separate from educational finance formulas.",
+      "conceptScope": "Reading education-related indicators and their limitations",
+      "reuse": "Distinct concept scope; no rating outputs",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D06",
+      "title": "Branded walkability, transit and bike scores",
+      "refs": [
+        "economic:E35"
+      ],
+      "note": "Mock score data and provider/source permissions need resolution.",
+      "conceptScope": "Walkability and transit context without branded scores",
+      "reuse": "Distinct concept scope; no proprietary provider metrics",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D07",
+      "title": "Crime and safety scoring",
+      "refs": [
+        "economic:E36"
+      ],
+      "note": "Mock data; README reports an API legal-review hold, not freshly verified deployed status; source and policy clearance required.",
+      "conceptScope": "Reading incident statistics: geography, time, denominators and uncertainty",
+      "reuse": "ST16; ST18; no safety/desirability ranking",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D08",
+      "title": "Deal grades and lender scorecards",
+      "refs": [
+        "calc:E79",
+        "calc:E25"
+      ],
+      "note": "Proprietary thresholds and eligibility implications need methodology/policy review; not objective universal ratings.",
+      "conceptScope": "A score or grade as a disclosed policy, distinct from a lending decision",
+      "reuse": "ST03; ST18; FI07",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D09",
+      "title": "Insurance-cost estimates",
+      "refs": [
+        "calc:E24"
+      ],
+      "note": "Approve sourced assumptions and coverage limitations before teaching an estimate as a supported benchmark.",
+      "conceptScope": "Insurance-cost components and why estimates vary",
+      "reuse": "Distinct concept scope; no unsupported benchmark amounts",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D10",
+      "title": "Acquisition structures and ownership-specific tax outcomes",
+      "refs": [
+        "calc:E82"
+      ],
+      "note": "Asset/bare-trust/share structures require current legal/tax review; never infer an exemption from a structure name.",
+      "conceptScope": "Ownership/acquisition structure vocabulary and questions to verify",
+      "reuse": "TX14; distinct concept scope; rule applicability separately reviewed",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D11",
+      "title": "Tax-optimization recommendations",
+      "refs": [
+        "calc:E18"
+      ],
+      "note": "Recommendation policies and current tax authority remain unreviewed in this inventory; do not teach engine suggestions as personalised guidance.",
+      "conceptScope": "Tax planning assumptions and tax-versus-cash-flow distinctions",
+      "reuse": "TX01; TX02; TX07",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D12",
+      "title": "Verified soft-cost benchmarks",
+      "refs": [
+        "market:cre-intelligence/soft-cost"
+      ],
+      "note": "Source explicitly reports zero verified soft-cost observations; retain F-706 assumptions, not invented sourced averages.",
+      "conceptScope": "Hard costs, soft costs and explicitly supplied assumptions",
+      "reuse": "F-706; DV06; ST18",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D13",
+      "title": "Monte Carlo simulation and probability of threshold",
+      "refs": [
+        "market:statistical-risk/phase2-contracts"
+      ],
+      "note": "Contracts only; function throws immediately. Any general concept card would need a separately approved scope.",
+      "conceptScope": "What Monte Carlo simulation does and how assumed inputs affect results",
+      "reuse": "Distinct concept scope; no working InvestScape simulator claimed",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D14",
+      "title": "Forecasting, regression and back-testing methods",
+      "refs": [
+        "market:market-intelligence/phase2-contracts"
+      ],
+      "note": "Contracts only; functions throw immediately. Keep distinct from assumption-driven scenarios.",
+      "conceptScope": "Forecasts, regression and back-testing: purpose and limitations",
+      "reuse": "EC06; ST15; ST18; concept scope only",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D15",
+      "title": "Portfolio covariance/correlation risk modelling",
+      "refs": [
+        "market:statistical-risk/phase2-contracts"
+      ],
+      "note": "Phase 2+ contract only; do not equate it with implemented Pearson correlation.",
+      "conceptScope": "Correlation, covariance and portfolio concentration concepts",
+      "reuse": "ST15; EC09; future covariance concept scope",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D16",
+      "title": "Short-term rental revenue forecasts",
+      "refs": [
+        "calc:phase2-scaffolds-str"
+      ],
+      "note": "Throws immediately; real market-data-source decision pending.",
+      "conceptScope": "Short-term rental revenue components and seasonality assumptions",
+      "reuse": "EC04; distinct concept scope; synthetic example only",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D17",
+      "title": "Climate and catastrophe-risk assessment",
+      "refs": [
+        "calc:phase2-scaffolds-climate-risk"
+      ],
+      "note": "Throws immediately; real catastrophe-risk source decision pending.",
+      "conceptScope": "Climate hazard, exposure and vulnerability terminology",
+      "reuse": "Distinct concept scope; no parcel risk assessment",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    },
+    {
+      "id": "D18",
+      "title": "UK and Australian tax collections",
+      "refs": [
+        "tax:phase2-scaffolds-international"
+      ],
+      "note": "Throws immediately; market expansion and rules/source verification pending.",
+      "conceptScope": "How location, ownership and year affect tax applicability",
+      "reuse": "TX01–TX15 general structure; detailed UK/Australia rules need fresh sources",
+      "conceptDecision": "Prepare original educational concept copy with authoritative references and synthetic examples; no engine dependency",
+      "claimDecision": "Hold InvestScape-specific implementation, live outputs or current-rule assertions pending the listed evidence"
+    }
+  ]
+}

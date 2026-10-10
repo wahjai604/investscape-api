@@ -38,6 +38,10 @@
         <h3>{{ t(labels.explanation) }}</h3><p>{{ t(selected.explanation) }}</p>
         <h3>{{ t(labels.example) }}</h3><p>{{ t(selected.example) }}</p><code>{{ selected.exampleFormula }}</code>
         <h3>{{ t(labels.scope) }}</h3><p>{{ t(selected.scope) }}</p>
+        <template v-if="relatedEntries.length">
+          <h3>{{ t(labels.related) }}</h3>
+          <div class="tags"><button v-for="item in relatedEntries" :key="item.id" type="button" :disabled="isEditing" @click="openRelated(item)">{{ item.id }} · {{ t(item.name) }}</button></div>
+        </template>
       </section>
     </div>
   </section>
@@ -45,7 +49,7 @@
 
 <script setup>
 import { computed, nextTick, ref, watch, onBeforeUnmount } from 'vue';
-import { categories, labels, normalizeLocale, translate, filterCatalog } from './utils/catalog.js';
+import { catalog, categories, labels, normalizeLocale, translate, filterCatalog } from './utils/catalog.js';
 const props = defineProps({
   uid: { type: String, required: true },
   content: { type: Object, required: true },
@@ -67,6 +71,7 @@ const language = computed(() => normalizeLocale(overrideLocale.value ?? props.co
 const titleId = computed(() => 'library-detail-' + String(props.uid).replace(/[^a-zA-Z0-9_-]/g,''));
 const t = value => translate(value, language.value);
 const results = computed(() => filterCatalog(query.value, category.value, language.value));
+const relatedEntries = computed(() => (selected.value?.relatedIds ?? []).map(id => catalog.find(item => item.id === id)).filter(Boolean));
 let opener = null, focusSequence = 0, destroyed = false;
 function setLanguage(value) { if (!isEditing.value) overrideLocale.value = normalizeLocale(value); }
 function setCategory(value) { if (!isEditing.value) category.value = value; }
@@ -81,6 +86,12 @@ function close() {
   selected.value = null;
   const target = opener; opener = null; const sequence = ++focusSequence;
   nextTick(() => { if (!destroyed && sequence === focusSequence && target?.isConnected && !target.disabled) target.focus(); });
+}
+function openRelated(item) {
+  if (!available.value || isEditing.value) return;
+  selected.value = item;
+  const sequence = ++focusSequence;
+  nextTick(() => { if (!destroyed && sequence === focusSequence) dialog.value?.focus(); });
 }
 function dialogKeys(event) {
   if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); close(); return; }

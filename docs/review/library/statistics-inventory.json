@@ -1,0 +1,149 @@
+{
+  "evidenceDateUTC": "2026-10-10",
+  "repository": "wahjai604/investscape-market-intelligence-engine",
+  "branch": "feat/e85-market-intelligence",
+  "commit": "b279e22d71019009439803d928aeadf7e6b92ddc",
+  "scope": "Original educational statistics cards: synthetic examples; source conventions, no live engine calls; S IDs are Library identifiers, not newly allocated canonical F or engine numbers",
+  "cards": [
+    {
+      "id": "S-001",
+      "topicKey": "ST01",
+      "name": "Arithmetic Mean",
+      "relatedIds": [
+        "S-002",
+        "S-003"
+      ]
+    },
+    {
+      "id": "S-002",
+      "topicKey": "ST02",
+      "name": "Median",
+      "relatedIds": [
+        "S-001",
+        "S-005"
+      ]
+    },
+    {
+      "id": "S-003",
+      "topicKey": "ST03",
+      "name": "Weighted Mean",
+      "relatedIds": [
+        "S-001"
+      ]
+    },
+    {
+      "id": "S-004",
+      "topicKey": "ST04",
+      "name": "Minimum, Maximum and Range",
+      "relatedIds": [
+        "S-005",
+        "S-007"
+      ]
+    },
+    {
+      "id": "S-005",
+      "topicKey": "ST05",
+      "name": "Quantiles, Quartiles and Percentiles",
+      "relatedIds": [
+        "S-002",
+        "S-006"
+      ]
+    },
+    {
+      "id": "S-006",
+      "topicKey": "ST06",
+      "name": "Percentile Rank",
+      "relatedIds": [
+        "S-005"
+      ]
+    },
+    {
+      "id": "S-007",
+      "topicKey": "ST07",
+      "name": "Variance and Standard Deviation",
+      "relatedIds": [
+        "S-001",
+        "S-008"
+      ]
+    },
+    {
+      "id": "S-008",
+      "topicKey": "ST08",
+      "name": "Coefficient of Variation",
+      "relatedIds": [
+        "S-007"
+      ]
+    },
+    {
+      "id": "S-009",
+      "topicKey": "ST09",
+      "name": "Period-over-Period Change",
+      "relatedIds": [
+        "S-010",
+        "S-011"
+      ]
+    },
+    {
+      "id": "S-010",
+      "topicKey": "ST10",
+      "name": "Compound Annual Growth Rate (CAGR)",
+      "relatedIds": [
+        "F-202",
+        "F-409",
+        "S-009"
+      ]
+    },
+    {
+      "id": "S-011",
+      "topicKey": "ST11",
+      "name": "Rolling Averages and Rolling Growth",
+      "relatedIds": [
+        "S-001",
+        "S-009"
+      ]
+    },
+    {
+      "id": "S-012",
+      "topicKey": "ST12",
+      "name": "Indexed Series: Base 100",
+      "relatedIds": [
+        "S-009",
+        "S-010"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "path": "src/statistical-risk/descriptive.ts",
+      "sha": "3314ce869f2bccac541325f2b4ef498791ab3f07"
+    },
+    {
+      "path": "src/statistical-risk/dispersion.ts",
+      "sha": "b992105903d6d7a7c6cde8c69891fafc09de3439"
+    },
+    {
+      "path": "src/statistical-risk/growth.ts",
+      "sha": "52dab2334f72a61e160f49e5a6cf2d190fb7afd6"
+    },
+    {
+      "path": "src/statistical-risk/weighted.ts",
+      "sha": "4cb7569ad8f7f88127a7e15096a28a611f86b0bb"
+    }
+  ],
+  "primaryReferences": [
+    {
+      "url": "https://stat.ethz.ch/R-manual/R-patched/library/stats/html/quantile.html",
+      "role": "R documentation confirms an explicit R-7 interpolation convention"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/coefvari.htm",
+      "role": "NIST distinguishes CV, relative SD, ratio-scale use and near-zero limitations"
+    }
+  ],
+  "sourceQualifications": [
+    "CAGR comment says strictly positive endpoints; executable branch accepts ending zero and returns -100%. Card describes that nonnegative-ending convention without modifying engine code.",
+    "Period change divides by absolute prior; differs from signed-prior division for negative bases.",
+    "CV source uses sample SD / absolute mean; card identifies the convention and limits interpretation.",
+    "Mid-rank uses half of exact ties; card displays percent while source returns a fraction."
+  ]
+}

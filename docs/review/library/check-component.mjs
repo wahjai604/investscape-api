@@ -85,6 +85,33 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   await search.fill('償債覆蓋率');check(await page.locator('.formula-card').count()===1,'cross-language search');
   await search.fill('<script>alert(1)</script>');check(await page.locator('.formula-card').count()===0,'search safely yields empty');
   await page.getByRole('button',{name:'Clear filters',exact:true}).click();check(await page.locator('.formula-card').count()===catalog.length,'clear filters');
+  await page.getByRole('button',{name:labels.statistics.en,exact:true}).click();
+  const statisticsOpener=page.locator('.formula-card').filter({hasText:'S-010'});
+  await statisticsOpener.click();
+  const relatedDialog=page.getByRole('dialog');
+  await page.keyboard.press('Tab');
+  check(await relatedDialog.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'related dialog initial Tab');
+  await page.keyboard.press('Shift+Tab');
+  check(await relatedDialog.getByRole('button').last().evaluate(node=>document.activeElement===node),'related dialog wraps backward');
+  await page.keyboard.press('Tab');
+  check(await relatedDialog.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'related dialog wraps forward');
+  await relatedDialog.getByRole('button',{name:'F-202 · Future Value',exact:true}).click();
+  check(await relatedDialog.getByRole('heading',{name:'Future Value',exact:true}).count()===1,'related canonical card opens outside current filter');
+  await page.keyboard.press('Escape');
+  check(await statisticsOpener.evaluate(node=>document.activeElement===node),'related navigation restores original card');
+  check(await page.locator('.formula-card').count()===12,'related navigation preserves category filter');
+  for(const locale of locales)for(const colorScheme of ['light','dark']){
+    await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
+    await page.setViewportSize({width:320,height:1000});await page.emulateMedia({colorScheme});
+    await page.locator('.formula-card').filter({hasText:'S-005'}).click();
+    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'long statistical formula reflow '+locale+' '+colorScheme);
+    const dimensions=await page.getByRole('dialog').evaluate(node=>({scroll:node.scrollWidth,width:node.clientWidth}));
+    check(dimensions.scroll<=dimensions.width,'statistics dialog reflow '+locale+' '+colorScheme);
+    await page.keyboard.press('Escape');
+  }
+  await page.setViewportSize({width:1100,height:1000});await page.emulateMedia({colorScheme:'light'});
+  await page.evaluate(()=>window.libraryCheck.configure(true,'en'));
+  await page.getByRole('button',{name:'All',exact:true}).click();
   await page.locator('.formula-card').filter({hasText:'F-404'}).click();
   await page.keyboard.press('Tab');check(await page.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'focus trap forward');
   await page.keyboard.press('Shift+Tab');check(await page.getByRole('button',{name:'Close',exact:true}).evaluate(node=>document.activeElement===node),'focus trap backward');
