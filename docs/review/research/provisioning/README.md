@@ -15,7 +15,7 @@ Prepared source only; not executed or added to any automatic migration runner. O
 
 ## Recovery and rollback
 
-Fresh backup listing is blocked by the Supabase dashboard sign-in wall in the current cloud browser. The owner-supplied Oct 9 11:16:52Z physical backup remains historical reported evidence; it predates the map create and later work. It is not a current recovery basis for this package. No backup, dump, restore, PITR add-on or account inspection was performed.
+The read-only dashboard refresh on Oct 10 UTC (Oct 9 owner-local date) succeeded after secure ChatGPT sign-in. Scheduled backups freshly lists Oct 9 11:16:52Z as the newest physical point, followed by six earlier daily points. Point in Time Recovery is not enabled. This closes the sign-in/listing gap, but the newest point still predates the map create and later work: it is not an approved current recovery basis for this package. No backup, dump, restore or PITR add-on operation was performed. See `non-secret-evidence.json` for exact dates and the listing reference; that availability reference must not be substituted for an approved recovery reference.
 
 Any transaction failure rolls back the create transaction. After a committed empty disabled create, `002-empty-teardown.review.sql` is a separately chosen, review-only recovery option. It requires the original receipt, all roles still NOLOGIN, identity still unbound, no content/access decisions, and drops only named Research objects with RESTRICT behavior. It has no CASCADE. Unknown dependencies stop teardown and roll back its transaction. It is tested only in disposable PostgreSQL. Never run it automatically, after catalog/access activation, or to repair application errors.
 

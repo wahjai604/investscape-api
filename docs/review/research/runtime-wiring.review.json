@@ -1,6 +1,6 @@
 {
   "reviewLocalDate": "2026-10-09",
-  "updatedAtUtc": "2026-10-10T00:08:57.396374Z",
+  "updatedAtUtc": "2026-10-10T01:00:24.084077Z",
   "reviewOnly": true,
   "entrypoint": "src/research/main.ts",
   "startCommand": "npm run start:research",
@@ -68,5 +68,8 @@
   "deploymentPerformed": false,
   "wewebPublicationPerformed": false,
   "mapActivationPerformed": false,
-  "identityBindingBlocker": "Connected postgres cannot grant USAGE on auth schema or SET its owner role. A narrow authorized schema-owner grant/provider choice is required."
+  "identityBindingBlocker": "Connected postgres cannot grant USAGE on auth schema or SET its owner role. A narrow authorized schema-owner grant/provider choice is required.",
+  "livePrerequisiteEvidence": "provisioning/non-secret-evidence.json",
+  "recoveryListingVerified": true,
+  "currentRecoveryBasisApproved": false
 }
