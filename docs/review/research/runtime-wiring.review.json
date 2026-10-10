@@ -1,6 +1,6 @@
 {
   "reviewLocalDate": "2026-10-09",
-  "updatedAtUtc": "2026-10-10T01:00:24.084077Z",
+  "updatedAtUtc": "2026-10-10T01:51:23.997511Z",
   "reviewOnly": true,
   "entrypoint": "src/research/main.ts",
   "startCommand": "npm run start:research",
@@ -64,12 +64,21 @@
   "legacySessionEvidence": "Earlier Oct 9 public getSession/auth-event diagnostic; full Research token/session-host binding not reverified",
   "reportedWorkspaceEditorOrigin": "https://joyous-trellis-editor.weweb.io",
   "workspaceEditorOriginLimitation": "Historical workspace diagnostic origin; not a substitute for hosted member or editor-app origins.",
-  "sourceRightsApproved": false,
+  "sourceRightsApproved": true,
   "deploymentPerformed": false,
   "wewebPublicationPerformed": false,
   "mapActivationPerformed": false,
   "identityBindingBlocker": "Connected postgres cannot grant USAGE on auth schema or SET its owner role. A narrow authorized schema-owner grant/provider choice is required.",
   "livePrerequisiteEvidence": "provisioning/non-secret-evidence.json",
   "recoveryListingVerified": true,
-  "currentRecoveryBasisApproved": false
+  "currentRecoveryBasisApproved": false,
+  "sourceRightsApprovalScope": [
+    "statcan-affordability-2024",
+    "statcan-rental-conundrum",
+    "boc-renewal-payments-2025",
+    "boc-mortgage-loan-data-2025"
+  ],
+  "sourceOwnerApprovalReference": "owner:research:2026-10-09T18:49:04-07:00",
+  "editorNominationApproved": true,
+  "editorAppointmentDurationDays": 365
 }

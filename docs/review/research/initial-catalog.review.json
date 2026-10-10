@@ -1,7 +1,7 @@
 {
   "reviewDate": "2026-10-09",
   "reviewOnly": true,
-  "approved": false,
+  "approved": true,
   "livePublished": false,
   "geographyMeaning": "Qualitative relevance tags only; no quantitative map boundary join or CMA-equivalence claim.",
   "internalReviewProposal": "90 days after owner approval; not a publisher licence expiry. Runtime validity cap and publisher expiry must be recorded separately in the review evidence.",
@@ -12,7 +12,15 @@
       "publicationPrecision": "day",
       "sourceEdition": null,
       "proposedDisplayMode": "link_only",
-      "ownerDecision": null,
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      },
       "liveStaged": false,
       "command": {
         "action": "stage",
@@ -53,7 +61,15 @@
       "publicationPrecision": "day",
       "sourceEdition": null,
       "proposedDisplayMode": "link_only",
-      "ownerDecision": null,
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      },
       "liveStaged": false,
       "command": {
         "action": "stage",
@@ -93,7 +109,15 @@
       "publicationPrecision": "month",
       "sourceEdition": null,
       "proposedDisplayMode": "link_only",
-      "ownerDecision": null,
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      },
       "liveStaged": false,
       "command": {
         "action": "stage",
@@ -134,7 +158,15 @@
       "publicationPrecision": "month",
       "sourceEdition": null,
       "proposedDisplayMode": "link_only",
-      "ownerDecision": null,
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      },
       "liveStaged": false,
       "command": {
         "action": "stage",
@@ -333,5 +365,14 @@
       },
       "sourceInspectedOn": "2026-10-09"
     }
-  ]
+  ],
+  "approvalScope": "Only the four IDs named in the owner decision receipt; other candidates remain unapproved.",
+  "approvedCandidateIds": [
+    "statcan-affordability-2024",
+    "statcan-rental-conundrum",
+    "boc-renewal-payments-2025",
+    "boc-mortgage-loan-data-2025"
+  ],
+  "approvedCommandsPreserved": true,
+  "rawStageCommandRightsRemainUnknown": "Original reviewed command bytes are retained to preserve the approved hashes. Runtime commands must explicitly materialize the recorded link-only clearance before staging; no records are staged or published by this decision."
 }

@@ -1,6 +1,6 @@
 {
   "reviewLocalDate": "2026-10-09",
-  "status": "owner-review-pending",
+  "status": "owner-approved-not-staged-or-published",
   "owner": "Eric Tse",
   "records": [
     {
@@ -9,7 +9,15 @@
       "commandSha256": "95ba8cb7423ee6f01f81c47af9d2ce2fff55e4d0cbbdcefaa7ca788bec544643",
       "proposedMode": "link_only",
       "evidenceReference": "statcan-terms-2026-10-09",
-      "ownerDecision": null
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      }
     },
     {
       "id": "statcan-rental-conundrum",
@@ -17,7 +25,15 @@
       "commandSha256": "2ec885207c65db06bbf1e5b767a00f7fe93cb8bd42e3fb8a1bd47f2f58656504",
       "proposedMode": "link_only",
       "evidenceReference": "statcan-terms-2026-10-09",
-      "ownerDecision": null
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      }
     },
     {
       "id": "boc-renewal-payments-2025",
@@ -25,7 +41,15 @@
       "commandSha256": "bf314ba2c9281a8e04d67a06ec9c6dc525cbad3e6a443c3d781e6bb4386a94ac",
       "proposedMode": "link_only",
       "evidenceReference": "boc-terms-2026-10-09",
-      "ownerDecision": null
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      }
     },
     {
       "id": "boc-mortgage-loan-data-2025",
@@ -33,7 +57,15 @@
       "commandSha256": "fea6582502977eaf610fd3c17d35ab1f1cf1f8ec4c4c88d99392038bbfb13f1f",
       "proposedMode": "link_only",
       "evidenceReference": "boc-terms-2026-10-09",
-      "ownerDecision": null
+      "ownerDecision": {
+        "decision": "approved_link_only",
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "operationalReviewDueUtc": "2027-01-08T01:49:04Z",
+        "publisherExpiryClaim": false
+      }
     }
   ],
   "proposal": {
@@ -46,8 +78,12 @@
     "operationalReviewDays": 90,
     "operationalClearanceCapDays": 90,
     "publisherExpiryClaim": false,
-    "approvalTimeAndReference": null
+    "approvalTimeAndReference": {
+      "approvedAtUtc": "2026-10-10T01:49:04Z",
+      "reference": "owner:research:2026-10-09T18:49:04-07:00"
+    }
   },
   "approvalScope": "Per-item editorial/rights clearance of the exact link-only drafts, subject to recorded publisher conditions. Does not authorize database execution, editor appointment, deployment, live source publication or WeWeb publication.",
-  "livePublished": false
+  "livePublished": false,
+  "decisionReceiptFile": "owner-decisions-2026-10-09T184904-0700.json"
 }

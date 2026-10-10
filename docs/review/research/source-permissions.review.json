@@ -17,10 +17,21 @@
         "https://www.statcan.gc.ca/en/terms-conditions/open-licence-faq"
       ],
       "finding": "Text links encouraged without prior permission; no framing or government-symbol navigation. Reuse of covered information allows commercial use with attribution, accuracy and no endorsement; third-party rights excluded.",
-      "proposedDecision": "link_only; owner editorial approval pending",
+      "proposedDecision": "link_only; owner approval recorded for named items only",
       "evidenceDate": "2026-10-09",
       "aiApproved": false,
-      "editorialApproval": null
+      "editorialApproval": {
+        "decision": "approved_link_only",
+        "itemIds": [
+          "statcan-affordability-2024",
+          "statcan-rental-conundrum"
+        ],
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "blanketPublisherApproval": false
+      }
     },
     {
       "id": "boc-terms-2026-10-09",
@@ -30,10 +41,21 @@
         "https://www.bankofcanada.ca/terms/"
       ],
       "finding": "Covered content reuse permitted with attribution, accuracy/change identification and no endorsement. Paid offerings must disclose that source content is freely available. Logos, banknotes and third-party material excluded. Staff notes represent author views.",
-      "proposedDecision": "link_only; retain source-free-availability notice; owner editorial approval pending",
+      "proposedDecision": "link_only; retain source-free-availability notice; owner approval recorded for named items only",
       "evidenceDate": "2026-10-09",
       "aiApproved": false,
-      "editorialApproval": null
+      "editorialApproval": {
+        "decision": "approved_link_only",
+        "itemIds": [
+          "boc-renewal-payments-2025",
+          "boc-mortgage-loan-data-2025"
+        ],
+        "owner": "Eric Tse",
+        "approvedAtUtc": "2026-10-10T01:49:04Z",
+        "reference": "owner:research:2026-10-09T18:49:04-07:00",
+        "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+        "blanketPublisherApproval": false
+      }
     },
     {
       "id": "cmhc-terms-2026-10-09",
@@ -89,5 +111,6 @@
       "aiApproved": false,
       "editorialApproval": null
     }
-  ]
+  ],
+  "ownerApprovalReference": "owner:research:2026-10-09T18:49:04-07:00"
 }

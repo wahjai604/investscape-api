@@ -17,7 +17,14 @@
     "identityBound": false,
     "occupationalProfileRoleIsAuthority": false,
     "userEditableMetadataIsAuthority": false,
-    "futureStaffExplicitGrantsAndAudit": true
+    "futureStaffExplicitGrantsAndAudit": true,
+    "nominationApproved": true,
+    "nominationReference": "owner:research:2026-10-09T18:49:04-07:00",
+    "soleInitialEditor": "Eric Tse",
+    "appointmentDurationDays": 365,
+    "durationStartsAt": "Actual audited appointment",
+    "liveAppointed": false,
+    "nominationFile": "editor-nomination.review.json"
   },
   "communityModeration": "Separate policy; this review does not implement Community.",
   "authorityImplementation": "PostgresResearchAuthority implemented: current Auth account/session eligibility, Research-specific restrictions and explicit editor grants. Live identity projection remains unbound.",

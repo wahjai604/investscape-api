@@ -1,0 +1,73 @@
+{
+  "recordType": "Owner decision receipt; not a database audit receipt",
+  "owner": "Eric Tse",
+  "decisionAtLocal": "2026-10-09T18:49:04-07:00",
+  "decisionAtUtc": "2026-10-10T01:49:04Z",
+  "reference": "owner:research:2026-10-09T18:49:04-07:00",
+  "ownerStatement": "You asked me to respond to the prompt just now. My response is \"Approve both\" and make editor nomination good for 365 days",
+  "sourceClearance": {
+    "mode": "link_only",
+    "records": [
+      {
+        "id": "statcan-affordability-2024",
+        "approvedCommandSha256": "95ba8cb7423ee6f01f81c47af9d2ce2fff55e4d0cbbdcefaa7ca788bec544643",
+        "evidenceReference": "statcan-terms-2026-10-09"
+      },
+      {
+        "id": "statcan-rental-conundrum",
+        "approvedCommandSha256": "2ec885207c65db06bbf1e5b767a00f7fe93cb8bd42e3fb8a1bd47f2f58656504",
+        "evidenceReference": "statcan-terms-2026-10-09"
+      },
+      {
+        "id": "boc-renewal-payments-2025",
+        "approvedCommandSha256": "bf314ba2c9281a8e04d67a06ec9c6dc525cbad3e6a443c3d781e6bb4386a94ac",
+        "evidenceReference": "boc-terms-2026-10-09"
+      },
+      {
+        "id": "boc-mortgage-loan-data-2025",
+        "approvedCommandSha256": "fea6582502977eaf610fd3c17d35ab1f1cf1f8ec4c4c88d99392038bbfb13f1f",
+        "evidenceReference": "boc-terms-2026-10-09"
+      }
+    ],
+    "attributionRequired": true,
+    "summary": false,
+    "fullText": false,
+    "publisherAssets": false,
+    "aiAllowed": false,
+    "operationalReviewDays": 90,
+    "operationalClearanceCapDays": 90,
+    "operationalValidUntilUtc": "2027-01-08T01:49:04Z",
+    "publisherExpiryClaim": false,
+    "liveStaged": false,
+    "livePublished": false
+  },
+  "editorNomination": {
+    "status": "owner-approved-nomination-not-appointed",
+    "nominee": "Eric Tse",
+    "soleInitialEditor": true,
+    "ownerApprovedAtUtc": "2026-10-10T01:49:04Z",
+    "ownerApprovalReference": "owner:research:2026-10-09T18:49:04-07:00",
+    "appointmentDurationDays": 365,
+    "durationStartsAt": "Actual audited appointment, after verified Investscape app subject and applicable provisioning/identity-binding gates",
+    "subjectUuid": null,
+    "subjectVerified": false,
+    "appointedAtUtc": null,
+    "expiresAtUtc": null,
+    "liveGrantInserted": false,
+    "renewalAutomatic": false,
+    "capabilities": [
+      "Research stage",
+      "Research review",
+      "Research approve",
+      "Research publish",
+      "Research archive"
+    ],
+    "scope": "Research editorial workflow only",
+    "auditRequired": true,
+    "otherProductPermissionsGranted": false
+  },
+  "databaseExecutionAuthorizedByThisDecision": false,
+  "deploymentAuthorizedByThisDecision": false,
+  "wewebPublicationAuthorizedByThisDecision": false,
+  "mapActivationAuthorizedByThisDecision": false
+}

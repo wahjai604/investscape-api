@@ -62,3 +62,8 @@ Known publication days are now supported without inventing an instant or shiftin
 ## Dedicated runtime and Dev package follow-up — Oct 9 local / Oct 9–10 UTC
 
 See `runtime-authority-checkpoint-2026-10-09.md` for the current status. Owner selected the existing Dev project and automatic permanent-member access. Dedicated entrypoint/pools and fresh authority adapter are implemented; exact disabled create/guarded empty teardown and separate identity binding are prepared. All live flags/bindings remain off. Fresh metadata confirms the connected operator lacks Auth-schema USAGE grant authority, so the separate identity binding is blocked. The current backup listing requires dashboard sign-in; prior evidence remains historical. No live mutation, source approval/publication, editor appointment, deployment or WeWeb publication occurred. Final verification: 661 passed, two existing skips; 39 Research tests; 21 synthetic Vue checks; compiled disabled-host HTTP/shutdown checks passed.
+
+
+## Owner approvals recorded — Oct 9, 2026 at 18:49:04 owner-local
+
+The four exact Statistics Canada/Bank of Canada drafts now have owner link-only clearance, with the existing 90-day source review cap. Eric Tse's sole initial Research editor nomination is approved for **365 days from actual audited appointment**. These decisions supersede the earlier pending-owner wording; they do not prove the app subject, insert a live grant or publish articles. See `owner-approvals-2026-10-09.md` and `owner-decisions-2026-10-09T184904-0700.json`. Other four candidates remain held; recovery, Auth-schema access and live wiring/acceptance gates remain open.
