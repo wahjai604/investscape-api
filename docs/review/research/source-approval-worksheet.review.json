@@ -85,5 +85,6 @@
   },
   "approvalScope": "Per-item editorial/rights clearance of the exact link-only drafts, subject to recorded publisher conditions. Does not authorize database execution, editor appointment, deployment, live source publication or WeWeb publication.",
   "livePublished": false,
-  "decisionReceiptFile": "owner-decisions-2026-10-09T184904-0700.json"
+  "decisionReceiptFile": "owner-decisions-2026-10-09T184904-0700.json",
+  "preparedStageCommands": "cleared-source-stage-commands.review.json"
 }

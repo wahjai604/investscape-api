@@ -67,3 +67,8 @@ See `runtime-authority-checkpoint-2026-10-09.md` for the current status. Owner s
 ## Owner approvals recorded — Oct 9, 2026 at 18:49:04 owner-local
 
 The four exact Statistics Canada/Bank of Canada drafts now have owner link-only clearance, with the existing 90-day source review cap. Eric Tse's sole initial Research editor nomination is approved for **365 days from actual audited appointment**. These decisions supersede the earlier pending-owner wording; they do not prove the app subject, insert a live grant or publish articles. See `owner-approvals-2026-10-09.md` and `owner-decisions-2026-10-09T184904-0700.json`. Other four candidates remain held; recovery, Auth-schema access and live wiring/acceptance gates remain open.
+
+
+## Prepared operator packages — after owner clearance
+
+`cleared-source-stage-commands.review.json` materializes the four owner approvals with link-only rights and their fixed 90-day cap, preserving every original source command hash. Its only prepared action is stage; no live command ran. `editor-appointment.review.sql` and its JSON manifest prepare a separate 365-day initial appointment with verified subject/session, exact target/binding hashes, atomic audit and no overwrite/renewal. These are not included in disabled-create or any startup/migration runner. Five new offline checks and typecheck passed; no live grant, provisioning, staging or publication occurred. See `operator-packages-2026-10-09.md`.

@@ -21,5 +21,7 @@
   ],
   "scope": "Research editorial workflow only",
   "auditRequired": true,
-  "otherProductPermissionsGranted": false
+  "otherProductPermissionsGranted": false,
+  "preparedAppointmentSql": "editor-appointment.review.sql",
+  "preparedAppointmentManifest": "editor-appointment.review.json"
 }

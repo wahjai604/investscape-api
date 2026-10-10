@@ -1,0 +1,165 @@
+{
+  "status": "prepared-not-executed",
+  "ownerApprovalReference": "owner:research:2026-10-09T18:49:04-07:00",
+  "derivedFrom": "source-approval-worksheet.review.json",
+  "changedFields": [
+    "command.reason",
+    "command.draft.rights.mode",
+    "command.draft.rights.evidenceReference",
+    "command.draft.rights.checkedAt",
+    "command.draft.rights.validUntil",
+    "command.draft.rights.note",
+    "command.draft.reviewDueAt"
+  ],
+  "records": [
+    {
+      "id": "statcan-affordability-2024",
+      "approvedOriginalCommandSha256": "95ba8cb7423ee6f01f81c47af9d2ce2fff55e4d0cbbdcefaa7ca788bec544643",
+      "preparedCommandSha256": "4a594868cb53f25ec738ea2e78a757ab3c0c84015949d3f37bee3e42191748f0",
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner link-only clearance owner:research:2026-10-09T18:49:04-07:00; stage only, publication remains separate",
+        "draft": {
+          "id": "statcan-affordability-2024",
+          "title": "Housing affordability in Canada, 2024",
+          "publisher": "Statistics Canada",
+          "canonicalUrl": "https://www150.statcan.gc.ca/n1/daily-quotidien/260921/dq260921a-eng.htm",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "housing-affordability",
+            "rental-housing"
+          ],
+          "publishedAt": "2026-09-21",
+          "retrievedAt": null,
+          "attribution": "Statistics Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "link_only",
+            "evidenceReference": "statcan-terms-2026-10-09; owner:research:2026-10-09T18:49:04-07:00",
+            "checkedAt": "2026-10-10T01:49:04Z",
+            "validUntil": "2027-01-08T01:49:04Z",
+            "aiAllowed": false,
+            "note": "Eric Tse approved this exact source link with attribution and recorded publisher conditions. No summaries, full text, publisher assets or AI reuse. Internal 90-day review cap; not publisher licence expiry."
+          },
+          "reviewDueAt": "2027-01-08T01:49:04Z"
+        }
+      }
+    },
+    {
+      "id": "statcan-rental-conundrum",
+      "approvedOriginalCommandSha256": "2ec885207c65db06bbf1e5b767a00f7fe93cb8bd42e3fb8a1bd47f2f58656504",
+      "preparedCommandSha256": "b5ea8f20c034c6ef8decd803db9f74b6c44141a35a4e635cce106e2da7513039",
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner link-only clearance owner:research:2026-10-09T18:49:04-07:00; stage only, publication remains separate",
+        "draft": {
+          "id": "statcan-rental-conundrum",
+          "title": "The Canadian rental conundrum",
+          "publisher": "Statistics Canada",
+          "canonicalUrl": "https://www.statcan.gc.ca/o1/en/plus/8660-canadian-rental-conundrum",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "rental-housing"
+          ],
+          "publishedAt": "2025-10-30",
+          "retrievedAt": null,
+          "attribution": "Statistics Canada; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "link_only",
+            "evidenceReference": "statcan-terms-2026-10-09; owner:research:2026-10-09T18:49:04-07:00",
+            "checkedAt": "2026-10-10T01:49:04Z",
+            "validUntil": "2027-01-08T01:49:04Z",
+            "aiAllowed": false,
+            "note": "Eric Tse approved this exact source link with attribution and recorded publisher conditions. No summaries, full text, publisher assets or AI reuse. Internal 90-day review cap; not publisher licence expiry."
+          },
+          "reviewDueAt": "2027-01-08T01:49:04Z"
+        }
+      }
+    },
+    {
+      "id": "boc-renewal-payments-2025",
+      "approvedOriginalCommandSha256": "bf314ba2c9281a8e04d67a06ec9c6dc525cbad3e6a443c3d781e6bb4386a94ac",
+      "preparedCommandSha256": "585a66abbca51413d9d5cfc03351c18254952f11b3684c5ce55863eb0c4e0bd1",
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner link-only clearance owner:research:2026-10-09T18:49:04-07:00; stage only, publication remains separate",
+        "draft": {
+          "id": "boc-renewal-payments-2025",
+          "title": "How will mortgage payments change at renewal? An updated analysis",
+          "publisher": "Bank of Canada",
+          "canonicalUrl": "https://www.bankofcanada.ca/2025/07/staff-analytical-note-2025-21/",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "mortgages",
+            "household-finance"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Bank of Canada. Source content is freely available on the Bank's website. Staff analytical notes express the authors' views; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "link_only",
+            "evidenceReference": "boc-terms-2026-10-09; owner:research:2026-10-09T18:49:04-07:00",
+            "checkedAt": "2026-10-10T01:49:04Z",
+            "validUntil": "2027-01-08T01:49:04Z",
+            "aiAllowed": false,
+            "note": "Eric Tse approved this exact source link with attribution and recorded publisher conditions. No summaries, full text, publisher assets or AI reuse. Internal 90-day review cap; not publisher licence expiry."
+          },
+          "reviewDueAt": "2027-01-08T01:49:04Z"
+        }
+      }
+    },
+    {
+      "id": "boc-mortgage-loan-data-2025",
+      "approvedOriginalCommandSha256": "fea6582502977eaf610fd3c17d35ab1f1cf1f8ec4c4c88d99392038bbfb13f1f",
+      "preparedCommandSha256": "dbfb6aec5dfddffc16c5cc4fb1cb6740772a1c44155baa5649359900f66da5e9",
+      "command": {
+        "action": "stage",
+        "expectedRevision": 0,
+        "reason": "Owner link-only clearance owner:research:2026-10-09T18:49:04-07:00; stage only, publication remains separate",
+        "draft": {
+          "id": "boc-mortgage-loan-data-2025",
+          "title": "Using new loan data to better understand mortgage holders",
+          "publisher": "Bank of Canada",
+          "canonicalUrl": "https://www.bankofcanada.ca/2025/01/staff-analytical-note-2025-1/",
+          "geography": [
+            "CA"
+          ],
+          "topics": [
+            "mortgages",
+            "household-finance"
+          ],
+          "publishedAt": null,
+          "retrievedAt": null,
+          "attribution": "Bank of Canada. Source content is freely available on the Bank's website. Staff analytical notes express the authors' views; open the original source for the complete publication.",
+          "summary": null,
+          "rights": {
+            "mode": "link_only",
+            "evidenceReference": "boc-terms-2026-10-09; owner:research:2026-10-09T18:49:04-07:00",
+            "checkedAt": "2026-10-10T01:49:04Z",
+            "validUntil": "2027-01-08T01:49:04Z",
+            "aiAllowed": false,
+            "note": "Eric Tse approved this exact source link with attribution and recorded publisher conditions. No summaries, full text, publisher assets or AI reuse. Internal 90-day review cap; not publisher licence expiry."
+          },
+          "reviewDueAt": "2027-01-08T01:49:04Z"
+        }
+      }
+    }
+  ],
+  "runtimeStateAssumption": "Expected revision zero is an insertion guard, not evidence of current store contents. Revision conflicts must stop and be inspected; never retry with inferred revisions.",
+  "actionsPrepared": [
+    "stage"
+  ],
+  "automaticApprovalOrPublication": false,
+  "liveExecuted": false
+}

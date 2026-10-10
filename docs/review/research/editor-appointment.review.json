@@ -1,0 +1,26 @@
+{
+  "status": "prepared-not-applied",
+  "ownerDecisionReference": "owner:research:2026-10-09T18:49:04-07:00",
+  "targetProjectRef": "hwhkgrwikczwztfnsjir",
+  "appointmentDurationDays": 365,
+  "durationStartsAt": "Actual audited appointment insert",
+  "subjectUuid": null,
+  "sessionUuid": null,
+  "identityVerified": false,
+  "identityVerificationReference": null,
+  "appointmentReceipt": null,
+  "candidateSha256": "db233397b40c815398f1fc4e49f79c8db076cf5133cdd18df740d7382d30d25b",
+  "bindingSha256": "3cb76531a357612d9035a19e6717d9fe183cf94280f8a7cc715241068e6d4198",
+  "executionIncludedInProvisioning": false,
+  "liveGrantInserted": false,
+  "capabilitiesFromExistingResearchEditorPolicy": true,
+  "roleMembershipChanges": false,
+  "automaticRenewal": false,
+  "offlineVerification": {
+    "testsPassed": 5,
+    "testsFailed": 0,
+    "typecheckPassed": true,
+    "syntheticOnly": true,
+    "liveDatabaseAccess": false
+  }
+}
