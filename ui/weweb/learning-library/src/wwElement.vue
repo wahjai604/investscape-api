@@ -1,7 +1,7 @@
 <template>
   <section class="learning-library" :data-theme="theme" :lang="language" :aria-label="t(labels.title)">
     <header class="library-heading">
-      <div><p class="eyebrow">InvestScape</p><h2>{{ t(labels.title) }}</h2><p>{{ t(labels.intro) }}</p></div>
+      <div><p class="eyebrow">InvestScape</p><h2>{{ t(labels.title) }}</h2><p>{{ t(labels.intro) }}</p><p class="tag-legend">{{ t(labels.propertyTags) }}</p></div>
       <label class="language">{{ t(labels.language) }}
         <select :value="language" :disabled="isEditing" @change="setLanguage($event.target.value)">
           <option value="en">English</option><option value="fr-CA">Français</option>
@@ -57,6 +57,7 @@ const props = defineProps({
   wwEditorState: { type: Object, required: true },
   /* wwEditor:end */
 });
+const emit = defineEmits(['trigger-event']);
 const isEditing = computed(() => {
   /* wwEditor:start */
   return props.wwEditorState?.isEditing === true;
@@ -73,7 +74,13 @@ const t = value => translate(value, language.value);
 const results = computed(() => filterCatalog(query.value, category.value, language.value));
 const relatedEntries = computed(() => (selected.value?.relatedIds ?? []).map(id => catalog.find(item => item.id === id)).filter(Boolean));
 let opener = null, focusSequence = 0, destroyed = false;
-function setLanguage(value) { if (!isEditing.value) overrideLocale.value = normalizeLocale(value); }
+function setLanguage(value) {
+  if (isEditing.value) return;
+  const locale = normalizeLocale(value);
+  if (locale === language.value) return;
+  overrideLocale.value = locale;
+  emit('trigger-event', { name: 'localeChange', event: { value: locale } });
+}
 function setCategory(value) { if (!isEditing.value) category.value = value; }
 function clear() { if (!isEditing.value) { query.value = ''; category.value = 'all'; } }
 function open(item, event) {

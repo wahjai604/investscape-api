@@ -21,8 +21,9 @@ try{
 import Component from ${JSON.stringify(path.join(component,'src/wwElement.vue'))};
 globalThis.wwLib={getFrontWindow:()=>window,getFrontDocument:()=>document};
 const props=reactive({uid:'learning-review',content:{enabled:false,locale:'en',theme:'auto'},wwEditorState:{isEditing:false}});
-const app=createApp({setup:()=>()=>h(Component,props)});app.mount('#app');
-window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='auto'){props.content={enabled,locale,theme};props.wwEditorState.isEditing=editing;await nextTick();},detach(){app.unmount();}};`;
+const events=[];
+const app=createApp({setup:()=>()=>h(Component,{...props,onTriggerEvent:event=>events.push(event)})});app.mount('#app');
+window.libraryCheck={events,async configure(enabled,locale='en',editing=false,theme='auto'){props.content={enabled,locale,theme};props.wwEditorState.isEditing=editing;await nextTick();},detach(){app.unmount();}};`;
   await writeFile(path.join(temp,'harness-source.js'),harness);
   let css='';
   await build({entryPoints:[path.join(temp,'harness-source.js')],outfile:path.join(temp,'harness.js'),bundle:true,format:'esm',platform:'browser',
@@ -49,6 +50,26 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   check(await page.locator('.formula-card').count()===0,'default off');
   await page.evaluate(()=>window.libraryCheck.configure(true,'en',true));
   check(await page.locator('.formula-card:disabled').count()===catalog.length,'editor interactions disabled');
+  check(await page.evaluate(()=>window.libraryCheck.events.length)===0,'editor and external prop updates do not emit language events');
+  await page.evaluate(()=>window.libraryCheck.configure(true,'en'));
+  await page.locator('.formula-card').filter({hasText:'S-009'}).click();
+  for (const locale of ['fr-CA','zh-Hant','zh-Hans','en']) {
+    await page.getByRole('combobox').selectOption(locale);
+    const item=catalog.find(item=>item.id==='S-009');
+    check(await page.getByRole('dialog').getByRole('heading',{name:translate(item.name,locale),exact:true}).count()===1,'local language changes an open detail '+locale);
+    check(await page.locator('.learning-library').getAttribute('lang')===locale,'root language follows selection '+locale);
+    check((await page.locator('.tag-legend').innerText())===translate(labels.propertyTags,locale),'localized property-type legend '+locale);
+    const event=await page.evaluate(()=>window.libraryCheck.events.at(-1));
+    check(event.name==='localeChange' && event.event.value===locale,'declared language event carries exact supported value '+locale);
+  }
+  await page.getByRole('combobox').selectOption('en');
+  check(await page.evaluate(()=>window.libraryCheck.events.length)===4,'same language selection emits no duplicate');
+  await page.evaluate(()=>window.libraryCheck.configure(true,'fr-CA'));
+  check(await page.getByRole('dialog').getByRole('heading',{name:translate(catalog.find(x=>x.id==='S-009').name,'fr-CA'),exact:true}).count()===1,'external locale replaces local fallback while detail remains open');
+  check(await page.evaluate(()=>window.libraryCheck.events.length)===4,'external locale update emits no loop');
+  await page.evaluate(()=>window.libraryCheck.configure(true,'unsupported'));
+  check(await page.locator('.learning-library').getAttribute('lang')==='en','unknown host locale safely falls back to English');
+  await page.keyboard.press('Escape');
   for(const locale of locales){
     await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
     await page.getByRole('button',{name:translate(labels.all,locale),exact:true}).click();

@@ -1,0 +1,163 @@
+{
+  "evidenceDateUTC": "2026-10-10",
+  "project": {
+    "name": "Investscape Dev",
+    "id": "4a0173ad-346d-4d29-a9b9-0201e5af6d78"
+  },
+  "page": {
+    "id": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+    "path": "learning-library-review",
+    "draft": true,
+    "hideFromSitemap": true,
+    "nativeLangs": [
+      "en"
+    ]
+  },
+  "component": {
+    "baseId": "3d621fc9-e746-4983-a74a-9663f4c52c0f",
+    "versionId": "bef62685-1d7e-4268-b40e-ca35351f4e8e",
+    "internalVersion": 9,
+    "packageVersion": "1.5.1",
+    "builtAt": "2026-10-10T17:13:12.953Z",
+    "defaultEnabled": false,
+    "installedFileReadback": "All 12 files exactly equal tested source"
+  },
+  "languagePreference": {
+    "id": "876defac-74c0-4f03-99d1-038f7bd94d68",
+    "name": "Library Language",
+    "type": "string",
+    "default": "en",
+    "isLocalStorage": true,
+    "isPersistentOnNav": true,
+    "supported": [
+      "en",
+      "fr-CA",
+      "zh-Hant",
+      "zh-Hans"
+    ],
+    "scope": "Library component and shared Library link only; not whole-app translation or user-account preference",
+    "flagEvidence": "Creation request flags; runtime navigation/refresh acceptance in evidence/navigation-installed-preview.json"
+  },
+  "sharedHeaderId": "7dc18c1a-77ca-41b9-804a-5cc82f26b011",
+  "sharedDraftPages": [
+    "Workspace",
+    "Quick Deal Analyzer",
+    "Dev Connection Test",
+    "Full Development Studio",
+    "Learning Library Review"
+  ],
+  "elements": [
+    {
+      "uid": "cd93727a-145b-46fb-8986-3bfdd93c109e",
+      "tag": "investscape-learning-library",
+      "name": "Learning Library",
+      "content": {
+        "default": {
+          "theme": {
+            "code": "globalContext.browser.theme ?? 'auto'",
+            "__wwtype": "f",
+            "defaultValue": "auto"
+          },
+          "locale": {
+            "code": "variables['876defac-74c0-4f03-99d1-038f7bd94d68'] ?? 'en'",
+            "__wwtype": "f",
+            "defaultValue": "en"
+          },
+          "enabled": true
+        }
+      },
+      "slots": [],
+      "classes": {},
+      "subClasses": {},
+      "states": [],
+      "attributes": {},
+      "workflows": [
+        {
+          "id": "0bd5fdf8-21cc-404c-bb27-4188070db89e",
+          "name": "Remember Library Language",
+          "scope": "element",
+          "folder": "",
+          "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+          "actions": {
+            "5c96b657-0481-46de-991e-3de52bd715cd": {
+              "id": "5c96b657-0481-46de-991e-3de52bd715cd",
+              "name": "Remember selected Library language",
+              "type": "update-variable",
+              "varId": "876defac-74c0-4f03-99d1-038f7bd94d68",
+              "varValue": {
+                "code": "wwFormulas.if(wwFormulas.contains(['en', 'fr-CA', 'zh-Hant', 'zh-Hans'], event?.value), event.value, 'en')",
+                "__wwtype": "f",
+                "defaultValue": "en"
+              },
+              "__wwdescription": "Keep the selected supported language across navigation and page refreshes."
+            }
+          },
+          "trigger": "localeChange",
+          "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+          "elementUid": "cd93727a-145b-46fb-8986-3bfdd93c109e",
+          "description": "Save a supported Library language preference on this device. No Auth, API or database actions.",
+          "firstAction": "5c96b657-0481-46de-991e-3de52bd715cd"
+        }
+      ],
+      "style": {
+        "default": {
+          "width": "100%"
+        }
+      }
+    },
+    {
+      "uid": "f72eb630-9015-4ab3-b72d-c7d862ebf1c7",
+      "tag": "ww-button",
+      "name": "Library Navigation",
+      "content": {
+        "default": {
+          "disabled": false,
+          "buttonType": "button",
+          "text": {
+            "en": {
+              "code": "wwFormulas.if(variables['876defac-74c0-4f03-99d1-038f7bd94d68'] === 'fr-CA', 'Bibliothèque', wwFormulas.if(variables['876defac-74c0-4f03-99d1-038f7bd94d68'] === 'zh-Hant', '知識庫', wwFormulas.if(variables['876defac-74c0-4f03-99d1-038f7bd94d68'] === 'zh-Hans', '知识库', 'Library')))",
+              "__wwtype": "f",
+              "defaultValue": "Library"
+            }
+          }
+        }
+      },
+      "slots": [],
+      "classes": {
+        "default": [
+          "d862a152-f566-4616-b3f3-462d7baad52a"
+        ],
+        "_wwHover": [
+          "62e0d945-5281-4552-9268-049ba5c0b91d"
+        ],
+        "_wwLinkActive": [
+          "339612b6-d547-496c-9dd3-cec844bff7ba"
+        ]
+      },
+      "subClasses": {},
+      "states": [
+        {
+          "id": "_wwHover",
+          "label": "Hover"
+        },
+        {
+          "id": "_wwLinkActive",
+          "label": "Active"
+        }
+      ],
+      "attributes": {},
+      "link": {
+        "type": "internal",
+        "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+        "targetBlank": false
+      },
+      "style": {
+        "default": {}
+      }
+    }
+  ],
+  "authStatus": "No verified member route/access guard; free/paid/downgraded/anonymous session acceptance is pending and owner-deferred",
+  "publication": false,
+  "databaseProvisioning": false,
+  "rollback": "Remove only Library Navigation, Remember Library Language and Library Language after clearing this instance locale binding back to en. Restore previous guideline paragraphs. Existing header children and theme binding stay intact; component version 8 remains available. Do not execute this rollback during handoff."
+}

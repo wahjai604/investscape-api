@@ -14,6 +14,7 @@ export const labels = {
   intro: text('Understand the numbers behind a property.', 'Comprendre les chiffres d’un bien immobilier.', '了解物業數字背後的意義。', '了解物业数字背后的意义。'),
   search: text('Search terms and formulas', 'Rechercher des termes et des formules', '搜尋術語與公式', '搜索术语与公式'),
   language: text('Language', 'Langue', '語言', '语言'),
+  propertyTags: text('Property types: RES Residential · COM Commercial · DEV Development', 'Types de biens : RES Résidentiel · COM Commercial · DEV Développement', '物業類型：RES 住宅 · COM 商業 · DEV 開發', '物业类型：RES 住宅 · COM 商业 · DEV 开发'),
   category: text('Category', 'Catégorie', '類別', '类别'),
   all: text('All', 'Tout', '全部', '全部'),
   capital: text('Cost of Capital', 'Coût du capital', '資金成本', '资金成本'),

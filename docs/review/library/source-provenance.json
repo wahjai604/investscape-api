@@ -27,7 +27,8 @@
   "primaryCrossChecks": [
     {
       "url": "https://www2.gov.bc.ca/gov/content/taxes/property-taxes/property-transfer-tax/calculation-examples",
-      "role": "Freshly opened government bracket and conditional residential-surcharge examples; F-701 is conditional, not a determination of tax owing"
+      "role": "Freshly opened government bracket and conditional residential-surcharge examples; F-701 is conditional, not a determination of tax owing",
+      "lastOpenedUTC": "2026-10-10"
     },
     {
       "url": "https://www.canada.ca/en/financial-consumer-agency/services/industry/bulletins/information-box-examples/credit-variable-fixed-mortgage.html",
@@ -103,12 +104,14 @@
   "publication": false,
   "liveResearchWiring": "owner-deferred",
   "liveMapVerification": "owner-deferred",
-  "memberAccess": "No paid-tier gate. Member route/navigation policy still requires wiring review.",
-  "copyStatus": "103 original four-language educational Dev cards; all 64 deduplicated additional topics built; subject/native-language editorial and public runtime acceptance pending",
+  "memberAccess": "Shared Dev Library navigation and device language preference wired and verified; no paid-tier gate. Member authorization and free/paid/downgraded/signed-out session acceptance remain unverified and owner-deferred.",
+  "copyStatus": "103 four-language educational Dev cards; initial 103-entry English editorial pass completed, focused multilingual scope fixes installed; independent subject/native-language approval remains pending.",
   "provisioningRequired": false,
   "statisticsInventory": "statistics-inventory.json",
   "topicGroupReclassification": "topic-group-reclassification.json",
   "economicsInventory": "economics-inventory.json",
   "completionInventory": "completion-inventory.json",
-  "completionBoundaries": "Forty new topics reread at 49 pinned source files. Primary references cross-check concepts only; no current statutory rate, program threshold, personal eligibility, parcel entitlement, proprietary score or engine execution is imported."
+  "completionBoundaries": "Forty new topics reread at 49 pinned source files. Primary references cross-check concepts only; no current statutory rate, program threshold, personal eligibility, parcel entitlement, proprietary score or engine execution is imported.",
+  "editorialReview": "editorial-review.md",
+  "navigationWiring": "navigation-wiring.json"
 }

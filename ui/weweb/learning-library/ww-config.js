@@ -16,5 +16,5 @@ export default {
       bindingValidation:{type:'string',tooltip:'Bind the app theme or use system preference'},propertyHelp:{tooltip:'Uses the existing InvestScape warm light and dark palettes.'},
       /* wwEditor:end */
     },
-  },triggerEvents:[],actions:[],
+  },triggerEvents:[{name:'localeChange',label:{en:'On language change'},event:{value:'en'}}],actions:[],
 };

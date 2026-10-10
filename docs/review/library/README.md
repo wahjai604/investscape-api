@@ -1,6 +1,6 @@
 # Learning Library — canonical formulas and statistics
 
-2026-10-10 UTC. The Dev component now contains **103 educational cards**: the unchanged 39 canonical F cards plus all 64 deduplicated additional topics. The final batch adds 40: three economics, thirteen finance/valuation, fifteen tax concepts, seven lease/development and two planning cards. No proposed educational-card slots remain. Public editorial and member-runtime acceptance remain pending. Library IDs are not engine numbers.
+2026-10-10 UTC. The Dev component now contains **103 educational cards**: the unchanged 39 canonical F cards plus all 64 deduplicated additional topics. The final batch adds 40: three economics, thirteen finance/valuation, fifteen tax concepts, seven lease/development and two planning cards. No proposed educational-card slots remain. The initial editorial pass and Dev navigation/language wiring are complete; independent subject/native-language approval and member-runtime acceptance remain pending. Library IDs are not engine numbers.
 
 | Category | Cards |
 | --- | ---: |
@@ -36,15 +36,15 @@ Historical figures are distinguished from illustrative assumptions and fresh ari
 
 Project: Investscape Dev, 4a0173ad-346d-4d29-a9b9-0201e5af6d78.
 Page: Learning Library Review, fa691651-6fc1-45df-9d69-968d5baeb6ca, draft, hidden from sitemap, path learning-library-review.
-Component: investscape-learning-library, base 3d621fc9-e746-4983-a74a-9663f4c52c0f, version 0b8751d7-74eb-416b-b3a1-2edbdaf280aa, internal version 8, package 1.5.0, built 2026-10-10T11:13:14.746Z.
+Component: investscape-learning-library, base 3d621fc9-e746-4983-a74a-9663f4c52c0f, version bef62685-1d7e-4268-b40e-ca35351f4e8e, internal version 9, package 1.5.1, built 2026-10-10T17:13:12.953Z.
 Instance: cd93727a-145b-46fb-8986-3bfdd93c109e; main section fcc328a2-62b5-4031-b727-de583d290f0e.
 
-All twelve installed source files were read back and match the tested source exactly. The review instance enables non-confidential bundled content. The component default stays false. The language selector changes this component in memory; no global application locale binding is claimed. The existing theme binding follows globalContext.browser.theme with auto fallback. Shared header/navigation are preserved.
+All twelve installed source files were read back and match the tested source exactly. The review instance enables non-confidential bundled content. The component default stays false. The host binds a scoped Library Language variable and handles localeChange through event.value. The preference persists on this device across navigation and refresh. The existing shared draft header has a Library link whose label follows that preference. The rest of the app remains in its existing native English pages; no app-wide translation or account preference is claimed. The existing theme binding follows globalContext.browser.theme with auto fallback. See navigation-wiring.json and editorial-review.md.
 
 ## Verification
 
 - Catalog tests: node --test src/library/catalog.test.ts. Eight tests pass: exact 103 unique IDs and ten category counts, valid related IDs, all four locale fields, numeric parity, independent example arithmetic, iterative/closed-form amortization and later-negative-flow MIRR cases. Original canonical discrepancies remain explicit.
-- Final compiled Vue harness: **3,806 assertions pass**; final result is recorded in evidence/verification.json. All 103 cards open in All and their category in every locale (**824 detail openings**), with exact visible copy checks. Narrow-screen long-detail coverage includes 25 IDs, four locales and both color schemes (200 openings), plus existing width/theme/keyboard/default-off/editor/unmount checks. Tax disposal related navigation is additionally checked in each locale.
+- Final compiled Vue harness: **3,827 assertions pass**; final result is recorded in evidence/verification.json. All 103 cards open in All and their category in every locale (**824 detail openings**), with exact visible copy checks. Narrow-screen long-detail coverage includes 25 IDs, four locales and both color schemes (200 openings), plus existing width/theme/keyboard/default-off/editor/unmount checks. Tax disposal related navigation is additionally checked in each locale.
 - Installed Dev: the 103-card overview and ten category counts are checked in all four locales. All 40 new details are checked in each locale (**160 exact six-field SHA-256 comparisons**) on version 7. Version 8 only corrects two disposal links to F-303; those six detail fields are unchanged. All twelve final installed files match tested source. Final installed link/filter/opener checks are recorded in evidence/completion-installed-preview.json; screenshot: evidence/completion-installed.jpg. Prior receipts remain historical. No real member session, production acceptance or public app publication is claimed.
 
 The harness command is node docs/review/library/check-component.mjs <playwright-index.mjs> <complete-chromium-binary> <vue-esbuild-tools-root>. Restricted containers may require fresh archive extraction and matching renderer libraries alongside Chromium.
@@ -65,6 +65,8 @@ All 18 previously deferred groups now have a concept scope that can be prepared 
 | S-018 | Data Quality, Freshness and Uncertainty | ST18 |
 
 No geography aggregation or operational winsorization service is claimed. Geography examples pool means only for comparable, disjoint groups with matching observation counts; medians cannot be pooled this way. Winsorization uses declared illustrative fixed bounds and preserves raw values. Covariance is the sample convention used internally by the inspected Pearson implementation, not a claim of implemented portfolio risk. Benchmark example weights are illustrative, not engine defaults; incompatible evidence is excluded before consensus, and severe unresolved conflict can produce a gap. Quality completeness and confidence are not accuracy probabilities or source permissions.
+
+Version 9 visibly passes four-language navigation/refresh tests and an installed S-009 detail check in each locale; all twelve installed files match tested source. Evidence: evidence/navigation-installed-preview.json and evidence/navigation-installed.jpg. These are Dev editor-preview checks, not real-member acceptance.
 
 The original 64-candidate inventory remains historical; this revised plan still has 64 additional slots: 64 built and zero remaining, for a current Dev total of 103.
 
@@ -87,14 +89,14 @@ The compiled harness covers all six economics cards at 320-width in both light/d
 
 ## Runtime boundary and remaining release work
 
-Educational content is bundled and non-confidential. No API, database, storage, session, AI, tracking or calculation-engine calls were added. This component reads or writes no private projects and accepts no deal inputs. Its display flag is not an authorization boundary. Free, paid and downgraded members have the same educational catalog; reviewed member-page access/navigation still needs wiring before public release.
+Educational content is bundled and non-confidential. No API, database, storage, session, AI, tracking or calculation-engine calls were added. This component reads or writes no private projects and accepts no deal inputs. Its display flag is not an authorization boundary. Free, paid and downgraded members have the same educational catalog; Dev navigation and Library language persistence are wired; verified member-page authorization still needs acceptance before public release.
 
-Remaining release work: final source/editorial review, including the historical discrepancies and native-language terminology; existing member route/access policy review and navigation/locale wiring; separately authorized app publication. Research live wiring and live map testing stay owner-deferred. Original v2-remastered HTML, Quick/Full staging, Relationship OS and unrelated work are preserved.
+Remaining release work: final source/editorial review, including the historical discrepancies and native-language terminology; existing member route/access policy review and real-session acceptance; separately authorized app publication. Research live wiring and live map testing stay owner-deferred. Original v2-remastered HTML, Quick/Full staging, Relationship OS and unrelated work are preserved.
 
 ## Completion scopes and remaining release work
 
-completion-inventory.json maps all forty final review keys to Library IDs, pins 49 freshly reread source files and records bounded primary-authority cross-checks. finance-completion-catalog.js, tax-completion-catalog.js and development-completion-catalog.js contain original four-language educational copy. Existing canonical/statistics/economics copy and the Vue interaction implementation are preserved.
+completion-inventory.json maps all forty final review keys to Library IDs, pins 49 freshly reread source files and records bounded primary-authority cross-checks. finance-completion-catalog.js, tax-completion-catalog.js and development-completion-catalog.js contain original four-language educational copy. The original completion checkpoint preserved canonical/statistics/economics copy and Vue interactions. The subsequent editorial/navigation pass changes only five statistics scope/explanation entries, a property-type legend and the scoped language-change event; see editorial-review.md.
 
 Tax and mortgage-policy examples use expressly hypothetical rates or separately assumed eligibility, never embedded source defaults as current rules. Canada and US conventions remain distinct; US passive losses, Section 1031, cost segregation and Opportunity Zones are explicitly US concepts. Current-year eligibility, rates, filing deadlines and parcel entitlements are not determined. Withholding is not final tax; registration alone is not full GST/HST recovery. The 18 previously held implementation/live-output/current-rule claims remain held.
 
-Next release tasks: native-language and subject-editor review of the copy; existing member-page navigation and app-locale binding review; free/paid/downgraded member-session acceptance. The review page is draft and the component default remains off. Live Maps, Research wiring, database and Auth work remain separately deferred; completing educational content does not activate those services.
+Next release tasks: native-language and subject-editor review of the copy; verified member-page authorization and free/paid/downgraded/signed-out member-session acceptance. Dev Library navigation and its scoped device preference are complete; broader app translation is outside this change. The review page is draft and the component default remains off. Live Maps, Research wiring, database and Auth work remain separately deferred; completing educational content does not activate those services.

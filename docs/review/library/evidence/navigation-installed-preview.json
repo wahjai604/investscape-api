@@ -1,0 +1,71 @@
+{
+  "verifiedAt": "2026-10-10T17:25:11.958Z",
+  "url": "https://joyous-trellis-editor.weweb.io/fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "navigation": [
+    {
+      "locale": "zh-Hant",
+      "navLabel": "知識庫",
+      "returnLocale": "zh-Hant",
+      "cards": 103,
+      "workspaceReturn": true,
+      "refreshLocale": "zh-Hant",
+      "status": "103 個項目"
+    },
+    {
+      "locale": "zh-Hans",
+      "navLabel": "知识库",
+      "workspaceReturn": true,
+      "refreshLocale": "zh-Hans",
+      "status": "103 个条目"
+    },
+    {
+      "locale": "fr-CA",
+      "navLabel": "Bibliothèque",
+      "workspaceReturn": true,
+      "refreshLocale": "fr-CA",
+      "status": "103 entrées"
+    },
+    {
+      "locale": "en",
+      "navLabel": "Library",
+      "workspaceReturn": true,
+      "refreshLocale": "en",
+      "status": "103 entries"
+    }
+  ],
+  "editorialSmoke": [
+    {
+      "locale": "en",
+      "copySha256": "0bd48d84d418a1e099edda04cb349c3f4c24e303d9bd4cf4a8b05871ff263d03",
+      "id": "S-009",
+      "checked": "Displayed explanation/example/formula/scope and related entries; signed change not improvement"
+    },
+    {
+      "locale": "fr-CA",
+      "copySha256": "df431c592fed3efefdf40c0074473476314d70ab9407e5a725abdc88ac4f47c7",
+      "id": "S-009",
+      "checked": "Displayed explanation/example/formula/scope and related entries; signed change not improvement"
+    },
+    {
+      "locale": "zh-Hant",
+      "copySha256": "bb09ab8fd7aba660e96a9c7ab692371ee277aa081b6001e431f7577a2c43662b",
+      "id": "S-009",
+      "checked": "Displayed explanation/example/formula/scope and related entries; signed change not improvement"
+    },
+    {
+      "locale": "zh-Hans",
+      "copySha256": "942466dae27510aa923d19ceab0f04dd7da6ad1290fa78bd6f5c26f825b2abb5",
+      "id": "S-009",
+      "checked": "Displayed explanation/example/formula/scope and related entries; signed change not improvement"
+    }
+  ],
+  "environment": "Investscape Dev editor preview; unpublished draft",
+  "componentVersion": 9,
+  "packageVersion": "1.5.1",
+  "publication": false,
+  "memberSessionVerified": false,
+  "installedFilesReadBack": 12,
+  "catalogTestsPassed": 8,
+  "compiledVueAssertionsPassed": 3827,
+  "scope": "Existing shared header plus Library locale binding only; no app-wide translations"
+}

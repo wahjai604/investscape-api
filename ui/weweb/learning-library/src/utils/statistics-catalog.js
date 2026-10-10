@@ -228,10 +228,10 @@ export const statisticsCatalog = [
       "zh-Hans": "假设租金为 $1,000、$1,200、$1,200、$1,600；$1,200 有一个数值较低、两个相同，中间百分位排名为 50%。"
     },
     "scope": {
-      "en": "Tie conventions vary. An empty reference set has no rank. This source returns a fraction; the card multiplies by 100 to show a percentage, not a percentile rent amount.",
-      "fr-CA": "Les conventions d’égalité varient. Un ensemble vide n’a pas de rang. La source renvoie une fraction; la carte multiplie par 100 pour afficher un pourcentage, pas un montant de loyer.",
-      "zh-Hant": "同值處理慣例可不同。空參考資料集沒有排名。來源輸出比例；本卡乘以 100 顯示百分比，而非某百分位的租金金額。",
-      "zh-Hans": "同值处理惯例可不同。空参考数据集没有排名。来源输出比例；本卡乘以 100 显示百分比，而非某百分位的租金金额。"
+      "en": "Tie conventions vary. An empty reference set has no rank. Multiply the mid-rank fraction by 100 to display a percentage, not a percentile rent amount.",
+      "fr-CA": "Les conventions d’égalité varient. Un ensemble vide n’a pas de rang. Multipliez la fraction du rang moyen par 100 pour afficher un pourcentage, pas un montant de loyer.",
+      "zh-Hant": "同值處理慣例可不同。空參考資料集沒有排名。將中間排名比例乘以 100 顯示百分比，而非某百分位的租金金額。",
+      "zh-Hans": "同值处理惯例可不同。空参考数据集没有排名。将中间排名比例乘以 100 显示百分比，而非某百分位的租金金额。"
     },
     "relatedIds": [
       "S-005"
@@ -267,10 +267,10 @@ export const statisticsCatalog = [
       "zh-Hans": "假设租金 $1,000、$1,200、$1,400，平均 $1,200，差距平方和为 80,000。样本方差为 40,000，样本标准差为 $200；总体标准差约 $163.30。"
     },
     "scope": {
-      "en": "The source defaults to sample statistics, requiring at least two observations. Population statistics need at least one. Variance has squared units. Dispersion is not a confidence interval or forecast accuracy.",
-      "fr-CA": "La source utilise par défaut l’échantillon, avec au moins deux observations. La population en exige au moins une. La variance a des unités au carré. La dispersion n’est ni un intervalle de confiance ni la précision d’une prévision.",
-      "zh-Hant": "來源預設樣本統計，至少需兩個觀測值；母體統計至少需一個。變異數的單位為平方。離散程度並非信賴區間或預測準確度。",
-      "zh-Hans": "来源默认样本统计，至少需两个观测值；总体统计至少需一个。方差的单位为平方。离散程度并非置信区间或预测准确度。"
+      "en": "Sample statistics require at least two observations. Population statistics need at least one. Variance has squared units. Dispersion is not a confidence interval or forecast accuracy.",
+      "fr-CA": "Les statistiques d’échantillon exigent au moins deux observations; celles d’une population, au moins une. La variance a des unités au carré. La dispersion n’est ni un intervalle de confiance ni la précision d’une prévision.",
+      "zh-Hant": "樣本統計至少需兩個觀測值；母體統計至少需一個。變異數的單位為平方。離散程度並非信賴區間或預測準確度。",
+      "zh-Hans": "样本统计至少需两个观测值；总体统计至少需一个。方差的单位为平方。离散程度并非置信区间或预测准确度。"
     },
     "relatedIds": [
       "S-001",
@@ -295,10 +295,10 @@ export const statisticsCatalog = [
       "zh-Hans": "变异系数"
     },
     "explanation": {
-      "en": "Compare sample dispersion with the size of the mean. This source uses sample standard deviation divided by the absolute mean.",
-      "fr-CA": "Comparez la dispersion d’échantillon à la grandeur de la moyenne. Cette source divise l’écart-type d’échantillon par la valeur absolue de la moyenne.",
-      "zh-Hant": "將樣本離散程度與平均數大小相比。此來源以樣本標準差除以平均數的絕對值。",
-      "zh-Hans": "将样本离散程度与平均数大小相比。此来源以样本标准差除以平均数的绝对值。"
+      "en": "Compare sample dispersion with the size of the mean. The displayed convention divides sample standard deviation by the absolute mean.",
+      "fr-CA": "Comparez la dispersion d’échantillon à la grandeur de la moyenne. La convention affichée divise l’écart-type d’échantillon par la valeur absolue de la moyenne.",
+      "zh-Hant": "將樣本離散程度與平均數大小相比。本卡所示慣例以樣本標準差除以平均數的絕對值。",
+      "zh-Hans": "将样本离散程度与平均数大小相比。本卡所示惯例以样本标准差除以平均数的绝对值。"
     },
     "example": {
       "en": "For synthetic rents $1,000, $1,200 and $1,400, sample SD is $200 and mean rent is $1,200. Their CV is about 16.67%.",
@@ -307,10 +307,10 @@ export const statisticsCatalog = [
       "zh-Hans": "假设租金 $1,000、$1,200、$1,400，样本标准差 $200、平均 $1,200，变异系数约 16.67%。"
     },
     "scope": {
-      "en": "Prefer positive ratio-scale quantities with meaningful zero, such as comparable rents. A zero/near-zero mean makes the ratio unsuitable; the source withholds it at |mean| ≤ 1e−9. Absolute-mean handling is a source convention, not a cure for mixed-sign returns or a forecast probability.",
-      "fr-CA": "Privilégiez des quantités positives avec un zéro significatif, comme des loyers comparables. Une moyenne nulle ou proche de zéro rend le ratio inadapté; la source le retient à |moyenne| ≤ 1e−9. La valeur absolue est une convention, pas une solution aux rendements de signes mixtes ni une probabilité de prévision.",
-      "zh-Hant": "宜用於具有真實零點的正值量，例如可比較租金。平均數為零或接近零時不宜使用；來源在 |平均數| ≤ 1e−9 時不提供結果。絕對值為來源慣例，不能解決正負回報混合，也非預測機率。",
-      "zh-Hans": "宜用于具有真实零点的正值量，例如可比较租金。平均数为零或接近零时不宜使用；来源在 |平均数| ≤ 1e−9 时不提供结果。绝对值为来源惯例，不能解决正负回报混合，也非预测概率。"
+      "en": "Prefer positive ratio-scale quantities with meaningful zero, such as comparable rents. A zero/near-zero mean makes the ratio unsuitable. Absolute-mean handling is a convention, not a cure for mixed-sign returns or a forecast probability.",
+      "fr-CA": "Privilégiez des quantités positives avec un zéro significatif, comme des loyers comparables. Une moyenne nulle ou proche de zéro rend le ratio inadapté. La valeur absolue est une convention, pas une solution aux rendements de signes mixtes ni une probabilité de prévision.",
+      "zh-Hant": "宜用於具有真實零點的正值量，例如可比較租金。平均數為零或接近零時不宜使用。絕對值為計算慣例，不能解決正負回報混合，也非預測機率。",
+      "zh-Hans": "宜用于具有真实零点的正值量，例如可比较租金。平均数为零或接近零时不宜使用。绝对值为计算惯例，不能解决正负回报混合，也非预测概率。"
     },
     "relatedIds": [
       "S-007"
@@ -346,10 +346,10 @@ export const statisticsCatalog = [
       "zh-Hans": "假设月租由 $1,000 升至 $1,100，变动为 10%。此为示例比较。"
     },
     "scope": {
-      "en": "A zero prior value has no percentage change. Keep units, definitions and intervals aligned. This source divides by |prior|; for a negative prior it reports signed improvement, which differs from dividing by the signed prior.",
-      "fr-CA": "Une valeur antérieure nulle ne permet pas de calculer un pourcentage. Alignez unités, définitions et intervalles. La source divise par |valeur antérieure|; avec une valeur négative, le résultat diffère d’une division par la valeur signée.",
-      "zh-Hant": "前值為零時無法計算百分比。單位、定義及期間須一致。此來源除以前值的絕對值；前值為負時，以此表示有方向的改善幅度，與除以帶符號前值不同。",
-      "zh-Hans": "前值为零时无法计算百分比。单位、定义及期间须一致。此来源除以前值的绝对值；前值为负时，以此表示有方向的改善幅度，与除以带符号前值不同。"
+      "en": "A zero prior value has no percentage change. Keep units, definitions and intervals aligned. This convention divides by |prior|; a negative prior gives signed change relative to its magnitude, which differs from dividing by the signed prior.",
+      "fr-CA": "Une valeur antérieure nulle ne permet pas de calculer un pourcentage. Alignez unités, définitions et intervalles. Cette convention divise par |valeur antérieure|; avec une valeur négative, elle mesure la variation signée par rapport à sa grandeur, ce qui diffère d’une division par la valeur signée.",
+      "zh-Hant": "前值為零時無法計算百分比。單位、定義及期間須一致。本慣例除以前值的絕對值；前值為負時，表示相對其大小的帶方向變動，與除以帶符號前值不同。",
+      "zh-Hans": "前值为零时无法计算百分比。单位、定义及期间须一致。本惯例除以前值的绝对值；前值为负时，表示相对其大小的带方向变动，与除以带符号前值不同。"
     },
     "relatedIds": [
       "S-010",
@@ -386,10 +386,10 @@ export const statisticsCatalog = [
       "zh-Hans": "假设指数两年由 100 升至 121，CAGR 为 10%。即使每年变动不均，也可得出相同起点及终点。"
     },
     "scope": {
-      "en": "Require beginning > 0, ending ≥ 0 and years > 0 for this source convention; ending zero produces −100%. CAGR ignores intermediate cash flows and volatility, so it is not IRR or a forecast.",
+      "en": "Require beginning > 0, ending ≥ 0 and years > 0 for this convention; ending zero produces −100%. CAGR ignores intermediate cash flows and volatility, so it is not IRR or a forecast.",
       "fr-CA": "Cette convention exige début > 0, fin ≥ 0 et durée > 0; une fin nulle donne −100 %. Le TCAC ignore les flux intermédiaires et la volatilité; ce n’est ni un TRI ni une prévision.",
-      "zh-Hant": "此來源慣例要求起值 > 0、終值 ≥ 0、年數 > 0；終值為零得出 −100%。CAGR 忽略中間現金流及波動，並非 IRR 或預測。",
-      "zh-Hans": "此来源惯例要求起值 > 0、终值 ≥ 0、年数 > 0；终值为零得出 −100%。CAGR 忽略中间现金流及波动，并非 IRR 或预测。"
+      "zh-Hant": "本慣例要求起值 > 0、終值 ≥ 0、年數 > 0；終值為零得出 −100%。CAGR 忽略中間現金流及波動，並非 IRR 或預測。",
+      "zh-Hans": "本惯例要求起值 > 0、终值 ≥ 0、年数 > 0；终值为零得出 −100%。CAGR 忽略中间现金流及波动，并非 IRR 或预测。"
     },
     "relatedIds": [
       "F-202",

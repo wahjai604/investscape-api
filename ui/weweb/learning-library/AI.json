@@ -13,7 +13,8 @@
       "Ten category filters, including statistics, economics, taxes and planning",
       "Keyboard accessible formula details",
       "English, French and two Chinese scripts",
-      "Related-card navigation preserves the original opener"
+      "Related-card navigation preserves the original opener",
+      "Language-change event for an app-owned preference"
     ],
     "inherit": []
   },
@@ -38,7 +39,15 @@
     }
   ],
   "states": [],
-  "events": [],
+  "events": [
+    {
+      "name": "localeChange",
+      "description": "A user selects a different Library language. Bind event.value to the app preference using an update-variable workflow; external locale updates do not emit.",
+      "payload": {
+        "value": "string: en, fr-CA, zh-Hant or zh-Hans"
+      }
+    }
+  ],
   "localContext": [],
   "actions": [],
   "slots": [],
@@ -51,7 +60,9 @@
     "Editor interactions are disabled. Source examples are labelled documented or illustrative; module tags do not impose subscription gates.",
     "Translations are prepared for editorial review; historical glossary policy proposals are not new owner approvals.",
     "No public page publication or private authorization is implied by installing this component.",
-    "Tax and underwriting copy explains concepts only: current policy values, statutory eligibility, parcel decisions and proprietary scores remain outside this catalog."
+    "Tax and underwriting copy explains concepts only: current policy values, statutory eligibility, parcel decisions and proprietary scores remain outside this catalog.",
+    "The component keeps a local fallback selection and emits localeChange only for user changes. It never writes storage; the host app owns preference persistence. An external locale prop update replaces the local fallback without emitting.",
+    "RES, COM and DEV identify property types, explained in a localized legend; they are not subscription levels."
   ],
   "examples": [
     {
