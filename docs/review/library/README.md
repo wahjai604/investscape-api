@@ -1,18 +1,20 @@
 # Learning Library — canonical formulas and statistics
 
-2026-10-10 UTC / 2026-10-10 America/Vancouver. The component now contains **63 educational cards**: all **39 numbered formula cards** in canonical Doc 06 and Addendum A, plus **18 statistics cards (S-001–S-018)** and **six economics cards (EC-001–EC-006)**; the revised statistics crosswalk below preserves the original inventory history. S and EC IDs are Library identifiers, not newly allocated canonical formula or engine numbers. See canonical-inventory.json for the source-pinned ID list. Supporting glossary acronyms are definitions, not extra numbered cards.
+2026-10-10 UTC. The Dev component now contains **103 educational cards**: the unchanged 39 canonical F cards plus all 64 deduplicated additional topics. The final batch adds 40: three economics, thirteen finance/valuation, fifteen tax concepts, seven lease/development and two planning cards. No proposed educational-card slots remain. Public editorial and member-runtime acceptance remain pending. Library IDs are not engine numbers.
 
 | Category | Cards |
 | --- | ---: |
 | Cost of Capital | 3 |
-| Time Value of Money | 7 |
-| Cash Flow Model | 3 |
-| Performance | 10 |
-| Leverage | 5 |
-| Development & Construction | 11 |
+| Time Value of Money | 8 |
+| Cash Flow Model | 8 |
+| Performance | 13 |
+| Leverage | 12 |
+| Development & Construction | 15 |
 | Market Statistics & Risk | 18 |
-| Economics & Market Conditions | 6 |
-| Total | 63 |
+| Economics & Market Conditions | 9 |
+| Taxes & Ownership Costs | 15 |
+| Land Use & Planning | 2 |
+| Total | 103 |
 
 Every card contains a four-language name, explanation, worked example and limitations: en, fr-CA, zh-Hant and zh-Hans. Formula notation, IDs and RES/COM/DEV tags remain universal. Search covers IDs, notation, tags and names/explanations in all languages. Development cards have their own filter; F-707 now belongs to it. Details support Close, backdrop, Escape, focus trapping and opener restoration. Default-off and editor-disable behavior are preserved. Module tags describe coverage and impose no paid subscription gate. Statistics details link related entries, including existing Future Value and IRR cards. Related navigation preserves the category filter and restores the original card focus on close.
 
@@ -34,16 +36,16 @@ Historical figures are distinguished from illustrative assumptions and fresh ari
 
 Project: Investscape Dev, 4a0173ad-346d-4d29-a9b9-0201e5af6d78.
 Page: Learning Library Review, fa691651-6fc1-45df-9d69-968d5baeb6ca, draft, hidden from sitemap, path learning-library-review.
-Component: investscape-learning-library, base 3d621fc9-e746-4983-a74a-9663f4c52c0f, version 03081e9f-8ec2-42cf-ac05-a2760bdd78d2, internal version 6, package 1.4.0, built 2026-10-10T10:38:55.290Z.
+Component: investscape-learning-library, base 3d621fc9-e746-4983-a74a-9663f4c52c0f, version 0b8751d7-74eb-416b-b3a1-2edbdaf280aa, internal version 8, package 1.5.0, built 2026-10-10T11:13:14.746Z.
 Instance: cd93727a-145b-46fb-8986-3bfdd93c109e; main section fcc328a2-62b5-4031-b727-de583d290f0e.
 
-All nine installed source files were read back and match the tested source exactly. The review instance enables non-confidential bundled content. The component default stays false. The language selector changes this component in memory; no global application locale binding is claimed. The existing theme binding follows globalContext.browser.theme with auto fallback. Shared header/navigation are preserved.
+All twelve installed source files were read back and match the tested source exactly. The review instance enables non-confidential bundled content. The component default stays false. The language selector changes this component in memory; no global application locale binding is claimed. The existing theme binding follows globalContext.browser.theme with auto fallback. Shared header/navigation are preserved.
 
 ## Verification
 
-- Catalog tests: node --test src/library/catalog.test.ts. Seven tests pass, including exact 39 canonical/18 statistics/six economics ID coverage, eight category totals, four-language completeness, independent example arithmetic/source discrepancy checks and numeric parity across translations.
-- Actual compiled Vue harness: 2,270 assertions pass; all 63 cards open in All and across all eight category filters for each of four languages, **504 detail openings**. Exact translated heading, explanation, example and limits plus unchanged formula text are checked. Search, default-off/editor-disable behavior, keyboard handling, clearing, unmount, 320/390/768/1100-width reflow and light/dark checks pass. Zero external requests and browser errors in this local harness. Results and EN/FR screenshots are in evidence/.
-- Current installed Dev preview: 63-card overview and six-card economics filter in each of four locales; all six new details checked in each locale (**24 detail openings**) against exact heading, formula, explanation, example and scope hashes. EC-006 → F-405 navigation, filter preservation and opener focus restoration pass. Receipt: evidence/economics-installed-preview.json; screenshot: evidence/economics-installed.jpg. Earlier statistics and canonical receipts remain historical in evidence/. These checks are not production/member-session acceptance.
+- Catalog tests: node --test src/library/catalog.test.ts. Eight tests pass: exact 103 unique IDs and ten category counts, valid related IDs, all four locale fields, numeric parity, independent example arithmetic, iterative/closed-form amortization and later-negative-flow MIRR cases. Original canonical discrepancies remain explicit.
+- Final compiled Vue harness: **3,806 assertions pass**; final result is recorded in evidence/verification.json. All 103 cards open in All and their category in every locale (**824 detail openings**), with exact visible copy checks. Narrow-screen long-detail coverage includes 25 IDs, four locales and both color schemes (200 openings), plus existing width/theme/keyboard/default-off/editor/unmount checks. Tax disposal related navigation is additionally checked in each locale.
+- Installed Dev: the 103-card overview and ten category counts are checked in all four locales. All 40 new details are checked in each locale (**160 exact six-field SHA-256 comparisons**) on version 7. Version 8 only corrects two disposal links to F-303; those six detail fields are unchanged. All twelve final installed files match tested source. Final installed link/filter/opener checks are recorded in evidence/completion-installed-preview.json; screenshot: evidence/completion-installed.jpg. Prior receipts remain historical. No real member session, production acceptance or public app publication is claimed.
 
 The harness command is node docs/review/library/check-component.mjs <playwright-index.mjs> <complete-chromium-binary> <vue-esbuild-tools-root>. Restricted containers may require fresh archive extraction and matching renderer libraries alongside Chromium.
 
@@ -64,7 +66,7 @@ All 18 previously deferred groups now have a concept scope that can be prepared 
 
 No geography aggregation or operational winsorization service is claimed. Geography examples pool means only for comparable, disjoint groups with matching observation counts; medians cannot be pooled this way. Winsorization uses declared illustrative fixed bounds and preserves raw values. Covariance is the sample convention used internally by the inspected Pearson implementation, not a claim of implemented portfolio risk. Benchmark example weights are illustrative, not engine defaults; incompatible evidence is excluded before consensus, and severe unresolved conflict can produce a gap. Quality completeness and confidence are not accuracy probabilities or source permissions.
 
-The original 64-candidate inventory remains historical; this revised plan still has 64 additional slots: 24 built and 40 remaining, for a potential total of 103 after review and further deduplication.
+The original 64-candidate inventory remains historical; this revised plan still has 64 additional slots: 64 built and zero remaining, for a current Dev total of 103.
 
 ## Economics scopes and source limits
 
@@ -81,10 +83,18 @@ economics-inventory.json maps EC01–EC06 to EC-001–EC-006 and records seven f
 
 E29/E31 read dated fixtures. E32/E33/E37/E38 return fixtures with a validated request date; that date is not proof of observation freshness. Their heat, elasticity, confidence and forecast fields are not adopted as live evidence. E45 computes supplied scenario outcomes with defaults/constraints and carries supplied probability values; this does not establish calibrated likelihood or deployed runtime integration. Primary StatCan, CMHC, GVR and CREA methodological cross-checks are listed with their bounded roles; no live observations or source excerpts were imported into cards.
 
-The compiled harness covers all six economics cards at 320-width in both light/dark schemes across four locales, plus the previous five long-detail cases (88 long-detail openings). Installed verification covers the new six cards only; all-63 detail coverage is local compiled evidence. Final editorial and native-language review remain open.
+The compiled harness covers all six economics cards at 320-width in both light/dark schemes across four locales, plus the previous five long-detail cases (88 long-detail openings). The preceding six-card installed receipt remains historical; current completion verification is described above. Final editorial and native-language review remain open.
 
 ## Runtime boundary and remaining release work
 
 Educational content is bundled and non-confidential. No API, database, storage, session, AI, tracking or calculation-engine calls were added. This component reads or writes no private projects and accepts no deal inputs. Its display flag is not an authorization boundary. Free, paid and downgraded members have the same educational catalog; reviewed member-page access/navigation still needs wiring before public release.
 
 Remaining release work: final source/editorial review, including the historical discrepancies and native-language terminology; existing member route/access policy review and navigation/locale wiring; separately authorized app publication. Research live wiring and live map testing stay owner-deferred. Original v2-remastered HTML, Quick/Full staging, Relationship OS and unrelated work are preserved.
+
+## Completion scopes and remaining release work
+
+completion-inventory.json maps all forty final review keys to Library IDs, pins 49 freshly reread source files and records bounded primary-authority cross-checks. finance-completion-catalog.js, tax-completion-catalog.js and development-completion-catalog.js contain original four-language educational copy. Existing canonical/statistics/economics copy and the Vue interaction implementation are preserved.
+
+Tax and mortgage-policy examples use expressly hypothetical rates or separately assumed eligibility, never embedded source defaults as current rules. Canada and US conventions remain distinct; US passive losses, Section 1031, cost segregation and Opportunity Zones are explicitly US concepts. Current-year eligibility, rates, filing deadlines and parcel entitlements are not determined. Withholding is not final tax; registration alone is not full GST/HST recovery. The 18 previously held implementation/live-output/current-rule claims remain held.
+
+Next release tasks: native-language and subject-editor review of the copy; existing member-page navigation and app-locale binding review; free/paid/downgraded member-session acceptance. The review page is draft and the component default remains off. Live Maps, Research wiring, database and Auth work remain separately deferred; completing educational content does not activate those services.

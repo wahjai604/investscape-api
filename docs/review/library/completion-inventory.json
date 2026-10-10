@@ -1,0 +1,851 @@
+{
+  "reviewDate": "2026-10-10",
+  "baseline": 63,
+  "added": 40,
+  "total": 103,
+  "remainingProposedCards": 0,
+  "packageVersion": "1.5.0",
+  "scope": "Bundled default-off Dev education; no engine execution, current rates, eligibility decision, live integration, DB/auth changes or public release.",
+  "cards": [
+    {
+      "reviewKey": "EC07",
+      "id": "EC-007",
+      "title": "Currency conversion and quote direction",
+      "sourceReferences": "calc:E20; economic:E44",
+      "scope": "One conversion card; specify base/quote direction and date, using an illustrative exchange rate.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "EC08",
+      "id": "EC-008",
+      "title": "Currency exposure and hedge coverage",
+      "sourceReferences": "economic:E44",
+      "scope": "Teach exposure shares and assumption-driven stress; do not publish proprietary risk-score weights.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "EC09",
+      "id": "EC-009",
+      "title": "Geographic concentration and diversification",
+      "sourceReferences": "economic:E43; calc:E10",
+      "scope": "Teach value/income shares and concentration; pooled returns are not averages of property IRRs; defer branded scores.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX01",
+      "id": "TX-001",
+      "title": "Taxable rental income versus cash flow",
+      "sourceReferences": "tax:E46; calc:E3",
+      "scope": "Distinguish tax pool from F-401/F-402; jurisdiction-specific inclusions and deductions need current authority review.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX02",
+      "id": "TX-002",
+      "title": "Marginal and effective tax rates",
+      "sourceReferences": "tax:E47",
+      "scope": "Use a clearly illustrative bracket schedule until year/jurisdiction rates are freshly verified.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX03",
+      "id": "TX-003",
+      "title": "Depreciation: CCA and MACRS",
+      "sourceReferences": "tax:E48",
+      "scope": "One concept with explicit Canada/US variants; eligibility/classes/year conventions require authority review.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX04",
+      "id": "TX-004",
+      "title": "Depreciation recapture on disposal",
+      "sourceReferences": "tax:E48",
+      "scope": "Distinct disposal event, linked to depreciation and net sale proceeds; no universal tax rate.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX05",
+      "id": "TX-005",
+      "title": "Mortgage interest versus principal for tax purposes",
+      "sourceReferences": "tax:E49; calc:E2",
+      "scope": "Reuse amortization arithmetic; deductibility is separate from allocating a payment.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX06",
+      "id": "TX-006",
+      "title": "Operating expense versus capital expenditure",
+      "sourceReferences": "tax:E50; calc:E23",
+      "scope": "Tax classification is not the same as the F-408 operating-expense ratio.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX07",
+      "id": "TX-007",
+      "title": "Developer profit and tax basis",
+      "sourceReferences": "tax:E51",
+      "scope": "Link F-707 rather than duplicate profit/ROC; identify accounting/tax basis and limitations.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX08",
+      "id": "TX-008",
+      "title": "GST/HST in a development budget",
+      "sourceReferences": "tax:E52",
+      "scope": "Keep GST/HST distinct from F-701 transfer tax and local levies; no default entitlement/exemption claims.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX09",
+      "id": "TX-009",
+      "title": "Development charges and local levies",
+      "sourceReferences": "tax:E52",
+      "scope": "Separate municipal charges from GST/HST; supplied local rate/date and project applicability needed.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX10",
+      "id": "TX-010",
+      "title": "Passive activity losses",
+      "sourceReferences": "tax:E53",
+      "scope": "US scope and current-year authority required; source presence is not verified personal eligibility.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX11",
+      "id": "TX-011",
+      "title": "Section 1031 exchanges",
+      "sourceReferences": "tax:E68",
+      "scope": "US scope; current requirements and deadlines must be reviewed before any member-facing rule copy.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX12",
+      "id": "TX-012",
+      "title": "Cost segregation",
+      "sourceReferences": "tax:E69",
+      "scope": "Separate allocation/depreciation method from generic CCA/MACRS; do not publish benchmark shares as universal.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX13",
+      "id": "TX-013",
+      "title": "Opportunity Zones",
+      "sourceReferences": "tax:E70",
+      "scope": "Regime/date-sensitive; no stale legislative claims or eligibility promises.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX14",
+      "id": "TX-014",
+      "title": "Cross-border withholding versus final tax",
+      "sourceReferences": "tax:E83",
+      "scope": "Resolve by tax repository and function, not ambiguous E83 alone; actual elections/rates need fresh review.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "TX15",
+      "id": "TX-015",
+      "title": "Property tax estimates and assessment basis",
+      "sourceReferences": "calc:E22",
+      "scope": "Property tax is distinct from transfer tax; distinguish user assumptions from current municipal assessments/rates.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI01",
+      "id": "FI-001",
+      "title": "Amortization, principal and remaining loan balance",
+      "sourceReferences": "calc:E2; calc:E1",
+      "scope": "Extend learning beyond F-206 payment; no separate Canada/US duplicate cards, but explicit convention variants.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI02",
+      "id": "FI-002",
+      "title": "Modified internal rate of return",
+      "sourceReferences": "calc:E5",
+      "scope": "Separate finance/reinvestment assumptions from F-409 IRR.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI03",
+      "id": "FI-003",
+      "title": "Equity multiple",
+      "sourceReferences": "calc:E5; calc:E10",
+      "scope": "Undiscounted multiple, distinct from annual yield, ROC and IRR; portfolio aggregation uses cash flows.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "PV01",
+      "id": "PV-001",
+      "title": "Cap-rate spreads and value sensitivity",
+      "sourceReferences": "market:cap-rate-engine/transaction-derivation; market:cap-rate-engine/scenario-sensitivity; market:cre-intelligence/benchmark-selection",
+      "scope": "Reuse F-404/F-405; add basis-point interpretation and cap-rate-denominator sensitivity, distinct from F-406 NOI sensitivity.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI04",
+      "id": "FI-004",
+      "title": "Operating cash-flow breakeven",
+      "sourceReferences": "calc:E12",
+      "scope": "Distinct from F-710 debt-retirement units; identify zero-cash-flow target and assumptions.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV02",
+      "id": "DV-002",
+      "title": "Weighted average lease term",
+      "sourceReferences": "calc:E84",
+      "scope": "Specify weighting basis and reference date; arithmetic is related to weighted mean but lease meaning is distinct.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV03",
+      "id": "DV-003",
+      "title": "Physical and economic occupancy",
+      "sourceReferences": "calc:E84",
+      "scope": "Specify occupied area/rent denominator and as-of date; never equate occupancy with collections.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV04",
+      "id": "DV-004",
+      "title": "Lease rollover and expiry concentration",
+      "sourceReferences": "calc:E84",
+      "scope": "One schedule/concentration card, linked to WALT; no separate chart-format cards.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV05",
+      "id": "DV-005",
+      "title": "Base rent, recoveries and rental cash flow",
+      "sourceReferences": "calc:E84; calc:E3",
+      "scope": "Lease-income definitions extend F-401; expenses/recoveries must avoid double counting.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI05",
+      "id": "FI-005",
+      "title": "Refinancing: released equity and new debt service",
+      "sourceReferences": "calc:E14; calc:E2",
+      "scope": "Reuse LTV and payment cards; explain fees and remaining balance; no recommendation algorithm claims.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI06",
+      "id": "FI-006",
+      "title": "BRRRR and capital recycling",
+      "sourceReferences": "calc:E16",
+      "scope": "A strategy/sequence card, linking refinancing and cash-on-cash; assumptions are not guaranteed outcomes.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI07",
+      "id": "FI-007",
+      "title": "Mortgage qualification ratios and stress assumptions",
+      "sourceReferences": "calc:E6; calc:E73",
+      "scope": "Canada GDS/TDS and US DTI remain explicitly distinct variants; numeric policies require fresh verification.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI08",
+      "id": "FI-008",
+      "title": "Mortgage insurance: CMHC, FHA and PMI",
+      "sourceReferences": "calc:E7; calc:E74; calc:E75",
+      "scope": "One overview with country/product variants; do not treat premiums or eligibility as universal.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI09",
+      "id": "FI-009",
+      "title": "Gross-rent DSCR versus commercial NOI DSCR",
+      "sourceReferences": "calc:E76; calc:E9",
+      "scope": "Keep F-502 for NOI/annual debt service; separate gross rent/PITIA convention to prevent false equivalence.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI10",
+      "id": "FI-010",
+      "title": "Rental income used in mortgage qualification",
+      "sourceReferences": "calc:E77",
+      "scope": "US source convention; distinct from collected rent/NOI; policy percentages require current verification.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI11",
+      "id": "FI-011",
+      "title": "Debt yield and the binding loan-size limit",
+      "sourceReferences": "calc:E83; calc:E9",
+      "scope": "Reuse F-503/F-504; add debt-yield test and smallest binding result rather than duplicate LTV/DSCR cards.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "FI12",
+      "id": "FI-012",
+      "title": "General-partner catch-up",
+      "sourceReferences": "calc:E72; calc:E71",
+      "scope": "Distinct gross-up step beyond introductory F-709; agreement conventions determine applicability.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV01",
+      "id": "DV-001",
+      "title": "Budget versus actual: variance and remaining cost",
+      "sourceReferences": "calc:E80",
+      "scope": "Distinct from F-706 budget total; define signed variance and commitments/remaining-cost assumptions.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV06",
+      "id": "DV-006",
+      "title": "Construction cost per area and cost scope",
+      "sourceReferences": "market:construction-cost-engine/normalize; market:cre-intelligence/normalize; market:construction-cost-engine/benchmark",
+      "scope": "Area basis, currency, hard/soft/total cost and units stay explicit; link F-706 and comparability.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "DV07",
+      "id": "DV-007",
+      "title": "Construction cost escalation using indices",
+      "sourceReferences": "market:construction-cost-engine/escalation; market:construction-cost-engine/applicability; market:cre-intelligence/consensus; market:cre-intelligence/normalize",
+      "scope": "One index-ratio card across both implementations; an applicable index is needed, not an arbitrary series.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "LU01",
+      "id": "LU-001",
+      "title": "Site area, floor-space ratio and density basis",
+      "sourceReferences": "market:zoning-land-use-public; market:zoning-land-use-engine/index",
+      "scope": "Educational area/density relationships only; not a parcel-specific permitted envelope or automatic approval.",
+      "status": "built-dev-educational; public editorial review pending"
+    },
+    {
+      "reviewKey": "LU02",
+      "id": "LU-002",
+      "title": "Reading zoning conditions and evidence coverage",
+      "sourceReferences": "market:zoning-land-use-public; market:zoning-land-use-engine/index",
+      "scope": "Dates, conditions, supplied/unsupplied packs and withheld values; no live map or zoning decision activation.",
+      "status": "built-dev-educational; public editorial review pending"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "alias": "calc",
+      "path": "src/E1-mortgage.ts",
+      "sha": "3917d8a20381b5703aff9d8530ee5a1e502ced31",
+      "topics": [
+        "FI01"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E10-portfolio.ts",
+      "sha": "40e5042dd8f01e7b155948e1c94f1117835aa596",
+      "topics": [
+        "EC09",
+        "FI03"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E12-break-even.ts",
+      "sha": "1f2032766c486addf4167c692713837b09d0ca8e",
+      "topics": [
+        "FI04"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E14-refinance.ts",
+      "sha": "4802f3063cd094fd7f229a09fbd00b0fe0d568ea",
+      "topics": [
+        "FI05"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E16-brrrr.ts",
+      "sha": "49ab893eda38e358d965b5339f891bd20e281cd1",
+      "topics": [
+        "FI06"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E2-amortization.ts",
+      "sha": "c3ed9a5cd91675f4008d5b4b04647fc8ad0c651d",
+      "topics": [
+        "TX05",
+        "FI01",
+        "FI05"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E20-fx-conversion.ts",
+      "sha": "f51936bf9cf6ae3e24fdf2ed05bf6926488f599e",
+      "topics": [
+        "EC07"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E22-property-tax.ts",
+      "sha": "6084ee98ef285f42a6df4ad7422297c054fa2c1b",
+      "topics": [
+        "TX15"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E23-opex-benchmark.ts",
+      "sha": "af1fa1f9c71026d6e6efc4540af300487e5e8d95",
+      "topics": [
+        "TX06"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E3-cashflow.ts",
+      "sha": "b7ac7add88909f8650b70a41464d500f71b04acf",
+      "topics": [
+        "TX01",
+        "DV05"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E5-returns.ts",
+      "sha": "ae1f2e43c75c0b75a15e78a689e871fbd36906fe",
+      "topics": [
+        "FI02",
+        "FI03"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E6-qualifying.ts",
+      "sha": "ddf99505b536368d04312e0d4c251fadf138b417",
+      "topics": [
+        "FI07"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E7-cmhc.ts",
+      "sha": "50f059a396f70cc555ed116c904024cb7f4d406a",
+      "topics": [
+        "FI08"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E71-syndication-waterfall.ts",
+      "sha": "dc88209d2bf055110ac283cd4d173549c34e42e4",
+      "topics": [
+        "FI12"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E72-gp-catchup.ts",
+      "sha": "737db09c4c8af30d71337e916c34f4acaea2b91d",
+      "topics": [
+        "FI12"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E73-us-qualifying.ts",
+      "sha": "afd605981465e50b531ef5db94887a3b290a5e18",
+      "topics": [
+        "FI07"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E74-fha-mip.ts",
+      "sha": "a9a23c67d3ec08cdf67efd761208c31919484fa3",
+      "topics": [
+        "FI08"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E75-conventional-pmi.ts",
+      "sha": "2a9410504c3778307d1f24b28343721d7862e5ee",
+      "topics": [
+        "FI08"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E76-dscr-loan-sizing.ts",
+      "sha": "931d8ee8ac9e071bf35f6afde6aef2451445a4e2",
+      "topics": [
+        "FI09"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E77-qualifying-rental-income-us.ts",
+      "sha": "d05384654b198f9311a9bb7d4cf48fc47d003d3b",
+      "topics": [
+        "FI10"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E80-budget-actuals.ts",
+      "sha": "8c7e6f10f5b97a557f85578829d13131cca049bd",
+      "topics": [
+        "DV01"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E83-commercial-loan-sizing.ts",
+      "sha": "b92bc4de7ee2004d96fd9a3e9efe33486146eea2",
+      "topics": [
+        "FI11"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E84-commercial-rent-roll.ts",
+      "sha": "9ba573304ec08ec77c1db1aa0fc4d1a89510e01b",
+      "topics": [
+        "DV02",
+        "DV03",
+        "DV04",
+        "DV05"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "calc",
+      "path": "src/E9-dscr.ts",
+      "sha": "de6206129e4d962fbc310449cfdfe89f82a78bfb",
+      "topics": [
+        "FI09",
+        "FI11"
+      ],
+      "repo": "wahjai604/investscape-calc-engine"
+    },
+    {
+      "alias": "economic",
+      "path": "src/E43-portfolio-geographic-diversification.ts",
+      "sha": "b0fe86a9a1ff1c6e9dfdf195029d8f57c03238cc",
+      "topics": [
+        "EC09"
+      ],
+      "repo": "wahjai604/investscape-economic-engine"
+    },
+    {
+      "alias": "economic",
+      "path": "src/E44-currency-risk-exposure.ts",
+      "sha": "eb27e66b82389b6c8da1f56b0ea82b789d715acb",
+      "topics": [
+        "EC07",
+        "EC08"
+      ],
+      "repo": "wahjai604/investscape-economic-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/cap-rate-engine/scenario-sensitivity.ts",
+      "sha": "0f3ad684fc245ddeb8378783ceccb4dd85463a79",
+      "topics": [
+        "PV01"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/cap-rate-engine/transaction-derivation.ts",
+      "sha": "ce927aa25728fe42b50dcb992121ee3dd97ad567",
+      "topics": [
+        "PV01"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/construction-cost-engine/applicability.ts",
+      "sha": "d07dd24a6b1ab9d49ab65495bf5e84d2ffdecbef",
+      "topics": [
+        "DV07"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/construction-cost-engine/benchmark.ts",
+      "sha": "5eb832fea7179ef9dbc03a376cac3a7e5970e57f",
+      "topics": [
+        "DV06"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/construction-cost-engine/escalation.ts",
+      "sha": "d081bef0b1e497f54263880370a9e47e987270ac",
+      "topics": [
+        "DV07"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/construction-cost-engine/normalize.ts",
+      "sha": "f97436dfe2a8176ac5d3084ff96384982994d8ae",
+      "topics": [
+        "DV06"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/cre-intelligence/benchmark-selection.ts",
+      "sha": "2953c4693083218b29b832500f8c17d25525040c",
+      "topics": [
+        "PV01"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/cre-intelligence/consensus.ts",
+      "sha": "5eead6e9051ab978c221a4b7dd52c10c89e10183",
+      "topics": [
+        "DV07"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/cre-intelligence/normalize.ts",
+      "sha": "e260ffc727066d1c7b658716ff1213d8639f4acf",
+      "topics": [
+        "DV06",
+        "DV07"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/zoning-land-use-engine/index.ts",
+      "sha": "3fec798f383b38b0a1eb85241776ca12107cb1ff",
+      "topics": [
+        "LU01",
+        "LU02"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "market",
+      "path": "src/zoning-land-use-public.ts",
+      "sha": "6f7050d043eb15d3a45812d9352516bce115dccb",
+      "topics": [
+        "LU01",
+        "LU02"
+      ],
+      "repo": "wahjai604/investscape-market-intelligence-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E46-tax-aggregation.ts",
+      "sha": "6d72b9c1e78947a746c05dbfa6ad25852657cf0e",
+      "topics": [
+        "TX01"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E47-personal-income-tax.ts",
+      "sha": "cfc937fcb709ea96ef9864de22b199e6658e8946",
+      "topics": [
+        "TX02"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E48-depreciation.ts",
+      "sha": "47c1f249d7b1a81dd354e22a116c38fe1c2297e4",
+      "topics": [
+        "TX03",
+        "TX04"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E49-mortgage-interest.ts",
+      "sha": "7959a6a0fb35728ed7ba38c8962f6ea9af1f9f69",
+      "topics": [
+        "TX05"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E50-operating-expense.ts",
+      "sha": "64de4a1d4e426dd5ae596bb2e91e5f5a52bd5ccc",
+      "topics": [
+        "TX06"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E51-developer-profit.ts",
+      "sha": "7dfd6c1ad3ebefd1bc150b5f1210ae5497bc0159",
+      "topics": [
+        "TX07"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E52-gst-hst-dev-charges.ts",
+      "sha": "934d03948ec3e59b28cd64a8dbb79d4c6a0665c5",
+      "topics": [
+        "TX08",
+        "TX09"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E53-passive-activity-loss.ts",
+      "sha": "241c1276bf80c394c2b4ce6c3fdd914be746ced3",
+      "topics": [
+        "TX10"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E68-section-1031-exchange.ts",
+      "sha": "09331a896366c3cde0dd6f182f2e18a61ea9ec8d",
+      "topics": [
+        "TX11"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E69-cost-segregation.ts",
+      "sha": "044a126881d0a47d0a67ba51b3cd9af5593ec3dd",
+      "topics": [
+        "TX12"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E70-opportunity-zones.ts",
+      "sha": "46b373e0932d68529552866a445e2bd359751467",
+      "topics": [
+        "TX13"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    },
+    {
+      "alias": "tax",
+      "path": "src/E83-cross-border-withholding.ts",
+      "sha": "a44b939f31c9f67a39740acf318afb66172db237",
+      "topics": [
+        "TX14"
+      ],
+      "repo": "wahjai604/investscape-tax-engine"
+    }
+  ],
+  "sourceCommits": {
+    "calc": "255140cdb46a84c4084dc33522ec8a82cda60681",
+    "economic": "d850ee82297ddfccd2f1340fb065550789cb516c",
+    "tax": "7b9dc99c30b17dd7e4abafd6485aa0bca564a711",
+    "market": "b279e22d71019009439803d928aeadf7e6b92ddc"
+  },
+  "primaryReferences": [
+    {
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/rental-income/current-expenses-capital-expenses.html",
+      "role": "Current/capital expense conceptual distinction; not classification of a member invoice"
+    },
+    {
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/rental-income/capital-cost-allowance-rental-property.html",
+      "role": "CCA conceptual scope; no rate/life/first-year rule imported"
+    },
+    {
+      "url": "https://www.irs.gov/taxtopics/tc414",
+      "role": "Rental income/expense distinction; no individual eligibility imported"
+    },
+    {
+      "url": "https://www.irs.gov/publications/p946",
+      "role": "Depreciation method/class/convention limits; publication year must match filing year"
+    },
+    {
+      "url": "https://www.irs.gov/publications/p925",
+      "role": "Passive activity, basis, at-risk and suspended-loss distinctions; no threshold copied"
+    },
+    {
+      "url": "https://www.irs.gov/faqs/sale-or-trade-of-business-depreciation-rentals/sales-trades-exchanges/sales-trades-exchanges-2",
+      "role": "Like-kind deferral distinct from elimination of basis or final tax; no deadline/eligibility calculation"
+    },
+    {
+      "url": "https://www.irs.gov/credits-deductions/businesses/opportunity-zones",
+      "role": "Current and transitional guidance exists; regime/date must be reviewed; no benefit or tract designation supplied"
+    },
+    {
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/gst-hst-businesses/calculate-prepare-report/input-tax-credit.html",
+      "role": "Registration alone insufficient for recovery; other conditions and documentary evidence matter"
+    },
+    {
+      "url": "https://www.irs.gov/individuals/international-taxpayers/firpta-withholding",
+      "role": "Withholding distinguished from final liability; no rates or exceptions copied"
+    },
+    {
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/international-non-residents/payments-non-residents.html",
+      "role": "Canada nonresident scope distinct from US; no treaty/election eligibility established"
+    },
+    {
+      "url": "https://www.consumerfinance.gov/ask-cfpb/how-does-paying-down-a-mortgage-work-en-1943/",
+      "role": "Principal/interest amortization conceptual cross-check; actual compounding follows the contract"
+    }
+  ],
+  "qualifications": [
+    "All numeric policy examples are explicitly fictional or assumed, not source default rates.",
+    "EC-009 uses transparent squared regional shares, not the E43 proprietary score.",
+    "FI-003 includes later contributions; E5 single-initial-equity helper is not asserted as the general denominator.",
+    "FI-005 teaches net cash-out arithmetic; E14 rate/term recommendation is not run or reproduced.",
+    "DV-001 separates unallocated budget from independently forecast cost to complete.",
+    "TX-004 uses single-asset adjusted-basis arithmetic and explicitly excludes Canadian pool recapture determination.",
+    "TX-010 through TX-013 are explicitly US concepts.",
+    "All prior 18 held claims retain their original held status."
+  ]
+}

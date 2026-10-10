@@ -10,7 +10,7 @@
     ],
     "features": [
       "Search across four languages",
-      "Eight category filters, including Market Statistics & Risk and Economics & Market Conditions",
+      "Ten category filters, including statistics, economics, taxes and planning",
       "Keyboard accessible formula details",
       "English, French and two Chinese scripts",
       "Related-card navigation preserves the original opener"
@@ -46,11 +46,12 @@
   "specifications": [
     "Bundled non-confidential educational copy. No network, API, database, session, storage, tracking, AI or calculator calls.",
     "All user-visible explanation/example copy lives in a four-language dictionary. Formula notation, IDs and module tags remain universal.",
-    "63 cards: unchanged 39 canonical F cards and 18 statistics S cards, plus six EC educational economics cards with synthetic examples; EC IDs are Library identifiers, not engine numbers.",
+    "103 educational cards: 39 canonical F cards and 64 deduplicated additional topics. Forty completion cards cover finance, currency, tax concepts, leases, development and planning with hypothetical examples. Library IDs are not engine numbers.",
     "The modal traps keyboard focus, supports Escape, restores its opener and closes on runtime disable or editor change.",
     "Editor interactions are disabled. Source examples are labelled documented or illustrative; module tags do not impose subscription gates.",
     "Translations are prepared for editorial review; historical glossary policy proposals are not new owner approvals.",
-    "No public page publication or private authorization is implied by installing this component."
+    "No public page publication or private authorization is implied by installing this component.",
+    "Tax and underwriting copy explains concepts only: current policy values, statutory eligibility, parcel decisions and proprietary scores remain outside this catalog."
   ],
   "examples": [
     {

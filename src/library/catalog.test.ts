@@ -3,15 +3,71 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {catalog,labels,locales,categories,filterCatalog,normalizeLocale} from '../../ui/weweb/learning-library/src/utils/catalog.js';
 
-test('all 39 canonical, 18 statistics and six economics entries have complete four-language copy and known categories',()=>{
+test('completion examples reconcile finance, tax, lease, budget and density arithmetic',()=>{
+  const completion=JSON.parse(readFileSync(new URL('../../docs/review/library/completion-inventory.json',import.meta.url),'utf8'));
+  for(const row of completion.cards){
+    const item=catalog.find(x=>x.id===row.id)!;
+    for(const locale of locales){
+      assert.equal(item.example[locale].replace(/\D/g,''),item.example.en.replace(/\D/g,''),'numeric parity '+item.id+' '+locale);
+      if(locale.startsWith('zh-'))for(const field of ['name','explanation','example','scope'])assert(/\p{Script=Han}/u.test(item[field][locale]));
+    }
+  }
+  assert.equal(100000*1.25,125000);assert.equal(125000/1.25,100000);
+  assert.equal((100000-40000-30000),30000);assert.equal(30000/60000,.5);
+  assert.equal((.6**2+.4**2).toFixed(2),'0.52');assert.equal(.5**2+.5**2,.5);
+  // Independent iterative and closed-form amortization agree, including zero interest.
+  for(const [balance,i,payment,n] of [[100000,.005,1000,12],[12000,0,1000,12]]){
+    let b=balance;for(let k=0;k<n;k++)b-=payment-b*i;
+    const closed=i===0?balance-payment*n:balance*(1+i)**n-payment*((1+i)**n-1)/i;
+    assert(Math.abs(b-closed)<1e-7);
+  }
+  const mirr=(flows:number[],finance:number,reinvest:number)=>{
+    const n=flows.length-1;
+    const pv=flows.reduce((s,c,t)=>s+(c<0?-c/(1+finance)**t:0),0);
+    const fv=flows.reduce((s,c,t)=>s+(c>0?c*(1+reinvest)**(n-t):0),0);
+    return (fv/pv)**(1/n)-1;
+  };
+  assert.equal((mirr([-100,50,60],.08,.10)*100).toFixed(2),'7.24');
+  assert.notEqual(mirr([-100,-20,150],.05,.10),mirr([-100,-20,150],.15,.10));
+  assert.equal((30000+150000)/(100000+20000),1.5);
+  assert.equal(Math.round((.055-.05)*10000),50);assert.equal((100000/.055).toFixed(0),'1818182');assert.equal(((.05/.055-1)*100).toFixed(2),'-9.09');
+  assert.equal(24000-30000,-6000);assert.equal(24000/12,2000);
+  assert.equal(300000-240000-10000,50000);assert.equal(1800-1500,300);assert.equal(100000-70000,30000);
+  assert.equal(3000/10000,.3);assert.equal((3000+1000)/10000,.4);
+  assert.equal(200000*.02,4000);assert.equal(200000+4000,204000);
+  assert.equal(3000/2000,1.5);assert.equal(24000/20000,1.2);assert.equal(2000*.7,1400);
+  assert.equal(100000/.1,1000000);assert.equal(Math.min(1200000,900000,1000000),900000);assert.equal((100000/900000*100).toFixed(2),'11.11');
+  assert.equal(80000*.2/(1-.2),20000);assert.equal(20000/(80000+20000),.2);
+  assert.equal(30000-10000-8000-4000,8000);assert.equal(30000-10000-8000-6000,6000);
+  assert.equal(10000*.1+10000*.2,3000);assert.equal(3000/20000,.15);
+  assert.equal(100000/20,5000);assert.equal(100000*.1,10000);assert.equal(110000-(100000-20000),30000);
+  assert.equal(8000+4000,12000);assert.equal(3000+7000,10000);
+  assert.equal((1000000-800000)*(1-.2),160000);assert.equal(100000*.1-6000,4000);assert.equal(10*5000,50000);
+  assert.equal(12000-4000,8000);assert.equal(300000-200000,100000);assert.equal(10000+15000+75000,100000);
+  assert.equal(7000-100000*.1,-3000);assert.equal((500000*.008+200)/12,350);
+  assert.equal(100000-60000-25000,15000);assert.equal(60000+25000+20000,105000);
+  assert.equal((60000*2+40000*5)/100000,3.2);assert.equal(8000/10000,.8);assert.equal(70000/100000,.7);assert.equal(30000/100000,.3);
+  assert.equal(100000+20000-30000,90000);assert.equal(2000000/10000,200);assert.equal(200*12000,2400000);assert.equal(200*110/100,220);
+  assert.equal(1000*2,2000);assert.equal(20/.5,40);
+  for(const id of ['TX-010','TX-011','TX-012','TX-013'])assert(catalog.find(x=>x.id===id)!.scope.en.includes('US'));
+  assert(catalog.find(x=>x.id==='TX-013')!.scope.en.includes('no current deferral date'));
+  assert(catalog.find(x=>x.id==='LU-001')!.scope.en.includes('no zoning entitlement'));
+  assert(catalog.find(x=>x.id==='FI-007')!.example.en.includes('not approval thresholds'));
+  for(const id of ['TX-004','TX-011'])assert(catalog.find(x=>x.id===id)!.relatedIds.includes('F-303'));
+});
+
+test('all 103 deduplicated entries have complete four-language copy and known categories',()=>{
   const inventory=JSON.parse(readFileSync(new URL('../../docs/review/library/canonical-inventory.json',import.meta.url),'utf8'));
   const statistics=JSON.parse(readFileSync(new URL('../../docs/review/library/statistics-inventory.json',import.meta.url),'utf8'));
   const economics=JSON.parse(readFileSync(new URL('../../docs/review/library/economics-inventory.json',import.meta.url),'utf8'));
-  assert.equal(catalog.length,63);assert.equal(new Set(catalog.map(item=>item.id)).size,63);
-  assert.deepEqual(catalog.filter(item=>item.id.startsWith('EC-')).map(item=>item.id),economics.cards.map(item=>item.id));
+  assert.equal(catalog.length,103);assert.equal(new Set(catalog.map(item=>item.id)).size,103);
+  const completion=JSON.parse(readFileSync(new URL('../../docs/review/library/completion-inventory.json',import.meta.url),'utf8'));
+  assert.equal(completion.cards.length,40);
+  for(const item of completion.cards)assert(catalog.some(x=>x.id===item.id));
+  assert.deepEqual(catalog.filter(item=>item.id.startsWith('EC-')).map(item=>item.id),[...economics.cards.map(item=>item.id),'EC-007','EC-008','EC-009']);
   assert.deepEqual(catalog.filter(item=>item.id.startsWith('F-')).map(item=>item.id),inventory.formulaIds);
   assert.deepEqual(catalog.filter(item=>item.id.startsWith('S-')).map(item=>item.id),statistics.cards.map(item=>item.id));
-  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:7,cashflow:3,performance:10,leverage:5,development:11,statistics:18,economics:6});
+  assert.deepEqual(Object.fromEntries(categories.map(key=>[key,catalog.filter(item=>item.category===key).length])),{capital:3,time:8,cashflow:8,performance:13,leverage:12,development:15,statistics:18,economics:9,taxes:15,planning:2});
   for(const item of catalog){
     assert(categories.includes(item.category));assert(item.lineage);assert(item.formula);assert(item.exampleFormula);
     for(const field of ['name','explanation','example','scope'])for(const locale of locales)assert(item[field][locale]?.trim());
@@ -55,12 +111,12 @@ test('search finds canonical formula IDs and terms in all languages without inte
   for(const locale of locales)assert.equal(filterCatalog('F-502','all',locale)[0]?.id,'F-502');
   assert.equal(filterCatalog('償債覆蓋率')[0]?.id,'F-502');
   assert.equal(filterCatalog('偿债备付率')[0]?.id,'F-502');
-  assert.equal(filterCatalog('revenu net', 'leverage','fr-CA').length,0);
+  assert.deepEqual(filterCatalog('revenu net','leverage','fr-CA').map(x=>x.id),['FI-010']);
   assert.equal(filterCatalog('  CAPITALIZATION  ')[0]?.id,'F-404');
   assert.equal(filterCatalog('<script>alert(1)</script>').length,0);
-  assert.equal(filterCatalog(null).length,63);
+  assert.equal(filterCatalog(null).length,103);
   assert.equal(filterCatalog('百分位排名')[0]?.id,'S-006');
-  assert.equal(filterCatalog('moyenne pondérée')[0]?.id,'S-003');
+  assert(filterCatalog('moyenne pondérée').some(x=>x.id==='S-003'));
   assert.equal(normalizeLocale('untrusted-locale'),'en');
 });
 

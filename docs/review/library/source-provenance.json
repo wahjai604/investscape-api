@@ -104,9 +104,11 @@
   "liveResearchWiring": "owner-deferred",
   "liveMapVerification": "owner-deferred",
   "memberAccess": "No paid-tier gate. Member route/navigation policy still requires wiring review.",
-  "copyStatus": "63 educational cards in four languages prepared for editorial review: 39 canonical formula cards, 18 statistics cards and six economics cards",
+  "copyStatus": "103 original four-language educational Dev cards; all 64 deduplicated additional topics built; subject/native-language editorial and public runtime acceptance pending",
   "provisioningRequired": false,
   "statisticsInventory": "statistics-inventory.json",
   "topicGroupReclassification": "topic-group-reclassification.json",
-  "economicsInventory": "economics-inventory.json"
+  "economicsInventory": "economics-inventory.json",
+  "completionInventory": "completion-inventory.json",
+  "completionBoundaries": "Forty new topics reread at 49 pinned source files. Primary references cross-check concepts only; no current statutory rate, program threshold, personal eligibility, parcel entitlement, proprietary score or engine execution is imported."
 }

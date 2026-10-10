@@ -1,0 +1,1236 @@
+{
+  "date": "2026-10-10",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "detailVerificationVersion": "66203304-8599-44af-8ad5-62841310dee6",
+  "finalVersion": "0b8751d7-74eb-416b-b3a1-2edbdaf280aa",
+  "detailFieldsUnchangedByFinalRelatedLinkCorrection": true,
+  "uniqueCards": 103,
+  "addedCards": 40,
+  "detailChecks": [
+    {
+      "id": "FI-001",
+      "locale": "en",
+      "hash": "3cfde84090d57b32ca431d34c2b33d9cb833e33a2a43244d99005e3ba969462a",
+      "match": true
+    },
+    {
+      "id": "DV-002",
+      "locale": "en",
+      "hash": "b7a58620a9521fc5cd1c6c8d5fbb27800727c96786711e96c3ac455dbb10cbfb",
+      "match": true
+    },
+    {
+      "id": "DV-003",
+      "locale": "en",
+      "hash": "c387de1809b669291649cc82a1dc77048051f004cb5ca731324026e964659b43",
+      "match": true
+    },
+    {
+      "id": "DV-004",
+      "locale": "en",
+      "hash": "d18d827600f5672d88f842b0544db9e04a07fb8a84e1f04f6e4678ff9362066f",
+      "match": true
+    },
+    {
+      "id": "DV-005",
+      "locale": "en",
+      "hash": "a25249dbd924e59553170cdfaa1058a8556849ff0eda90f2e7c22cbbe326be8e",
+      "match": true
+    },
+    {
+      "id": "FI-004",
+      "locale": "en",
+      "hash": "5f2006a9c22575e086f024218f912228c49ff25d471d637fed5b367e4295e84c",
+      "match": true
+    },
+    {
+      "id": "FI-002",
+      "locale": "en",
+      "hash": "db9ffcb9b06660b134946011864391bdc8cc182612e146636f6c3efab1241d4f",
+      "match": true
+    },
+    {
+      "id": "FI-003",
+      "locale": "en",
+      "hash": "9bfeaf201047a84893ceed9f16b718995db8ae06a62a96b069ffbb17cd8391fa",
+      "match": true
+    },
+    {
+      "id": "PV-001",
+      "locale": "en",
+      "hash": "240ea30754a744692ee5311be9c411600ec5e4e8f6c6a4a1ddc46c77b55cb469",
+      "match": true
+    },
+    {
+      "id": "FI-005",
+      "locale": "en",
+      "hash": "add72e82cf6c457b1c57bf5faf8e65025789d053f3f07b82456ada49fb4f2bc9",
+      "match": true
+    },
+    {
+      "id": "FI-006",
+      "locale": "en",
+      "hash": "269385a130762dc810dd62f505e99f0c53113963bd782d66d44ea6e7f51e3ada",
+      "match": true
+    },
+    {
+      "id": "FI-007",
+      "locale": "en",
+      "hash": "ce913256bd0e3ae39ec49cefb52aa7df37939f96ea761168e07adfec3394ec42",
+      "match": true
+    },
+    {
+      "id": "FI-008",
+      "locale": "en",
+      "hash": "40f4514a85222327cfcbddc3a1a28b9a26df44981e8e9941fe27bf163ce83e7b",
+      "match": true
+    },
+    {
+      "id": "FI-009",
+      "locale": "en",
+      "hash": "e3d69e09b3dfe061ebbf7832d85f61e522cff319a28ee0510a3e212c9bc2ea7a",
+      "match": true
+    },
+    {
+      "id": "FI-010",
+      "locale": "en",
+      "hash": "17c154ccda0678cff21f5a32fa07b96d9a45d727e00eb6529871d37e4c2b4557",
+      "match": true
+    },
+    {
+      "id": "FI-011",
+      "locale": "en",
+      "hash": "9712037839f9a588a00072d19960a841bd82cf09fae53b996bf3c29cf81042cb",
+      "match": true
+    },
+    {
+      "id": "DV-001",
+      "locale": "en",
+      "hash": "3f16945bedc103584a4ad6f874466be9618e782c8e94dc428da0499d9f19d11a",
+      "match": true
+    },
+    {
+      "id": "DV-006",
+      "locale": "en",
+      "hash": "c603b58661d1d0edc6a25b456ce2c2ba8ccdfed04e303dc4076e48c04c6170ed",
+      "match": true
+    },
+    {
+      "id": "DV-007",
+      "locale": "en",
+      "hash": "6f1967eda699878843ecb86b30450d07f35ebaa19a18dfa3ccf6d2425ce4cf57",
+      "match": true
+    },
+    {
+      "id": "FI-012",
+      "locale": "en",
+      "hash": "d331cff2e5b5428436204e4e2a6d611d82cb6b90213d1f950d4a95af71375a00",
+      "match": true
+    },
+    {
+      "id": "EC-007",
+      "locale": "en",
+      "hash": "0855a6ac0f1ed87e75d69fdb7b293238f86deabfd32b387d08d3894b320aba3f",
+      "match": true
+    },
+    {
+      "id": "EC-008",
+      "locale": "en",
+      "hash": "1a30eafb89eeff5d6b73bb9e6bc02b7acf2dda3b4d2b4b0f1a619824523886cf",
+      "match": true
+    },
+    {
+      "id": "EC-009",
+      "locale": "en",
+      "hash": "1776711c35c853f5882d063145c7c8e0a219c758f4b0097497bb611129898e47",
+      "match": true
+    },
+    {
+      "id": "TX-001",
+      "locale": "en",
+      "hash": "eb4f5cb4c8995bdcd50c3fa17cee9a26ab09afb5427f2a4290599754e0e92f63",
+      "match": true
+    },
+    {
+      "id": "TX-002",
+      "locale": "en",
+      "hash": "695eda26286952bc2d32e1ba995e9c304cf710160d97a908726af7c52c53c39f",
+      "match": true
+    },
+    {
+      "id": "TX-003",
+      "locale": "en",
+      "hash": "d1d6b75c5488834cec88b5e9974a1faf21ec69f151461adcdad360d7fe3630cd",
+      "match": true
+    },
+    {
+      "id": "TX-004",
+      "locale": "en",
+      "hash": "80699f9c97e2ae78241da702f2b4042eab9c9f4bfb69e6ee29300f891a6a1d24",
+      "match": true
+    },
+    {
+      "id": "TX-005",
+      "locale": "en",
+      "hash": "bc2b393be5316861fd6b4b31a0ff0a0533d79f39d06a419609632f137544e920",
+      "match": true
+    },
+    {
+      "id": "TX-006",
+      "locale": "en",
+      "hash": "d6dc1c2e41675732363c1c6b3d40da3ba7209fb34ae63a03711b8ca54ca5ed3c",
+      "match": true
+    },
+    {
+      "id": "TX-007",
+      "locale": "en",
+      "hash": "141028b50c0490a18aa56735145c638562b20c17f2afb4be53a7701c29fec9f8",
+      "match": true
+    },
+    {
+      "id": "TX-008",
+      "locale": "en",
+      "hash": "c02527ce9257de668a277f1aa4f4d650a270130517148b8ed22a3fecd352e20a",
+      "match": true
+    },
+    {
+      "id": "TX-009",
+      "locale": "en",
+      "hash": "965d9dd94104b62ee0c6eafc5bdde30e07ccf1944dfd89fa096b797424c4b639",
+      "match": true
+    },
+    {
+      "id": "TX-010",
+      "locale": "en",
+      "hash": "54abe23de53c4d35ed4584a1528372ce3d19db70683f56f61bb5869c1dbb2df4",
+      "match": true
+    },
+    {
+      "id": "TX-011",
+      "locale": "en",
+      "hash": "b9f6a758d64e9dbe97edd768a926946800b9e877a1ed976a2eda21bdfb5f07cf",
+      "match": true
+    },
+    {
+      "id": "TX-012",
+      "locale": "en",
+      "hash": "5dff81c8dd705f62c0d364e229c752e49eee6a06c2b85d67765dc0ec912f7a94",
+      "match": true
+    },
+    {
+      "id": "TX-013",
+      "locale": "en",
+      "hash": "a90e2d8d6874d7dfae6f5579c1d9a8382cea3db73f0c880798b6efd285e82a34",
+      "match": true
+    },
+    {
+      "id": "TX-014",
+      "locale": "en",
+      "hash": "3893c1ecc3466fd11bce2e5dbc7204eca945f447b00395ef20936b38fac6febd",
+      "match": true
+    },
+    {
+      "id": "TX-015",
+      "locale": "en",
+      "hash": "863887a9989563c3c4997f6e2b1e12836f0391170823e85a11cf6a83b339584e",
+      "match": true
+    },
+    {
+      "id": "LU-001",
+      "locale": "en",
+      "hash": "c1d6ecc0e3d543c13d380d68d8041866d2661ccb95b6290a32f37092114ed1ca",
+      "match": true
+    },
+    {
+      "id": "LU-002",
+      "locale": "en",
+      "hash": "55ea8365afebc0ae034f8e360f0fcb79bcac1ac3b9210bf36d3429b40f8bcc33",
+      "match": true
+    },
+    {
+      "id": "FI-001",
+      "locale": "fr-CA",
+      "hash": "0236a8969ec0b4b50035e9ddcd64ebc9caffb8c16b9b4cec30be9b2f81909464",
+      "match": true
+    },
+    {
+      "id": "DV-002",
+      "locale": "fr-CA",
+      "hash": "a4a6616b87519a20c5d7dc64e094f1324aa3c0d7eaeb59a8713f0d85612d8b4a",
+      "match": true
+    },
+    {
+      "id": "DV-003",
+      "locale": "fr-CA",
+      "hash": "2b3a6a9a1e53b1d39ec59fe73fa93b56921ef47b5d839f8f604a6bf318856f6c",
+      "match": true
+    },
+    {
+      "id": "DV-004",
+      "locale": "fr-CA",
+      "hash": "2a7a18aaac1efde422eaa0369425c6157d02558dce203f2d1cd4c1996c80942f",
+      "match": true
+    },
+    {
+      "id": "DV-005",
+      "locale": "fr-CA",
+      "hash": "7d6b4588c3f5bea1f839b94e4399dcac0b06f198006b121869d94969f217d45f",
+      "match": true
+    },
+    {
+      "id": "FI-004",
+      "locale": "fr-CA",
+      "hash": "a282e7a90f5b9622005450ae3c0ac22fb405aceec9d71322f01f3752781e21f8",
+      "match": true
+    },
+    {
+      "id": "FI-002",
+      "locale": "fr-CA",
+      "hash": "e0fbf094672f7f1f890fadec5b1e22b7310153bdb4353a2a629bb81060c4f4e3",
+      "match": true
+    },
+    {
+      "id": "FI-003",
+      "locale": "fr-CA",
+      "hash": "2b5c3c1222d2c0e472d47f0d32396d578f886e9a24e96767c98234bd050c7e03",
+      "match": true
+    },
+    {
+      "id": "PV-001",
+      "locale": "fr-CA",
+      "hash": "2eac4bc003f17118a8b61fbd67557212d0b128f3d6a004a0ce78c41eb2ac90fe",
+      "match": true
+    },
+    {
+      "id": "FI-005",
+      "locale": "fr-CA",
+      "hash": "760052ae6358a198945583f8b0e0b551d043842b527fbc1f4eeaf168e11ee707",
+      "match": true
+    },
+    {
+      "id": "FI-006",
+      "locale": "fr-CA",
+      "hash": "d5966ca85101a61839940bf68d63c6eda63e15228b604062bed9c6efe1bf3338",
+      "match": true
+    },
+    {
+      "id": "FI-007",
+      "locale": "fr-CA",
+      "hash": "0bb9c276a279ed100c014e834fb9d0de9ff6784b68de6cf38b0143d030286dc1",
+      "match": true
+    },
+    {
+      "id": "FI-008",
+      "locale": "fr-CA",
+      "hash": "c75186d4fd05c21d9bcaac887b57a5b1803c3e082775a7282269bf9855a02939",
+      "match": true
+    },
+    {
+      "id": "FI-009",
+      "locale": "fr-CA",
+      "hash": "4b5489de02ea9af85f63f8de31df8954d357cfa739ec78e5b38683407263b927",
+      "match": true
+    },
+    {
+      "id": "FI-010",
+      "locale": "fr-CA",
+      "hash": "dbf8b44a3ed028e18e94d79b27bdb171e4089d7ed50cb7ae9621e88f6120e5fc",
+      "match": true
+    },
+    {
+      "id": "FI-011",
+      "locale": "fr-CA",
+      "hash": "a17b75f566e10841f3a474e81e834f9ab7ffb141d38ac56d8ca1f6a9fb7db3cd",
+      "match": true
+    },
+    {
+      "id": "DV-001",
+      "locale": "fr-CA",
+      "hash": "838d0ddec9872fa4d811c6f6e0d1357d290defc0bcad043f4d30abfae5521015",
+      "match": true
+    },
+    {
+      "id": "DV-006",
+      "locale": "fr-CA",
+      "hash": "8abf69f957c12fd228337515b8ec94bbf1a2d073d7c1ead7f50ea85215f4b36c",
+      "match": true
+    },
+    {
+      "id": "DV-007",
+      "locale": "fr-CA",
+      "hash": "dd357a682985ebc7d9cd919951a643972efcc142d16a67bf003204ee074c1622",
+      "match": true
+    },
+    {
+      "id": "FI-012",
+      "locale": "fr-CA",
+      "hash": "d651da4e5914d89231c46126229f4104a3c0eced538d22bb0d8cacd4f8408ac6",
+      "match": true
+    },
+    {
+      "id": "EC-007",
+      "locale": "fr-CA",
+      "hash": "d074df2056290daef6dd4dfba8f2558f31ba3e596d8669fab13d7bb160a0dd98",
+      "match": true
+    },
+    {
+      "id": "EC-008",
+      "locale": "fr-CA",
+      "hash": "25f52caa6d2ca4ab30d719e25325fe58f70e523ed42e1cb06f73a275ee314760",
+      "match": true
+    },
+    {
+      "id": "EC-009",
+      "locale": "fr-CA",
+      "hash": "0aa06166f20015a2bfc8e3304d3cc6c11c9d3014829d243cfe53727836ca61e8",
+      "match": true
+    },
+    {
+      "id": "TX-001",
+      "locale": "fr-CA",
+      "hash": "f0fb7a229be737e05f22961d65a235af69dcbf1a6305282902c116da43fe384a",
+      "match": true
+    },
+    {
+      "id": "TX-002",
+      "locale": "fr-CA",
+      "hash": "96f6910bfe78f55de2e4d46115063a5a9c2eae433dbbff42f25d38ec6798bb32",
+      "match": true
+    },
+    {
+      "id": "TX-003",
+      "locale": "fr-CA",
+      "hash": "412bf2a06cfc5fe598ab77ba92ce9123d5b0d492db71c863efdc8a59e0f8ab66",
+      "match": true
+    },
+    {
+      "id": "TX-004",
+      "locale": "fr-CA",
+      "hash": "e4bfcebd5c3ed624002c7429935853abaff96dc50636a322958db589e9943257",
+      "match": true
+    },
+    {
+      "id": "TX-005",
+      "locale": "fr-CA",
+      "hash": "fa89f1244c8265c102a76dcf6f54f99685a7948f974bba7c27fae579fa92dd72",
+      "match": true
+    },
+    {
+      "id": "TX-006",
+      "locale": "fr-CA",
+      "hash": "e6987486223e9d8be842fa51661be7a694ee9d3673ae7b2c378f409e68974363",
+      "match": true
+    },
+    {
+      "id": "TX-007",
+      "locale": "fr-CA",
+      "hash": "dfd055d946ef3ad54cfc33a2ecac783dab831f082e0de0a79fbb07199cfdc130",
+      "match": true
+    },
+    {
+      "id": "TX-008",
+      "locale": "fr-CA",
+      "hash": "d9f46a62841b1722ae7547c80d99f34e6a0d750ae41b411bb6841611b58dd243",
+      "match": true
+    },
+    {
+      "id": "TX-009",
+      "locale": "fr-CA",
+      "hash": "377946414762818458c28506395ef1ea7e342513aadb34415034e30470a0af78",
+      "match": true
+    },
+    {
+      "id": "TX-010",
+      "locale": "fr-CA",
+      "hash": "ce958e777236aea1c040b0901d02b6b50bbc1d44d1da0c65da19b1f1593b2ce1",
+      "match": true
+    },
+    {
+      "id": "TX-011",
+      "locale": "fr-CA",
+      "hash": "5938d391b2de27fb670ad10965057bbd91371467c5c50639622ea7a26abcd38d",
+      "match": true
+    },
+    {
+      "id": "TX-012",
+      "locale": "fr-CA",
+      "hash": "647a8d0464908b22920a37e02424da13050c6fd9d91764bb970f2688299808b9",
+      "match": true
+    },
+    {
+      "id": "TX-013",
+      "locale": "fr-CA",
+      "hash": "64f2bca8459e174342b66303b16c4405332923a547ceaa9ddd930a4a266f6c02",
+      "match": true
+    },
+    {
+      "id": "TX-014",
+      "locale": "fr-CA",
+      "hash": "84a382df38ebe8adab04d14ba78a8bc2d76de40389a4a3d362e68de9ee48a6cd",
+      "match": true
+    },
+    {
+      "id": "TX-015",
+      "locale": "fr-CA",
+      "hash": "91b8752f10171dfc726f99d3e54926c95e78177890a14af015ce142a281d0229",
+      "match": true
+    },
+    {
+      "id": "LU-001",
+      "locale": "fr-CA",
+      "hash": "c274cbacb65a5c51e3a5bda99f795b579d096cb8aa50e7cc707cf9bff0d2b619",
+      "match": true
+    },
+    {
+      "id": "LU-002",
+      "locale": "fr-CA",
+      "hash": "77023eabd3b245029dc048f748dcca53ff4a5b7c4cc7e565769c777750532b5f",
+      "match": true
+    },
+    {
+      "id": "FI-001",
+      "locale": "zh-Hant",
+      "hash": "095250cd98b1dc58be87d1f3392a0b8559dd3a3235e94e94b6c32bab764315d7",
+      "match": true
+    },
+    {
+      "id": "DV-002",
+      "locale": "zh-Hant",
+      "hash": "10fcfcd60d8c38975f20fb9114611eae50466856eb11288fb9f778ee6fee76bc",
+      "match": true
+    },
+    {
+      "id": "DV-003",
+      "locale": "zh-Hant",
+      "hash": "123d2699b58bd08fec00588d8f2f2df79fde4915d98ca3348f0c07a9055887cf",
+      "match": true
+    },
+    {
+      "id": "DV-004",
+      "locale": "zh-Hant",
+      "hash": "3cc4475375bbed2fd80ff016233c70fefed1fa31c71b18ed7eff52940db93af3",
+      "match": true
+    },
+    {
+      "id": "DV-005",
+      "locale": "zh-Hant",
+      "hash": "23ded58aa5d10ffacaf8c471a580397219a5bd7969bb4fc63c891506f0873ddf",
+      "match": true
+    },
+    {
+      "id": "FI-004",
+      "locale": "zh-Hant",
+      "hash": "d6800936eddf5ad1ac24fd81fdb5687a63dea3534980da166efb5ece4fddec04",
+      "match": true
+    },
+    {
+      "id": "FI-002",
+      "locale": "zh-Hant",
+      "hash": "3d9ae1fb8b734d9ec190fdfddcea68c03891b5fdfe0e4b11b1b42da6fa8d4908",
+      "match": true
+    },
+    {
+      "id": "FI-003",
+      "locale": "zh-Hant",
+      "hash": "65c1ae843fecc09bf78c16563347d2f4d0bdbaa4d2379d616d8f5bccb58f813b",
+      "match": true
+    },
+    {
+      "id": "PV-001",
+      "locale": "zh-Hant",
+      "hash": "c3f1dc759b365349952a5c058f9a4df4b626ab0c88aace1ffaa2ee06e1a6cf82",
+      "match": true
+    },
+    {
+      "id": "FI-005",
+      "locale": "zh-Hant",
+      "hash": "b0e37cb9345e492f0e00469c07769e254c9402e33faf3b9eae9ee3a23f211d7e",
+      "match": true
+    },
+    {
+      "id": "FI-006",
+      "locale": "zh-Hant",
+      "hash": "b0d1d65f4da34a92af3b14c514d58c1879c56e4e2a5372376e43e2565d964022",
+      "match": true
+    },
+    {
+      "id": "FI-007",
+      "locale": "zh-Hant",
+      "hash": "32383553d5dbad39565f930481177b2dfbf14aed5c1aaf5514f29388c0fc106e",
+      "match": true
+    },
+    {
+      "id": "FI-008",
+      "locale": "zh-Hant",
+      "hash": "7d38effc7be47566365342614a124744d1609ca530a3b321b25678cace149fbd",
+      "match": true
+    },
+    {
+      "id": "FI-009",
+      "locale": "zh-Hant",
+      "hash": "fefd5282cb6df5647a2641a2dd06c1d981ad7f5859bae1474a02b6b4e6c4f02f",
+      "match": true
+    },
+    {
+      "id": "FI-010",
+      "locale": "zh-Hant",
+      "hash": "370555096e33e2346c8c2a533e888464c92d453e035577f80222ee676edd919f",
+      "match": true
+    },
+    {
+      "id": "FI-011",
+      "locale": "zh-Hant",
+      "hash": "aa8f7492435964a7a547486aa7acae39ad9b61f288a9abc554647eddea7db05a",
+      "match": true
+    },
+    {
+      "id": "DV-001",
+      "locale": "zh-Hant",
+      "hash": "8c9a49d44b9a182a76b5df69f525817381cefd9b96fe4e36fae8bada5e1dd9f8",
+      "match": true
+    },
+    {
+      "id": "DV-006",
+      "locale": "zh-Hant",
+      "hash": "5f7f2ebaaba043ca7cbcb980988843cecb1d6f72b1aa45e62e9bb42f421c65b3",
+      "match": true
+    },
+    {
+      "id": "DV-007",
+      "locale": "zh-Hant",
+      "hash": "2c77a3195fb521e5902d2ed5ec9f20237d5c12dae86469af22d9006ba2284363",
+      "match": true
+    },
+    {
+      "id": "FI-012",
+      "locale": "zh-Hant",
+      "hash": "d14f5c9e3cb330deaeb0b088a2b8b3c7c2cdc18f0d74e4b133cf785cd2c4a0c4",
+      "match": true
+    },
+    {
+      "id": "EC-007",
+      "locale": "zh-Hant",
+      "hash": "0fbd242996c98d96ef2aae56f3d7dbe897952868fe50c1e7cf47c363d062083a",
+      "match": true
+    },
+    {
+      "id": "EC-008",
+      "locale": "zh-Hant",
+      "hash": "ce5a8faba7f5e9e9c8180a8e85bd0f711a586092ad307d1060b0e2af706d220e",
+      "match": true
+    },
+    {
+      "id": "EC-009",
+      "locale": "zh-Hant",
+      "hash": "57675a04bde053ba2a45ab6c762231bf865ec5c8ef1e2cef5e3a426131b150ee",
+      "match": true
+    },
+    {
+      "id": "TX-001",
+      "locale": "zh-Hant",
+      "hash": "42f37a34b4c09aade41309683dd55a4a0ed8451e52979055d77e6f36e24b3968",
+      "match": true
+    },
+    {
+      "id": "TX-002",
+      "locale": "zh-Hant",
+      "hash": "08166a76272aedd2f911fcd86268457869fb7845d075875c7f5ec7bd89cf20aa",
+      "match": true
+    },
+    {
+      "id": "TX-003",
+      "locale": "zh-Hant",
+      "hash": "798dda5af84a9e005d80eef8ec22380d1e62928f7e6810120517d7c669d32187",
+      "match": true
+    },
+    {
+      "id": "TX-004",
+      "locale": "zh-Hant",
+      "hash": "d8afc857fc48a17abb4c70fdb408c737d67b610b9213de79dff5474930d05d54",
+      "match": true
+    },
+    {
+      "id": "TX-005",
+      "locale": "zh-Hant",
+      "hash": "946a72492d696414e9ca6a4d3967ed3cb2fd68428b5aba0a0731732dc5bc6f0e",
+      "match": true
+    },
+    {
+      "id": "TX-006",
+      "locale": "zh-Hant",
+      "hash": "1a8c8685f05cb1536653222b36f16f826beee1231ef94a14391fdef70acf78c5",
+      "match": true
+    },
+    {
+      "id": "TX-007",
+      "locale": "zh-Hant",
+      "hash": "369f4f4f7b60ba8d11226a42115ab1ef164c817ef8554ac45f9e3e83667efbef",
+      "match": true
+    },
+    {
+      "id": "TX-008",
+      "locale": "zh-Hant",
+      "hash": "7a7e6918178f41a7caa61880abcb10638a83bb3209012d2a181f9d4d0dd7c16b",
+      "match": true
+    },
+    {
+      "id": "TX-009",
+      "locale": "zh-Hant",
+      "hash": "b00e1fda4f836d20dd2bcaadd2f6611952f041b827dbcbd52bad7a26824c5d55",
+      "match": true
+    },
+    {
+      "id": "TX-010",
+      "locale": "zh-Hant",
+      "hash": "6ab1a3cc4ffeefda70301ef04a2b7da109733f215298ce9427c395a3f00e9a5e",
+      "match": true
+    },
+    {
+      "id": "TX-011",
+      "locale": "zh-Hant",
+      "hash": "49c870a8a0bf496baf44c5d6f96a52906821917f9d95bb840637d9e3cc83710c",
+      "match": true
+    },
+    {
+      "id": "TX-012",
+      "locale": "zh-Hant",
+      "hash": "4774c06f4b1aa998a3c1cb6116f0b696de8460dd750480d56b99326405fe186e",
+      "match": true
+    },
+    {
+      "id": "TX-013",
+      "locale": "zh-Hant",
+      "hash": "9d432d40635d4b812841df528b6ef67905c07a98dcfc8e8366c9c3bbc073b9c2",
+      "match": true
+    },
+    {
+      "id": "TX-014",
+      "locale": "zh-Hant",
+      "hash": "9bb2d700074eb44b5bea47eb7bf36db97ec9b485d9ddb60f5f9ee7141c9838f9",
+      "match": true
+    },
+    {
+      "id": "TX-015",
+      "locale": "zh-Hant",
+      "hash": "c7730833cf89d620d01380273fc274a6d77adaa095ad6af656dd27c877ec40c7",
+      "match": true
+    },
+    {
+      "id": "LU-001",
+      "locale": "zh-Hant",
+      "hash": "9ba7b10d8e48a0ffe15ae604d237311d7363c65bea1e45fedb35ef55210dac69",
+      "match": true
+    },
+    {
+      "id": "LU-002",
+      "locale": "zh-Hant",
+      "hash": "1b96df80485ba2a6fac4eb892d5a7441be373fd8820086afa03a1d36f563011c",
+      "match": true
+    },
+    {
+      "id": "FI-001",
+      "locale": "zh-Hans",
+      "hash": "8cbd4ef210ea61d13c46e3f2ebf3278c9b54e9c5f19eca8fc13414d437c3dccd",
+      "match": true
+    },
+    {
+      "id": "DV-002",
+      "locale": "zh-Hans",
+      "hash": "173c681e9daf48c94ad67d8c044152a874ed1aecd683cc7c8807b617d5c13002",
+      "match": true
+    },
+    {
+      "id": "DV-003",
+      "locale": "zh-Hans",
+      "hash": "1887750c3225e0f481561ba2c3f996d929c71d0de532690211d0496719aa80da",
+      "match": true
+    },
+    {
+      "id": "DV-004",
+      "locale": "zh-Hans",
+      "hash": "9a119d655eb91a0500cf9394fdaf3e0b4a2fcdcfd86d6f95166110b1481e375b",
+      "match": true
+    },
+    {
+      "id": "DV-005",
+      "locale": "zh-Hans",
+      "hash": "439b5ea0cacdfcf266afc5569aaf5736955949e1f58063b22612b22506691a72",
+      "match": true
+    },
+    {
+      "id": "FI-004",
+      "locale": "zh-Hans",
+      "hash": "707e4ddf0b2b1db4be57b79669aacff85052cdfefb1021cabc47cc0ae2ff6a79",
+      "match": true
+    },
+    {
+      "id": "FI-002",
+      "locale": "zh-Hans",
+      "hash": "4c71b29dff327d70996a07b0ee59406b27c3b912bcc877c1485e6c28ba5f12a1",
+      "match": true
+    },
+    {
+      "id": "FI-003",
+      "locale": "zh-Hans",
+      "hash": "82e05df207d4c543f764e656aa9cd9fc6590516ddd316403098fcd0f8040591c",
+      "match": true
+    },
+    {
+      "id": "PV-001",
+      "locale": "zh-Hans",
+      "hash": "2f635c1ae10030e597052d4befd8b2543c1f8c3356bd656db4a9609817727825",
+      "match": true
+    },
+    {
+      "id": "FI-005",
+      "locale": "zh-Hans",
+      "hash": "9eb1f799c7bb0c12d4b5fe0f4a8074943daf072fbd14d9be0796f76eb56d9189",
+      "match": true
+    },
+    {
+      "id": "FI-006",
+      "locale": "zh-Hans",
+      "hash": "5dc7cb76941e853bea50025d523f46d8c90f8fe1619c01c2b56a86dda0a52942",
+      "match": true
+    },
+    {
+      "id": "FI-007",
+      "locale": "zh-Hans",
+      "hash": "8244afd18d50c1bf0ee1e44ef4fd7183d86699bd2508053e3fbf1e3213d9324d",
+      "match": true
+    },
+    {
+      "id": "FI-008",
+      "locale": "zh-Hans",
+      "hash": "f20943eaa29eb329fc48f6c391df4345a6b5f9b6ce53fa0467b6c01c986c483e",
+      "match": true
+    },
+    {
+      "id": "FI-009",
+      "locale": "zh-Hans",
+      "hash": "87ea5a07803408a06f9f8dd08c4483822536e61e67062f3b2ae4322ba56ed1ee",
+      "match": true
+    },
+    {
+      "id": "FI-010",
+      "locale": "zh-Hans",
+      "hash": "cc5f9f08ea17711f14e0777448ed7b685602d56fa0a1d43069e15c47f925ea45",
+      "match": true
+    },
+    {
+      "id": "FI-011",
+      "locale": "zh-Hans",
+      "hash": "f4d1a3bd15929296886d5e5baada58984ace7583d8c132f68e94d7d7e75a4357",
+      "match": true
+    },
+    {
+      "id": "DV-001",
+      "locale": "zh-Hans",
+      "hash": "fb02d80e264f7af8cc646170bfcf898891590e386ec5e27b99ee36caf1dea777",
+      "match": true
+    },
+    {
+      "id": "DV-006",
+      "locale": "zh-Hans",
+      "hash": "bbb06a5c8e2787f189a71d3cd9c136cfadae69d8d3ad63c5e7486f61968837db",
+      "match": true
+    },
+    {
+      "id": "DV-007",
+      "locale": "zh-Hans",
+      "hash": "36cbfb5cd747bbc8e85dc5f1c36d6c3a4f0155feabb3951d3bc5b3876105220f",
+      "match": true
+    },
+    {
+      "id": "FI-012",
+      "locale": "zh-Hans",
+      "hash": "0fb382b437e33dfe16e70e5ab24d8ae12b5f8c4f3dca2b5ae4de0c3730e2bacb",
+      "match": true
+    },
+    {
+      "id": "EC-007",
+      "locale": "zh-Hans",
+      "hash": "5e9268c2d44398c5523532337fea82a069e6664e65976b500a2f29a524bab364",
+      "match": true
+    },
+    {
+      "id": "EC-008",
+      "locale": "zh-Hans",
+      "hash": "59e7fdb5498b7db3079936935667627d7a2f5f69ff988d628d2cd0680371d22b",
+      "match": true
+    },
+    {
+      "id": "EC-009",
+      "locale": "zh-Hans",
+      "hash": "248da7d6babee6765153e751d697250ca2ced041c86779096b130e3474b356d7",
+      "match": true
+    },
+    {
+      "id": "TX-001",
+      "locale": "zh-Hans",
+      "hash": "fc5daa6ea5e14854294bcc26d566237c105c3492765d46fb6e2b4d9ccbfb61c1",
+      "match": true
+    },
+    {
+      "id": "TX-002",
+      "locale": "zh-Hans",
+      "hash": "bcd7362505417e76674930793a9e97af96e9b07448376ef85a2c01890748a9c5",
+      "match": true
+    },
+    {
+      "id": "TX-003",
+      "locale": "zh-Hans",
+      "hash": "57f4b04489a48a2f9470a31e908eb95e408931592e3e42d398de9a3f82d7630f",
+      "match": true
+    },
+    {
+      "id": "TX-004",
+      "locale": "zh-Hans",
+      "hash": "2f987cdbec5ad39d4346cfe67d83c6f7babb178a1293f03c013ac2ec06a2f647",
+      "match": true
+    },
+    {
+      "id": "TX-005",
+      "locale": "zh-Hans",
+      "hash": "f573b1729d36d873685d7b546cb92243667952ffc1e015727e8417ed037f8a3d",
+      "match": true
+    },
+    {
+      "id": "TX-006",
+      "locale": "zh-Hans",
+      "hash": "adb3117de8a697d8d5176935e07ddf93213022f7b8f2c23b9c3bbe2ebcfcb43b",
+      "match": true
+    },
+    {
+      "id": "TX-007",
+      "locale": "zh-Hans",
+      "hash": "058e07991e1062a92505e460c533a5f9ebe3267a65a76a35cc6b1227ea1ed45c",
+      "match": true
+    },
+    {
+      "id": "TX-008",
+      "locale": "zh-Hans",
+      "hash": "f59176f22d34ac2871c19b90a02fb5b312e2066a616d2c6c3c918f26233da7f0",
+      "match": true
+    },
+    {
+      "id": "TX-009",
+      "locale": "zh-Hans",
+      "hash": "d661a3152670cdf2c44a8a40b30d4c398248842f652631461767b3f0f3a7c347",
+      "match": true
+    },
+    {
+      "id": "TX-010",
+      "locale": "zh-Hans",
+      "hash": "7db00ab9852b67e26264fb0c4ef9e2f2d9f4aafb16d72e67230de205ba5d063b",
+      "match": true
+    },
+    {
+      "id": "TX-011",
+      "locale": "zh-Hans",
+      "hash": "f2758f18d7da4569b4e2e5293643b068416fbd1afa1240e037be446349643107",
+      "match": true
+    },
+    {
+      "id": "TX-012",
+      "locale": "zh-Hans",
+      "hash": "da7a041627727b82c6f26bff0ae8e601719a31f86995bfc8ef2458fee2683b1a",
+      "match": true
+    },
+    {
+      "id": "TX-013",
+      "locale": "zh-Hans",
+      "hash": "38ae03ee553ec4d66b8730135d7cda863e1ae686fb79baf06e57e2d6b121f280",
+      "match": true
+    },
+    {
+      "id": "TX-014",
+      "locale": "zh-Hans",
+      "hash": "cfc43798d986898db69cd47348d3689328b9cec848ebbaa917e0fe0105e89a00",
+      "match": true
+    },
+    {
+      "id": "TX-015",
+      "locale": "zh-Hans",
+      "hash": "1bf2dca96628583548292163ff039e85f86b370663cd572e1b6e37e9e5b932b9",
+      "match": true
+    },
+    {
+      "id": "LU-001",
+      "locale": "zh-Hans",
+      "hash": "d8a5b1b12e0f7e1b145e49c6f85bd7352733c7491d405a62ede1bbb3af957981",
+      "match": true
+    },
+    {
+      "id": "LU-002",
+      "locale": "zh-Hans",
+      "hash": "ec9adc8ebd7c9ab10a95ab2e6957f1e1ac3bb9feaed449dad8a7396e6c0bae31",
+      "match": true
+    }
+  ],
+  "categoryCounts": [
+    {
+      "locale": "en",
+      "category": "capital",
+      "count": 3
+    },
+    {
+      "locale": "en",
+      "category": "time",
+      "count": 8
+    },
+    {
+      "locale": "en",
+      "category": "cashflow",
+      "count": 8
+    },
+    {
+      "locale": "en",
+      "category": "performance",
+      "count": 13
+    },
+    {
+      "locale": "en",
+      "category": "leverage",
+      "count": 12
+    },
+    {
+      "locale": "en",
+      "category": "development",
+      "count": 15
+    },
+    {
+      "locale": "en",
+      "category": "statistics",
+      "count": 18
+    },
+    {
+      "locale": "en",
+      "category": "economics",
+      "count": 9
+    },
+    {
+      "locale": "en",
+      "category": "taxes",
+      "count": 15
+    },
+    {
+      "locale": "en",
+      "category": "planning",
+      "count": 2
+    },
+    {
+      "locale": "fr-CA",
+      "category": "capital",
+      "count": 3
+    },
+    {
+      "locale": "fr-CA",
+      "category": "time",
+      "count": 8
+    },
+    {
+      "locale": "fr-CA",
+      "category": "cashflow",
+      "count": 8
+    },
+    {
+      "locale": "fr-CA",
+      "category": "performance",
+      "count": 13
+    },
+    {
+      "locale": "fr-CA",
+      "category": "leverage",
+      "count": 12
+    },
+    {
+      "locale": "fr-CA",
+      "category": "development",
+      "count": 15
+    },
+    {
+      "locale": "fr-CA",
+      "category": "statistics",
+      "count": 18
+    },
+    {
+      "locale": "fr-CA",
+      "category": "economics",
+      "count": 9
+    },
+    {
+      "locale": "fr-CA",
+      "category": "taxes",
+      "count": 15
+    },
+    {
+      "locale": "fr-CA",
+      "category": "planning",
+      "count": 2
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "capital",
+      "count": 3
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "time",
+      "count": 8
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "cashflow",
+      "count": 8
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "performance",
+      "count": 13
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "leverage",
+      "count": 12
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "development",
+      "count": 15
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "statistics",
+      "count": 18
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "economics",
+      "count": 9
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "taxes",
+      "count": 15
+    },
+    {
+      "locale": "zh-Hant",
+      "category": "planning",
+      "count": 2
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "capital",
+      "count": 3
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "time",
+      "count": 8
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "cashflow",
+      "count": 8
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "performance",
+      "count": 13
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "leverage",
+      "count": 12
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "development",
+      "count": 15
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "statistics",
+      "count": 18
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "economics",
+      "count": 9
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "taxes",
+      "count": 15
+    },
+    {
+      "locale": "zh-Hans",
+      "category": "planning",
+      "count": 2
+    }
+  ],
+  "installedFileReadbackMatches": 12,
+  "publicAppPublished": false,
+  "realMemberSessionTested": false,
+  "relatedChecks": [
+    {
+      "locale": "en",
+      "from": "TX-004",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "en",
+      "from": "TX-011",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "fr-CA",
+      "from": "TX-004",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "fr-CA",
+      "from": "TX-011",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "zh-Hant",
+      "from": "TX-004",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "zh-Hant",
+      "from": "TX-011",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "zh-Hans",
+      "from": "TX-004",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    },
+    {
+      "locale": "zh-Hans",
+      "from": "TX-011",
+      "to": "F-303",
+      "filterCount": 15,
+      "openerFocus": true
+    }
+  ],
+  "finalOverviewCount": 103
+}

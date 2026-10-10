@@ -107,12 +107,26 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   check(await page.getByRole('dialog').getByRole('heading',{name:'Direct Capitalization',exact:true}).count()===1,'economics reuses valuation card');
   await page.keyboard.press('Escape');
   check(await economicsOpener.evaluate(node=>document.activeElement===node),'economics related navigation restores opener');
-  check(await page.locator('.formula-card').count()===6,'economics related navigation preserves filter');
+  check(await page.locator('.formula-card').count()===9,'economics related navigation preserves filter');
+  for(const locale of locales){
+    await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
+    await page.getByRole('button',{name:translate(labels.taxes,locale),exact:true}).click();
+    for(const id of ['TX-004','TX-011']){
+      const opener=page.locator('.formula-card').filter({hasText:id});await opener.click();
+      const dialog=page.getByRole('dialog');
+      await dialog.getByRole('button',{name:'F-303 · '+translate(catalog.find(x=>x.id==='F-303').name,locale),exact:true}).click();
+      check(await dialog.getByRole('heading',{name:translate(catalog.find(x=>x.id==='F-303').name,locale),exact:true}).count()===1,'tax disposal links to net sale proceeds '+id+' '+locale);
+      await page.keyboard.press('Escape');
+      check(await opener.evaluate(node=>document.activeElement===node),'tax related opener restored '+id+' '+locale);
+      check(await page.locator('.formula-card').count()===15,'tax related filter preserved '+id+' '+locale);
+    }
+  }
+  await page.evaluate(()=>window.libraryCheck.configure(true,'en'));
   await page.getByRole('button',{name:'All',exact:true}).click();
   for(const locale of locales)for(const colorScheme of ['light','dark']){
     await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
     await page.setViewportSize({width:320,height:1000});await page.emulateMedia({colorScheme});
-    for(const id of ['S-005','S-013','S-015','S-016','S-018','EC-001','EC-002','EC-003','EC-004','EC-005','EC-006']){
+    for(const id of ['S-005','S-013','S-015','S-016','S-018','EC-001','EC-002','EC-003','EC-004','EC-005','EC-006','EC-008','FI-001','FI-002','FI-011','FI-012','TX-004','TX-008','TX-011','TX-013','TX-014','DV-001','DV-003','LU-001','LU-002']){
       await page.locator('.formula-card').filter({hasText:id}).click();
       check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'long statistical formula reflow '+id+' '+locale+' '+colorScheme);
       const dimensions=await page.getByRole('dialog').evaluate(node=>({scroll:node.scrollWidth,width:node.clientWidth}));
