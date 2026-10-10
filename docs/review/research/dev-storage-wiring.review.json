@@ -1,7 +1,7 @@
 {
   "reviewDate": "2026-10-09",
   "reviewOnly": true,
-  "databaseSelected": false,
+  "databaseSelected": true,
   "databaseProvisioned": false,
   "proposedStorage": {
     "project": "Investscape-Dev",
@@ -79,7 +79,7 @@
     "created": false,
     "apiOrigin": null,
     "hostedAppOrigin": null,
-    "dedicatedEntrypointExists": false,
+    "dedicatedEntrypointExists": true,
     "routerMounted": false,
     "readEnabled": false,
     "editorEnabled": false,
@@ -87,13 +87,15 @@
     "wewebPublished": false
   },
   "remainingFacts": [
-    "Owner selection of authoritative Research database and isolated host",
-    "Current scoped recovery reference and reviewable DDL/rollback package",
-    "Effective scoped role privileges, pool/TLS configuration, direct Data API exclusion",
-    "Server-owned active-member source and explicit editor grant source; no occupational profile-role authority",
-    "Exact hosted app/API/editor origins and deployed JWT issuer/signing compatibility",
+    "Current recovery reference and approval of exact disabled-create package",
+    "Effective scoped permissions and TLS/connection binding before LOGIN",
+    "Authorized Auth schema-owner USAGE grant or a verified alternate eligibility provider; connected operator cannot grant it",
+    "Separate identity projection and actual editor grant approval/binding",
+    "Exact hosted app/API/editor origins and deployed JWT/session_id compatibility",
     "Installed session-host compatibility and eventual real-session acceptance"
   ],
   "liveMapTesting": "deferred",
-  "relationshipOsTransactionDomain": "not established by this review"
+  "relationshipOsTransactionDomain": "not established by this review",
+  "ownerDatabaseSelection": "Existing Investscape-Dev project selected by owner in this conversation, Oct 9 local.",
+  "followupEvidenceReference": "provisioning/non-secret-evidence.json"
 }

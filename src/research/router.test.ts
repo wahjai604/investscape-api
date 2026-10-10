@@ -7,7 +7,7 @@ import {createResearchVerifier} from './auth.ts';
 const issuer='https://synthetic.supabase.co/auth/v1',origin='https://research.synthetic.invalid';
 async function serverFixture(options={}){
   const {privateKey,publicKey}=await generateKeyPair('ES256');
-  const token=async(subject='synthetic-member',claims={})=>new SignJWT({role:'authenticated',is_anonymous:false,...claims})
+  const token=async(subject='00000000-0000-4000-8000-000000000001',claims={})=>new SignJWT({session_id:'00000000-0000-4000-8000-000000000002',role:'authenticated',is_anonymous:false,...claims})
     .setProtectedHeader({alg:'ES256'}).setIssuer(issuer).setAudience('authenticated').setSubject(subject)
     .setExpirationTime(Math.floor(Date.now()/1000)+300).sign(privateKey);
   let reads=0,changes=0,access=true;
@@ -17,7 +17,7 @@ async function serverFixture(options={}){
     async inspect(){return {id:'synthetic-report',revision:1,state:'staged',audit:[]};}};
   const app=express();app.use('/v1/research',createResearchRouter({readEnabled:true,editorEnabled:true,
     auth:{issuer,audience:'authenticated'},origins:[origin],editorOrigin:origin},
-    {reader,editor,authority:{async resolve(s){return {member:access,editor:s.subject==='synthetic-editor'};}},
+    {reader,editor,authority:{async resolve(s){return {member:access,editor:s.subject==='00000000-0000-4000-8000-000000000003'};}},
       verifier:createResearchVerifier({issuer,audience:'authenticated'},async()=>publicKey),...options}).router);
   app.use((_req,res)=>res.status(418).json({legacy:true}));const server=app.listen(0,'127.0.0.1');
   await new Promise(resolve=>server.once('listening',resolve));
@@ -40,7 +40,7 @@ test('default-off and armed-without-resources are terminal and do not instantiat
 test('signed member reads require independent fresh access; list and hidden detail fail consistently',async()=>{
   const f=await serverFixture();try{
     assert.equal((await f.request('/items',null)).status,401);
-    assert.equal((await f.request('/items',await f.token('synthetic-anonymous',{is_anonymous:true}))).status,401);
+    assert.equal((await f.request('/items',await f.token('00000000-0000-4000-8000-000000000004',{is_anonymous:true}))).status,401);
     assert.equal((await f.request()).status,200);assert.equal((await f.request('/items/synthetic-hidden')).status,404);
     assert.equal((await f.request('/items/synthetic-missing')).body.error.code,'RESEARCH_ITEM_UNAVAILABLE');
     f.revoke();assert.equal((await f.request()).status,403);assert.equal(f.reads,3);
@@ -50,14 +50,14 @@ test('editor role is server-owned; authentication precedes JSON parsing and deni
   const f=await serverFixture();try{
     const invalid={method:'POST',headers:{'Content-Type':'application/json'},body:'{'};
     assert.equal((await f.request('/admin/changes',null,invalid)).status,401);
-    assert.equal((await f.request('/admin/changes',await f.token('synthetic-member',{user_metadata:{editor:true}}),invalid)).status,403);
+    assert.equal((await f.request('/admin/changes',await f.token('00000000-0000-4000-8000-000000000001',{user_metadata:{editor:true}}),invalid)).status,403);
     assert.equal((await f.request('/admin/items/synthetic-report')).status,403);
-    assert.equal((await f.request('/admin/items/synthetic-report',await f.token('synthetic-editor'))).status,200);
-    assert.equal((await f.request('/admin/changes',await f.token('synthetic-editor'),invalid)).status,400);
+    assert.equal((await f.request('/admin/items/synthetic-report',await f.token('00000000-0000-4000-8000-000000000003'))).status,200);
+    assert.equal((await f.request('/admin/changes',await f.token('00000000-0000-4000-8000-000000000003'),invalid)).status,400);
     const input={action:'withdraw',id:'synthetic-report',expectedRevision:1,reason:'Synthetic withdrawal'};
     const options={method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(input)};
-    assert.equal((await f.request('/admin/changes',await f.token('synthetic-editor'),options)).status,200);assert.equal(f.changes,1);
-    assert.equal((await f.request('/admin/changes',await f.token('synthetic-editor'),{...options,headers:{Origin:'https://foreign.invalid','Content-Type':'application/json'}})).status,403);
+    assert.equal((await f.request('/admin/changes',await f.token('00000000-0000-4000-8000-000000000003'),options)).status,200);assert.equal(f.changes,1);
+    assert.equal((await f.request('/admin/changes',await f.token('00000000-0000-4000-8000-000000000003'),{...options,headers:{Origin:'https://foreign.invalid','Content-Type':'application/json'}})).status,403);
   }finally{await f.close();}
 });
 test('CORS, malformed/repeated filters, bounded budget and opaque backend failure',async()=>{

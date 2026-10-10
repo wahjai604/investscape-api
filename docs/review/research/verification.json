@@ -4,15 +4,15 @@
   "typecheck": "passed",
   "build": "passed",
   "fullApiSuite": {
-    "tests": 642,
-    "passed": 640,
+    "tests": 663,
+    "passed": 661,
     "failed": 0,
     "skipped": 2,
     "skipReason": "existing E85 evidence-dependent skips"
   },
   "researchTests": {
-    "tests": 18,
-    "passed": 18
+    "tests": 39,
+    "passed": 39
   },
   "actualVueBrowser": {
     "checks": 21,
@@ -29,5 +29,22 @@
   "reviewCandidateValidation": {
     "strictStageCommands": 8,
     "allPublicationDeniedUntilOwnerClearance": true
+  },
+  "updatedAtUtc": "2026-10-10T00:13:39.995335Z",
+  "compiledDedicatedHost": {
+    "checks": 4,
+    "passed": true,
+    "signalShutdown": "passed",
+    "externalRequests": 0,
+    "genericDatabaseBindingUsed": false
+  },
+  "provisioningAcceptance": {
+    "createAndTeardown": "disposable only",
+    "managedRoleFixture": "passed",
+    "identityMissingSchemaAuthorityDenied": true,
+    "identityBindingLive": false,
+    "metadataReports": "checked in disposable Postgres",
+    "tables": 10,
+    "noLoginRoles": 8
   }
 }

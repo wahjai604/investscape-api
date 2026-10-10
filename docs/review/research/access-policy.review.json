@@ -20,5 +20,8 @@
     "futureStaffExplicitGrantsAndAudit": true
   },
   "communityModeration": "Separate policy; this review does not implement Community.",
-  "authorityImplementation": "Unknown/unbound: must resolve active/inactive membership and explicit editorial grant on every request, independently of subscription tier."
+  "authorityImplementation": "PostgresResearchAuthority implemented: current Auth account/session eligibility, Research-specific restrictions and explicit editor grants. Live identity projection remains unbound.",
+  "ownerDecisionLocalDate": "2026-10-09",
+  "admissionPolicy": "Automatic eligible permanent member access; no per-account enrollment required.",
+  "memberActivationApprovalRequired": false
 }

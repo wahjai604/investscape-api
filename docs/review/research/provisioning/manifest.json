@@ -1,0 +1,44 @@
+{
+  "status": "prepared-not-applied",
+  "reviewLocalDate": "2026-10-09",
+  "target": {
+    "project": "Investscape-Dev",
+    "ref": "hwhkgrwikczwztfnsjir",
+    "postgresMajor": 17,
+    "ownerSelection": "Owner selected existing Dev project in this conversation"
+  },
+  "packageVersion": "research-dev-1",
+  "roles": [
+    "research_owner",
+    "research_identity_owner",
+    "research_reader",
+    "research_writer",
+    "research_authority",
+    "research_reader_login",
+    "research_writer_login",
+    "research_authority_login"
+  ],
+  "privateTables": 10,
+  "allRolesNoLogin": true,
+  "identityBound": false,
+  "editorAppointments": 0,
+  "publishedItems": 0,
+  "sourceHashes": {
+    "catalog": "a67916a127b4da05922bb13b08bc03e718073b99c2bd824b0039336db0747689",
+    "authority": "b857e468a3cf89a670b1205f874b6aea9988f91a82eb0186a54abc2a5ba8b310",
+    "separateIdentityBinding": "3cb76531a357612d9035a19e6717d9fe183cf94280f8a7cc715241068e6d4198"
+  },
+  "sourceCombinedSha256": "c43ac209c02c92f1a7c4ebcc713dc99616af98781f931b5120d98b4540dee23f",
+  "candidateSha256": "15994ae4d3c3a34bd9a8620a609860305b25c5aefc756c978031f542c027fa76",
+  "emptyTeardownSha256": "eda9e22b0c67d63d462ef615357541c91773850392a856ad1272da7384979d65",
+  "identityBindingIncluded": false,
+  "readyToApply": false,
+  "ownerExecutionApproval": null,
+  "currentRecoveryReference": null,
+  "appliedReceipt": null,
+  "runtimeReadEnabled": false,
+  "runtimeEditorEnabled": false,
+  "credentialsBound": false,
+  "deployed": false,
+  "wewebPublished": false
+}

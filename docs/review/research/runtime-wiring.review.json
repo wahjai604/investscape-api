@@ -1,0 +1,72 @@
+{
+  "reviewLocalDate": "2026-10-09",
+  "updatedAtUtc": "2026-10-10T00:08:57.396374Z",
+  "reviewOnly": true,
+  "entrypoint": "src/research/main.ts",
+  "startCommand": "npm run start:research",
+  "expectedCompiledEntrypoint": "dist/research/main.js",
+  "healthcheckPath": "/healthz",
+  "healthcheckMeaning": "Runtime posture/liveness; not a continuing database health probe. Disabled host health does not mean Research reads are activated.",
+  "proposedRailway": {
+    "project": "InvestScape Research Dev",
+    "environment": "development",
+    "service": "research-api-dev",
+    "created": false,
+    "ids": null,
+    "repository": "wahjai604/investscape-api",
+    "branch": "review/research-catalog-2026-10-09",
+    "buildCommand": "npm ci && npm run build",
+    "startCommand": "npm run start:research",
+    "preDeployCommand": null,
+    "apiOrigin": null
+  },
+  "runtimePosture": {
+    "readEnabled": false,
+    "editorEnabled": false,
+    "connectionsBound": false,
+    "identityBound": false,
+    "editorIdentityBound": false,
+    "originAllowlist": [],
+    "hostedAppOrigin": null,
+    "editorAppOrigin": null,
+    "authIssuerBound": null
+  },
+  "nonSecretSourceExpectations": {
+    "authProjectRef": "hwhkgrwikczwztfnsjir",
+    "issuer": "https://hwhkgrwikczwztfnsjir.supabase.co/auth/v1",
+    "audience": "authenticated",
+    "algorithms": [
+      "ES256",
+      "RS256"
+    ],
+    "sessionIdClaim": "Required UUID; exact subject/session checked in the separately bound Auth projection",
+    "poolMode": "Direct or session pooler on port 5432 only; certificate verification and approved CA; exact role/project/host match",
+    "maxConnectionsPerPool": 2,
+    "requestDatabaseTimeoutMs": 5000,
+    "automaticMemberAccess": true,
+    "billingGate": false
+  },
+  "bindingNamesOnly": [
+    "RESEARCH_READ_ENABLED",
+    "RESEARCH_EDITOR_ENABLED",
+    "RESEARCH_AUTH_ISSUER",
+    "RESEARCH_AUTH_AUDIENCE",
+    "RESEARCH_ALLOWED_ORIGINS",
+    "RESEARCH_EDITOR_ORIGIN",
+    "RESEARCH_DB_HOST",
+    "RESEARCH_DB_CA_PEM",
+    "RESEARCH_READER_DATABASE_URL",
+    "RESEARCH_WRITER_DATABASE_URL",
+    "RESEARCH_AUTHORITY_DATABASE_URL"
+  ],
+  "bindingValuesInspected": false,
+  "installedWeWebRealSessionAcceptance": false,
+  "legacySessionEvidence": "Earlier Oct 9 public getSession/auth-event diagnostic; full Research token/session-host binding not reverified",
+  "reportedWorkspaceEditorOrigin": "https://joyous-trellis-editor.weweb.io",
+  "workspaceEditorOriginLimitation": "Historical workspace diagnostic origin; not a substitute for hosted member or editor-app origins.",
+  "sourceRightsApproved": false,
+  "deploymentPerformed": false,
+  "wewebPublicationPerformed": false,
+  "mapActivationPerformed": false,
+  "identityBindingBlocker": "Connected postgres cannot grant USAGE on auth schema or SET its owner role. A narrow authorized schema-owner grant/provider choice is required."
+}

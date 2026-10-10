@@ -13,12 +13,13 @@
     "test:lighthouse": "node --test \"src/lighthouse/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
     "migrate:lighthouse": "node src/lighthouse/persistence/migrateCli.ts",
-    "test:db": "node --test \"src/lighthouse/**/*.dbtest.ts\""
+    "test:db": "node --test \"src/lighthouse/**/*.dbtest.ts\"",
+    "start:research": "node dist/research/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "PROPRIETARY",
-  "licenseText": "© 2026 Lighthouse Research Ltd. Proprietary software. See LICENSE file.",
+  "licenseText": "\u00a9 2026 Lighthouse Research Ltd. Proprietary software. See LICENSE file.",
   "dependencies": {
     "@investscape/calc-engine": "file:vendor/investscape-calc-engine-1.0.0.tgz",
     "@investscape/economic-engine": "file:vendor/investscape-economic-engine-0.1.6.tgz",

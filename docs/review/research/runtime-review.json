@@ -4,7 +4,7 @@
   "readEnabled": false,
   "editorEnabled": false,
   "mounted": false,
-  "databaseSelected": false,
+  "databaseSelected": true,
   "databaseProvisioned": false,
   "sourceRightsApproved": false,
   "memberAuthorityBound": false,
@@ -29,5 +29,12 @@
   "devWiringReference": "dev-storage-wiring.review.json",
   "billingEntitlementRequired": false,
   "proposedDatabaseRef": "hwhkgrwikczwztfnsjir",
-  "dedicatedRuntimeEntrypointImplemented": false
+  "dedicatedRuntimeEntrypointImplemented": true,
+  "reviewLocalDate": "2026-10-09",
+  "updatedAtUtc": "2026-10-10T00:08:57.396374Z",
+  "memberAuthorityAdapterImplemented": true,
+  "automaticEligibleMemberAccess": true,
+  "identityProjectionLiveBound": false,
+  "provisioningPackageReference": "provisioning/manifest.json",
+  "runtimeWiringReference": "runtime-wiring.review.json"
 }
