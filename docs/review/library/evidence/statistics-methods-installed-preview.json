@@ -1,0 +1,149 @@
+{
+  "evidenceDateUTC": "2026-10-10T10:11:19.822Z",
+  "projectId": "4a0173ad-346d-4d29-a9b9-0201e5af6d78",
+  "pageId": "fa691651-6fc1-45df-9d69-968d5baeb6ca",
+  "componentVersionId": "9abb8f18-5789-48b6-a86c-7bed4152be74",
+  "counts": {
+    "en": 57,
+    "fr-CA": 57,
+    "zh-Hant": 57,
+    "zh-Hans": 57
+  },
+  "filteredCounts": {
+    "en": 18,
+    "fr-CA": 18,
+    "zh-Hant": 18,
+    "zh-Hans": 18
+  },
+  "checked": [
+    {
+      "locale": "en",
+      "id": "S-013",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-014",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-015",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-016",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-017",
+      "passed": true
+    },
+    {
+      "locale": "en",
+      "id": "S-018",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-013",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-014",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-015",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-016",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-017",
+      "passed": true
+    },
+    {
+      "locale": "fr-CA",
+      "id": "S-018",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-013",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-014",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-015",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-016",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-017",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hant",
+      "id": "S-018",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-013",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-014",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-015",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-016",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-017",
+      "passed": true
+    },
+    {
+      "locale": "zh-Hans",
+      "id": "S-018",
+      "passed": true
+    }
+  ],
+  "sourceFilesReadbackMatch": true,
+  "scope": "Installed Dev editor preview: 57-card overview and 18 statistics filter counts; all six new details in each locale compared with exact heading, formula, explanation, example and scope hashes. Local compiled Vue harness verifies all 57 cards; not production/member-session acceptance.",
+  "relatedNavigation": {
+    "from": "S016",
+    "to": "S003",
+    "heading": "Weighted Mean",
+    "filterPreserved": 18,
+    "focusRestored": true
+  }
+}

@@ -110,6 +110,68 @@
         "S-009",
         "S-010"
       ]
+    },
+    {
+      "id": "S-013",
+      "topicKey": "ST13 + ST14",
+      "name": "Outliers: Z-Scores and IQR Flags",
+      "relatedIds": [
+        "S-005",
+        "S-007",
+        "S-014"
+      ]
+    },
+    {
+      "id": "S-014",
+      "topicKey": "W01 (revised slot)",
+      "name": "Winsorization: Capping Extreme Values",
+      "relatedIds": [
+        "S-001",
+        "S-005",
+        "S-013"
+      ]
+    },
+    {
+      "id": "S-015",
+      "topicKey": "ST15",
+      "name": "Correlation and Sample Covariance",
+      "relatedIds": [
+        "S-007",
+        "S-013",
+        "S-018"
+      ]
+    },
+    {
+      "id": "S-016",
+      "topicKey": "ST16",
+      "name": "Geography, Comparability and Weighting",
+      "relatedIds": [
+        "S-003",
+        "S-017",
+        "S-018"
+      ]
+    },
+    {
+      "id": "S-017",
+      "topicKey": "ST17",
+      "name": "Benchmarks, Ranges and Consensus",
+      "relatedIds": [
+        "S-003",
+        "S-004",
+        "S-016",
+        "S-018",
+        "F-404"
+      ]
+    },
+    {
+      "id": "S-018",
+      "topicKey": "ST18",
+      "name": "Data Quality, Freshness and Uncertainty",
+      "relatedIds": [
+        "S-015",
+        "S-016",
+        "S-017"
+      ]
     }
   ],
   "sources": [
@@ -128,6 +190,38 @@
     {
       "path": "src/statistical-risk/weighted.ts",
       "sha": "4cb7569ad8f7f88127a7e15096a28a611f86b0bb"
+    },
+    {
+      "path": "src/statistical-risk/outliers.ts",
+      "sha": "df420cb7ba69bcadedcaf8d9cb5fdf6b35351cb5"
+    },
+    {
+      "path": "src/statistical-risk/correlation.ts",
+      "sha": "820cfc866af613a79467cdd7a34453c3193dcb64"
+    },
+    {
+      "path": "src/market-intelligence/geography.ts",
+      "sha": "81d3a4e82ccebea7d0535f2cf56a4e61544c1928"
+    },
+    {
+      "path": "src/cap-rate-engine/benchmark-consensus.ts",
+      "sha": "3959e289dfb8c3bbf9c0e640cc8799142d6299c2"
+    },
+    {
+      "path": "src/market-intelligence/data-quality.ts",
+      "sha": "26a750430f82dd4012960a5e092e5c8ee6ce68c1"
+    },
+    {
+      "path": "src/statistical-risk/phase2-contracts.ts",
+      "sha": "3487ba471e0b445ce8f778fc02133c2670c68975"
+    },
+    {
+      "path": "src/market-intelligence/comparability.ts",
+      "sha": "d65b801107257491db56bda2ceffc46c38376d75"
+    },
+    {
+      "path": "src/market-intelligence/benchmarking.ts",
+      "sha": "0c5955bcb06ea4260c671db6abea3ea7f01dfabd"
     }
   ],
   "primaryReferences": [
@@ -138,12 +232,33 @@
     {
       "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/coefvari.htm",
       "role": "NIST distinguishes CV, relative SD, ratio-scale use and near-zero limitations"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/handbook/eda/section3/eda35h.htm",
+      "role": "Outlier review and limits of ordinary Z-scores, especially small samples"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/handbook/prc/section1/prc16.htm",
+      "role": "IQR fence concept and investigation; card uses its own explicit R-7 quartiles"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/winscorr.htm",
+      "role": "Tail replacement and disclosed winsorization thresholds; fixed-bound example is original"
+    },
+    {
+      "url": "https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html",
+      "role": "Sample n-1 covariance, paired observations and missing-value choices"
     }
   ],
   "sourceQualifications": [
     "CAGR comment says strictly positive endpoints; executable branch accepts ending zero and returns -100%. Card describes that nonnegative-ending convention without modifying engine code.",
     "Period change divides by absolute prior; differs from signed-prior division for negative bases.",
     "CV source uses sample SD / absolute mean; card identifies the convention and limits interpretation.",
-    "Mid-rank uses half of exact ties; card displays percent while source returns a fraction."
+    "Mid-rank uses half of exact ties; card displays percent while source returns a fraction.",
+    "Second batch combines original ST13 Z-score and ST14 IQR candidate scopes in S-013; S-014 is the newly requested winsorization concept W01. This replaces one freed planning slot without automatically increasing the original 64-additional-card baseline.",
+    "S-015 teaches sample covariance used internally by Pearson correlation; the portfolio covariance service is a throwing Phase 2+ scaffold and remains unimplemented.",
+    "S-016 extends comparability with an original count-weighted pooled-mean example for disjoint groups; geography.ts wraps identities and does not implement this pooled estimator or a spatial join.",
+    "S-017 uses illustrative supplied weights, not E87 default hierarchy/freshness/comparability weights; no current benchmark, confidence interval or deployed consensus service is claimed.",
+    "S-018 completeness is a field-presence illustration, not the engine composite quality score; source reliability must be externally established, missing evidence is not manufactured."
   ]
 }

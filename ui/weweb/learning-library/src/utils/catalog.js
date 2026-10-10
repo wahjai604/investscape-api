@@ -1,6 +1,7 @@
 // Original educational copy; formula IDs and example lineage reference InvestScape Docs 06/33/48.
 import {remainingCatalog} from './remaining-catalog.js';
 import {statisticsCatalog} from './statistics-catalog.js';
+import {statisticsMethodsCatalog} from './statistics-methods-catalog.js';
 const text = (en, fr, hant, hans) => ({ en, 'fr-CA': fr, 'zh-Hant': hant, 'zh-Hans': hans });
 export const categories = ['capital', 'time', 'cashflow', 'performance', 'leverage', 'development', 'statistics'];
 export const locales = ['en', 'fr-CA', 'zh-Hant', 'zh-Hans'];
@@ -127,7 +128,7 @@ const initialCatalog = [
     scope:text('This is not IRR or an annual yield. These are historical documented project figures, not a current project forecast.','Ce n’est ni un TRI ni un rendement annuel. Ce sont des chiffres de projet historiques documentés, pas une prévision actuelle.','此指標並非 IRR 或年度收益率。數字為已記錄的歷史項目資料，而非現時項目預測。','此指标并非 IRR 或年度收益率。数字为已记录的历史项目资料，而非现时项目预测。'),
   },
 ];
-export const catalog = [...initialCatalog, ...remainingCatalog, ...statisticsCatalog].sort((a,b)=>a.id.localeCompare(b.id));
+export const catalog = [...initialCatalog, ...remainingCatalog, ...statisticsCatalog, ...statisticsMethodsCatalog].sort((a,b)=>a.id.localeCompare(b.id));
 
 export function normalizeLocale(value) { return locales.includes(value) ? value : 'en'; }
 export function translate(value, locale) { return value[normalizeLocale(locale)]; }

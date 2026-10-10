@@ -99,15 +99,17 @@ window.libraryCheck={async configure(enabled,locale='en',editing=false,theme='au
   check(await relatedDialog.getByRole('heading',{name:'Future Value',exact:true}).count()===1,'related canonical card opens outside current filter');
   await page.keyboard.press('Escape');
   check(await statisticsOpener.evaluate(node=>document.activeElement===node),'related navigation restores original card');
-  check(await page.locator('.formula-card').count()===12,'related navigation preserves category filter');
+  check(await page.locator('.formula-card').count()===catalog.filter(item=>item.category==='statistics').length,'related navigation preserves category filter');
   for(const locale of locales)for(const colorScheme of ['light','dark']){
     await page.evaluate(locale=>window.libraryCheck.configure(true,locale),locale);
     await page.setViewportSize({width:320,height:1000});await page.emulateMedia({colorScheme});
-    await page.locator('.formula-card').filter({hasText:'S-005'}).click();
-    check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'long statistical formula reflow '+locale+' '+colorScheme);
-    const dimensions=await page.getByRole('dialog').evaluate(node=>({scroll:node.scrollWidth,width:node.clientWidth}));
-    check(dimensions.scroll<=dimensions.width,'statistics dialog reflow '+locale+' '+colorScheme);
-    await page.keyboard.press('Escape');
+    for(const id of ['S-005','S-013','S-015','S-016','S-018']){
+      await page.locator('.formula-card').filter({hasText:id}).click();
+      check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'long statistical formula reflow '+id+' '+locale+' '+colorScheme);
+      const dimensions=await page.getByRole('dialog').evaluate(node=>({scroll:node.scrollWidth,width:node.clientWidth}));
+      check(dimensions.scroll<=dimensions.width,'statistics dialog reflow '+id+' '+locale+' '+colorScheme);
+      await page.keyboard.press('Escape');
+    }
   }
   await page.setViewportSize({width:1100,height:1000});await page.emulateMedia({colorScheme:'light'});
   await page.evaluate(()=>window.libraryCheck.configure(true,'en'));

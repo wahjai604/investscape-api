@@ -40,6 +40,22 @@
     {
       "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/coefvari.htm",
       "role": "CV meaningful-zero ratio-scale and near-zero mean limits; distinguishes sample SD/mean from absolute-mean relative SD convention; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/handbook/eda/section3/eda35h.htm",
+      "role": "Outlier investigation and Z-score limitations; no automatic exclusion; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/handbook/prc/section1/prc16.htm",
+      "role": "1.5 IQR fence concept; our card explicitly uses R-7 quartiles, not every convention in this reference; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://itl.nist.gov/div898/software/dataplot/refman2/auxillar/winscorr.htm",
+      "role": "Winsorization replaces extreme tail values with boundary values; fixed card bounds are synthetic; freshly opened 2026-10-10"
+    },
+    {
+      "url": "https://stat.ethz.ch/R-manual/R-patched/library/stats/html/cor.html",
+      "role": "Sample covariance denominator and aligned-pair/missing-value conventions; freshly opened 2026-10-10"
     }
   ],
   "sourceLimitations": [
@@ -64,7 +80,7 @@
   "liveResearchWiring": "owner-deferred",
   "liveMapVerification": "owner-deferred",
   "memberAccess": "No paid-tier gate. Member route/navigation policy still requires wiring review.",
-  "copyStatus": "51 educational cards in four languages prepared for editorial review: 39 canonical formula cards plus 12 statistics cards",
+  "copyStatus": "57 educational cards in four languages prepared for editorial review: 39 canonical formula cards plus 18 statistics cards",
   "provisioningRequired": false,
   "statisticsInventory": "statistics-inventory.json",
   "topicGroupReclassification": "topic-group-reclassification.json"
